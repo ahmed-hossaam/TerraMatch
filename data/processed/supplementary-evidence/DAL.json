@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "1.0.0",
+  "recordType": "supplementary-point-evidence",
+  "siteId": "DAL",
+  "requestedCoordinate": {
+    "latitude": 38.59556,
+    "longitude": 90.985
+  },
+  "coordinatesApproximate": true,
+  "providerStatuses": {
+    "climate": "success",
+    "terrain": "success",
+    "geology": "success"
+  },
+  "normalizedPaths": {
+    "climate": "data/processed/supplementary-evidence/DAL-climate.json",
+    "terrain": "data/processed/supplementary-evidence/DAL-terrain.json",
+    "geology": "data/processed/supplementary-evidence/DAL-geology.json"
+  },
+  "limitations": [
+    "Sampling field is local and does not represent the entire playa.",
+    "The reported coordinate precision is not a quantified uncertainty estimate.",
+    "No site-specific climate/DEM/GLiM data has been retrieved yet.",
+    "No mineral claims inferred or copied into normalized minerals."
+  ]
+}

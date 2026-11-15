@@ -1,0 +1,111 @@
+{
+  "manifestVersion": 1,
+  "referenceSource": "أطلس المواقع المشابهة للمريخ (JSON).json",
+  "blindEvaluationStatus": "not_run",
+  "sites": [
+    {
+      "id": "GKC",
+      "referenceLabel": "Gilf Kebir Crater Field"
+    },
+    {
+      "id": "GKB",
+      "referenceLabel": "Gilf Kebir Plateau"
+    },
+    {
+      "id": "WDE",
+      "referenceLabel": "Western Desert, SW Egypt"
+    },
+    {
+      "id": "KHA",
+      "referenceLabel": "Kharga Depression"
+    },
+    {
+      "id": "ATA",
+      "referenceLabel": "Atacama Desert – Yungay"
+    },
+    {
+      "id": "MOJ",
+      "referenceLabel": "Mojave Desert"
+    },
+    {
+      "id": "DEV",
+      "referenceLabel": "Death Valley"
+    },
+    {
+      "id": "RAM",
+      "referenceLabel": "Ramon Crater, Negev"
+    },
+    {
+      "id": "DHO",
+      "referenceLabel": "Dhofar Desert"
+    },
+    {
+      "id": "PIL",
+      "referenceLabel": "Pilbara – North Pole Dome"
+    },
+    {
+      "id": "WHS",
+      "referenceLabel": "White Sands dunes"
+    },
+    {
+      "id": "MDRS",
+      "referenceLabel": "Mars Desert Research Station, Utah"
+    },
+    {
+      "id": "GOB",
+      "referenceLabel": "Gobi – Mars Base 1, Gansu"
+    },
+    {
+      "id": "MET",
+      "referenceLabel": "Meteor Crater, Arizona"
+    },
+    {
+      "id": "BON",
+      "referenceLabel": "Bonneville Salt Flats"
+    },
+    {
+      "id": "MDV",
+      "referenceLabel": "McMurdo Dry Valleys"
+    },
+    {
+      "id": "RTI",
+      "referenceLabel": "Río Tinto"
+    },
+    {
+      "id": "LON",
+      "referenceLabel": "Lonar Crater"
+    },
+    {
+      "id": "SAL",
+      "referenceLabel": "Lake Salda"
+    },
+    {
+      "id": "LAN",
+      "referenceLabel": "Lanzarote – Timanfaya"
+    },
+    {
+      "id": "HIS",
+      "referenceLabel": "Mauna Loa (HI-SEAS)"
+    },
+    {
+      "id": "HMP",
+      "referenceLabel": "Haughton Crater, Devon Island"
+    },
+    {
+      "id": "ETN",
+      "referenceLabel": "Mount Etna"
+    },
+    {
+      "id": "KIL",
+      "referenceLabel": "Kilauea lava tubes, Hawaii"
+    },
+    {
+      "id": "SVA",
+      "referenceLabel": "Svalbard"
+    },
+    {
+      "id": "LAM",
+      "referenceLabel": "Lambahraun lava field"
+    }
+  ]
+}

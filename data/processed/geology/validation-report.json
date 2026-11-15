@@ -1,0 +1,64 @@
+{
+  "generatedAt": "2026-11-14T17:26:23.508Z",
+  "provider": "GLiM ArcGIS Feature Service",
+  "requestedSiteIds": [
+    "GKC",
+    "GKB",
+    "WDE",
+    "KHA",
+    "RTI"
+  ],
+  "normalizedRecordCount": 5,
+  "successfulMappedSiteCount": 5,
+  "ambiguousSiteCount": 0,
+  "missingOrNoDataSiteCount": 0,
+  "failedSiteCount": 0,
+  "sites": [
+    {
+      "locationId": "GKC",
+      "status": "mapped",
+      "featureCount": 1,
+      "objectIds": [
+        936054
+      ],
+      "approximateCoordinates": true
+    },
+    {
+      "locationId": "GKB",
+      "status": "mapped",
+      "featureCount": 1,
+      "objectIds": [
+        935813
+      ],
+      "approximateCoordinates": true
+    },
+    {
+      "locationId": "WDE",
+      "status": "mapped",
+      "featureCount": 1,
+      "objectIds": [
+        935600
+      ],
+      "approximateCoordinates": true
+    },
+    {
+      "locationId": "KHA",
+      "status": "mapped",
+      "featureCount": 1,
+      "objectIds": [
+        935449
+      ],
+      "approximateCoordinates": true
+    },
+    {
+      "locationId": "RTI",
+      "status": "mapped",
+      "featureCount": 1,
+      "objectIds": [
+        410261
+      ],
+      "approximateCoordinates": true
+    }
+  ],
+  "failures": []
+}

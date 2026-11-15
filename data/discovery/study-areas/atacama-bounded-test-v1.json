@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "1.0.0",
+  "configurationStatus": "demonstration_test_configuration_not_a_scientific_discovery",
+  "studyArea": {
+    "id": "atacama-bounded-test",
+    "label": "Bounded grid pipeline demonstration near the Atacama region",
+    "boundingBox": {"minLatitude": -23.6, "minLongitude": -69.3, "maxLatitude": -23.4, "maxLongitude": -69.1},
+    "spacingDegrees": 0.2,
+    "maxCandidates": 1,
+    "referenceExclusionKm": 75
+  },
+  "scientificLimitations": ["This single-cell area is a pipeline demonstration, not a selected discovery region or claim of a new analog.", "The bounding box is adjacent to a known Atacama analog region; a configurable 75 km exclusion around known reference coordinates does not guarantee geological independence.", "The generated grid center is a sampling coordinate for one coarse cell and not a field site."]
+}

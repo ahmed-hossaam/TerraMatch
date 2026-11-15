@@ -1,0 +1,443 @@
+[
+  {
+    "id": "GRID-TEST-01",
+    "recordType": "test_fixture",
+    "planet": "Earth",
+    "latitude": 22.25,
+    "longitude": 26.25,
+    "coordinatesApproximate": false,
+    "country": null,
+    "regionName": null,
+    "discoveryMethod": "Fixed test coordinate; not a scientific discovery",
+    "elevationMeanM": {
+      "value": null,
+      "unit": "m",
+      "sourceId": "candidate-test-fixtures",
+      "qualityStatus": "missing",
+      "processingMethod": "Not retrieved; test fixture",
+      "observationPeriod": null
+    },
+    "climate": {
+      "observationPeriod": null,
+      "meanTemperatureC": {
+        "value": null,
+        "unit": "°C",
+        "sourceId": "candidate-test-fixtures",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; test fixture",
+        "observationPeriod": null
+      },
+      "meanDailyTemperatureRangeC": {
+        "value": null,
+        "unit": "°C",
+        "sourceId": "candidate-test-fixtures",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; test fixture",
+        "observationPeriod": null
+      },
+      "meanHumidityPct": {
+        "value": null,
+        "unit": "%",
+        "sourceId": "candidate-test-fixtures",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; test fixture",
+        "observationPeriod": null
+      },
+      "annualPrecipitationMm": {
+        "value": null,
+        "unit": "mm/year",
+        "sourceId": "candidate-test-fixtures",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; test fixture",
+        "observationPeriod": null
+      },
+      "meanWindSpeedMs": {
+        "value": null,
+        "unit": "m/s",
+        "sourceId": "candidate-test-fixtures",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; test fixture",
+        "observationPeriod": null
+      },
+      "meanSolarRadiation": {
+        "value": null,
+        "unit": "MJ/m²/day",
+        "sourceId": "candidate-test-fixtures",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; test fixture",
+        "observationPeriod": null
+      },
+      "missingDays": null,
+      "validDays": null,
+      "coverage": null
+    },
+    "terrain": {
+      "elevationMinM": {
+        "value": null,
+        "unit": "m",
+        "sourceId": "candidate-test-fixtures",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; test fixture",
+        "observationPeriod": null
+      },
+      "elevationMaxM": {
+        "value": null,
+        "unit": "m",
+        "sourceId": "candidate-test-fixtures",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; test fixture",
+        "observationPeriod": null
+      },
+      "slopeMeanDeg": {
+        "value": null,
+        "unit": "°",
+        "sourceId": "candidate-test-fixtures",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; test fixture",
+        "observationPeriod": null
+      },
+      "slopeP95Deg": {
+        "value": null,
+        "unit": "°",
+        "sourceId": "candidate-test-fixtures",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; test fixture",
+        "observationPeriod": null
+      },
+      "roughness": {
+        "value": null,
+        "unit": null,
+        "sourceId": "candidate-test-fixtures",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; test fixture",
+        "observationPeriod": null
+      },
+      "rasterResolutionM": null,
+      "sourceId": null,
+      "qualityStatus": "missing"
+    },
+    "geology": {
+      "lithology": {
+        "classification": null,
+        "sourceId": "candidate-test-fixtures",
+        "qualityStatus": "missing"
+      },
+      "minerals": [],
+      "formationDescription": null,
+      "rockDescription": null,
+      "references": [],
+      "evidenceQuality": "missing"
+    },
+    "dataQuality": {
+      "coverage": null,
+      "confidence": null,
+      "missingFactors": [
+        "climate",
+        "terrain",
+        "lithology",
+        "mineral evidence"
+      ],
+      "warnings": [
+        "Test fixture only; not a confirmed analog or generated discovery."
+      ],
+      "validationErrors": [],
+      "qualityNotes": []
+    },
+    "provenance": [],
+    "atlas": null
+  },
+  {
+    "id": "GRID-TEST-02",
+    "recordType": "test_fixture",
+    "planet": "Earth",
+    "latitude": -24.25,
+    "longitude": -69.25,
+    "coordinatesApproximate": false,
+    "country": null,
+    "regionName": null,
+    "discoveryMethod": "Fixed test coordinate; not a scientific discovery",
+    "elevationMeanM": {
+      "value": null,
+      "unit": "m",
+      "sourceId": "candidate-test-fixtures",
+      "qualityStatus": "missing",
+      "processingMethod": "Not retrieved; test fixture",
+      "observationPeriod": null
+    },
+    "climate": {
+      "observationPeriod": null,
+      "meanTemperatureC": {
+        "value": null,
+        "unit": "°C",
+        "sourceId": "candidate-test-fixtures",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; test fixture",
+        "observationPeriod": null
+      },
+      "meanDailyTemperatureRangeC": {
+        "value": null,
+        "unit": "°C",
+        "sourceId": "candidate-test-fixtures",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; test fixture",
+        "observationPeriod": null
+      },
+      "meanHumidityPct": {
+        "value": null,
+        "unit": "%",
+        "sourceId": "candidate-test-fixtures",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; test fixture",
+        "observationPeriod": null
+      },
+      "annualPrecipitationMm": {
+        "value": null,
+        "unit": "mm/year",
+        "sourceId": "candidate-test-fixtures",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; test fixture",
+        "observationPeriod": null
+      },
+      "meanWindSpeedMs": {
+        "value": null,
+        "unit": "m/s",
+        "sourceId": "candidate-test-fixtures",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; test fixture",
+        "observationPeriod": null
+      },
+      "meanSolarRadiation": {
+        "value": null,
+        "unit": "MJ/m²/day",
+        "sourceId": "candidate-test-fixtures",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; test fixture",
+        "observationPeriod": null
+      },
+      "missingDays": null,
+      "validDays": null,
+      "coverage": null
+    },
+    "terrain": {
+      "elevationMinM": {
+        "value": null,
+        "unit": "m",
+        "sourceId": "candidate-test-fixtures",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; test fixture",
+        "observationPeriod": null
+      },
+      "elevationMaxM": {
+        "value": null,
+        "unit": "m",
+        "sourceId": "candidate-test-fixtures",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; test fixture",
+        "observationPeriod": null
+      },
+      "slopeMeanDeg": {
+        "value": null,
+        "unit": "°",
+        "sourceId": "candidate-test-fixtures",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; test fixture",
+        "observationPeriod": null
+      },
+      "slopeP95Deg": {
+        "value": null,
+        "unit": "°",
+        "sourceId": "candidate-test-fixtures",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; test fixture",
+        "observationPeriod": null
+      },
+      "roughness": {
+        "value": null,
+        "unit": null,
+        "sourceId": "candidate-test-fixtures",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; test fixture",
+        "observationPeriod": null
+      },
+      "rasterResolutionM": null,
+      "sourceId": null,
+      "qualityStatus": "missing"
+    },
+    "geology": {
+      "lithology": {
+        "classification": null,
+        "sourceId": "candidate-test-fixtures",
+        "qualityStatus": "missing"
+      },
+      "minerals": [],
+      "formationDescription": null,
+      "rockDescription": null,
+      "references": [],
+      "evidenceQuality": "missing"
+    },
+    "dataQuality": {
+      "coverage": null,
+      "confidence": null,
+      "missingFactors": [
+        "climate",
+        "terrain",
+        "lithology",
+        "mineral evidence"
+      ],
+      "warnings": [
+        "Test fixture only; not a confirmed analog or generated discovery."
+      ],
+      "validationErrors": [],
+      "qualityNotes": []
+    },
+    "provenance": [],
+    "atlas": null
+  },
+  {
+    "id": "GRID-TEST-03",
+    "recordType": "test_fixture",
+    "planet": "Earth",
+    "latitude": -77.25,
+    "longitude": 162.25,
+    "coordinatesApproximate": false,
+    "country": null,
+    "regionName": null,
+    "discoveryMethod": "Fixed test coordinate; not a scientific discovery",
+    "elevationMeanM": {
+      "value": null,
+      "unit": "m",
+      "sourceId": "candidate-test-fixtures",
+      "qualityStatus": "missing",
+      "processingMethod": "Not retrieved; test fixture",
+      "observationPeriod": null
+    },
+    "climate": {
+      "observationPeriod": null,
+      "meanTemperatureC": {
+        "value": null,
+        "unit": "°C",
+        "sourceId": "candidate-test-fixtures",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; test fixture",
+        "observationPeriod": null
+      },
+      "meanDailyTemperatureRangeC": {
+        "value": null,
+        "unit": "°C",
+        "sourceId": "candidate-test-fixtures",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; test fixture",
+        "observationPeriod": null
+      },
+      "meanHumidityPct": {
+        "value": null,
+        "unit": "%",
+        "sourceId": "candidate-test-fixtures",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; test fixture",
+        "observationPeriod": null
+      },
+      "annualPrecipitationMm": {
+        "value": null,
+        "unit": "mm/year",
+        "sourceId": "candidate-test-fixtures",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; test fixture",
+        "observationPeriod": null
+      },
+      "meanWindSpeedMs": {
+        "value": null,
+        "unit": "m/s",
+        "sourceId": "candidate-test-fixtures",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; test fixture",
+        "observationPeriod": null
+      },
+      "meanSolarRadiation": {
+        "value": null,
+        "unit": "MJ/m²/day",
+        "sourceId": "candidate-test-fixtures",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; test fixture",
+        "observationPeriod": null
+      },
+      "missingDays": null,
+      "validDays": null,
+      "coverage": null
+    },
+    "terrain": {
+      "elevationMinM": {
+        "value": null,
+        "unit": "m",
+        "sourceId": "candidate-test-fixtures",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; test fixture",
+        "observationPeriod": null
+      },
+      "elevationMaxM": {
+        "value": null,
+        "unit": "m",
+        "sourceId": "candidate-test-fixtures",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; test fixture",
+        "observationPeriod": null
+      },
+      "slopeMeanDeg": {
+        "value": null,
+        "unit": "°",
+        "sourceId": "candidate-test-fixtures",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; test fixture",
+        "observationPeriod": null
+      },
+      "slopeP95Deg": {
+        "value": null,
+        "unit": "°",
+        "sourceId": "candidate-test-fixtures",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; test fixture",
+        "observationPeriod": null
+      },
+      "roughness": {
+        "value": null,
+        "unit": null,
+        "sourceId": "candidate-test-fixtures",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; test fixture",
+        "observationPeriod": null
+      },
+      "rasterResolutionM": null,
+      "sourceId": null,
+      "qualityStatus": "missing"
+    },
+    "geology": {
+      "lithology": {
+        "classification": null,
+        "sourceId": "candidate-test-fixtures",
+        "qualityStatus": "missing"
+      },
+      "minerals": [],
+      "formationDescription": null,
+      "rockDescription": null,
+      "references": [],
+      "evidenceQuality": "missing"
+    },
+    "dataQuality": {
+      "coverage": null,
+      "confidence": null,
+      "missingFactors": [
+        "climate",
+        "terrain",
+        "lithology",
+        "mineral evidence"
+      ],
+      "warnings": [
+        "Test fixture only; not a confirmed analog or generated discovery."
+      ],
+      "validationErrors": [],
+      "qualityNotes": []
+    },
+    "provenance": [],
+    "atlas": null
+  }
+]

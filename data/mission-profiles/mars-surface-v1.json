@@ -1,0 +1,722 @@
+{
+  "schemaVersion": "1.0.0",
+  "profileId": "mars-surface-analog-requirements",
+  "profileVersion": "1.0.0",
+  "targetPlanet": "Mars",
+  "targetEnvironment": "surface",
+  "status": "requirements_only",
+  "purpose": "Define evidence dimensions for comparing terrestrial environments with Mars surface mission contexts. This file defines requirements and current availability; it is not a scoring model.",
+  "scientificCautions": [
+    "Terrestrial gravity, atmospheric pressure and composition, radiation environment, and planetary history differ from Mars.",
+    "NASA POWER solar radiation is not ultraviolet radiation.",
+    "A point DEM elevation sample does not characterize slope, roughness, obstacles, or regional terrain diversity.",
+    "GLiM is generalized surface lithology mapping, not site-level field verification or mineral detection.",
+    "Lithology does not establish mineral identity or concentration.",
+    "Five original atlas points and three supplementary point-area records have retrievals; coordinates are approximate or represent site areas, and point queries may not represent the named feature.",
+    "No similarity score, mission score, ranking, or scientific confidence score is defined."
+  ],
+  "dimensions": [
+    {
+      "id": "climate",
+      "name": "Climate and thermal environment",
+      "whyItMatters": "Thermal conditions and day-to-day variability affect surface operations, materials, and analog interpretation.",
+      "factors": [
+        {
+          "id": "air_temperature_daily_mean",
+          "name": "Daily mean air temperature",
+          "definition": "NASA POWER T2M daily gridded air temperature at 2 m.",
+          "unit": "°C",
+          "requirementStatus": "required",
+          "evidenceAvailability": {
+            "status": "retrieved_subset",
+            "evidenceKind": "provider_gridded",
+            "sourceId": "nasa-power-daily-point",
+            "provider": "NASA POWER",
+            "dataset": "Daily Point API; meteorological sources reported by response",
+            "sourceUrl": "https://power.larc.nasa.gov/api/temporal/daily/point",
+            "localDataPath": "data/processed/climate/known-sites-daily.json and data/processed/supplementary-evidence/{siteId}-climate.json",
+            "availableSiteIds": [
+              "GKC",
+              "GKB",
+              "WDE",
+              "KHA",
+              "RTI",
+              "DALL",
+              "DAL",
+              "AHS-GH"
+            ],
+            "observationPeriod": "2001-01-01/2020-12-31",
+            "spatialResolution": "Gridded point product; source support is variable/source dependent, not a site observation",
+            "temporalResolution": "Daily",
+            "processingMethod": "Normalized daily value; NASA missing sentinel represented as null"
+          },
+          "limitations": [
+            "Subset: five original atlas sites plus three supplementary point-area sites; the remaining 23 references have no matching retrieved record.",
+            "Gridded estimate and approximate atlas coordinates limit site-specific interpretation."
+          ],
+          "nextEvidenceNeed": "Document parameter-specific source support and retrieve a scientifically justified broader sample."
+        },
+        {
+          "id": "air_temperature_extremes",
+          "name": "Daily maximum and minimum air temperature",
+          "definition": "NASA POWER T2M_MAX and T2M_MIN at 2 m; retain each parameter distinctly.",
+          "unit": "°C",
+          "requirementStatus": "required",
+          "evidenceAvailability": {
+            "status": "retrieved_subset",
+            "evidenceKind": "provider_gridded",
+            "sourceId": "nasa-power-daily-point",
+            "provider": "NASA POWER",
+            "dataset": "Daily Point API; meteorological sources reported by response",
+            "sourceUrl": "https://power.larc.nasa.gov/api/temporal/daily/point",
+            "localDataPath": "data/processed/climate/known-sites-daily.json and data/processed/supplementary-evidence/{siteId}-climate.json",
+            "availableSiteIds": [
+              "GKC",
+              "GKB",
+              "WDE",
+              "KHA",
+              "RTI",
+              "DALL",
+              "DAL",
+              "AHS-GH"
+            ],
+            "observationPeriod": "2001-01-01/2020-12-31",
+            "spatialResolution": "Gridded point product; source support is variable/source dependent",
+            "temporalResolution": "Daily",
+            "processingMethod": "Daily extrema preserved independently"
+          },
+          "limitations": [
+            "Not in situ site measurements; five original atlas sites plus three supplementary point-area records have retrievals; coverage is not complete."
+          ],
+          "nextEvidenceNeed": "Expand coverage and validate product/source provenance per parameter."
+        },
+        {
+          "id": "daily_temperature_range",
+          "name": "Daily temperature range",
+          "definition": "Derived daily T2M_MAX minus T2M_MIN when both source values are present.",
+          "unit": "°C",
+          "requirementStatus": "required",
+          "evidenceAvailability": {
+            "status": "derived_subset",
+            "evidenceKind": "derived_from_provider_data",
+            "sourceId": "nasa-power-daily-point",
+            "provider": "NASA POWER",
+            "dataset": "Derived from T2M_MAX and T2M_MIN",
+            "sourceUrl": "https://power.larc.nasa.gov/api/temporal/daily/point",
+            "localDataPath": "data/processed/climate/known-sites-daily.json and data/processed/supplementary-evidence/{siteId}-climate.json",
+            "availableSiteIds": [
+              "GKC",
+              "GKB",
+              "WDE",
+              "KHA",
+              "RTI",
+              "DALL",
+              "DAL",
+              "AHS-GH"
+            ],
+            "observationPeriod": "2001-01-01/2020-12-31",
+            "spatialResolution": "Inherited from input grids",
+            "temporalResolution": "Daily",
+            "processingMethod": "T2M_MAX - T2M_MIN; null if either input is missing"
+          },
+          "limitations": [
+            "Derived from gridded values; no independent measurement."
+          ],
+          "nextEvidenceNeed": null
+        },
+        {
+          "id": "relative_humidity",
+          "name": "Relative humidity",
+          "definition": "NASA POWER RH2M relative humidity at 2 m.",
+          "unit": "%",
+          "requirementStatus": "optional",
+          "evidenceAvailability": {
+            "status": "retrieved_subset",
+            "evidenceKind": "provider_gridded",
+            "sourceId": "nasa-power-daily-point",
+            "provider": "NASA POWER",
+            "dataset": "Daily Point API",
+            "sourceUrl": "https://power.larc.nasa.gov/api/temporal/daily/point",
+            "localDataPath": "data/processed/climate/known-sites-daily.json and data/processed/supplementary-evidence/{siteId}-climate.json",
+            "availableSiteIds": [
+              "GKC",
+              "GKB",
+              "WDE",
+              "KHA",
+              "RTI",
+              "DALL",
+              "DAL",
+              "AHS-GH"
+            ],
+            "observationPeriod": "2001-01-01/2020-12-31",
+            "spatialResolution": "Gridded point product; source support is variable/source dependent",
+            "temporalResolution": "Daily",
+            "processingMethod": "Normalized daily value"
+          },
+          "limitations": [
+            "Relative humidity is not a direct measure of water availability or soil moisture."
+          ],
+          "nextEvidenceNeed": "Pair with independently sourced surface/soil moisture or water-balance evidence if required."
+        },
+        {
+          "id": "precipitation",
+          "name": "Precipitation",
+          "definition": "NASA POWER PRECTOTCORR corrected daily precipitation; annual totals require complete daily coverage under the existing pipeline rule.",
+          "unit": "mm/day; annual total mm/year only for complete calendar years",
+          "requirementStatus": "required",
+          "evidenceAvailability": {
+            "status": "retrieved_subset",
+            "evidenceKind": "provider_gridded",
+            "sourceId": "nasa-power-daily-point",
+            "provider": "NASA POWER",
+            "dataset": "Daily Point API",
+            "sourceUrl": "https://power.larc.nasa.gov/api/temporal/daily/point",
+            "localDataPath": "data/processed/climate/known-sites-daily.json and data/processed/supplementary-evidence/{siteId}-climate.json",
+            "availableSiteIds": [
+              "GKC",
+              "GKB",
+              "WDE",
+              "KHA",
+              "RTI",
+              "DALL",
+              "DAL",
+              "AHS-GH"
+            ],
+            "observationPeriod": "2001-01-01/2020-12-31",
+            "spatialResolution": "Gridded point product; source support is variable/source dependent",
+            "temporalResolution": "Daily; complete-year annual aggregation where available",
+            "processingMethod": "Valid daily values summed by calendar year; incomplete annual sum is not labeled complete"
+          },
+          "limitations": [
+            "Precipitation alone is not an aridity index or a complete hydrological characterization."
+          ],
+          "nextEvidenceNeed": "Research a defensible evapotranspiration/water-balance source and method before claiming aridity."
+        },
+        {
+          "id": "wind_speed",
+          "name": "Wind speed",
+          "definition": "NASA POWER WS10M daily wind speed at 10 m.",
+          "unit": "m/s",
+          "requirementStatus": "optional",
+          "evidenceAvailability": {
+            "status": "retrieved_subset",
+            "evidenceKind": "provider_gridded",
+            "sourceId": "nasa-power-daily-point",
+            "provider": "NASA POWER",
+            "dataset": "Daily Point API",
+            "sourceUrl": "https://power.larc.nasa.gov/api/temporal/daily/point",
+            "localDataPath": "data/processed/climate/known-sites-daily.json and data/processed/supplementary-evidence/{siteId}-climate.json",
+            "availableSiteIds": [
+              "GKC",
+              "GKB",
+              "WDE",
+              "KHA",
+              "RTI",
+              "DALL",
+              "DAL",
+              "AHS-GH"
+            ],
+            "observationPeriod": "2001-01-01/2020-12-31",
+            "spatialResolution": "Gridded point product; source support is variable/source dependent",
+            "temporalResolution": "Daily",
+            "processingMethod": "Normalized daily value"
+          },
+          "limitations": [
+            "Does not characterize gusts, dust lifting, or local sheltering."
+          ],
+          "nextEvidenceNeed": "Assess dust and gust observations separately if mission requirements justify them."
+        },
+        {
+          "id": "solar_radiation",
+          "name": "Surface shortwave radiation",
+          "definition": "NASA POWER ALLSKY_SFC_SW_DWN all-sky surface shortwave downward radiation.",
+          "unit": "MJ/m²/day",
+          "requirementStatus": "optional",
+          "evidenceAvailability": {
+            "status": "retrieved_subset",
+            "evidenceKind": "provider_gridded",
+            "sourceId": "nasa-power-daily-point",
+            "provider": "NASA POWER",
+            "dataset": "Daily Point API",
+            "sourceUrl": "https://power.larc.nasa.gov/api/temporal/daily/point",
+            "localDataPath": "data/processed/climate/known-sites-daily.json and data/processed/supplementary-evidence/{siteId}-climate.json",
+            "availableSiteIds": [
+              "GKC",
+              "GKB",
+              "WDE",
+              "KHA",
+              "RTI",
+              "DALL",
+              "DAL",
+              "AHS-GH"
+            ],
+            "observationPeriod": "2001-01-01/2020-12-31",
+            "spatialResolution": "Gridded point product; source support is variable/source dependent",
+            "temporalResolution": "Daily",
+            "processingMethod": "Normalized daily value"
+          },
+          "limitations": [
+            "This broadband solar radiation measure is not UV irradiance, UV index, or radiation dose."
+          ],
+          "nextEvidenceNeed": "Select a validated UV/ionizing-radiation dataset separately if needed; do not substitute this field."
+        },
+        {
+          "id": "aridity_water_balance",
+          "name": "Aridity or climatic water balance",
+          "definition": "A documented index requiring precipitation and a defensible potential evapotranspiration or water-balance method.",
+          "unit": "Index and method to be selected and documented",
+          "requirementStatus": "currently_unavailable",
+          "evidenceAvailability": {
+            "status": "not_available",
+            "evidenceKind": "missing",
+            "sourceId": null,
+            "provider": null,
+            "dataset": null,
+            "sourceUrl": null,
+            "localDataPath": null,
+            "availableSiteIds": [],
+            "observationPeriod": null,
+            "spatialResolution": null,
+            "temporalResolution": null,
+            "processingMethod": null
+          },
+          "limitations": [
+            "Precipitation alone cannot establish aridity."
+          ],
+          "nextEvidenceNeed": "Select a validated evapotranspiration source and pre-register index definition."
+        }
+      ]
+    },
+    {
+      "id": "atmosphere_environment",
+      "name": "Atmospheric and environmental context",
+      "whyItMatters": "Atmospheric pressure, composition, dust, and radiation influence environmental similarity and operations, but terrestrial conditions cannot reproduce Mars atmospheric conditions.",
+      "factors": [
+        {
+          "id": "terrestrial_surface_pressure",
+          "name": "Surface pressure",
+          "definition": "Measured terrestrial atmospheric pressure with documented sensor/product, height, and temporal support.",
+          "unit": "Pa",
+          "requirementStatus": "currently_unavailable",
+          "evidenceAvailability": {
+            "status": "not_available",
+            "evidenceKind": "missing",
+            "sourceId": null,
+            "provider": null,
+            "dataset": null,
+            "sourceUrl": null,
+            "localDataPath": null,
+            "availableSiteIds": [],
+            "observationPeriod": null,
+            "spatialResolution": null,
+            "temporalResolution": null,
+            "processingMethod": null
+          },
+          "limitations": [
+            "No surface pressure was retrieved in M02; do not assume it is present in NASA POWER output."
+          ],
+          "nextEvidenceNeed": "Evaluate an authoritative source and verify parameter metadata before integration."
+        },
+        {
+          "id": "uv_radiation",
+          "name": "Ultraviolet radiation",
+          "definition": "Direct UV irradiance or dose with spectral band and exposure interval explicitly defined.",
+          "unit": "Band-specific W/m² or dose unit to be selected",
+          "requirementStatus": "currently_unavailable",
+          "evidenceAvailability": {
+            "status": "not_available",
+            "evidenceKind": "missing",
+            "sourceId": null,
+            "provider": null,
+            "dataset": null,
+            "sourceUrl": null,
+            "localDataPath": null,
+            "availableSiteIds": [],
+            "observationPeriod": null,
+            "spatialResolution": null,
+            "temporalResolution": null,
+            "processingMethod": null
+          },
+          "limitations": [
+            "NASA POWER shortwave radiation is not UV."
+          ],
+          "nextEvidenceNeed": "Identify a validated UV source; do not infer from broadband solar radiation."
+        },
+        {
+          "id": "dust_aerosol",
+          "name": "Dust and aerosol environment",
+          "definition": "Direct aerosol/dust observation or documented satellite-derived proxy with method and uncertainty.",
+          "unit": "Product-specific",
+          "requirementStatus": "currently_unavailable",
+          "evidenceAvailability": {
+            "status": "not_available",
+            "evidenceKind": "missing",
+            "sourceId": null,
+            "provider": null,
+            "dataset": null,
+            "sourceUrl": null,
+            "localDataPath": null,
+            "availableSiteIds": [],
+            "observationPeriod": null,
+            "spatialResolution": null,
+            "temporalResolution": null,
+            "processingMethod": null
+          },
+          "limitations": [
+            "Wind speed alone does not establish dust loading or lifting."
+          ],
+          "nextEvidenceNeed": "Review aerosol products and validation over arid sites."
+        }
+      ]
+    },
+    {
+      "id": "terrain",
+      "name": "Terrain and topography",
+      "whyItMatters": "Surface geometry affects mobility, landing and instrument deployment, but terrain characterization requires spatial neighborhoods and more than a single elevation sample.",
+      "factors": [
+        {
+          "id": "elevation_point",
+          "name": "Point surface elevation",
+          "definition": "Copernicus DEM GLO-30 DSM pixel elevation sampled at the atlas coordinate.",
+          "unit": "m relative to EGM2008 vertical datum",
+          "requirementStatus": "optional",
+          "evidenceAvailability": {
+            "status": "retrieved_subset",
+            "evidenceKind": "provider_raster_sample",
+            "sourceId": "copernicus-dem-glo30",
+            "provider": "Copernicus DEM via AWS Public Dataset",
+            "dataset": "COP-DEM_GLO-30-Public, Copernicus DEM 2021 release",
+            "sourceUrl": "https://copernicus-dem-30m.s3.amazonaws.com/",
+            "localDataPath": "data/processed/terrain/elevation-samples.json and data/processed/supplementary-evidence/{siteId}-terrain.json",
+            "availableSiteIds": [
+              "GKC",
+              "GKB",
+              "WDE",
+              "KHA",
+              "RTI",
+              "DALL",
+              "DAL",
+              "AHS-GH"
+            ],
+            "observationPeriod": "Static product release 2021",
+            "spatialResolution": "Nominal 1 arc-second (~30 m); actual pixel spacing varies with latitude",
+            "temporalResolution": "Static elevation product",
+            "processingMethod": "Single raster pixel sampled at requested atlas coordinate; DSM value, not bare-earth guarantee"
+          },
+          "limitations": [
+            "Approximate atlas coordinates may not identify the named feature.",
+            "One point does not describe site relief, slope, roughness, obstacles, or terrain diversity.",
+            "DSM may include surface objects."
+          ],
+          "nextEvidenceNeed": "Extract validated neighborhoods/terrain derivatives from a documented DEM workflow when mission needs are specified."
+        },
+        {
+          "id": "slope_roughness_relief",
+          "name": "Slope, roughness, and local relief",
+          "definition": "Neighborhood terrain metrics with declared window size, algorithm, resolution, and NoData treatment.",
+          "unit": "Slope degrees; roughness and relief require explicitly defined units/metric",
+          "requirementStatus": "currently_unavailable",
+          "evidenceAvailability": {
+            "status": "not_available",
+            "evidenceKind": "missing",
+            "sourceId": null,
+            "provider": null,
+            "dataset": null,
+            "sourceUrl": null,
+            "localDataPath": null,
+            "availableSiteIds": [],
+            "observationPeriod": null,
+            "spatialResolution": null,
+            "temporalResolution": null,
+            "processingMethod": null
+          },
+          "limitations": [
+            "M03 retrieves point elevation only; it does not calculate terrain derivatives."
+          ],
+          "nextEvidenceNeed": "Define neighborhood scale and reproducible algorithms before extraction."
+        }
+      ]
+    },
+    {
+      "id": "geology_lithology",
+      "name": "Geological and lithological context",
+      "whyItMatters": "Mapped rock classes and formation processes can guide analog selection, but scale, mapping generalization, and local evidence quality must be explicit.",
+      "factors": [
+        {
+          "id": "mapped_lithology",
+          "name": "Mapped lithology",
+          "definition": "Original GLiM v1.1 classification levels and descriptions returned for polygons intersecting the requested point; preserve source hierarchy.",
+          "unit": "Source categorical codes/descriptions (levels xx, yy, zz kept separate)",
+          "requirementStatus": "optional",
+          "evidenceAvailability": {
+            "status": "retrieved_subset",
+            "evidenceKind": "mapped_lithology",
+            "sourceId": "glim-v1.1-level-i",
+            "provider": "GLiM ArcGIS Feature Service",
+            "dataset": "GLiM Niveau I service layer; original returned attributes preserved",
+            "sourceUrl": "https://services8.arcgis.com/4KhTMTZ1x0f76DSg/ArcGIS/rest/services/GLiM_Niveau_I/FeatureServer/1",
+            "localDataPath": "data/processed/geology/known-sites-glim.json and data/processed/supplementary-evidence/{siteId}-geology.json",
+            "availableSiteIds": [
+              "GKC",
+              "GKB",
+              "WDE",
+              "KHA",
+              "RTI",
+              "DALL",
+              "DAL",
+              "AHS-GH"
+            ],
+            "observationPeriod": "Published map/database version; not a time series",
+            "spatialResolution": "Global generalized map; approximately 1:3.75 million map scale documented by GLiM source",
+            "temporalResolution": "Static map product",
+            "processingMethod": "Point-in-polygon service query; all intersecting features retained"
+          },
+          "limitations": [
+            "Approximate coordinates and generalized polygon scale make this area-level mapped evidence, not field truth.",
+            "Codes such as No Data or Water Bodies must remain source classifications.",
+            "Lithology is not mineral detection."
+          ],
+          "nextEvidenceNeed": "Acquire site-specific geological mapping or field-verified samples for selected locations."
+        },
+        {
+          "id": "mineral_evidence",
+          "name": "Mineral evidence",
+          "definition": "Location-specific mineral observations with method, source, and verification status; never inferred solely from lithology.",
+          "unit": "Mineral identity and method-specific concentration/unit if measured",
+          "requirementStatus": "currently_unavailable",
+          "evidenceAvailability": {
+            "status": "not_available",
+            "evidenceKind": "missing",
+            "sourceId": null,
+            "provider": null,
+            "dataset": null,
+            "sourceUrl": null,
+            "localDataPath": null,
+            "availableSiteIds": [],
+            "observationPeriod": null,
+            "spatialResolution": null,
+            "temporalResolution": null,
+            "processingMethod": null
+          },
+          "limitations": [
+            "GLiM does not provide precise mineralogy; some atlas mineral descriptions are inferred or weakly supported."
+          ],
+          "nextEvidenceNeed": "Collect site-specific assay, spectroscopy, or peer-reviewed field observations with traceable location."
+        },
+        {
+          "id": "geological_process_evidence",
+          "name": "Geological formation and process descriptions",
+          "definition": "Traceable site or regional geological observations and process interpretations, with evidence quality distinguished from narrative context.",
+          "unit": "Qualitative evidence with source and quality metadata",
+          "requirementStatus": "optional",
+          "evidenceAvailability": {
+            "status": "legacy_only",
+            "evidenceKind": "atlas_description",
+            "sourceId": "legacy-atlas-geology",
+            "provider": "Existing Mars analog atlas",
+            "dataset": "Atlas geological descriptions and references",
+            "sourceUrl": null,
+            "localDataPath": "data/processed/known-sites.json",
+            "availableSiteIds": [],
+            "observationPeriod": null,
+            "spatialResolution": "Variable and not consistently specified",
+            "temporalResolution": null,
+            "processingMethod": "Legacy descriptive text preserved; not newly verified by M05"
+          },
+          "limitations": [
+            "Descriptions vary in detail and require independent verification.",
+            "Research document is context, not a numerical observation dataset."
+          ],
+          "nextEvidenceNeed": "Review each claim against primary geological references and identify location-specific evidence."
+        }
+      ]
+    },
+    {
+      "id": "surface_material_hydrology",
+      "name": "Surface materials, sediments, and hydrological context",
+      "whyItMatters": "Material properties and water-related processes influence rover mobility, sampling, drilling, and environmental interpretation, but mapped classes are not local quantitative measurements.",
+      "factors": [
+        {
+          "id": "surface_material_class",
+          "name": "Mapped surface lithology/material class",
+          "definition": "Only source-classified GLiM surface lithology; no conversion to mineral composition or quantitative surface fractions.",
+          "unit": "Original GLiM category codes and descriptions",
+          "requirementStatus": "optional",
+          "evidenceAvailability": {
+            "status": "retrieved_subset",
+            "evidenceKind": "mapped_lithology",
+            "sourceId": "glim-v1.1-level-i",
+            "provider": "GLiM ArcGIS Feature Service",
+            "dataset": "GLiM Niveau I service layer",
+            "sourceUrl": "https://services8.arcgis.com/4KhTMTZ1x0f76DSg/ArcGIS/rest/services/GLiM_Niveau_I/FeatureServer/1",
+            "localDataPath": "data/processed/geology/known-sites-glim.json and data/processed/supplementary-evidence/{siteId}-geology.json",
+            "availableSiteIds": [
+              "GKC",
+              "GKB",
+              "WDE",
+              "KHA",
+              "RTI",
+              "DALL",
+              "DAL",
+              "AHS-GH"
+            ],
+            "observationPeriod": "Static map product",
+            "spatialResolution": "Generalized global map, approximately 1:3.75 million",
+            "temporalResolution": "Static",
+            "processingMethod": "Original polygon attributes preserved without mineral inference"
+          },
+          "limitations": [
+            "Does not quantify sand/rock fraction, grain size, regolith depth, or local obstacles."
+          ],
+          "nextEvidenceNeed": "Identify validated high-resolution land-surface/material observations for operational sites."
+        },
+        {
+          "id": "sediment_regolith_properties",
+          "name": "Sediment and regolith properties",
+          "definition": "Measured grain size, sediment depth, bearing properties, or subsurface regolith profile with sampling method.",
+          "unit": "Variable-specific physical units and methods",
+          "requirementStatus": "currently_unavailable",
+          "evidenceAvailability": {
+            "status": "not_available",
+            "evidenceKind": "missing",
+            "sourceId": null,
+            "provider": null,
+            "dataset": null,
+            "sourceUrl": null,
+            "localDataPath": null,
+            "availableSiteIds": [],
+            "observationPeriod": null,
+            "spatialResolution": null,
+            "temporalResolution": null,
+            "processingMethod": null
+          },
+          "limitations": [
+            "No quantitative site-linked material measurements are present in M01–M04."
+          ],
+          "nextEvidenceNeed": "Source field measurements or mission-relevant validated remote sensing with explicit uncertainty."
+        },
+        {
+          "id": "hydrological_context",
+          "name": "Surface and subsurface hydrological context",
+          "definition": "Direct evidence for surface water, groundwater, ice, salts, drainage, or seasonal hydrological processes.",
+          "unit": "Source-specific categorical or measured values",
+          "requirementStatus": "currently_unavailable",
+          "evidenceAvailability": {
+            "status": "not_available",
+            "evidenceKind": "missing",
+            "sourceId": null,
+            "provider": null,
+            "dataset": null,
+            "sourceUrl": null,
+            "localDataPath": null,
+            "availableSiteIds": [],
+            "observationPeriod": null,
+            "spatialResolution": null,
+            "temporalResolution": null,
+            "processingMethod": null
+          },
+          "limitations": [
+            "Precipitation alone does not establish persistent water, groundwater, ice, or salt distribution."
+          ],
+          "nextEvidenceNeed": "Define mission-relevant hydrological observations and evaluate authoritative datasets."
+        }
+      ]
+    }
+  ],
+  "missions": [
+    {
+      "id": "rover_surface_testing",
+      "name": "Rover surface testing",
+      "objective": "Describe surface mobility and operational terrain evidence without inferring suitability from a point elevation.",
+      "requiredFactorIds": [
+        "slope_roughness_relief",
+        "surface_material_class",
+        "sediment_regolith_properties"
+      ],
+      "optionalFactorIds": [
+        "elevation_point",
+        "air_temperature_extremes",
+        "wind_speed"
+      ],
+      "currentEvidenceState": "insufficient_evidence",
+      "limitations": [
+        "Slope, roughness, local relief, quantitative material properties, and obstacles are not currently available."
+      ],
+      "nonGoals": [
+        "No rover suitability score or ranking.",
+        "No inference of obstacle safety from elevation or GLiM."
+      ]
+    },
+    {
+      "id": "geological_surface_exploration",
+      "name": "Geological surface exploration",
+      "objective": "Organize mapped lithology and traceable geological/mineral evidence while preserving evidence quality.",
+      "requiredFactorIds": [
+        "mapped_lithology",
+        "mineral_evidence",
+        "geological_process_evidence"
+      ],
+      "optionalFactorIds": [
+        "surface_material_class",
+        "hydrological_context"
+      ],
+      "currentEvidenceState": "partial_evidence",
+      "limitations": [
+        "GLiM mapped lithology is available for five original atlas points and three supplementary point-area records but is generalized; location-specific mineral verification is unavailable."
+      ],
+      "nonGoals": [
+        "No mineral inference from lithology.",
+        "No geological confidence score."
+      ]
+    },
+    {
+      "id": "extreme_environment_operations",
+      "name": "Extreme environment operations",
+      "objective": "Describe measured thermal and meteorological stressors with explicit temporal coverage and product provenance.",
+      "requiredFactorIds": [
+        "air_temperature_daily_mean",
+        "air_temperature_extremes",
+        "daily_temperature_range",
+        "relative_humidity",
+        "precipitation",
+        "wind_speed"
+      ],
+      "optionalFactorIds": [
+        "solar_radiation",
+        "aridity_water_balance",
+        "terrestrial_surface_pressure",
+        "uv_radiation",
+        "dust_aerosol"
+      ],
+      "currentEvidenceState": "partial_evidence",
+      "limitations": [
+        "NASA POWER daily histories exist for five original atlas sites and three supplementary point-area records; aridity, UV, dust, and directly retrieved surface pressure are unavailable. Earth atmospheric conditions differ fundamentally from Mars."
+      ],
+      "nonGoals": [
+        "Solar radiation is not UV or radiation dose.",
+        "No combined environmental suitability score."
+      ]
+    },
+    {
+      "id": "drilling_subsurface",
+      "name": "Drilling and subsurface exploration",
+      "objective": "Identify direct subsurface evidence relevant to drilling and sampling; surface proxies alone are inadequate.",
+      "requiredFactorIds": [
+        "sediment_regolith_properties",
+        "hydrological_context",
+        "mineral_evidence"
+      ],
+      "optionalFactorIds": [
+        "mapped_lithology",
+        "elevation_point"
+      ],
+      "currentEvidenceState": "insufficient_evidence",
+      "limitations": [
+        "No sediment thickness, buried structures, GPR, subsurface profile, or geotechnical measurements are available."
+      ],
+      "nonGoals": [
+        "No drilling suitability score from surface climate, elevation, or generalized lithology."
+      ]
+    }
+  ]
+}

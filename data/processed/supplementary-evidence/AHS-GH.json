@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "1.0.0",
+  "recordType": "supplementary-point-evidence",
+  "siteId": "AHS-GH",
+  "requestedCoordinate": {
+    "latitude": 79.4083333,
+    "longitude": -90.7180556
+  },
+  "coordinatesApproximate": true,
+  "providerStatuses": {
+    "climate": "success",
+    "terrain": "success",
+    "geology": "success"
+  },
+  "normalizedPaths": {
+    "climate": "data/processed/supplementary-evidence/AHS-GH-climate.json",
+    "terrain": "data/processed/supplementary-evidence/AHS-GH-terrain.json",
+    "geology": "data/processed/supplementary-evidence/AHS-GH-geology.json"
+  },
+  "limitations": [
+    "Cluster coordinate is not an outlet coordinate.",
+    "No site-specific climate/DEM/GLiM data has been retrieved yet.",
+    "Do not generalize precipitate/mineral observations across all outlets or across Axel Heiberg Island."
+  ]
+}

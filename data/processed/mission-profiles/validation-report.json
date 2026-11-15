@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "1.0.0",
+  "generatedAt": "2026-11-14T22:36:15.898Z",
+  "status": "valid",
+  "profileId": "mars-surface-analog-requirements",
+  "profileVersion": "1.0.0",
+  "dimensionCount": 5,
+  "factorCount": 19,
+  "missionCount": 4,
+  "referenceCount": 31,
+  "candidateRegionCount": 4,
+  "testFixtureCount": 3,
+  "verifiedRetrievedSiteIds": {
+    "climate": [
+      "AHS-GH",
+      "DAL",
+      "DALL",
+      "GKB",
+      "GKC",
+      "KHA",
+      "RTI",
+      "WDE"
+    ],
+    "terrain": [
+      "AHS-GH",
+      "DAL",
+      "DALL",
+      "GKB",
+      "GKC",
+      "KHA",
+      "RTI",
+      "WDE"
+    ],
+    "geology": [
+      "AHS-GH",
+      "DAL",
+      "DALL",
+      "GKB",
+      "GKC",
+      "KHA",
+      "RTI",
+      "WDE"
+    ]
+  },
+  "benchmark": {
+    "status": "planning_only",
+    "scientificValidationStatus": "not_validated",
+    "splitCreated": false,
+    "executionStatus": "not_run"
+  },
+  "errors": []
+}

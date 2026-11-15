@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "1.0.0",
+  "configurationStatus": "bounded_demonstration_configuration_not_a_scientific_discovery",
+  "demonstrationRationale": "A compact, explicitly bounded set of grid cells in the Atacama region demonstrates retrieval and screening of meteorological evidence in an extreme arid setting. It is a workflow demonstration and does not establish analog validity or geological independence.",
+  "providerRequestLimit": 12,
+  "studyArea": {
+    "id": "atacama-climate-transect-v2",
+    "label": "Atacama bounded climate evidence transect (demonstration v2)",
+    "boundingBox": { "minLatitude": -23.6, "minLongitude": -69.6, "maxLatitude": -23.2, "maxLongitude": -69.2 },
+    "spacingDegrees": 0.2,
+    "maxCandidates": 4,
+    "referenceExclusionKm": 75
+  },
+  "scientificLimitations": [
+    "This four-cell study area is a reproducible pipeline demonstration, not a validated discovery or claim that candidates are Mars analogs.",
+    "Atacama is used because the profile addresses measured thermal and meteorological stressors in an extreme environment; this does not make the environment equivalent to Mars.",
+    "A 75 km exclusion expanded by grid-cell half-diagonal masks cells near point-coordinate references. Coordinate-free region references remain explicitly unmasked; masking does not establish geological independence.",
+    "Cell centers are sampling coordinates for coarse grid cells, not precise field locations. Longitude and latitude spacing are angular degrees, so cell dimensions vary by latitude.",
+    "The selected profile requires six NASA POWER-supported climate factors. Provider support does not guarantee retrieval success; mission requirements remain unmet whenever evidence is missing, failed, or invalid.",
+    "Copernicus GLO-30 is a digital surface model point sample. GLiM is generalized mapped lithology. Neither provides the unavailable quantitative operational factors in this mission profile."
+  ]
+}

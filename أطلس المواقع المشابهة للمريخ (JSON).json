@@ -1,0 +1,2170 @@
+{
+  "title": "أطلس المواقع الأرضية المشابهة للمريخ",
+  "challenge": "NASA Space Apps 2026 – Earth Analogs for Moon & Mars Bases",
+  "climate_source": "NASA POWER climatology API (https://power.larc.nasa.gov/)",
+  "climate_score_formula": "S = 100 × (0.35·Dryness + 0.15·Humidity + 0.20·DiurnalRange + 0.15·Cold + 0.15·UV)",
+  "notes": [
+    "الإحداثيات تقريبية ما عدا MDRS وSalda",
+    "أمطار أتاكاما في NASA POWER (7.3 مم) أعلى من القياس الميداني (<2 مم)",
+    "وصف معادن مواقع مصر والجوبي جزئيًا من التركيب العام لأنواع الصخور"
+  ],
+  "site_count": 26,
+  "sites": [
+    {
+      "id": "GKC",
+      "name_ar": "حقل فوهات الجلف الكبير",
+      "name_en": "Gilf Kebir Crater Field",
+      "country": "مصر",
+      "location": {
+        "lat": 22.8,
+        "lon": 26.2,
+        "elevation_m": 799.0,
+        "coords_approximate": true
+      },
+      "analog_type": "حقل فوهات نيزكية مدفونة",
+      "mars_counterpart": "Cratered terrains imaged by Spirit/Opportunity",
+      "why_mars_like": "جفاف بلا أمطار مقاسة، بلا نباتات أو طين، ضوضاء راديو منخفضة؛ مثالي لاختبار رادار اختراق التربة",
+      "missions_uses": "تجارب GPR لمحاكاة رادار المريخ",
+      "climate_nasa_power": {
+        "t_mean_C": 21.32,
+        "diurnal_range_C": 15.59,
+        "t_max_monthly_C": 42.59,
+        "t_min_monthly_C": -2.47,
+        "precip_mm_yr": 0.0,
+        "precip_note": "أقل من 2 مم/سنة",
+        "rh_pct": 27.88,
+        "solar_kwh_m2_day": 6.7493,
+        "uv_index": 2.2,
+        "wind_ms": 3.08,
+        "source_url": "https://www.academia.edu/1533422/Probing_structural_elements_of_small_buried_craters_using_ground_penetrating_radar_in_the_southwestern_Egyptian_desert_Implications_for_Mars_shallow_sounding"
+      },
+      "climate_mars_score": 79.7,
+      "geology": {
+        "formation": "حقل من الفوهات الصغيرة اكتُشف بالرادار سنة 2004 في جنوب غرب الصحراء المصرية قرب الجلف الكبير. المنطقة شديدة الجفاف، والرياح فيها بتعري حواف الفوهات وبتدفنها في الرمل، وده نفس اللي بيحصل للفوهات على المريخ. ومنظر الفوهات على الأرض بيشبه جدًا الصور اللي بعتتها المركبتان Spirit وOpportunity.",
+        "rocks": "حجر رملي نوبي، ورواسب رمال ريحية بتغطي الفوهات المدفونة.",
+        "minerals": [
+          {
+            "name_ar": "كوارتز",
+            "formula": "SiO₂",
+            "mars_link": "المكون الأساسي للرمال والحجر الرملي، والرمال الجافة دي بتسمح لموجات الرادار تخترق لعمق كبير"
+          }
+        ],
+        "special": "مفيش أمطار تتقاس، ولا نباتات، ولا طين أو محاليل ملحية تذكر، والضوضاء الراديوية قليلة. ده بيخليها مكان مثالي لاختبار رادار اختراق الأرض اللي هيتبعت للمريخ.",
+        "differences_from_mars": "أصل الفوهات (نيزكي ولا لأ) لسه محل نقاش علمي في بعض الدراسات، والصخور رسوبية مش بازلتية زي معظم سطح المريخ."
+      },
+      "references": [
+        {
+          "label": "Heggy & Paillou – رادار الفوهات المدفونة",
+          "url": "https://www.academia.edu/1533422/Probing_structural_elements_of_small_buried_craters_using_ground_penetrating_radar_in_the_southwestern_Egyptian_desert_Implications_for_Mars_shallow_sounding"
+        }
+      ],
+      "images": [
+        {
+          "side": "earth",
+          "caption_ar": "جنوب هضبة الجلف الكبير، المنطقة اللي فيها حقل الفوهات",
+          "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e1/GilfKebirSouth.jpg/960px-GilfKebirSouth.jpg",
+          "commons_page": "https://commons.wikimedia.org/wiki/File:GilfKebirSouth.jpg",
+          "license": "CC BY-SA 3.0",
+          "local_file": "atlas/images/GKC_earth.jpg"
+        },
+        {
+          "side": "mars",
+          "caption_ar": "فوهة Bonneville على المريخ ومعاها مركبة الهبوط بتاعة Spirit",
+          "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f2/PIA15038_Spirit_Lander_and_Bonneville_Crater_in_Color.jpg/960px-PIA15038_Spirit_Lander_and_Bonneville_Crater_in_Color.jpg",
+          "commons_page": "https://commons.wikimedia.org/wiki/File:PIA15038_Spirit_Lander_and_Bonneville_Crater_in_Color.jpg",
+          "license": "Public domain",
+          "local_file": "atlas/images/GKC_mars.jpg"
+        }
+      ]
+    },
+    {
+      "id": "GKB",
+      "name_ar": "هضبة الجلف الكبير",
+      "name_en": "Gilf Kebir Plateau",
+      "country": "مصر",
+      "location": {
+        "lat": 23.5,
+        "lon": 26.0,
+        "elevation_m": 890.0,
+        "coords_approximate": true
+      },
+      "analog_type": "هضبة حجر رملي بأودية جافة",
+      "mars_counterpart": "Valles Marineris / Nirgal Vallis canyons",
+      "why_mars_like": "من أقرب نظائر أودية المريخ؛ تحول من مناخ رطب إلى جاف مثل المريخ؛ حقل فوهات نيزكية",
+      "missions_uses": "دراسات NASA/Smithsonian منذ 1978، اختبارات رادار",
+      "climate_nasa_power": {
+        "t_mean_C": 20.19,
+        "diurnal_range_C": 15.69,
+        "t_max_monthly_C": 42.18,
+        "t_min_monthly_C": -3.46,
+        "precip_mm_yr": 0.0,
+        "precip_note": "أقل من 2 مم/سنة",
+        "rh_pct": 30.39,
+        "solar_kwh_m2_day": 6.725,
+        "uv_index": 2.14,
+        "wind_ms": 3.09,
+        "source_url": "https://ntrs.nasa.gov/api/citations/19790008586/downloads/19790008586.pdf"
+      },
+      "climate_mars_score": 79.4,
+      "geology": {
+        "formation": "هضبة الجلف الكبير مساحتها حوالي 7,700 كم²، وعالية 200–300 متر عن السهل اللي حواليها، وحوافها رأسية من كل الجهات. الأنهار حفرت فيها أودية طولها 10–40 كم في فترات كان المناخ فيها رطب، وبعدين المنطقة جفت والرياح بقت هي اللي بتشكّل السطح. التحول ده من مناخ رطب لجاف هو نفس اللي حصل للمريخ. والأودية دي من أقرب النظائر لأودية جنوب Valles Marineris ولروافد Nirgal Vallis.",
+        "rocks": "أسفل الهضبة طبقات من الحجر الطيني والرملي اللين، وفوقها غطاء صلب من الحجر الرملي النوبي السيليسي. في أماكن كتير الغطاء ده اتحول لكوارتزيت صلب جدًا، لأن تداخلات بازلتية من العصر الثلاثي سخّنته فترسبت السيليكا بين حبيباته. وفوق سطح الهضبة فيه تدفقات بازلت وقباب بازلت عمودية متآكلة بالرياح، زي اللي في وادي مشي. وفي القاعدة صخور قديمة من عصر ما قبل الكامبري: شيست وجرانيت، ومعاها دوليريت وريوليت.",
+        "minerals": [
+          {
+            "name_ar": "كوارتز",
+            "formula": "SiO₂",
+            "mars_link": "المكون الرئيسي للحجر الرملي والكوارتزيت"
+          },
+          {
+            "name_ar": "بلاجيوكليز + بيروكسين",
+            "formula": "(Ca,Na)Al₁₋₂Si₃₋₂O₈ / (Ca,Mg,Fe)Si₂O₆",
+            "mars_link": "المعادن الأساسية في البازلت، وهي نفسها المعادن السائدة على سطح المريخ"
+          }
+        ],
+        "special": "فيها رسوم صخرية وكهوف زي كهف السباحين. وممكن تكون بعض كهوفها اتكونت لما الماية الجوفية غسلت الصخر من جوه وفضّته، وده بيخليها نظيرًا محتملًا للكهوف على المريخ.",
+        "differences_from_mars": "بعيدة جدًا عن أي مدينة وصعبة الوصول، وصخورها رملية أكتر منها بازلتية."
+      },
+      "references": [
+        {
+          "label": "Smithsonian – أودية الجلف الكبير",
+          "url": "https://repository.si.edu/bitstream/handle/10088/6386/198220.pdf"
+        },
+        {
+          "label": "NASA – أودية الجلف ونظائرها على المريخ",
+          "url": "https://ntrs.nasa.gov/api/citations/19790008586/downloads/19790008586.pdf"
+        },
+        {
+          "label": "جهاز شؤون البيئة المصري",
+          "url": "https://www.eeaa.gov.eg/Uploads/Project/Files/2022121113222790.pdf"
+        },
+        {
+          "label": "Smithsonian – رحلة الجلف والعوينات",
+          "url": "https://repository.si.edu/bitstream/handle/10088/6353/198030.pdf"
+        }
+      ],
+      "images": [
+        {
+          "side": "earth",
+          "caption_ar": "منحدرات وأودية جافة في هضبة الجلف الكبير",
+          "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b0/GilfKebir1.jpg/960px-GilfKebir1.jpg",
+          "commons_page": "https://commons.wikimedia.org/wiki/File:GilfKebir1.jpg",
+          "license": "CC BY-SA 4.0",
+          "local_file": "atlas/images/GKB_earth.jpg"
+        },
+        {
+          "side": "mars",
+          "caption_ar": "وادي Valles Marineris على المريخ",
+          "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/56/Mars_Valles_Marineris.jpeg/960px-Mars_Valles_Marineris.jpeg",
+          "commons_page": "https://commons.wikimedia.org/wiki/File:Mars_Valles_Marineris.jpeg",
+          "license": "Public domain",
+          "local_file": "atlas/images/GKB_mars.jpeg"
+        }
+      ]
+    },
+    {
+      "id": "WDE",
+      "name_ar": "الصحراء الغربية – جنوب غرب مصر",
+      "name_en": "Western Desert, SW Egypt",
+      "country": "مصر",
+      "location": {
+        "lat": 22.0,
+        "lon": 28.5,
+        "elevation_m": 290.0,
+        "coords_approximate": true
+      },
+      "analog_type": "صحراء مفرطة الجفاف وصخور منحوتة بالرياح",
+      "mars_counterpart": "Viking lander sites; Cerberus streaks",
+      "why_mars_like": "\"ربما أقرب نظير أرضي لسطح المريخ\"؛ صخور مثقبة ومحززة بالرياح تشبه صخور Viking، خطوط رياح، أودية معكوسة",
+      "missions_uses": "بعثة 1978 ومقارنات Viking",
+      "climate_nasa_power": {
+        "t_mean_C": 23.94,
+        "diurnal_range_C": 15.38,
+        "t_max_monthly_C": 46.1,
+        "t_min_monthly_C": -0.6,
+        "precip_mm_yr": 0.0,
+        "precip_note": "أقل من 2 مم/سنة",
+        "rh_pct": 25.45,
+        "solar_kwh_m2_day": 6.6758,
+        "uv_index": 2.15,
+        "wind_ms": 3.28,
+        "source_url": "https://ntrs.nasa.gov/citations/19800042203"
+      },
+      "climate_mars_score": 78.9,
+      "geology": {
+        "formation": "الصحراء الغربية في قلب أكبر منطقة مفرطة الجفاف على الأرض. زمان كانت الأنهار بتحفر سطحها، لكن من فترة طويلة الرياح بقت هي العامل الأقوى في تشكيله. وده نفس اللي حصل على المريخ: ماضي فيه ماية، وحاضر جاف بتشكّله الرياح. لما بعثة NASA زارتها سنة 1978، وصفتها بأنها \"ربما أقرب نظير أرضي لسطح المريخ\".",
+        "rocks": "كوارتزيت وبازلت، وأسطحهم مليانة نقر وأخاديد من الرياح. الصخور دي كتلتها من جوه متجانسة ومفيهاش فراغات، ومع ذلك شكلها شبه جدًا الصخور اللي صورتها مركبات Viking على المريخ، اللي كان العلماء فاكرينها بازلت فيه فقاعات غاز. وفيه كمان \"أودية معكوسة\"، ودي قيعان أنهار قديمة اتغطت بالحصى واتحولت لحواف بارزة، وليها شبيه على المريخ.",
+        "minerals": [
+          {
+            "name_ar": "كوارتز",
+            "formula": "SiO₂",
+            "mars_link": "مكون الكوارتزيت"
+          },
+          {
+            "name_ar": "بيروكسين وبلاجيوكليز",
+            "formula": "—",
+            "mars_link": "مكونات البازلت، وهو الصخر الأساسي لقشرة المريخ"
+          }
+        ],
+        "special": "فيها خطوط ريحية فاتحة وغامقة شبه اللي في منطقة Cerberus على المريخ، وكثبان هلالية، وياردانج.",
+        "differences_from_mars": "الضغط الجوي والحرارة مختلفين خالص عن المريخ، والتشابه أساسه شكل السطح والعمليات اللي شكّلته."
+      },
+      "references": [
+        {
+          "label": "NASA – صخور الصحراء الغربية ومقارنة Viking",
+          "url": "https://ntrs.nasa.gov/citations/19800042203"
+        },
+        {
+          "label": "USGS – الظواهر الريحية في الصحراء الغربية",
+          "url": "https://pubs.usgs.gov/publication/70012315"
+        },
+        {
+          "label": "الأودية المعكوسة – LPI",
+          "url": "https://www.hou.usra.edu/meetings/8thmars2014/pdf/1084.pdf"
+        },
+        {
+          "label": "الخطوط الريحية ومنطقة Cerberus",
+          "url": "https://buescholar.bue.edu.eg/farouk_el-baz_library/25/"
+        }
+      ],
+      "images": [
+        {
+          "side": "earth",
+          "caption_ar": "صخور الطباشير اللي نحتتها الرياح في الصحراء البيضاء، جزء من الصحراء الغربية",
+          "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/16/White_Desert%2C_Rock_formations_in_desert_landscape%2C_Egypt.jpg/960px-White_Desert%2C_Rock_formations_in_desert_landscape%2C_Egypt.jpg",
+          "commons_page": "https://commons.wikimedia.org/wiki/File:White_Desert,_Rock_formations_in_desert_landscape,_Egypt.jpg",
+          "license": "CC BY 4.0",
+          "local_file": "atlas/images/WDE_earth.jpg"
+        },
+        {
+          "side": "mars",
+          "caption_ar": "أول صورة ملونة من موقع هبوط Viking 2، ويظهر فيها صخور مليانة نُقر",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/2/2a/First_Color_Image_of_the_Viking_Lander_2_Site.jpg",
+          "commons_page": "https://commons.wikimedia.org/wiki/File:First_Color_Image_of_the_Viking_Lander_2_Site.jpg",
+          "license": "Public domain",
+          "local_file": "atlas/images/WDE_mars.jpg"
+        }
+      ]
+    },
+    {
+      "id": "KHA",
+      "name_ar": "منخفض الخارجة",
+      "name_en": "Kharga Depression",
+      "country": "مصر",
+      "location": {
+        "lat": 25.45,
+        "lon": 30.55,
+        "elevation_m": 192.0,
+        "coords_approximate": true
+      },
+      "analog_type": "ياردانج وكثبان هلالية",
+      "mars_counterpart": "Martian yardangs & dune-invaded depressions",
+      "why_mars_like": "ياردانج منحوتة بالرياح، كثبان هلالية، قنوات معدلة بالرياح، منحدرات حادة",
+      "missions_uses": "دراسات NASA الميدانية (1984)",
+      "climate_nasa_power": {
+        "t_mean_C": 23.46,
+        "diurnal_range_C": 15.01,
+        "t_max_monthly_C": 46.37,
+        "t_min_monthly_C": 0.08,
+        "precip_mm_yr": 0.0,
+        "precip_note": "أقل من 2 مم/سنة",
+        "rh_pct": 30.73,
+        "solar_kwh_m2_day": 6.4915,
+        "uv_index": 1.87,
+        "wind_ms": 3.42,
+        "source_url": "https://ntrs.nasa.gov/citations/19840015443"
+      },
+      "climate_mars_score": 76.2,
+      "geology": {
+        "formation": "منخفض الخارجة طوله حوالي 160 كم، وتحيط بيه حوائط صخرية علوها 300–450 متر. من أوائل العصر البليستوسيني والمناخ فيه مفرط الجفاف، مع فترات رطوبة قصيرة. الرياح نحتت فيه ياردانج، وغزته كثبان هلالية، وغيّرت شكل القنوات القديمة. ونفس الحاجة اتشافت في منخفضات كتير على المريخ غزتها الكثبان.",
+        "rocks": "من تحت لفوق: حجر رملي نوبي، وبعده طفلة كوكب الملونة، وبعدها فوسفات الضوي، وطفلة الدخلة، وطباشير تراوان، وطفلة إسنا، وفوق الهضبة حجر جيري من الإيوسين. أما \"أسود الطين\" فهي ياردانج اتنحتت في رواسب بحيرات قديمة.",
+        "minerals": [
+          {
+            "name_ar": "كوارتز",
+            "formula": "SiO₂",
+            "mars_link": "في الحجر الرملي والكثبان"
+          },
+          {
+            "name_ar": "معادن طينية",
+            "formula": "—",
+            "mars_link": "في الطفلة، ومعادن الطين اتكشفت كتير على المريخ"
+          },
+          {
+            "name_ar": "أباتيت (فوسفات)",
+            "formula": "Ca₅(PO₄)₃(F,OH)",
+            "mars_link": "في تكوين الضوي"
+          },
+          {
+            "name_ar": "كالسيت",
+            "formula": "CaCO₃",
+            "mars_link": "في الطباشير والحجر الجيري"
+          }
+        ],
+        "special": "الطبقات المتراكبة فوق بعض (كثبان، ياردانج، ركام منهار، ورواسب سيول) بتسجل إزاي المناخ اتغير بين فترات رطبة وجافة، وده مفتاح لفهم المريخ.",
+        "differences_from_mars": "فيه واحات وزراعة ومياه جوفية، فمش معزول تمامًا."
+      },
+      "references": [
+        {
+          "label": "NASA – تطور أشكال سطح الخارجة",
+          "url": "https://ntrs.nasa.gov/citations/19840015443"
+        },
+        {
+          "label": "NASA CR-3611 – أشكال سطح جنوب غرب مصر",
+          "url": "https://ntrs.nasa.gov/api/citations/19830008725/downloads/19830008725.pdf"
+        },
+        {
+          "label": "Springer – جيولوجيا منخفض الخارجة",
+          "url": "https://link.springer.com/article/10.1007/s12517-022-10848-2"
+        }
+      ],
+      "images": [
+        {
+          "side": "earth",
+          "caption_ar": "الكثبان الرملية والصحراء حوالين واحة الخارجة",
+          "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/29/Kharga_Oasis_by_Hanne_Siegmeier.jpg/960px-Kharga_Oasis_by_Hanne_Siegmeier.jpg",
+          "commons_page": "https://commons.wikimedia.org/wiki/File:Kharga_Oasis_by_Hanne_Siegmeier.jpg",
+          "license": "CC BY 2.0",
+          "local_file": "atlas/images/KHA_earth.jpg"
+        },
+        {
+          "side": "mars",
+          "caption_ar": "صخور ياردانج نحتتها الرياح في منطقة Medusae Fossae على المريخ",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Yardangs_in_Medusae.jpg",
+          "commons_page": "https://commons.wikimedia.org/wiki/File:Yardangs_in_Medusae.jpg",
+          "license": "Public domain",
+          "local_file": "atlas/images/KHA_mars.jpg"
+        }
+      ]
+    },
+    {
+      "id": "ATA",
+      "name_ar": "صحراء أتاكاما (يونغاي)",
+      "name_en": "Atacama Desert – Yungay",
+      "country": "تشيلي",
+      "location": {
+        "lat": -24.08,
+        "lon": -70.0,
+        "elevation_m": 1261.0,
+        "coords_approximate": true
+      },
+      "analog_type": "صحراء شديدة الجفاف",
+      "mars_counterpart": "Mars surface soils / Phoenix landing site chemistry",
+      "why_mars_like": "أجف صحراء غير قطبية، أعلى أشعة UV على الأرض، تربة مالحة ومؤكسدة فيها نترات وبيركلورات",
+      "missions_uses": "ARADS (NASA) لاختبار الحفر والبحث عن الحياة",
+      "climate_nasa_power": {
+        "t_mean_C": 17.07,
+        "diurnal_range_C": 14.74,
+        "t_max_monthly_C": 32.93,
+        "t_min_monthly_C": -0.64,
+        "precip_mm_yr": 7.3,
+        "precip_note": null,
+        "rh_pct": 44.09,
+        "solar_kwh_m2_day": 7.2058,
+        "uv_index": 2.64,
+        "wind_ms": 2.34,
+        "source_url": "https://www.frontiersin.org/articles/10.3389/fspas.2021.810426/full"
+      },
+      "climate_mars_score": 69.0,
+      "geology": {
+        "formation": "صحراء أتاكاما أجف صحراء دافية على الأرض وأقدمها، ومن 10–15 مليون سنة على الأقل وهي جافة. جفافها له 3 أسباب: موقعها في حزام الصحاري شبه الاستوائية، وجبال الأنديز اللي بتحجب عنها الرطوبة، وتيار هومبولت البارد اللي بيقلل البخر وتكوّن السحب. في بعض أجزائها المطر بينزل مرة كل 20 سنة، ومتوسطه 0.15 مم في السنة بس.",
+        "rocks": "تربة غنية بالأملاح وفيها قشور مالحة. الأمطار النادرة بتفصل الأملاح حسب قابليتها للذوبان: قشرة متشققة متماسكة بالكبريتات على السطح، وتحتها طبقات من الكلوريدات والنترات اللي بتدوب أسهل.",
+        "minerals": [
+          {
+            "name_ar": "نترات",
+            "formula": "NO₃⁻",
+            "mars_link": "تراكمت من الغلاف الجوي، وبتشبه نترات تربة المريخ"
+          },
+          {
+            "name_ar": "بيركلورات",
+            "formula": "ClO₄⁻",
+            "mars_link": "نسبتها 0.5–0.6% تقريبًا، وده قريب من النسبة اللي قاستها Phoenix على المريخ (0.4–0.6%)"
+          },
+          {
+            "name_ar": "هاليت",
+            "formula": "NaCl",
+            "mars_link": "ملح بيمتص الرطوبة، وممكن يكوّن مية مالحة سايلة"
+          },
+          {
+            "name_ar": "جبس",
+            "formula": "CaSO₄·2H₂O",
+            "mars_link": "كبريتات مائية، وموجودة كمان على المريخ"
+          }
+        ],
+        "special": "الأشعة فوق البنفسجية فيها من الأعلى على الأرض، والتربة مؤكسدة وتقريبًا مفيهاش حياة. وحموضة التربة (pH 6.6–9.2) قريبة من تربة المريخ اللي قاستها Phoenix (pH 7.7–8.3).",
+        "differences_from_mars": "الضغط الجوي والحرارة أعلى بكتير من المريخ."
+      },
+      "references": [
+        {
+          "label": "Frontiers – أتاكاما كنموذج للمريخ",
+          "url": "https://www.frontiersin.org/articles/10.3389/fspas.2021.810426/full"
+        },
+        {
+          "label": "PMC – أملاح أتاكاما مقارنة بالمريخ",
+          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8384830/"
+        },
+        {
+          "label": "ARADS – NASA",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10750311/"
+        }
+      ],
+      "images": [
+        {
+          "side": "earth",
+          "caption_ar": "بانوراما لصحراء أتاكاما",
+          "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b8/Atacama_Desert_Panorama_%28img_2303%29.jpg/960px-Atacama_Desert_Panorama_%28img_2303%29.jpg",
+          "commons_page": "https://commons.wikimedia.org/wiki/File:Atacama_Desert_Panorama_%28img_2303%29.jpg",
+          "license": "CC BY 4.0",
+          "local_file": "atlas/images/ATA_earth.jpg"
+        },
+        {
+          "side": "mars",
+          "caption_ar": "بانوراما من Phoenix، وفي تربة المكان ده اتلقى البيركلورات",
+          "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d9/Mars%3B_Phoenix_color_pano.jpg/960px-Mars%3B_Phoenix_color_pano.jpg",
+          "commons_page": "https://commons.wikimedia.org/wiki/File:Mars;_Phoenix_color_pano.jpg",
+          "license": "Public domain",
+          "local_file": "atlas/images/ATA_mars.jpg"
+        }
+      ]
+    },
+    {
+      "id": "MOJ",
+      "name_ar": "صحراء موهافي",
+      "name_en": "Mojave Desert",
+      "country": "الولايات المتحدة",
+      "location": {
+        "lat": 35.0,
+        "lon": -116.0,
+        "elevation_m": 616.0,
+        "coords_approximate": true
+      },
+      "analog_type": "صحراء بتطرف حراري",
+      "mars_counterpart": "Martian highlands, temperature extremes",
+      "why_mars_like": "تطرف كبير في درجات الحرارة",
+      "missions_uses": "NASA Astrobiology",
+      "climate_nasa_power": {
+        "t_mean_C": 20.18,
+        "diurnal_range_C": 15.48,
+        "t_max_monthly_C": 47.2,
+        "t_min_monthly_C": -4.91,
+        "precip_mm_yr": 127.7,
+        "precip_note": null,
+        "rh_pct": 33.06,
+        "solar_kwh_m2_day": 5.749,
+        "uv_index": 1.54,
+        "wind_ms": 2.42,
+        "source_url": "https://astrobiology.nasa.gov/research-locations/"
+      },
+      "climate_mars_score": 50.8,
+      "geology": {
+        "formation": "صحراء بتتقلب فيها الحرارة بشدة. أما الأودية والأسطح اللي شكلتها الرياح فيها فشبه أجزاء من المرتفعات الجنوبية على المريخ. وفي غربها بازلت من العصر الثلاثي بيتكسر ميكانيكيًا ويتحول لرمل وتراب، بطريقة شبه تفتت الصخور على المريخ بسبب الصدمات والرياح من غير ماية.",
+        "rocks": "بازلت Saddleback من مجموعة Tropico قرب Boron في كاليفورنيا، وسمك تدفقاته حوالي 100 متر.",
+        "minerals": [
+          {
+            "name_ar": "بلاجيوكليز وبيروكسين وأوليفين",
+            "formula": "—",
+            "mars_link": "مكونات بازلت محاكي موهافي MMS"
+          }
+        ],
+        "special": "بازلتها اتطحن واتعمل منه محاكي تربة المريخ Mojave Mars Simulant، واستخدموه في تطوير مهمة Phoenix ومهمة Curiosity (MSL).",
+        "differences_from_mars": "الصحراء دي ممكن تبقى حارة جدًا وتجيلها أمطار متقطعة بين وقت والتاني."
+      },
+      "references": [
+        {
+          "label": "Icarus – محاكي موهافي MMS",
+          "url": "https://ui.adsabs.harvard.edu/abs/2008Icar..197..470P/abstract"
+        },
+        {
+          "label": "NASA Astrobiology",
+          "url": "https://astrobiology.nasa.gov/research-locations/"
+        }
+      ],
+      "images": [
+        {
+          "side": "earth",
+          "caption_ar": "صحراء موهافي عند Gold Butte",
+          "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b6/Mojave_Desert_Landscape_at_Gold_Butte_%2854091361174%29.jpg/960px-Mojave_Desert_Landscape_at_Gold_Butte_%2854091361174%29.jpg",
+          "commons_page": "https://commons.wikimedia.org/wiki/File:Mojave_Desert_Landscape_at_Gold_Butte_%2854091361174%29.jpg",
+          "license": "Public domain",
+          "local_file": "atlas/images/MOJ_earth.jpg"
+        },
+        {
+          "side": "mars",
+          "caption_ar": "بانوراما West Valley اللي صورتها Spirit",
+          "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/89/Spirit%27s_West_Valley_Panorama_%28PIA10216%29.jpg/960px-Spirit%27s_West_Valley_Panorama_%28PIA10216%29.jpg",
+          "commons_page": "https://commons.wikimedia.org/wiki/File:Spirit%27s_West_Valley_Panorama_%28PIA10216%29.jpg",
+          "license": "Public domain",
+          "local_file": "atlas/images/MOJ_mars.jpg"
+        }
+      ]
+    },
+    {
+      "id": "DEV",
+      "name_ar": "وادي الموت",
+      "name_en": "Death Valley",
+      "country": "الولايات المتحدة",
+      "location": {
+        "lat": 36.5,
+        "lon": -117.0,
+        "elevation_m": 846.0,
+        "coords_approximate": true
+      },
+      "analog_type": "حوض تكتوني وملحي",
+      "mars_counterpart": "Tectonic, erosional & sedimentary processes",
+      "why_mars_like": "عمليات تكتونية وتعرية وترسيب مشابهة للمريخ",
+      "missions_uses": "JPL",
+      "climate_nasa_power": {
+        "t_mean_C": 19.1,
+        "diurnal_range_C": 14.65,
+        "t_max_monthly_C": 46.22,
+        "t_min_monthly_C": -6.16,
+        "precip_mm_yr": 124.1,
+        "precip_note": null,
+        "rh_pct": 29.33,
+        "solar_kwh_m2_day": 5.7024,
+        "uv_index": 1.48,
+        "wind_ms": 2.09,
+        "source_url": "https://morningoverview.com/10-places-on-earth-that-scientists-use-to-study-mars/"
+      },
+      "climate_mars_score": 50.4,
+      "geology": {
+        "formation": "حوض تكتوني نازل تحت مستوى البحر، وفيه عمليات تكتونية وتعرية وترسيب شبه اللي على المريخ. في حوض Badwater الماية بتتبخر وتتكرر دورات الرطوبة والجفاف، فبتترسب متبخرات بنفس الطريقة اللي العلماء متوقعين إنها حصلت في بحيرات المريخ.",
+        "rocks": "قشور ملحية (متبخرات) على قاع البلايا، ومراوح طميية.",
+        "minerals": [
+          {
+            "name_ar": "بورات (بوراكس، كيرنيت، هيدروبوراسيت، بينويت)",
+            "formula": "—",
+            "mars_link": "البورون اتكشف على المريخ بأداة ChemCam"
+          },
+          {
+            "name_ar": "كبريتات كالسيوم (أنهيدريت/جبس)",
+            "formula": "CaSO₄",
+            "mars_link": "متبخرات"
+          },
+          {
+            "name_ar": "نونترونيت وكاولينيت",
+            "formula": "طين",
+            "mars_link": "في نماذج البحيرات الجافة"
+          }
+        ],
+        "special": "بيتجرب فيه إزاي الأجهزة اللي بتصوّر من الجو بتقدر تكشف المتبخرات، علشان نعرف ده ممكن يتعمل على المريخ ولا لأ.",
+        "differences_from_mars": "الحرارة فيه من الأعلى على الأرض."
+      },
+      "references": [
+        {
+          "label": "OSTI – المتبخرات ودورات الرطوبة والجفاف",
+          "url": "https://www.osti.gov/pages/servlets/purl/3001302"
+        },
+        {
+          "label": "NASA – رصد المتبخرات بـ MASTER",
+          "url": "https://ntrs.nasa.gov/citations/20000081423"
+        }
+      ],
+      "images": [
+        {
+          "side": "earth",
+          "caption_ar": "الأراضي المتآكلة (badlands) من Zabriskie Point في وادي الموت",
+          "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b4/Badlands_seen_from_Zabriskie_Point%2C_Death_Valley_National_Park%2C_California.jpg/960px-Badlands_seen_from_Zabriskie_Point%2C_Death_Valley_National_Park%2C_California.jpg",
+          "commons_page": "https://commons.wikimedia.org/wiki/File:Badlands_seen_from_Zabriskie_Point,_Death_Valley_National_Park,_California.jpg",
+          "license": "CC BY-SA 4.0",
+          "local_file": "atlas/images/DEV_earth.jpg"
+        },
+        {
+          "side": "mars",
+          "caption_ar": "منطقة The Kimberley في فوهة Gale من المدار، وكانت محطة في رحلة Curiosity",
+          "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a9/PIA18081-MarsCuriosityRover-TheKimberley-20140411.jpg/960px-PIA18081-MarsCuriosityRover-TheKimberley-20140411.jpg",
+          "commons_page": "https://commons.wikimedia.org/wiki/File:PIA18081-MarsCuriosityRover-TheKimberley-20140411.jpg",
+          "license": "Public domain",
+          "local_file": "atlas/images/DEV_mars.jpg"
+        }
+      ]
+    },
+    {
+      "id": "RAM",
+      "name_ar": "مكتيش رامون – النقب",
+      "name_en": "Ramon Crater, Negev",
+      "country": "إسرائيل",
+      "location": {
+        "lat": 30.6,
+        "lon": 34.8,
+        "elevation_m": 367.0,
+        "coords_approximate": true
+      },
+      "analog_type": "صحراء ومنخفض تعرية",
+      "mars_counterpart": "Arid Martian terrains",
+      "why_mars_like": "موقع محطة D-MARS ومهمة AMADEE-20",
+      "missions_uses": "AMADEE-20 (2021)",
+      "climate_nasa_power": {
+        "t_mean_C": 20.61,
+        "diurnal_range_C": 14.62,
+        "t_max_monthly_C": 45.93,
+        "t_min_monthly_C": -2.39,
+        "precip_mm_yr": 135.1,
+        "precip_note": null,
+        "rh_pct": 51.84,
+        "solar_kwh_m2_day": 5.9878,
+        "uv_index": 1.69,
+        "wind_ms": 2.59,
+        "source_url": "https://marspedia.org/List_of_Analog_Station_Efforts"
+      },
+      "climate_mars_score": 47.3,
+      "geology": {
+        "formation": "مكتيش رامون أكبر \"فوهة تعرية\" في العالم: طوله حوالي 40 كم، وعرضه لحد 9 كم، وعمقه لحد 350 متر. اتكون لما التعرية شالت قمة طية محدبة (أنتيكلاين)، فطلع وادي محاط بجروف شكله زي الفوهة. وده كشف طبقات من العصر الترياسي (من حوالي 250 مليون سنة) لحد دلوقتي.",
+        "rocks": "صخور نارية جوفية وبركانية (براكين قديمة وتداخلات)، وحجر رملي، وصخور كربونية، ومتبخرات، وصوان، وصخور متحولة، ورواسب خامات.",
+        "minerals": [
+          {
+            "name_ar": "جبس ومتبخرات",
+            "formula": "CaSO₄·2H₂O",
+            "mars_link": "بتدل على تبخر ماية زي ما حصل على المريخ"
+          },
+          {
+            "name_ar": "كوارتز وصوان",
+            "formula": "SiO₂",
+            "mars_link": "في الحجر الرملي والصوان"
+          }
+        ],
+        "special": "تنوع جيولوجي كبير في مساحة صغيرة، وده بيخليه مناسب لتدريب الجيولوجيا. وفيه محطة D-MARS، واتعملت فيه مهمة AMADEE-20 سنة 2021.",
+        "differences_from_mars": "مش فوهة نيزكية، لكنه بيشبهها في الشكل بس."
+      },
+      "references": [
+        {
+          "label": "LPSC 2019 – D-MARS",
+          "url": "http://spacearchitect.org/pubs/LPSC-2019-2813.pdf"
+        },
+        {
+          "label": "D-MARS – Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/D-MARS"
+        }
+      ],
+      "images": [
+        {
+          "side": "earth",
+          "caption_ar": "منخفض مكتيش رامون",
+          "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ef/Makhtesh_Ramon_%2850785%29.jpg/960px-Makhtesh_Ramon_%2850785%29.jpg",
+          "commons_page": "https://commons.wikimedia.org/wiki/File:Makhtesh_Ramon_%2850785%29.jpg",
+          "license": "CC BY-SA 4.0",
+          "local_file": "atlas/images/RAM_earth.jpg"
+        },
+        {
+          "side": "mars",
+          "caption_ar": "بانوراما من موقع هبوط Mars Pathfinder",
+          "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f5/Mars_Pathfinder_Presidential_Panorama.jpg/960px-Mars_Pathfinder_Presidential_Panorama.jpg",
+          "commons_page": "https://commons.wikimedia.org/wiki/File:Mars_Pathfinder_Presidential_Panorama.jpg",
+          "license": "Public domain",
+          "local_file": "atlas/images/RAM_mars.jpg"
+        }
+      ]
+    },
+    {
+      "id": "DHO",
+      "name_ar": "صحراء ظفار",
+      "name_en": "Dhofar Desert",
+      "country": "عُمان",
+      "location": {
+        "lat": 18.15,
+        "lon": 55.2,
+        "elevation_m": 347.0,
+        "coords_approximate": true
+      },
+      "analog_type": "صحراء رسوبية وقباب ملحية",
+      "mars_counterpart": "Eridania basin; ancient riverbeds",
+      "why_mars_like": "رواسب من الباليوسين والإيوسين، قباب ملحية، مجاري أنهار قديمة؛ حرارة فبراير 16–27°م",
+      "missions_uses": "AMADEE-18 (المنتدى الفضائي النمساوي) 2018",
+      "climate_nasa_power": {
+        "t_mean_C": 26.46,
+        "diurnal_range_C": 14.37,
+        "t_max_monthly_C": 46.2,
+        "t_min_monthly_C": 4.91,
+        "precip_mm_yr": 164.2,
+        "precip_note": null,
+        "rh_pct": 51.17,
+        "solar_kwh_m2_day": 6.4898,
+        "uv_index": 2.13,
+        "wind_ms": 3.69,
+        "source_url": "https://oewf.org/en/portfolio/amadee-18/"
+      },
+      "climate_mars_score": 47.1,
+      "geology": {
+        "formation": "المنطقة ضمن حوض جنوب عُمان الملحي. فيها رواسب من قبل وأثناء وبعد انفتاح الصدع الأرضي، من آخر العصر الطباشيري لحد الميوسين. وفيها قباب ملحية، ومجاري أنهار قديمة، ومراوح طميية من العصر الرباعي. المياه الحارة المرتبطة بالصهارة رسّبت معادن ثانوية في المنطقة.",
+        "rocks": "دولوميت متسلكت، وصوان طبقي غني بالمادة العضوية (سيليسيليت) من تكوين Ara، وحجر جيري، وصخور بركانية من قلوية لبازلتية، وقطع كربونية اتغيرت بالمياه الحارة.",
+        "minerals": [
+          {
+            "name_ar": "ماجنيتيت وكبريتيدات",
+            "formula": "Fe₃O₄",
+            "mars_link": "آثار نشاط المياه الحارة"
+          },
+          {
+            "name_ar": "ألونيت",
+            "formula": "KAl₃(SO₄)₂(OH)₆",
+            "mars_link": "كبريتات بتدل على تغيّر في بيئة حمضية، ومعروفة على المريخ"
+          },
+          {
+            "name_ar": "مونتموريلونيت ونونترونيت مغنيسي",
+            "formula": "طين سمكتيت",
+            "mars_link": "طين شبه طين المريخ"
+          },
+          {
+            "name_ar": "تلك وسابونيت وسربنتين وجلوكونيت",
+            "formula": "—",
+            "mars_link": "معادن ثانوية اتسجلت في المنطقة"
+          }
+        ],
+        "special": "فيه تشابه واضح مع حوض Eridania على المريخ، خصوصًا في المعادن الثانوية اللي اتكونت في بيئة بركانية رسوبية بمياه حارة في قاع بحر. واتعملت فيها مهمة AMADEE-18 سنة 2018.",
+        "differences_from_mars": "فيها شركات بترول ونشاط بشري. والحرارة في فبراير 16–27°م."
+      },
+      "references": [
+        {
+          "label": "Astrobiology – بعثة AMADEE-18",
+          "url": "https://www.liebertpub.com/doi/pdf/10.1089/ast.2019.2031"
+        },
+        {
+          "label": "Astrobiology – تحليل عينات AMADEE-18",
+          "url": "https://www.liebertpub.com/doi/10.1089/ast.2019.2038"
+        },
+        {
+          "label": "OeWF – AMADEE-18",
+          "url": "https://oewf.org/en/portfolio/amadee-18/"
+        }
+      ],
+      "images": [
+        {
+          "side": "earth",
+          "caption_ar": "البحث عن النيازك في صحراء ظفار",
+          "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6c/Search_for_meteorites_at_the_Dhofar_Desert.jpg/960px-Search_for_meteorites_at_the_Dhofar_Desert.jpg",
+          "commons_page": "https://commons.wikimedia.org/wiki/File:Search_for_meteorites_at_the_Dhofar_Desert.jpg",
+          "license": "CC BY-SA 3.0",
+          "local_file": "atlas/images/DHO_earth.jpg"
+        },
+        {
+          "side": "mars",
+          "caption_ar": "دلتا نهر قديمة في فوهة Jezero، صورة ESA",
+          "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e2/Jezero_Crater_delta_ESA23163264.jpeg/960px-Jezero_Crater_delta_ESA23163264.jpeg",
+          "commons_page": "https://commons.wikimedia.org/wiki/File:Jezero_Crater_delta_ESA23163264.jpeg",
+          "license": "CC BY-SA 3.0 igo",
+          "local_file": "atlas/images/DHO_mars.jpeg"
+        }
+      ]
+    },
+    {
+      "id": "PIL",
+      "name_ar": "بيلبارا – قبة القطب الشمالي",
+      "name_en": "Pilbara – North Pole Dome",
+      "country": "أستراليا",
+      "location": {
+        "lat": -21.1,
+        "lon": 119.4,
+        "elevation_m": 175.0,
+        "coords_approximate": true
+      },
+      "analog_type": "صخور قديمة جدًا بستروماتوليت",
+      "mars_counterpart": "Noachian sediments; Jezero biosignatures",
+      "why_mars_like": "ستروماتوليت عمرها ~3.4–3.5 مليار سنة؛ قطعة من صخورها على Perseverance للمعايرة",
+      "missions_uses": "تدريب فريق Perseverance + أداة PIXL",
+      "climate_nasa_power": {
+        "t_mean_C": 27.5,
+        "diurnal_range_C": 15.63,
+        "t_max_monthly_C": 48.95,
+        "t_min_monthly_C": 6.49,
+        "precip_mm_yr": 405.2,
+        "precip_note": null,
+        "rh_pct": 39.26,
+        "solar_kwh_m2_day": 6.4068,
+        "uv_index": 2.29,
+        "wind_ms": 3.27,
+        "source_url": "https://ntrs.nasa.gov/citations/20160006681"
+      },
+      "climate_mars_score": 46.6,
+      "geology": {
+        "formation": "صخور من أقدم الصخور المحفوظة على الأرض، عمرها 3.4–3.5 مليار سنة، يعني من نفس عمر رواسب العصر النوحي على المريخ. تكوين Dresser ترسب في فوهة بركانية كبيرة (كالديرا) كانت المياه الحارة بتدور فيها بكثافة. وصخورها اتعرضت لتحول خفيف جدًا، فحفظت الستروماتوليت (طبقات كونتها كائنات دقيقة).",
+        "rocks": "بازلت متحول (بعضه بازلت وسادي اتكون تحت الماية)، وصوان أبيض ورمادي طبقي، وصوان جاسبر، وكربونات طبقية، وجيزيريت ورواسب ينابيع حارة، وستروماتوليت.",
+        "minerals": [
+          {
+            "name_ar": "كوارتز دقيق (صوان)",
+            "formula": "SiO₂",
+            "mars_link": "بيحفظ البصمات الحيوية"
+          },
+          {
+            "name_ar": "باريت",
+            "formula": "BaSO₄",
+            "mars_link": "بقايا برك ينابيع حارة اتحولت لمعادن"
+          },
+          {
+            "name_ar": "بيريت",
+            "formula": "FeS₂",
+            "mars_link": "في عروق المياه الحارة"
+          },
+          {
+            "name_ar": "دولوميت وكالسيت وتلك",
+            "formula": "—",
+            "mars_link": "معادن الستروماتوليت في تكوين Strelley Pool"
+          },
+          {
+            "name_ar": "هيماتيت",
+            "formula": "Fe₂O₃",
+            "mars_link": "طبقة تجوية غنية بالحديد شبه الطبقات اللي بتغطي صخور المريخ"
+          }
+        ],
+        "special": "قطعة من صوان بيلبارا موجودة على Perseverance نفسه، ضمن هدف معايرة أداة PIXL. وكمان الستروماتوليت هناك نادرة جدًا (حوالي 1% من الوحدة الصخرية)، وده درس مهم لاستراتيجية جمع العينات على المريخ.",
+        "differences_from_mars": "الطبقات هنا مايلة بشدة، أما على المريخ فالمتوقع إنها أفقية. والجو حار ورطب في الصيف."
+      },
+      "references": [
+        {
+          "label": "NASA – دروس من بيلبارا",
+          "url": "https://ntrs.nasa.gov/api/citations/20160006681/downloads/20160006681.pdf"
+        },
+        {
+          "label": "Nature Comms – ينابيع Dresser الحارة",
+          "url": "https://www.nature.com/articles/ncomms15263"
+        },
+        {
+          "label": "Mine Australia – صخر بيلبارا على Perseverance",
+          "url": "https://mine.nridigital.com/mine_australia_may21/pilbara_chert_perseverance_mars"
+        }
+      ],
+      "images": [
+        {
+          "side": "earth",
+          "caption_ar": "ستروماتوليت عمره 3.48 مليار سنة من تكوين Dresser في بيلبارا",
+          "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2f/Stromatolite_%28Dresser_Formation%2C_Paleoarchean%2C_3.48_Ga%3B_Normay_Mine%2C_North_Pole_Dome%2C_Pilbara_Craton%2C_Western_Australia%29_1_%2832857204117%29.jpg/960px-Stromatolite_%28Dresser_Formation%2C_Paleoarchean%2C_3.48_Ga%3B_Normay_Mine%2C_North_Pole_Dome%2C_Pilbara_Craton%2C_Western_Australia%29_1_%2832857204117%29.jpg",
+          "commons_page": "https://commons.wikimedia.org/wiki/File:Stromatolite_%28Dresser_Formation,_Paleoarchean,_3.48_Ga;_Normay_Mine,_North_Pole_Dome,_Pilbara_Craton,_Western_Australia%29_1_%2832857204117%29.jpg",
+          "license": "CC BY 2.0",
+          "local_file": "atlas/images/PIL_earth.jpg"
+        },
+        {
+          "side": "mars",
+          "caption_ar": "دلتا فوهة Jezero، المكان اللي Perseverance بيدور فيه على آثار حياة",
+          "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/74/Spanning_the_Delta_of_Jezero_Crater_on_Mars_%28PIA25022%29.jpg/960px-Spanning_the_Delta_of_Jezero_Crater_on_Mars_%28PIA25022%29.jpg",
+          "commons_page": "https://commons.wikimedia.org/wiki/File:Spanning_the_Delta_of_Jezero_Crater_on_Mars_%28PIA25022%29.jpg",
+          "license": "Public domain",
+          "local_file": "atlas/images/PIL_mars.jpg"
+        }
+      ]
+    },
+    {
+      "id": "WHS",
+      "name_ar": "كثبان وايت ساندز",
+      "name_en": "White Sands dunes",
+      "country": "الولايات المتحدة",
+      "location": {
+        "lat": 32.8,
+        "lon": -106.33,
+        "elevation_m": 1450.0,
+        "coords_approximate": true
+      },
+      "analog_type": "حقل كثبان (جبس)",
+      "mars_counterpart": "Martian dune fields; sulfate sands",
+      "why_mars_like": "بيئة كثبان رملية غنية لاختبار حركة الروبوتات",
+      "missions_uses": "LASSIE – روبوتات بأرجل",
+      "climate_nasa_power": {
+        "t_mean_C": 16.33,
+        "diurnal_range_C": 14.44,
+        "t_max_monthly_C": 42.14,
+        "t_min_monthly_C": -15.51,
+        "precip_mm_yr": 273.8,
+        "precip_note": null,
+        "rh_pct": 39.66,
+        "solar_kwh_m2_day": 5.7466,
+        "uv_index": 1.71,
+        "wind_ms": 2.24,
+        "source_url": "https://arxiv.org/html/2603.19661"
+      },
+      "climate_mars_score": 46.6,
+      "geology": {
+        "formation": "الأمطار والمياه الجوفية بتدوب الجبس من الصخور الكربونية والمتبخرات اللي حوالين حوض Tularosa، وبتوديه للبلايا. البحيرة القديمة Otero جفت في الهولوسين، والرياح فتّتت رواسبها وعملت منها أكبر حقل كثبان جبسية في العالم من حوالي 7,000 سنة.",
+        "rocks": "كثبان جبسية (قبابية وهلالية وبرخانية ومكافئية)، وأعمدة صغيرة من بلورات الجبس.",
+        "minerals": [
+          {
+            "name_ar": "جبس",
+            "formula": "CaSO₄·2H₂O",
+            "mars_link": "فيه كثبان جبسية واسعة في المنطقة القطبية الشمالية للمريخ"
+          }
+        ],
+        "special": "مكان لتجربة روبوتات بأرجل (مشروع LASSIE).",
+        "differences_from_mars": "المياه الجوفية قريبة من السطح وبتثبّت الكثبان."
+      },
+      "references": [
+        {
+          "label": "Springer – White Sands",
+          "url": "https://link.springer.com/chapter/10.1007/978-3-030-40498-7_6"
+        },
+        {
+          "label": "NPS – موارد White Sands",
+          "url": "https://irma.nps.gov/DataStore/FileSource/Get/663822?filename=WHSA_PRFR_FINAL.pdf"
+        }
+      ],
+      "images": [
+        {
+          "side": "earth",
+          "caption_ar": "كثبان الجبس البيضاء في وايت ساندز",
+          "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/57/%E7%9F%B3%E8%86%8F%E3%81%AE%E7%A0%82%E4%B8%98_White_Sands_%288204873727%29.jpg/960px-%E7%9F%B3%E8%86%8F%E3%81%AE%E7%A0%82%E4%B8%98_White_Sands_%288204873727%29.jpg",
+          "commons_page": "https://commons.wikimedia.org/wiki/File:%E7%9F%B3%E8%86%8F%E3%81%AE%E7%A0%82%E4%B8%98_White_Sands_%288204873727%29.jpg",
+          "license": "CC BY 2.0",
+          "local_file": "atlas/images/WHS_earth.jpg"
+        },
+        {
+          "side": "mars",
+          "caption_ar": "كثبان الجبس عند القطب الشمالي للمريخ، صورة HiRISE",
+          "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d2/ESP_077718_2600_Mars_North_Polar_Gypsum_Dunes_b.jpg/960px-ESP_077718_2600_Mars_North_Polar_Gypsum_Dunes_b.jpg",
+          "commons_page": "https://commons.wikimedia.org/wiki/File:ESP_077718_2600_Mars_North_Polar_Gypsum_Dunes_b.jpg",
+          "license": "Public domain",
+          "local_file": "atlas/images/WHS_mars.jpg"
+        }
+      ]
+    },
+    {
+      "id": "MDRS",
+      "name_ar": "محطة أبحاث صحراء المريخ – يوتا",
+      "name_en": "Mars Desert Research Station, Utah",
+      "country": "الولايات المتحدة",
+      "location": {
+        "lat": 38.4065,
+        "lon": -110.7919,
+        "elevation_m": 1660.0,
+        "coords_approximate": false
+      },
+      "analog_type": "صحراء رسوبية + محطة سكن",
+      "mars_counterpart": "Sedimentary terrains, evaporites, clays",
+      "why_mars_like": "رواسب رملية وطينية وجبس مشابهة كيميائيًا للمريخ؛ أطول محطة محاكاة مأهولة تعمل",
+      "missions_uses": "Mars Society – طواقم محاكاة منذ 2001",
+      "climate_nasa_power": {
+        "t_mean_C": 11.75,
+        "diurnal_range_C": 13.64,
+        "t_max_monthly_C": 41.12,
+        "t_min_monthly_C": -19.96,
+        "precip_mm_yr": 240.9,
+        "precip_note": null,
+        "rh_pct": 43.14,
+        "solar_kwh_m2_day": 5.2874,
+        "uv_index": 1.44,
+        "wind_ms": 2.46,
+        "source_url": "https://en.wikipedia.org/wiki/Mars_Desert_Research_Station"
+      },
+      "climate_mars_score": 45.3,
+      "geology": {
+        "formation": "المحطة على هضبة كولورادو في جنوب يوتا. في العصر الجوراسي كان فيه بحر اسمه Sundance، ولما انحسر ساب وراه طبقات من الأملاح في فترات الجفاف، ومعاها رواسب أنهار وبحيرات. التعرية بعد كده كشفت الطبقات دي وعملت تضاريس ملونة شبه طبقات المريخ.",
+        "rocks": "حجر رملي Entrada، وتكوين Morrison (ومنه عضو Brushy Basin، وهو طفلة بركانية غنية بالحديد والطين ترسبت في بحيرة قلوية مالحة)، وحجر رملي Dakota، وطفلة Mancos.",
+        "minerals": [
+          {
+            "name_ar": "مونتموريلونيت",
+            "formula": "(Na,Ca)₀.₃₃(Al,Mg)₂Si₄O₁₀(OH)₂·nH₂O",
+            "mars_link": "طين سمكتيت، وشبه طين فوهة Gale"
+          },
+          {
+            "name_ar": "إيليت وكاولينيت",
+            "formula": "—",
+            "mars_link": "معادن طين اتكشفت على المريخ"
+          },
+          {
+            "name_ar": "جبس (سيلينيت وساتان سبار)",
+            "formula": "CaSO₄·2H₂O",
+            "mars_link": "كبريتات موجودة في مناطق مهمة جيولوجيًا على المريخ"
+          },
+          {
+            "name_ar": "هيماتيت",
+            "formula": "Fe₂O₃",
+            "mars_link": "بيغطي حبيبات الطين، وفيه كرات صغيرة منه"
+          },
+          {
+            "name_ar": "نونترونيت",
+            "formula": "طين غني بالحديد",
+            "mars_link": "اتكشف في مناطق كتير على المريخ"
+          }
+        ],
+        "special": "أطول محطة محاكاة شغالة. اتعملت سنة 2001، وطواقمها بتعمل رحلات استكشاف وهي لابسة البدل.",
+        "differences_from_mars": "فيها نباتات قليلة، والتربة فيها مادة عضوية وكائنات دقيقة أكتر من المريخ."
+      },
+      "references": [
+        {
+          "label": "Mars Society – تقارير علمية MDRS",
+          "url": "https://reports.marssociety.org/2018/01/13/science-report-january-13th-3/"
+        },
+        {
+          "label": "Science.gov – تكوين Morrison",
+          "url": "https://www.science.gov/topicpages/m/member+morrison+formation"
+        },
+        {
+          "label": "MDRS – Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Mars_Desert_Research_Station"
+        }
+      ],
+      "images": [
+        {
+          "side": "earth",
+          "caption_ar": "محطة أبحاث صحراء المريخ في يوتا",
+          "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/49/Mars_Desert_Research_Station_2020.jpg/960px-Mars_Desert_Research_Station_2020.jpg",
+          "commons_page": "https://commons.wikimedia.org/wiki/File:Mars_Desert_Research_Station_2020.jpg",
+          "license": "CC BY-SA 4.0",
+          "local_file": "atlas/images/MDRS_earth.jpg"
+        },
+        {
+          "side": "mars",
+          "caption_ar": "صخور طينية في تكوين Yellowknife Bay جوه فوهة Gale",
+          "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2d/Yellowknife_Bay_Formation_on_Mars.jpg/960px-Yellowknife_Bay_Formation_on_Mars.jpg",
+          "commons_page": "https://commons.wikimedia.org/wiki/File:Yellowknife_Bay_Formation_on_Mars.jpg",
+          "license": "Public domain",
+          "local_file": "atlas/images/MDRS_mars.jpg"
+        }
+      ]
+    },
+    {
+      "id": "GOB",
+      "name_ar": "صحراء جوبي – قاعدة المريخ 1",
+      "name_en": "Gobi – Mars Base 1, Gansu",
+      "country": "الصين",
+      "location": {
+        "lat": 38.5,
+        "lon": 102.2,
+        "elevation_m": 1479.0,
+        "coords_approximate": true
+      },
+      "analog_type": "صحراء جوبي + قاعدة محاكاة",
+      "mars_counterpart": "Arid Martian plains",
+      "why_mars_like": "قاعدة محاكاة للمريخ قرب جينتشانغ (2019)",
+      "missions_uses": "C-Space Mars Base 1",
+      "climate_nasa_power": {
+        "t_mean_C": 10.01,
+        "diurnal_range_C": 12.58,
+        "t_max_monthly_C": 41.75,
+        "t_min_monthly_C": -22.22,
+        "precip_mm_yr": 186.2,
+        "precip_note": null,
+        "rh_pct": 39.43,
+        "solar_kwh_m2_day": 4.8293,
+        "uv_index": 1.19,
+        "wind_ms": 2.63,
+        "source_url": "https://marspedia.org/List_of_Analog_Station_Efforts"
+      },
+      "climate_mars_score": 44.9,
+      "geology": {
+        "formation": "صحراء جوبي في مقاطعة قانسو، وفيها تلال من الحجر الرملي المحمر وسط سهول قاحلة. المناخ جاف والسكان قليلين، وده بيخلي الشكل العام قريب من سطح المريخ.",
+        "rocks": "حجر رملي محمر، وأشكال سطح جوبي (سهول حصوية).",
+        "minerals": [
+          {
+            "name_ar": "أكاسيد حديد (مثل الهيماتيت)",
+            "formula": "Fe₂O₃",
+            "mars_link": "هي اللي بتدي اللون الأحمر، زي غبار المريخ (معلومة جيولوجية عامة ومش من دراسة خاصة بالموقع)"
+          }
+        ],
+        "special": "فيه قاعدة Mars Base 1 للتعليم والسياحة، اتعملت بإشراف مركز تدريب رواد الفضاء الصيني.",
+        "differences_from_mars": "ملقيتش دراسات معدنية علمية منشورة عن الموقع ده تحديدًا. المعروف أكتر في الصين هو حوض Qaidam، وده عليه دراسات كتير."
+      },
+      "references": [
+        {
+          "label": "China Daily – Mars Base 1",
+          "url": "https://global.chinadaily.com.cn/a/202607/18/WS6a5ac467a310986e2b465f65.html"
+        },
+        {
+          "label": "PMC – حوض Qaidam كنظير للمريخ",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9409814/"
+        }
+      ],
+      "images": [
+        {
+          "side": "earth",
+          "caption_ar": "منظر جوي لأراضي متآكلة في صحراء جوبي، وده منظر عام للمنطقة مش القاعدة نفسها",
+          "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/00/20240324_Gongcha_Gobi.jpg/960px-20240324_Gongcha_Gobi.jpg",
+          "commons_page": "https://commons.wikimedia.org/wiki/File:20240324_Gongcha_Gobi.jpg",
+          "license": "CC BY-SA 4.0",
+          "local_file": "atlas/images/GOB_earth.jpg"
+        },
+        {
+          "side": "mars",
+          "caption_ar": "بانوراما 360 درجة صورتها Curiosity",
+          "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/76/Mars_curiousity_360_panorama_may_4_2020.jpg/960px-Mars_curiousity_360_panorama_may_4_2020.jpg",
+          "commons_page": "https://commons.wikimedia.org/wiki/File:Mars_curiousity_360_panorama_may_4_2020.jpg",
+          "license": "Public domain",
+          "local_file": "atlas/images/GOB_mars.jpg"
+        }
+      ]
+    },
+    {
+      "id": "MET",
+      "name_ar": "فوهة النيزك – أريزونا",
+      "name_en": "Meteor Crater, Arizona",
+      "country": "الولايات المتحدة",
+      "location": {
+        "lat": 35.027,
+        "lon": -111.022,
+        "elevation_m": 1915.0,
+        "coords_approximate": true
+      },
+      "analog_type": "فوهة نيزكية محفوظة",
+      "mars_counterpart": "Simple Martian impact craters",
+      "why_mars_like": "فوهة محفوظة جيدًا مثل فوهات كثيرة على المريخ، وسهلة الوصول",
+      "missions_uses": "JPL / تدريب رواد Apollo",
+      "climate_nasa_power": {
+        "t_mean_C": 11.36,
+        "diurnal_range_C": 14.49,
+        "t_max_monthly_C": 37.83,
+        "t_min_monthly_C": -22.36,
+        "precip_mm_yr": 416.1,
+        "precip_note": null,
+        "rh_pct": 47.71,
+        "solar_kwh_m2_day": 5.5637,
+        "uv_index": 1.6,
+        "wind_ms": 2.35,
+        "source_url": "https://morningoverview.com/10-places-on-earth-that-scientists-use-to-study-mars/"
+      },
+      "climate_mars_score": 43.9,
+      "geology": {
+        "formation": "فوهة شكلها زي الطبق، قطرها 1.2 كم وعمقها 180 متر. اتكونت من حوالي 50,000 سنة لما نيزك حديدي-نيكلي قطره حوالي 30 متر خبط الأرض بسرعة 12–20 كم في الثانية. وهي محفوظة كويس، وشبه فوهات بسيطة كتير على المريخ.",
+        "rocks": "من فوق لتحت: تكوين Moenkopi (حجر غريني وطفلة)، وتكوين Kaibab (دولوميت رملي)، وتكوين Toroweap، وحجر Coconino الرملي النقي. والطبقات دي اتقلبت في المقذوفات اللي حوالين الفوهة.",
+        "minerals": [
+          {
+            "name_ar": "كوارتز",
+            "formula": "SiO₂",
+            "mars_link": "حجر Coconino الرملي النقي جدًا"
+          },
+          {
+            "name_ar": "دولوميت",
+            "formula": "CaMg(CO₃)₂",
+            "mars_link": "المكون الأساسي لتكوين Kaibab"
+          },
+          {
+            "name_ar": "كوسيت",
+            "formula": "SiO₂ عالي الضغط",
+            "mars_link": "معدن بيتكون من صدمة النيزك، وبيدل على تأثير الصدمات"
+          }
+        ],
+        "special": "سهلة الوصول، ورواد Apollo اتدربوا فيها.",
+        "differences_from_mars": "الصخور رسوبية مش بازلتية."
+      },
+      "references": [
+        {
+          "label": "USGS – فوهة النيزك",
+          "url": "https://pubs.usgs.gov/publication/ofr20241062/full"
+        },
+        {
+          "label": "NASA – صخور فوهة النيزك",
+          "url": "https://ntrs.nasa.gov/citations/20020073439"
+        }
+      ],
+      "images": [
+        {
+          "side": "earth",
+          "caption_ar": "فوهة Barringer النيزكية في أريزونا",
+          "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bf/Barringer_Meteor_Crater%2C_Arizona.jpg/960px-Barringer_Meteor_Crater%2C_Arizona.jpg",
+          "commons_page": "https://commons.wikimedia.org/wiki/File:Barringer_Meteor_Crater,_Arizona.jpg",
+          "license": "Public domain",
+          "local_file": "atlas/images/MET_earth.jpg"
+        },
+        {
+          "side": "mars",
+          "caption_ar": "فوهة Victoria على المريخ، صورة MRO",
+          "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ad/Victoria_Crater_taken_by_Mars_Reconnaissance_Orbiter.jpg/960px-Victoria_Crater_taken_by_Mars_Reconnaissance_Orbiter.jpg",
+          "commons_page": "https://commons.wikimedia.org/wiki/File:Victoria_Crater_taken_by_Mars_Reconnaissance_Orbiter.jpg",
+          "license": "Public domain",
+          "local_file": "atlas/images/MET_mars.jpg"
+        }
+      ]
+    },
+    {
+      "id": "BON",
+      "name_ar": "سهول بونفيل الملحية",
+      "name_en": "Bonneville Salt Flats",
+      "country": "الولايات المتحدة",
+      "location": {
+        "lat": 40.76,
+        "lon": -113.89,
+        "elevation_m": 1398.0,
+        "coords_approximate": true
+      },
+      "analog_type": "قاع بحيرة ملحية جافة",
+      "mars_counterpart": "Martian dry lakebeds / chloride deposits",
+      "why_mars_like": "عمليات تكوّن مشابهة لقيعان البحيرات الجافة على المريخ",
+      "missions_uses": "JPL",
+      "climate_nasa_power": {
+        "t_mean_C": 10.89,
+        "diurnal_range_C": 12.93,
+        "t_max_monthly_C": 40.78,
+        "t_min_monthly_C": -20.37,
+        "precip_mm_yr": 211.7,
+        "precip_note": null,
+        "rh_pct": 47.13,
+        "solar_kwh_m2_day": 4.6711,
+        "uv_index": 1.22,
+        "wind_ms": 2.06,
+        "source_url": "https://morningoverview.com/10-places-on-earth-that-scientists-use-to-study-mars/"
+      },
+      "climate_mars_score": 43.5,
+      "geology": {
+        "formation": "بحيرة Bonneville اللي كانت موجودة في البليستوسين اتبخرت وسابت طبقة متبخرات سمكها حوالي 1.5 متر. الجبس ترسب الأول، من 8.3 لـ 5.4 ألف سنة، وبعده الهاليت. والعملية دي شبه اللي العلماء متوقعين إنها كونت قيعان البحيرات الجافة على المريخ.",
+        "rocks": "قشرة متبخرات: تلتها هاليت وتلتينها جبس، ومعاهم أراجونيت.",
+        "minerals": [
+          {
+            "name_ar": "هاليت",
+            "formula": "NaCl",
+            "mars_link": "رواسب كلوريد واسعة اتكشفت على المريخ"
+          },
+          {
+            "name_ar": "جبس",
+            "formula": "CaSO₄·2H₂O",
+            "mars_link": "ممكن يحبس آثار الحياة جوه بلوراته، وده مهم لعينات المريخ"
+          },
+          {
+            "name_ar": "أراجونيت",
+            "formula": "CaCO₃",
+            "mars_link": "كربونات"
+          }
+        ],
+        "special": "فيه كائنات دقيقة محبوسة جوه المعادن، وده نموذج لحفظ البصمات الحيوية.",
+        "differences_from_mars": "قريب من البحيرة المالحة الكبرى ومن نشاط بشري."
+      },
+      "references": [
+        {
+          "label": "Cambridge – تاريخ ترسيب BSF",
+          "url": "https://www.cambridge.org/core/journals/quaternary-research/article/lateral-and-temporal-constraints-on-the-depositional-history-of-the-bonneville-salt-flats-utah-usa/90718B5CF33A5B407C2B282F7C7D2C7F"
+        },
+        {
+          "label": "USU – الجبس كنموذج للمريخ",
+          "url": "https://digitalcommons.usu.edu/spacegrant/2023/all2023/38/"
+        }
+      ],
+      "images": [
+        {
+          "side": "earth",
+          "caption_ar": "سطح الملح في سهول بونفيل",
+          "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/94/Wendover_%28UT%2C_USA%29%2C_Bonneville_Salt_Flats_--_2022_--_2705.jpg/960px-Wendover_%28UT%2C_USA%29%2C_Bonneville_Salt_Flats_--_2022_--_2705.jpg",
+          "commons_page": "https://commons.wikimedia.org/wiki/File:Wendover_%28UT,_USA%29,_Bonneville_Salt_Flats_--_2022_--_2705.jpg",
+          "license": "CC BY-SA 4.0",
+          "local_file": "atlas/images/BON_earth.jpg"
+        },
+        {
+          "side": "mars",
+          "caption_ar": "رواسب كلوريد على المريخ، صور THEMIS وHiRISE",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/9/9d/Chloride_Deposits_on_Mars_THEMIS_HiRISE_Combined.png",
+          "commons_page": "https://commons.wikimedia.org/wiki/File:Chloride_Deposits_on_Mars_THEMIS_HiRISE_Combined.png",
+          "license": "Public domain",
+          "local_file": "atlas/images/BON_mars.png"
+        }
+      ]
+    },
+    {
+      "id": "MDV",
+      "name_ar": "الوديان الجافة – ماكموردو",
+      "name_en": "McMurdo Dry Valleys",
+      "country": "أنتاركتيكا",
+      "location": {
+        "lat": -77.62,
+        "lon": 162.9,
+        "elevation_m": 583.0,
+        "coords_approximate": true
+      },
+      "analog_type": "صحراء قطبية باردة",
+      "mars_counterpart": "Present-day Mars; high northern plains (Phoenix)",
+      "why_mars_like": "متوسط حرارة سنوي −14.7 إلى −29.6°م، لا أمطار، ثلج قليل يتسامى، تربة متجمدة دائمة",
+      "missions_uses": "موقع أبحاث منذ برنامج Viking",
+      "climate_nasa_power": {
+        "t_mean_C": -21.88,
+        "diurnal_range_C": 5.07,
+        "t_max_monthly_C": -0.19,
+        "t_min_monthly_C": -47.14,
+        "precip_mm_yr": 65.7,
+        "precip_note": null,
+        "rh_pct": 80.65,
+        "solar_kwh_m2_day": 2.9993,
+        "uv_index": 0.55,
+        "wind_ms": 3.92,
+        "source_url": "https://en.wikipedia.org/wiki/McMurdo_Dry_Valleys"
+      },
+      "climate_mars_score": 39.0,
+      "geology": {
+        "formation": "الوديان الجافة أكبر منطقة في أنتاركتيكا مش متغطية بالجليد. جبال عابرة القارة بتمنع الثلج يوصلها، فالثلج اللي بينزل قليل وبيتسامى بسرعة. متوسط الحرارة في السنة بين −14.7 و−29.6°م، وتحت السطح فيه تربة متجمدة دايمًا سمكها مئات الأمتار. المكان بقى مستخدم كنظير للمريخ من أيام برنامج Viking.",
+        "rocks": "حصى سطحي مفكك، وأرض شكلها مضلعات بسبب أوتاد الجليد، وتحتها تربة متجمدة دايمًا. والصخور اللي بتتآكل هناك شبه الأسطح اللي صورتها Pathfinder.",
+        "minerals": [
+          {
+            "name_ar": "هاليت",
+            "formula": "NaCl",
+            "mars_link": "سائد في تربة وادي تايلور"
+          },
+          {
+            "name_ar": "كبريتات صوديوم",
+            "formula": "Na₂SO₄",
+            "mars_link": "في وادي تايلور"
+          },
+          {
+            "name_ar": "كبريتات كالسيوم / جبس",
+            "formula": "CaSO₄(·2H₂O)",
+            "mars_link": "سائدة في وادي University"
+          },
+          {
+            "name_ar": "بيركلورات",
+            "formula": "ClO₄⁻",
+            "mars_link": "اكتشافها هنا شبيه باكتشاف Phoenix للبيركلورات على المريخ"
+          },
+          {
+            "name_ar": "كلوريد كالسيوم",
+            "formula": "CaCl₂",
+            "mars_link": "ملح بيقلل درجة تجمد الماية"
+          }
+        ],
+        "special": "أفضل نظير للسهول الشمالية العالية على المريخ اللي نزلت فيها Phoenix. ومفيهاش مطر خالص، والرياح جافة جدًا.",
+        "differences_from_mars": "الضغط الجوي أعلى بكتير، والحرارة في الصيف ممكن تعدي الصفر بشوية."
+      },
+      "references": [
+        {
+          "label": "McMurdo Dry Valleys – Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/McMurdo_Dry_Valleys"
+        },
+        {
+          "label": "NASA – الوديان الجافة نظير لمهمة Phoenix",
+          "url": "https://ntrs.nasa.gov/api/citations/20100003844/downloads/20100003844.pdf"
+        },
+        {
+          "label": "Bishop 2021 – أملاح المريخ",
+          "url": "https://ntrs.nasa.gov/api/citations/20210010000/downloads/Bishop(2021)SciAdv_Mars_cryosalt_RSL_eabe4459.pdf"
+        }
+      ],
+      "images": [
+        {
+          "side": "earth",
+          "caption_ar": "سلسلة Gargoyle Ridge في الوديان الجافة بماكموردو",
+          "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/79/Gargoyle_Ridge_in_the_McMurdo_Dry_Valleys_in_Antarctica_%2830877661786%29.jpg/960px-Gargoyle_Ridge_in_the_McMurdo_Dry_Valleys_in_Antarctica_%2830877661786%29.jpg",
+          "commons_page": "https://commons.wikimedia.org/wiki/File:Gargoyle_Ridge_in_the_McMurdo_Dry_Valleys_in_Antarctica_%2830877661786%29.jpg",
+          "license": "Public domain",
+          "local_file": "atlas/images/MDV_earth.jpg"
+        },
+        {
+          "side": "mars",
+          "caption_ar": "صقيع على سطح Utopia Planitia صورته Viking 2",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/9/9f/Ice_on_Mars_Utopia_Planitia_%28PIA00571%29.jpg",
+          "commons_page": "https://commons.wikimedia.org/wiki/File:Ice_on_Mars_Utopia_Planitia_%28PIA00571%29.jpg",
+          "license": "Public domain",
+          "local_file": "atlas/images/MDV_mars.jpg"
+        }
+      ]
+    },
+    {
+      "id": "RTI",
+      "name_ar": "نهر ريو تينتو",
+      "name_en": "Río Tinto",
+      "country": "إسبانيا",
+      "location": {
+        "lat": 37.69,
+        "lon": -6.56,
+        "elevation_m": 188.0,
+        "coords_approximate": true
+      },
+      "analog_type": "نهر حمضي غني بالحديد والكبريتات",
+      "mars_counterpart": "Meridiani Planum (Opportunity) – jarosite & hematite",
+      "why_mars_like": "مياه pH ≈ 1.5–3، معادن جاروسيت وهيماتيت وجوثيت مثل التي وجدتها Opportunity",
+      "missions_uses": "MARTE (NASA) للبحث عن حياة تحت السطح",
+      "climate_nasa_power": {
+        "t_mean_C": 18.01,
+        "diurnal_range_C": 13.45,
+        "t_max_monthly_C": 46.26,
+        "t_min_monthly_C": -4.61,
+        "precip_mm_yr": 467.2,
+        "precip_note": null,
+        "rh_pct": 62.53,
+        "solar_kwh_m2_day": 5.0191,
+        "uv_index": 1.22,
+        "wind_ms": 2.41,
+        "source_url": "https://ntrs.nasa.gov/citations/20050176026"
+      },
+      "climate_mars_score": 36.1,
+      "geology": {
+        "formation": "النهر طوله حوالي 100 كم، ومنبعه في حزام البيريت الإيبيري، وده من أكبر مناطق خامات الكبريتيد البركانية في العالم. الماية الجوفية بتتفاعل مع البيريت، وغالبًا بمساعدة ميكروبات، فبتطلع ماية مليانة حمض كبريتيك وحديد. علشان كده النهر لونه أحمر، وحموضته pH 1.5–3.",
+        "rocks": "خامات كبريتيد ضخمة، ومدرجات نهرية من الهولوسين والبليو-بليستوسين متكونة من أكاسيد الحديد، وقشور ملحية بتطلع على ضفاف النهر.",
+        "minerals": [
+          {
+            "name_ar": "جاروسيت",
+            "formula": "KFe₃(SO₄)₂(OH)₆",
+            "mars_link": "نفس المعدن اللي اكتشفته Opportunity في Meridiani Planum، وبيدل على ماية حمضية"
+          },
+          {
+            "name_ar": "شفيرتمانيت",
+            "formula": "Fe₈O₈(OH)₆SO₄",
+            "mars_link": "بيترسب لما ماية النهر تتبخر"
+          },
+          {
+            "name_ar": "جوثيت",
+            "formula": "FeOOH",
+            "mars_link": "بيترسب في موسم المطر، ومع الوقت بيتحول لهيماتيت"
+          },
+          {
+            "name_ar": "هيماتيت",
+            "formula": "Fe₂O₃",
+            "mars_link": "مقابل لكرات الهيماتيت (blueberries) في Meridiani"
+          },
+          {
+            "name_ar": "كوبيابيت وكوكيمبيت وجبس",
+            "formula": "كبريتات",
+            "mars_link": "قشور بتطلع للسطح بالخاصية الشعرية"
+          }
+        ],
+        "special": "فيه نظام حياة تحت السطح عايش على تفاعلات الحديد والكبريت من غير ضوء الشمس، واكتشفه مشروع MARTE التابع لناسا.",
+        "differences_from_mars": "المناخ متوسطي وفيه أمطار، وفيه حياة كتيرة بالمقارنة بالمريخ."
+      },
+      "references": [
+        {
+          "label": "NASA – حوض ريو تينتو وMeridiani",
+          "url": "https://ntrs.nasa.gov/citations/20080026258"
+        },
+        {
+          "label": "PMC – ريو تينتو نظير للمريخ",
+          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4206857/"
+        },
+        {
+          "label": "NASA – المحيط الحيوي تحت السطح",
+          "url": "https://ntrs.nasa.gov/citations/20050176026"
+        }
+      ],
+      "images": [
+        {
+          "side": "earth",
+          "caption_ar": "الحديد في الصخور هو اللي مخلي مية ريو تينتو حمرا",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/b/bc/IronInRocksMakeRiverRed.jpg",
+          "commons_page": "https://commons.wikimedia.org/wiki/File:IronInRocksMakeRiverRed.jpg",
+          "license": "Public domain",
+          "local_file": "atlas/images/RTI_earth.jpg"
+        },
+        {
+          "side": "mars",
+          "caption_ar": "جرف Burns في Meridiani، والصخور دي فيها جاروسيت وكرات هيماتيت",
+          "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b0/Sol287B.294.Burns_Cliff.jpg/960px-Sol287B.294.Burns_Cliff.jpg",
+          "commons_page": "https://commons.wikimedia.org/wiki/File:Sol287B.294.Burns_Cliff.jpg",
+          "license": "Public domain",
+          "local_file": "atlas/images/RTI_mars.jpg"
+        }
+      ]
+    },
+    {
+      "id": "LON",
+      "name_ar": "فوهة لونار",
+      "name_en": "Lonar Crater",
+      "country": "الهند",
+      "location": {
+        "lat": 19.98,
+        "lon": 76.51,
+        "elevation_m": 530.0,
+        "coords_approximate": true
+      },
+      "analog_type": "فوهة نيزكية في بازلت بها بحيرة",
+      "mars_counterpart": "Martian crater-lake basins (Gale, Jezero)",
+      "why_mars_like": "فوهة نيزكية داخل صخور بازلتية تشبه أحواض البحيرات على المريخ",
+      "missions_uses": "مراجعة Frontiers 2022",
+      "climate_nasa_power": {
+        "t_mean_C": 25.96,
+        "diurnal_range_C": 13.12,
+        "t_max_monthly_C": 45.55,
+        "t_min_monthly_C": 6.08,
+        "precip_mm_yr": 843.1,
+        "precip_note": null,
+        "rh_pct": 53.19,
+        "solar_kwh_m2_day": 5.3366,
+        "uv_index": 1.81,
+        "wind_ms": 2.55,
+        "source_url": "https://www.frontiersin.org/journals/astronomy-and-space-sciences/articles/10.3389/fspas.2022.849078/full"
+      },
+      "climate_mars_score": 35.4,
+      "geology": {
+        "formation": "فوهة نيزكية قطرها حوالي 1.8 كم، اتكونت من حوالي 570 ألف سنة في بازلت الدكن اللي عمره 65 مليون سنة. وهي الفوهة الوحيدة اللي سهل الوصول ليها واتكونت في بازلت بس، وده بيخليها مهمة جدًا لأن قشرة المريخ بازلتية. وجواها بحيرة.",
+        "rocks": "بازلت الدكن، وغطاء مقذوفات: بريشيا صخرية سمكها حوالي 8 متر، وفوقها طبقة سويفيت (بريشيا فيها صخر منصهر) سمكها حوالي 1 متر.",
+        "minerals": [
+          {
+            "name_ar": "لابرادوريت",
+            "formula": "بلاجيوكليز ~45–50%",
+            "mars_link": "تركيب البازلت شبه الوحدة الطيفية Type I على المريخ"
+          },
+          {
+            "name_ar": "أوجيت/بيجونيت",
+            "formula": "بيروكسين ~35%",
+            "mars_link": "—"
+          },
+          {
+            "name_ar": "ماسكيلينيت",
+            "formula": "زجاج بلاجيوكليز صدمي",
+            "mars_link": "بيتكون عند ضغط 20–40 جيجاباسكال، وموجود في نيازك المريخ"
+          },
+          {
+            "name_ar": "كوسيت",
+            "formula": "SiO₂",
+            "mars_link": "اتكون من الصدمة جوه الفراغات اللي في البازلت"
+          }
+        ],
+        "special": "أسلوب تجوية بازلت الدكن شبه تجوية البازلت على المريخ.",
+        "differences_from_mars": "المناخ موسمي ممطر."
+      },
+      "references": [
+        {
+          "label": "AGU – لونار كنظير كوكبي",
+          "url": "https://ui.adsabs.harvard.edu/abs/2011AGUFM.P42C..08W/abstract"
+        },
+        {
+          "label": "MAPS – الكوسيت في لونار",
+          "url": "https://onlinelibrary.wiley.com/doi/full/10.1111/maps.12745"
+        },
+        {
+          "label": "JGR – صخور فوهة لونار",
+          "url": "https://onlinelibrary.wiley.com/doi/full/10.1029/2020JE006593"
+        }
+      ],
+      "images": [
+        {
+          "side": "earth",
+          "caption_ar": "الغروب على بحيرة فوهة لونار",
+          "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f4/Sunset_over_Lonar_Crater_Lake%2C_Maharashtra%2C_India.jpg/960px-Sunset_over_Lonar_Crater_Lake%2C_Maharashtra%2C_India.jpg",
+          "commons_page": "https://commons.wikimedia.org/wiki/File:Sunset_over_Lonar_Crater_Lake,_Maharashtra,_India.jpg",
+          "license": "CC BY-SA 4.0",
+          "local_file": "atlas/images/LON_earth.jpg"
+        },
+        {
+          "side": "mars",
+          "caption_ar": "جبل Sharp جوه فوهة Gale، بألوان متصححة",
+          "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/24/Mount_Sharp_Panorama_in_White-Balanced_Colors.jpg/960px-Mount_Sharp_Panorama_in_White-Balanced_Colors.jpg",
+          "commons_page": "https://commons.wikimedia.org/wiki/File:Mount_Sharp_Panorama_in_White-Balanced_Colors.jpg",
+          "license": "Public domain",
+          "local_file": "atlas/images/LON_mars.jpg"
+        }
+      ]
+    },
+    {
+      "id": "SAL",
+      "name_ar": "بحيرة سالدا",
+      "name_en": "Lake Salda",
+      "country": "تركيا",
+      "location": {
+        "lat": 37.55,
+        "lon": 29.68,
+        "elevation_m": 1181.0,
+        "coords_approximate": false
+      },
+      "analog_type": "بحيرة قلوية بكربونات المغنيسيوم",
+      "mars_counterpart": "Jezero Crater (Perseverance)",
+      "why_mars_like": "البحيرة الوحيدة المعروفة بكربونات ودلتا مشابهة لفوهة جيزيرو؛ عمق ~196م، pH>9",
+      "missions_uses": "فريق Perseverance (2019)",
+      "climate_nasa_power": {
+        "t_mean_C": 12.14,
+        "diurnal_range_C": 12.09,
+        "t_max_monthly_C": 38.94,
+        "t_min_monthly_C": -19.36,
+        "precip_mm_yr": 689.8,
+        "precip_note": null,
+        "rh_pct": 62.95,
+        "solar_kwh_m2_day": 4.9346,
+        "uv_index": 1.26,
+        "wind_ms": 1.69,
+        "source_url": "https://science.nasa.gov/blogs/earth-matters/2021/02/17/what-a-lake-in-turkey-can-tell-us-about-mars/"
+      },
+      "climate_mars_score": 34.0,
+      "geology": {
+        "formation": "بحيرة سالدا اتكونت في حوض مقفول بسبب حركات تكتونية في آخر العصر النيوجيني. البحيرة عميقة (حوالي 196 متر) وقلوية (pH أعلى من 9). الماية اللي بتنزل لها بتعدي على صخور غنية بالمغنيسيوم، فبتزود نسبة المغنيسيوم فيها، وده بيخلي كربونات المغنيسيوم المائية تترسب. وفيه أنهار بتصب فيها وبتعمل دلتا. وده بالظبط شكل فوهة Jezero.",
+        "rocks": "صخور فوق قاعدية اتحولت لسربنتين (أوفيوليت مرمريس)، وحجر جيري دولوميتي من الشرق، ومراوح طميية، ومدرجات كربونية، وجزر بيضاء من الميكروبياليت (صخور كونتها كائنات دقيقة).",
+        "minerals": [
+          {
+            "name_ar": "هيدروماجنيزيت",
+            "formula": "Mg₅(CO₃)₄(OH)₂·4H₂O",
+            "mars_link": "شبه كربونات المغنيسيوم اللي اتكشفت في Jezero"
+          },
+          {
+            "name_ar": "سربنتين",
+            "formula": "(Mg,Fe)₃Si₂O₅(OH)₄",
+            "mars_link": "زي الصخور الغنية بالمغنيسيوم اللي حوالين Jezero"
+          },
+          {
+            "name_ar": "ماجنيزيت",
+            "formula": "MgCO₃",
+            "mars_link": "عروق وعقد جوه الأوفيوليت"
+          }
+        ],
+        "special": "البحيرة الوحيدة المعروفة اللي فيها كربونات ودلتا شبه Jezero. والميكروبياليت بتاعتها نموذج للبصمات الحيوية اللي بيدور عليها Perseverance.",
+        "differences_from_mars": "فيها ماية وحياة دلوقتي، أما Jezero فبحيرة جافة من مليارات السنين."
+      },
+      "references": [
+        {
+          "label": "NASA Earth Observatory",
+          "url": "https://www.earthobservatory.nasa.gov/images/147041/jez-like-mars"
+        },
+        {
+          "label": "تقرير Garczynski – NASA",
+          "url": "https://assets.science.nasa.gov/content/dam/science/psd/astrobiology/for-researchers/early-career-field-research-fund/report_lc_garczynski_project.pdf"
+        },
+        {
+          "label": "IUGS Geoheritage",
+          "url": "https://iugs-geoheritage.org/geoheritage_sites/mars-analog-of-lake-salda/"
+        }
+      ],
+      "images": [
+        {
+          "side": "earth",
+          "caption_ar": "بحيرة سالدا، يونيو 2020",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Lake_Salda_in_June_2020.jpg",
+          "commons_page": "https://commons.wikimedia.org/wiki/File:Lake_Salda_in_June_2020.jpg",
+          "license": "Public domain",
+          "local_file": "atlas/images/SAL_earth.jpg"
+        },
+        {
+          "side": "mars",
+          "caption_ar": "دلتا على حافة فوهة Jezero صورتها Perseverance",
+          "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4a/Delta_at_the_rim_of_Jezero_crater_photographed_by_Perseverance_a_few_seconds_before_its_landing.png/960px-Delta_at_the_rim_of_Jezero_crater_photographed_by_Perseverance_a_few_seconds_before_its_landing.png",
+          "commons_page": "https://commons.wikimedia.org/wiki/File:Delta_at_the_rim_of_Jezero_crater_photographed_by_Perseverance_a_few_seconds_before_its_landing.png",
+          "license": "Public domain",
+          "local_file": "atlas/images/SAL_mars.png"
+        }
+      ]
+    },
+    {
+      "id": "LAN",
+      "name_ar": "لانزاروتي – تيمانفايا",
+      "name_en": "Lanzarote – Timanfaya",
+      "country": "إسبانيا",
+      "location": {
+        "lat": 29.0,
+        "lon": -13.75,
+        "elevation_m": 27.0,
+        "coords_approximate": true
+      },
+      "analog_type": "حقول حمم وبراكين",
+      "mars_counterpart": "Martian volcanic terrains",
+      "why_mars_like": "تدريب ESA وNASA على العمل الجيولوجي وقيادة الروفرات",
+      "missions_uses": "ESA PANGAEA",
+      "climate_nasa_power": {
+        "t_mean_C": 20.12,
+        "diurnal_range_C": 2.35,
+        "t_max_monthly_C": 28.47,
+        "t_min_monthly_C": 13.0,
+        "precip_mm_yr": 109.5,
+        "precip_note": null,
+        "rh_pct": 78.06,
+        "solar_kwh_m2_day": 5.1655,
+        "uv_index": 1.5,
+        "wind_ms": 5.5,
+        "source_url": "https://wonderdome.co.uk/moon-mars-like-analog-sites/"
+      },
+      "climate_mars_score": 28.2,
+      "geology": {
+        "formation": "جزيرة بركانية فوق صفيحة أفريقية تقريبًا ثابتة، وده من أفضل النظائر لقشرة المريخ اللي هي صفيحة واحدة. فيها حقول حمم حديثة (تيمانفايا) من غير نباتات تقريبًا.",
+        "rocks": "بازلت، وأنفاق حمم زي Cueva de los Naturalistas.",
+        "minerals": [
+          {
+            "name_ar": "أوجيت وأوليفين وفلسبار",
+            "formula": "—",
+            "mars_link": "تركيب حمم تيمانفايا وماسيوت شبه نيازك النخليت المريخية"
+          },
+          {
+            "name_ar": "كالسيت وجبس ثانويين",
+            "formula": "—",
+            "mars_link": "في أنفاق الحمم"
+          }
+        ],
+        "special": "وكالة الفضاء الأوروبية بتعمل فيها تدريب PANGAEA الجيولوجي لرواد الفضاء.",
+        "differences_from_mars": "المناخ معتدل محيطي."
+      },
+      "references": [
+        {
+          "label": "JGR Planets 2026 – النخليت ولانزاروتي",
+          "url": "https://onlinelibrary.wiley.com/doi/10.1029/2026JE009954"
+        },
+        {
+          "label": "MDPI – جزر الكناري كنظائر",
+          "url": "https://www.mdpi.com/2075-163X/16/5/501"
+        }
+      ],
+      "images": [
+        {
+          "side": "earth",
+          "caption_ar": "حقول الحمم والمخاريط البركانية في تيمانفايا",
+          "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c4/Timanfaya_-_Lanzarote_08.jpg/960px-Timanfaya_-_Lanzarote_08.jpg",
+          "commons_page": "https://commons.wikimedia.org/wiki/File:Timanfaya_-_Lanzarote_08.jpg",
+          "license": "CC BY-SA 3.0",
+          "local_file": "atlas/images/LAN_earth.jpg"
+        },
+        {
+          "side": "mars",
+          "caption_ar": "تدفقات حمم جنوب شرق Arsia Mons، صورة HiRISE",
+          "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/51/%28ESP_011400_1680%29_Yardangs_and_Lava_Flows_Southeast_of_Arsia_Region.jpg/960px-%28ESP_011400_1680%29_Yardangs_and_Lava_Flows_Southeast_of_Arsia_Region.jpg",
+          "commons_page": "https://commons.wikimedia.org/wiki/File:%28ESP_011400_1680%29_Yardangs_and_Lava_Flows_Southeast_of_Arsia_Region.jpg",
+          "license": "Public domain",
+          "local_file": "atlas/images/LAN_mars.jpg"
+        }
+      ]
+    },
+    {
+      "id": "HIS",
+      "name_ar": "ماونا لوا – HI-SEAS",
+      "name_en": "Mauna Loa (HI-SEAS)",
+      "country": "الولايات المتحدة",
+      "location": {
+        "lat": 19.6,
+        "lon": -155.49,
+        "elevation_m": 1145.0,
+        "coords_approximate": true
+      },
+      "analog_type": "منحدر بركاني بازلتي مرتفع",
+      "mars_counterpart": "Basaltic volcanic plains",
+      "why_mars_like": "تضاريس بازلتية قاحلة؛ محطة عزل لمحاكاة مهمات طويلة",
+      "missions_uses": "HI-SEAS",
+      "climate_nasa_power": {
+        "t_mean_C": 18.18,
+        "diurnal_range_C": 7.19,
+        "t_max_monthly_C": 28.49,
+        "t_min_monthly_C": 7.96,
+        "precip_mm_yr": 1814.0,
+        "precip_note": null,
+        "rh_pct": 83.01,
+        "solar_kwh_m2_day": 5.28,
+        "uv_index": 1.98,
+        "wind_ms": 2.11,
+        "source_url": "https://en.wikipedia.org/wiki/List_of_Mars_analogs"
+      },
+      "climate_mars_score": 25.5,
+      "geology": {
+        "formation": "منحدرات بركانية بازلتية عالية بين ماونا لوا وماونا كيا، والرماد البركاني هناك اتغير على مدى طويل. الزجاج البركاني بيتحلل ويتأكسد ويتحول لـ\"بالاجونيت\"، وده لونه وطيفه شبه غبار المريخ.",
+        "rocks": "رماد بازلتي (تيفرا) متغير، وحمم بازلتية.",
+        "minerals": [
+          {
+            "name_ar": "بالاجونيت",
+            "formula": "زجاج بركاني متحلل ومؤكسد",
+            "mars_link": "أساس محاكي التربة JSC Mars-1 اللي أخدوه من مخروط Pu'u Nene، وطيفه شبه سطح المريخ"
+          },
+          {
+            "name_ar": "ماجنيتيت التيتانيوم",
+            "formula": "Fe₂TiO₄–Fe₃O₄",
+            "mars_link": "موجود في JSC Mars-1"
+          },
+          {
+            "name_ar": "بلاجيوكليز وأوليفين وبيروكسين كالسيومي",
+            "formula": "—",
+            "mars_link": "معادن بازلتية"
+          }
+        ],
+        "special": "فيه محطة HI-SEAS لتجارب العزل الطويلة.",
+        "differences_from_mars": "تربة المريخ فيها مغنيسيوم وكبريت وكلور أكتر من JSC Mars-1."
+      },
+      "references": [
+        {
+          "label": "NASA – مقارنة JSC Mars-1",
+          "url": "https://www.nasa.gov/wp-content/uploads/2019/04/carpenterm_m2003.pdf"
+        },
+        {
+          "label": "MGS-1 – UCF",
+          "url": "https://sciences.ucf.edu/class/wp-content/uploads/sites/23/2019/01/Cannon_MGS-1.pdf"
+        }
+      ],
+      "images": [
+        {
+          "side": "earth",
+          "caption_ar": "محاكاة لمشي في الفضاء جنب سكن HI-SEAS على ماونا لوا",
+          "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f7/M.Musilova_in_a_spacesuit_outside_the_simulated_Martian_habitat.jpg/960px-M.Musilova_in_a_spacesuit_outside_the_simulated_Martian_habitat.jpg",
+          "commons_page": "https://commons.wikimedia.org/wiki/File:M.Musilova_in_a_spacesuit_outside_the_simulated_Martian_habitat.jpg",
+          "license": "CC BY-SA 4.0",
+          "local_file": "atlas/images/HIS_earth.jpg"
+        },
+        {
+          "side": "mars",
+          "caption_ar": "بانوراما Everest اللي صورتها Spirit في سهول Gusev البازلتية",
+          "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/03/Everest_Panorama_from_Mars.jpg/960px-Everest_Panorama_from_Mars.jpg",
+          "commons_page": "https://commons.wikimedia.org/wiki/File:Everest_Panorama_from_Mars.jpg",
+          "license": "Public domain",
+          "local_file": "atlas/images/HIS_mars.jpg"
+        }
+      ]
+    },
+    {
+      "id": "HMP",
+      "name_ar": "فوهة هوتون – جزيرة ديفون",
+      "name_en": "Haughton Crater, Devon Island",
+      "country": "كندا",
+      "location": {
+        "lat": 75.38,
+        "lon": -89.68,
+        "elevation_m": 173.0,
+        "coords_approximate": true
+      },
+      "analog_type": "فوهة نيزكية في صحراء قطبية",
+      "mars_counterpart": "Martian impact craters, ground ice",
+      "why_mars_like": "صحراء قطبية صخرية، برودة، عزلة، فوهة نيزكية؛ مناسب لتدريب السير خارج المركبة EVA",
+      "missions_uses": "Haughton Mars Project (NASA/SETI) + محطة FMARS",
+      "climate_nasa_power": {
+        "t_mean_C": -14.42,
+        "diurnal_range_C": 4.64,
+        "t_max_monthly_C": 16.81,
+        "t_min_monthly_C": -48.55,
+        "precip_mm_yr": 310.2,
+        "precip_note": null,
+        "rh_pct": 94.36,
+        "solar_kwh_m2_day": 2.3155,
+        "uv_index": 0.32,
+        "wind_ms": 3.08,
+        "source_url": "https://science.nasa.gov/solar-system/planetary-analogs/10-things-to-know-about-planetary-analogs/"
+      },
+      "climate_mars_score": 25.4,
+      "geology": {
+        "formation": "فوهة نيزكية قطرها 22–24 كم، اتكونت من حوالي 23 مليون سنة في صخور كربونية. صدمة النيزك سخّنت المكان فنشط فيه نظام مياه حارة لفترة، وترسبت منه معادن الكبريتيد والكبريتات. وبعدين اتكونت جوه الفوهة بحيرة من العصر الميوسيني. والفوهة دلوقتي في صحراء قطبية باردة.",
+        "rocks": "بريشيا صدمية (صخور متكسرة ومنصهرة اتلحمت مع بعض تاني)، ودولوميت بني مسامي من تكوين Allen Bay، وحجر جيري غني بالجبس من تكوين Bay Fjord، ورواسب بحيرة Haughton.",
+        "minerals": [
+          {
+            "name_ar": "دولوميت",
+            "formula": "CaMg(CO₃)₂",
+            "mars_link": "الصخر الأساسي اللي ضربه النيزك، وجزء منه انصهر"
+          },
+          {
+            "name_ar": "جبس / سيلينيت",
+            "formula": "CaSO₄·2H₂O",
+            "mars_link": "بلورات طولها أمتار ترسبت من المياه الحارة"
+          },
+          {
+            "name_ar": "بيريت",
+            "formula": "FeS₂",
+            "mars_link": "أكسدته كونت قشور من الجبس وأكاسيد الحديد"
+          },
+          {
+            "name_ar": "أكاسيد حديد",
+            "formula": "Fe₂O₃/FeOOH",
+            "mars_link": "في القشور السطحية"
+          }
+        ],
+        "special": "فيها قشور معدنية محفوظ فيها آثار حياة دقيقة، وده هدف مهم لعينات المريخ. وكمان بيتدرب فيها رواد الفضاء على السير خارج المركبة (EVA)، وبيتجرب فيها الحفر، زي مثقاب TRIDENT سنة 2023.",
+        "differences_from_mars": "الصخر الأساسي كربوني مش بازلتي، والجو فيه رطوبة أكتر بكتير من المريخ."
+      },
+      "references": [
+        {
+          "label": "Cambridge – القشور المعدنية في هوتون",
+          "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/D19DE710C1BDB726B3F4488CA3E373C4/S1473550418000034a.pdf/surface_mineral_crusts_a_potential_strategy_for_sampling_for_evidence_of_life_on_mars.pdf"
+        },
+        {
+          "label": "Science.gov – فوهة هوتون",
+          "url": "https://www.science.gov/topicpages/h/haughton+impact+crater"
+        },
+        {
+          "label": "NASA – 10 حقائق عن النظائر",
+          "url": "https://science.nasa.gov/solar-system/planetary-analogs/10-things-to-know-about-planetary-analogs/"
+        }
+      ],
+      "images": [
+        {
+          "side": "earth",
+          "caption_ar": "مركبات تجريبية جوه فوهة هوتون في جزيرة ديفون",
+          "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/05/Rovers_Red_and_Black_at_Houghton_Crater_Devon_Island_Canada.jpg/960px-Rovers_Red_and_Black_at_Houghton_Crater_Devon_Island_Canada.jpg",
+          "commons_page": "https://commons.wikimedia.org/wiki/File:Rovers_Red_and_Black_at_Houghton_Crater_Devon_Island_Canada.jpg",
+          "license": "Public domain",
+          "local_file": "atlas/images/HMP_earth.jpg"
+        },
+        {
+          "side": "mars",
+          "caption_ar": "فوهة Victoria، صورة HiRISE",
+          "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/de/Victoria_crater_from_HiRise.jpg/960px-Victoria_crater_from_HiRise.jpg",
+          "commons_page": "https://commons.wikimedia.org/wiki/File:Victoria_crater_from_HiRise.jpg",
+          "license": "Public domain",
+          "local_file": "atlas/images/HMP_mars.jpg"
+        }
+      ]
+    },
+    {
+      "id": "ETN",
+      "name_ar": "بركان إتنا",
+      "name_en": "Mount Etna",
+      "country": "إيطاليا",
+      "location": {
+        "lat": 37.75,
+        "lon": 14.99,
+        "elevation_m": 461.0,
+        "coords_approximate": true
+      },
+      "analog_type": "بركان بازلتي",
+      "mars_counterpart": "Martian basaltic volcanoes",
+      "why_mars_like": "بازلتي مثل براكين المريخ",
+      "missions_uses": "JPL",
+      "climate_nasa_power": {
+        "t_mean_C": 16.51,
+        "diurnal_range_C": 6.85,
+        "t_max_monthly_C": 39.87,
+        "t_min_monthly_C": -0.22,
+        "precip_mm_yr": 627.8,
+        "precip_note": null,
+        "rh_pct": 72.5,
+        "solar_kwh_m2_day": 4.733,
+        "uv_index": 1.18,
+        "wind_ms": 3.23,
+        "source_url": "https://morningoverview.com/10-places-on-earth-that-scientists-use-to-study-mars/"
+      },
+      "climate_mars_score": 25.0,
+      "geology": {
+        "formation": "بركان طبقي نشط، عمره حوالي 0.5 مليون سنة وارتفاعه 3,323 متر. بازلته شبه بازلت مناطق مختلفة على المريخ، وفيه قنوات بازلتية وكهوف وأنفاق حمم بشكل اللي على المريخ.",
+        "rocks": "بازلت قلوي صودي (من الهاوايت للموجيريت)، وفي حمم كاملة التبلور.",
+        "minerals": [
+          {
+            "name_ar": "بلاجيوكليز وأوليفين وكلينوبيروكسين",
+            "formula": "—",
+            "mars_link": "في التجارب، الوسط الحمضي (pH 3.5–5) والحرارة 150–175°م حولوهم لطين سمكتيت في أيام"
+          },
+          {
+            "name_ar": "زيوليت",
+            "formula": "—",
+            "mars_link": "البلاجيوكليز ممكن يتحول ليه، وبيظهر مع الطين على المريخ"
+          }
+        ],
+        "special": "العلماء بيستخدموه علشان يفهموا إزاي طين المريخ ممكن يكون اتكون من البازلت.",
+        "differences_from_mars": "البركان نشط والمكان أخضر."
+      },
+      "references": [
+        {
+          "label": "Minerals 2020 – بازلت إتنا",
+          "url": "https://ricerca.unich.it/retrieve/e4233f19-09d5-2860-e053-6605fe0a460a/tangari_minerals_2020.pdf"
+        },
+        {
+          "label": "JPL – Where on Earth is Mars",
+          "url": "https://www.jpl.nasa.gov/news/where-on-earth-is-mars/"
+        }
+      ],
+      "images": [
+        {
+          "side": "earth",
+          "caption_ar": "تدفق حمم ثوران إتنا سنة 1992",
+          "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cf/Lava_flow_from_1992_Etna_eruption.jpg/960px-Lava_flow_from_1992_Etna_eruption.jpg",
+          "commons_page": "https://commons.wikimedia.org/wiki/File:Lava_flow_from_1992_Etna_eruption.jpg",
+          "license": "CC BY-SA 4.0",
+          "local_file": "atlas/images/ETN_earth.jpg"
+        },
+        {
+          "side": "mars",
+          "caption_ar": "بركان Olympus Mons، أكبر بركان على المريخ",
+          "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/19/PIA00300_Olympus_Mons.jpg/960px-PIA00300_Olympus_Mons.jpg",
+          "commons_page": "https://commons.wikimedia.org/wiki/File:PIA00300_Olympus_Mons.jpg",
+          "license": "Public domain",
+          "local_file": "atlas/images/ETN_mars.jpg"
+        }
+      ]
+    },
+    {
+      "id": "KIL",
+      "name_ar": "أنفاق حمم كيلاويا",
+      "name_en": "Kilauea lava tubes, Hawaii",
+      "country": "الولايات المتحدة",
+      "location": {
+        "lat": 19.41,
+        "lon": -155.28,
+        "elevation_m": 482.0,
+        "coords_approximate": true
+      },
+      "analog_type": "أنفاق حمم بركانية",
+      "mars_counterpart": "Martian lava tubes / caves",
+      "why_mars_like": "أنفاق حمم مشابهة لما كونته تدفقات الحمم على المريخ؛ بيئات محتملة للحياة",
+      "missions_uses": "NASA Astrobiology",
+      "climate_nasa_power": {
+        "t_mean_C": 21.3,
+        "diurnal_range_C": 3.71,
+        "t_max_monthly_C": 29.05,
+        "t_min_monthly_C": 15.34,
+        "precip_mm_yr": 2299.5,
+        "precip_note": null,
+        "rh_pct": 83.25,
+        "solar_kwh_m2_day": 5.28,
+        "uv_index": 1.98,
+        "wind_ms": 3.99,
+        "source_url": "https://astrobiology.nasa.gov/research-locations/"
+      },
+      "climate_mars_score": 20.3,
+      "geology": {
+        "formation": "الحمم البازلتية السايلة لما بتنزل، سطحها بيبرد ويتجمد بسرعة والحمم جوه بتكمل تجري، ولما تفضى بيتبقى نفق. التدفقات البركانية على المريخ عملت أنفاق شبه دي. والأنفاق دي ممكن تكون ملاجئ للحياة تحت السطح، لأنها بتحمي من الإشعاع وتقلبات الحرارة.",
+        "rocks": "بازلت ثولييتي حديث، وهاوايت.",
+        "minerals": [
+          {
+            "name_ar": "أوليفين",
+            "formula": "(Mg,Fe)₂SiO₄",
+            "mars_link": "أقل المعادن مقاومة للتجوية، وبيدي حديد ومغنيسيوم للكائنات الدقيقة"
+          },
+          {
+            "name_ar": "بيروكسين وبلاجيوكليز",
+            "formula": "—",
+            "mars_link": "مكونات البازلت، زي قشرة المريخ"
+          }
+        ],
+        "special": "مشروع BASALT التابع لناسا استخدم حقول الحمم في هاواي كنموذج للمريخ القديم، علشان يصمم عمليات الاستكشاف البشري.",
+        "differences_from_mars": "المكان رطب جدًا وفيه حياة كتيرة، فهو بيمثل المريخ القديم مش المريخ الحالي."
+      },
+      "references": [
+        {
+          "label": "NASA – مشروع BASALT",
+          "url": "https://www.nasa.gov/missions/analog-field-testing/what-is-basalt/"
+        },
+        {
+          "label": "PMC – تضاريس بازلتية في أيداهو وهاواي",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6442300/"
+        },
+        {
+          "label": "NASA Astrobiology",
+          "url": "https://astrobiology.nasa.gov/research-locations/"
+        }
+      ],
+      "images": [
+        {
+          "side": "earth",
+          "caption_ar": "نفق حمم في Mauna Ulu في هاواي، سنة 1970",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/5/52/Mauna_Ulu_lava_tube_october_1970.jpg",
+          "commons_page": "https://commons.wikimedia.org/wiki/File:Mauna_Ulu_lava_tube_october_1970.jpg",
+          "license": "Public domain",
+          "local_file": "atlas/images/KIL_earth.jpg"
+        },
+        {
+          "side": "mars",
+          "caption_ar": "فتحة سقف نفق حمم على منحدر Pavonis Mons",
+          "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0d/Pavonis_Mons_lava_tube_skylight_crop.jpg/960px-Pavonis_Mons_lava_tube_skylight_crop.jpg",
+          "commons_page": "https://commons.wikimedia.org/wiki/File:Pavonis_Mons_lava_tube_skylight_crop.jpg",
+          "license": "Public domain",
+          "local_file": "atlas/images/KIL_mars.jpg"
+        }
+      ]
+    },
+    {
+      "id": "SVA",
+      "name_ar": "سفالبارد",
+      "name_en": "Svalbard",
+      "country": "النرويج",
+      "location": {
+        "lat": 78.9,
+        "lon": 16.0,
+        "elevation_m": 495.0,
+        "coords_approximate": true
+      },
+      "analog_type": "براكين وجليد وتربة متجمدة",
+      "mars_counterpart": "Martian polar & periglacial terrains",
+      "why_mars_like": "صخور وجليد وبراكين وتربة متجمدة دائمة وبحيرات جليدية",
+      "missions_uses": "AMASE – بعثات سنوية",
+      "climate_nasa_power": {
+        "t_mean_C": -8.77,
+        "diurnal_range_C": 3.46,
+        "t_max_monthly_C": 10.24,
+        "t_min_monthly_C": -39.1,
+        "precip_mm_yr": 689.8,
+        "precip_note": null,
+        "rh_pct": 96.45,
+        "solar_kwh_m2_day": 2.2058,
+        "uv_index": 0.3,
+        "wind_ms": 3.24,
+        "source_url": "https://wonderdome.co.uk/moon-mars-like-analog-sites/"
+      },
+      "climate_mars_score": 18.1,
+      "geology": {
+        "formation": "براكين Sverrefjell وSigurdfjell في مجمع Bockfjord البركاني ثارت تحت الجليد من حوالي مليون سنة. السوائل الغنية بثاني أكسيد الكربون رسّبت كرات كربونات في فراغات البازلت وفي قطع من الوشاح جوّاه.",
+        "rocks": "بازلت، وقطع من صخور الوشاح (بيريدوتيت)، ورواسب حمراء من العصر الديفوني، ورواسب بلايا كبريتية، وطين مافي مرتبط بالهيالوكلاستيت.",
+        "minerals": [
+          {
+            "name_ar": "دولوميت-ماجنيزيت (كريات)",
+            "formula": "CaMg(CO₃)₂ / MgCO₃",
+            "mars_link": "شبه كريات الكربونات في النيزك المريخي ALH84001"
+          },
+          {
+            "name_ar": "جبس",
+            "formula": "CaSO₄·2H₂O",
+            "mars_link": "مع الطين والبازلت"
+          }
+        ],
+        "special": "بعثات AMASE جربت فيها أجهزة رايحة المريخ، زي SAM وCheMin من Curiosity، وPanCam وMOMA من ExoMars.",
+        "differences_from_mars": "فيها رطوبة وثلوج كتير."
+      },
+      "references": [
+        {
+          "label": "NASA – كربونات Bockfjord",
+          "url": "https://ntrs.nasa.gov/api/citations/20110008112/downloads/20110008112.pdf"
+        },
+        {
+          "label": "NASA Astrobiology – AMASE",
+          "url": "https://astrobiology.nasa.gov/nai//annual-reports/2011/ciw/project-6-application-of-laboratory-experimentation-to-flight-instrument-testing/index.html"
+        }
+      ],
+      "images": [
+        {
+          "side": "earth",
+          "caption_ar": "جبال بركانية حوالين Bockfjorden في سفالبارد",
+          "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e1/Haakon_VII_Land_Bockfjorden_IMG_5544_Risefjella_Kronprinsh%C3%B6gda_Bockfjorden_Adolfbreen.JPG/960px-Haakon_VII_Land_Bockfjorden_IMG_5544_Risefjella_Kronprinsh%C3%B6gda_Bockfjorden_Adolfbreen.JPG",
+          "commons_page": "https://commons.wikimedia.org/wiki/File:Haakon_VII_Land_Bockfjorden_IMG_5544_Risefjella_Kronprinsh%C3%B6gda_Bockfjorden_Adolfbreen.JPG",
+          "license": "CC BY-SA 3.0",
+          "local_file": "atlas/images/SVA_earth.jpg"
+        },
+        {
+          "side": "mars",
+          "caption_ar": "صقيع الشتا في Utopia Planitia، صورة Viking 2",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/6/6c/Mars_-_Frost_in_Utopia_Planitia_-_NASA_Viking_Lander_2_%2852930637274%29.png",
+          "commons_page": "https://commons.wikimedia.org/wiki/File:Mars_-_Frost_in_Utopia_Planitia_-_NASA_Viking_Lander_2_%2852930637274%29.png",
+          "license": "CC BY 2.0",
+          "local_file": "atlas/images/SVA_mars.png"
+        }
+      ]
+    },
+    {
+      "id": "LAM",
+      "name_ar": "حقل حمم لامباهراون",
+      "name_en": "Lambahraun lava field",
+      "country": "آيسلندا",
+      "location": {
+        "lat": 64.43,
+        "lon": -20.45,
+        "elevation_m": 446.0,
+        "coords_approximate": true
+      },
+      "analog_type": "رمال بازلتية + أنهار جليدية",
+      "mars_counterpart": "Basaltic sands, fluvial channels, Jezero",
+      "why_mars_like": "رمال بازلتية جافة نادرة على الأرض، قنوات مياه ذوبان الجليد، بلا نباتات",
+      "missions_uses": "SAND-E (NASA) لاختبار روفر وطائرة مسيرة 2019",
+      "climate_nasa_power": {
+        "t_mean_C": 0.74,
+        "diurnal_range_C": 5.44,
+        "t_max_monthly_C": 22.49,
+        "t_min_monthly_C": -24.13,
+        "precip_mm_yr": 1693.6,
+        "precip_note": null,
+        "rh_pct": 90.5,
+        "solar_kwh_m2_day": 2.2601,
+        "uv_index": 0.39,
+        "wind_ms": 4.1,
+        "source_url": "https://www.space.com/rovers-explore-iceland-lava-field-mars-2020.html"
+      },
+      "climate_mars_score": 17.7,
+      "geology": {
+        "formation": "سهل من الرمل والحمم عند سفح جليد لانجيوكل. عمره حوالي 4,000 سنة بس، والرياح فيه قوية، فحبيبات الرمل اتحفظت من غير ما تتغير كيميائيًا. وماية ذوبان الجليد عملت قنوات في الرمل شبه قنوات المريخ.",
+        "rocks": "حمم بازلتية متآكلة من بركاني Eldborgir وSkersli، ورمال بازلتية جافة، ودي نادرة برا آيسلندا.",
+        "minerals": [
+          {
+            "name_ar": "أوليفين",
+            "formula": "(Mg,Fe)₂SiO₄",
+            "mars_link": "الرياح بتزود نسبته في الرمل، وكمان اتكشف بالطيف في كثبان المريخ"
+          },
+          {
+            "name_ar": "بلاجيوكليز",
+            "formula": "(Ca,Na)Al₁₋₂Si₃₋₂O₈",
+            "mars_link": "الرياح بتشيله، فنسبته بتقل"
+          },
+          {
+            "name_ar": "بيروكسين",
+            "formula": "—",
+            "mars_link": "مكون أساسي في البازلت"
+          }
+        ],
+        "special": "مشروع SAND-E التابع لناسا جرب فيه روفر وطائرة مسيّرة سنة 2019 قبل مهمة Perseverance.",
+        "differences_from_mars": "الجو رطب وممطر، والأمطار فيه أكتر من 1,500 مم في السنة حسب NASA POWER."
+      },
+      "references": [
+        {
+          "label": "EGU 2012 – فرز الرمال البازلتية",
+          "url": "https://meetingorganizer.copernicus.org/EGU2012/EGU2012-1505.pdf"
+        },
+        {
+          "label": "Wiley – رمال آيسلندا البركانية",
+          "url": "https://onlinelibrary.wiley.com/doi/10.1002/esp.2201"
+        },
+        {
+          "label": "Space.com – SAND-E",
+          "url": "https://www.space.com/rovers-explore-iceland-lava-field-mars-2020.html"
+        }
+      ],
+      "images": [
+        {
+          "side": "earth",
+          "caption_ar": "صحراء رمال بازلتية سودا قدام نهر جليدي في المرتفعات الآيسلندية. ده مثال على نفس البيئة، مش لامباهراون نفسه",
+          "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b9/Islande_Sprengisandur_d%C3%A9sert_glacier.jpg/960px-Islande_Sprengisandur_d%C3%A9sert_glacier.jpg",
+          "commons_page": "https://commons.wikimedia.org/wiki/File:Islande_Sprengisandur_d%C3%A9sert_glacier.jpg",
+          "license": "CC BY-SA 1.0",
+          "local_file": "atlas/images/LAM_earth.jpg"
+        },
+        {
+          "side": "mars",
+          "caption_ar": "كثبان رمال داكنة في الحزام القطبي الشمالي للمريخ",
+          "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/50/ESP_018742_2565_Dunes_in_Mars%E2%80%99_Polar_Erg.png/960px-ESP_018742_2565_Dunes_in_Mars%E2%80%99_Polar_Erg.png",
+          "commons_page": "https://commons.wikimedia.org/wiki/File:ESP_018742_2565_Dunes_in_Mars%E2%80%99_Polar_Erg.png",
+          "license": "Public domain",
+          "local_file": "atlas/images/LAM_mars.png"
+        }
+      ]
+    }
+  ]
+}

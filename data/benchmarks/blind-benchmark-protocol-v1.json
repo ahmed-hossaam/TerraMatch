@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "1.0.0",
+  "protocolId": "mars-analog-blind-evaluation-planning",
+  "protocolVersion": "1.0.0",
+  "status": "planning_only",
+  "scientificValidationStatus": "not_validated",
+  "referenceSet": {
+    "sourceManifest": "data/benchmarks/benchmark-sites.json",
+    "supplementarySourceManifest": "data/benchmarks/supplementary-site-review.json",
+    "knownReferenceCount": 31,
+    "currentlyRetrievedSiteIds": ["GKC", "GKB", "WDE", "KHA", "RTI", "DALL", "DAL", "AHS-GH"],
+    "currentRetrievedCount": 8,
+    "candidateRegionCount": 1,
+    "testFixtureIds": ["GRID-TEST-01", "GRID-TEST-02", "GRID-TEST-03"],
+    "limitations": ["Atlas sites are positive known examples, not a labeled negative/control sample.", "Data coverage is uneven: original M02-M04 cover five atlas sites and supplementary point retrieval covers three accepted additions.", "Retrieved coordinates are approximate or represent site areas.", "The original five sampled sites are geographically clustered and are not statistically representative.", "The bounded discovery candidate is not a benchmark label.", "candidateRegionCount is a planning-time snapshot, not a live M07 output count; generated cells are not benchmark labels."]
+  },
+  "splitProposal": {
+    "status": "not_created_insufficient_independent_data",
+    "calibrationReferenceIds": [],
+    "heldOutReferenceIds": [],
+    "reason": "No calibration/holdout split is created. The 31-site combined reference set is small, heterogeneous, positive-only, and not an independent representative sample; multi-source retrievals cover five original atlas sites and three supplementary point-area records. Selecting a split now would be arbitrary and could overstate performance.",
+    "groupingRule": "When an independent dataset exists, pre-register spatial/analog-family grouping before splitting so nearby or related sites cannot leak across calibration and held-out groups. Do not choose the current split after observing model output.",
+    "minimumAdditionalEvidence": ["Independent expert-reviewed positive reference sites with coordinate uncertainty and source citations.", "Negative or contrast/control regions selected independently of engine outputs, with rationale and evidence.", "Mission-specific relevance labels and adjudication criteria.", "Broader geographic and environmental representation with coordinate uncertainty geometries.", "A sample-size and grouping plan justified before evaluation; do not invent thresholds from the current small set.", "A separately controlled label store and evaluator workflow outside candidate-ranking inputs."]
+  },
+  "leakageControls": {
+    "labelStoreLocation": "The existing benchmark-sites.json is in the same repository and contains labels. It is not a security boundary; blind evaluation must not begin until labels are moved to a separately controlled evaluator store.",
+    "featureInputMustExclude": ["site name", "country", "region name", "atlas label", "analog type", "Mars counterpart", "legacy climate_mars_score", "reference citations", "test-fixture id"],
+    "retrievalCoordinateHandling": "Coordinates are needed by a trusted retrieval stage but must not be exposed to candidate ranking/evaluation features; use opaque evaluation keys and a restricted key-to-coordinate mapping. Because exact location can reveal identity, assess geospatial leakage before any blind run.",
+    "roleSeparation": "A data custodian prepares feature inputs; a separate evaluator retains reference labels and performs the pre-registered comparison after predictions are frozen.",
+    "fixtureHandling": "Test fixtures are software-only records, never references, calibration examples, holdouts, candidates, or benchmark outcomes. Candidate regions must be generated independently and labeled candidate_region."
+  },
+  "outcomeDefinitions": {
+    "validMatch": "A future result may be called a valid benchmark match only after a pre-registered, mission-specific expert protocol confirms that the frozen result meets the defined evidence criteria and spatial uncertainty rule. A high similarity value alone is never confirmation.",
+    "partialMatch": "Relevant evidence supports only some pre-registered dimensions, or spatial/measurement uncertainty prevents a complete determination; report supported and unsupported dimensions separately.",
+    "unsupported": "Available evidence fails the pre-registered criteria or contradicts the proposed match. Lack of data is not a negative result.",
+    "missingEvidenceRule": "Missing, null, low-coverage, or non-comparable evidence is reported as unknown/insufficient, not zero, a mismatch, or a negative label."
+  },
+  "evaluationPlan": {
+    "evidenceRequiredPerResult": ["Opaque prediction key and frozen candidate geometry reference held by custodian", "Mission profile version and requested factors", "Source-level evidence and provenance for each reported factor", "Measurement/derivation status, units, temporal and spatial support", "Coverage and missing factors separate from confidence", "Coordinate uncertainty and any expert adjudication record", "Limitations and contradictory evidence"],
+    "futureReporting": ["Report held-out outcomes by mission and evidence-availability stratum after the protocol is approved.", "Report match, partial, unsupported, and insufficient-evidence counts with uncertainty and adjudication process.", "Do not report a single collapsed score as benchmark validation.", "Compare against a predeclared baseline and disclose all exclusions and failed retrievals."],
+    "executionStatus": "not_run"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "locationId": "DAL",
+  "requestedCoordinate": {
+    "latitude": 38.59556,
+    "longitude": 90.985
+  },
+  "coordinatesApproximate": true,
+  "providerResponseCoordinate": {
+    "latitude": 38.59569444444445,
+    "longitude": 90.98513888888888
+  },
+  "elevationSampleM": {
+    "value": 3293.16845703125,
+    "unit": "m",
+    "sourceId": "copernicus-dem-glo-30",
+    "qualityStatus": "valid",
+    "processingMethod": "Nearest containing GLO-30 raster pixel sample; no interpolation or terrain metric calculated",
+    "observationPeriod": null
+  },
+  "productId": "COP-DEM_GLO-30-Public",
+  "productVersion": "Copernicus DEM 2021 release",
+  "tileId": "Copernicus_DSM_COG_10_N38_00_E090_00_DEM",
+  "sourceUrl": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N38_00_E090_00_DEM/Copernicus_DSM_COG_10_N38_00_E090_00_DEM.tif",
+  "horizontalCrs": "EPSG:4326",
+  "verticalDatum": "EGM2008 (EPSG:3855)",
+  "spatialResolutionNominalM": 30,
+  "resolutionArcSeconds": {
+    "x": 1,
+    "y": 1
+  },
+  "retrievedAt": "2026-11-14T15:13:40.876Z",
+  "provenance": {
+    "provider": "Copernicus DEM via AWS Public Dataset",
+    "dataset": "COP-DEM_GLO-30-Public; Copernicus DEM 2021 release",
+    "sourceUrl": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N38_00_E090_00_DEM/Copernicus_DSM_COG_10_N38_00_E090_00_DEM.tif",
+    "tileId": "Copernicus_DSM_COG_10_N38_00_E090_00_DEM",
+    "retrievedAt": "2026-11-14T15:13:40.876Z",
+    "requestParameters": {
+      "latitude": 38.59556,
+      "longitude": 90.985
+    },
+    "originalUnit": "m",
+    "outputUnit": "m",
+    "processingMethod": "geotiff.js remote COG range reads; nearest containing raster pixel; no interpolation",
+    "qualityStatus": "needs_verification"
+  },
+  "limitations": [
+    "Copernicus DEM GLO-30 Public is a DSM, not bare-earth terrain.",
+    "One pixel is sampled; no slope, roughness, or neighborhood statistics are computed.",
+    "Product accuracy specifications are global statistics and do not guarantee local accuracy.",
+    "Atlas point coordinates are approximate; the raster sample must not be described as an exact site measurement.",
+    "Copernicus GLO-30 is a digital surface model (DSM), including vegetation and built structures; it is not bare-earth terrain."
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "1.0.0",
+  "jobId": "e774340f-f3f4-4001-9cba-214564a4f813",
+  "createdAt": "2026-11-14T22:46:46.122Z",
+  "updatedAt": "2026-11-14T22:47:19.083Z",
+  "status": "completed",
+  "missionId": "geological_surface_exploration",
+  "missionName": "Geological surface exploration",
+  "studyAreaId": "atacama-climate-transect-v2",
+  "studyAreaLabel": "Atacama bounded climate evidence transect (demonstration v2)",
+  "configurationStatus": "bounded_demonstration_configuration_not_a_scientific_discovery",
+  "stages": [
+    {
+      "id": "validation",
+      "status": "completed",
+      "message": "Request, mission profile and allowlisted study area validated."
+    },
+    {
+      "id": "discovery",
+      "status": "completed",
+      "message": "Discovery run ca4250f9-7379-4fc1-af43-d0bd955ed68a completed with 4 candidate(s)."
+    },
+    {
+      "id": "comparison",
+      "status": "completed",
+      "message": "Comparison run 626a4e76-042f-4539-8626-b9fc1a7bfb31 completed."
+    }
+  ],
+  "logs": [
+    {
+      "stage": "discovery",
+      "text": "{\n  \"configurationStatus\": \"bounded_demonstration_configuration_not_a_scientific_discovery\",\n  \"runId\": \"ca4250f9-7379-4fc1-af43-d0bd955ed68a\",\n  \"outputPath\": \"data/app-runtime/discovery-runs/e774340f-f3f4-4001-9cba-214564a4f813.json\",\n  \"archivePath\": \"data/processed/discovery-runs/ca4250f9-7379-4fc1-af43-d0bd955ed68a.json\",\n  \"generatedCellCount\": 4,\n  \"excludedReferenceOverlapCount\": 1,\n  \"candidates\": [\n    {\n      \"id\": \"CAND-ATACAMA-CLIM-000-000-S23.5000-W69.5000\",\n      \"recordType\": \"candidate_region\",\n      \"latitude\": -23.5,\n      \"longitude\": -69.5,\n      \"status\": \"rejected_reference_overlap\",\n      \"missingFactors\": [],\n      \"sources\": {}\n    },\n    {\n      \"id\": \"CAND-ATACAMA-CLIM-000-001-S23.5000-W69.3000\",\n      \"recordType\": \"candidate_region\",\n      \"latitude\": -23.5,\n      \"longitude\": -69.3,\n      \"status\": \"insufficient_evidence\",\n      \"missingFactors\": [\n        \"mineral_evidence\",\n        \"geological_process_evidence\"\n      ],\n      \"sources\": {\n        \"climate\": \"success\",\n        \"terrain\": \"failed\",\n        \"geology\": \"success\"\n      }\n    },\n    {\n      \"id\": \"CAND-ATACAMA-CLIM-001-000-S23.3000-W69.5000\",\n      \"recordType\": \"candidate_region\",\n      \"latitude\": -23.3,\n      \"longitude\": -69.5,\n      \"status\": \"insufficient_evidence\",\n      \"missingFactors\": [\n        \"mineral_evidence\",\n        \"geological_process_evidence\"\n      ],\n      \"sources\": {\n        \"climate\": \"success\",\n        \"terrain\": \"failed\",\n        \"geology\": \"success\"\n      }\n    },\n    {\n      \"id\": \"CAND-ATACAMA-CLIM-001-001-S23.3000-W69.3000\",\n      \"recordType\": \"candidate_region\",\n      \"latitude\": -23.3,\n      \"longitude\": -69.3,\n      \"status\": \"insufficient_evidence\",\n      \"missingFactors\": [\n        \"mineral_evidence\",\n        \"geological_process_evidence\"\n      ],\n      \"sources\": {\n        \"climate\": \"success\",\n        \"terrain\": \"failed\",\n        \"geology\": \"success\"\n      }\n    }\n  ]\n}\n"
+    },
+    {
+      "stage": "comparison",
+      "text": "{\n  \"schemaVersion\": \"1.0.0\",\n  \"generatedAt\": \"2026-11-14T22:47:18.984Z\",\n  \"status\": \"valid\",\n  \"runId\": \"626a4e76-042f-4539-8626-b9fc1a7bfb31\",\n  \"configurationId\": \"6c946276b8cdeb11\",\n  \"candidateCount\": 4,\n  \"referenceCount\": 31,\n  \"comparisonPairCount\": 124,\n  \"factorStatusCounts\": {\n    \"compared\": 232,\n    \"ambiguous\": 0,\n    \"unavailable\": 2031,\n    \"failed\": 93,\n    \"missing\": 0\n  },\n  \"errors\": [],\n  \"archivePath\": \"data/processed/comparison-runs/626a4e76-042f-4539-8626-b9fc1a7bfb31.json\",\n  \"latestPath\": \"data/processed/comparison-runs/latest.json\",\n  \"candidateIds\": [\n    \"CAND-ATACAMA-CLIM-000-000-S23.5000-W69.5000\",\n    \"CAND-ATACAMA-CLIM-000-001-S23.5000-W69.3000\",\n    \"CAND-ATACAMA-CLIM-001-000-S23.3000-W69.5000\",\n    \"CAND-ATACAMA-CLIM-001-001-S23.3000-W69.3000\"\n  ]\n}\n"
+    }
+  ],
+  "discoveryRunId": "ca4250f9-7379-4fc1-af43-d0bd955ed68a",
+  "comparisonRunId": "626a4e76-042f-4539-8626-b9fc1a7bfb31",
+  "error": null
+}

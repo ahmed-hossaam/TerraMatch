@@ -1,0 +1,13 @@
+import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
+import { validateComparisonRun } from "../src/comparison/compare.js";
+const path=process.env.COMPARISON_OUTPUT??"data/processed/comparison-runs/latest.json";
+const run=JSON.parse(await readFile(path,"utf8"));const refs=JSON.parse(await readFile("data/processed/reference-sites.json","utf8"));const fixtures=JSON.parse(await readFile("data/processed/candidate-points.json","utf8"));const discovery=JSON.parse(await readFile("data/processed/discovery-runs/latest.json","utf8"));
+const errors=[...validateComparisonRun(run)];
+if(run.referenceDataset.count!==refs.length)errors.push("comparison reference count differs from authoritative combined reference dataset");
+if(JSON.stringify([...run.referenceDataset.siteIds].sort())!==JSON.stringify(refs.map((r:any)=>r.id).sort()))errors.push("comparison reference inventory differs from authoritative combined dataset");
+const expected=(discovery.candidates??[]).filter((c:any)=>c.recordType==="candidate_region");if(run.candidateCount!==expected.length)errors.push("comparison candidate count differs from latest discovery run");
+const protectedIds=new Set([...refs.map((r:any)=>r.id),...fixtures.map((f:any)=>f.id)]);for(const pair of run.comparisons??[])if(protectedIds.has(pair.candidateId))errors.push(`candidate id ${pair.candidateId} overlaps a reference or fixture`);
+if(run.comparisonPairCount!==expected.length*refs.length)errors.push("pairwise comparison matrix is incomplete");
+const factorStatusCounts=Object.fromEntries(["compared","ambiguous","unavailable","failed","missing"].map(status=>[status,(run.comparisons??[]).reduce((n:number,p:any)=>n+p.factors.filter((f:any)=>f.status===status).length,0)]));
+const report={schemaVersion:"1.0.0",generatedAt:new Date().toISOString(),status:errors.length?"invalid":"valid",runId:run.runId,candidateCount:run.candidateCount,referenceCount:run.referenceDataset.count,fixtureCount:fixtures.length,comparisonPairCount:run.comparisonPairCount,factorStatusCounts,errors};
+await mkdir("data/processed/comparison-runs",{recursive:true});const out="data/processed/comparison-runs/validation-report.json",tmp=`${out}.${process.pid??"p"}.tmp`;await writeFile(tmp,`${JSON.stringify(report,null,2)}\n`,"utf8");await rename(tmp,out);console.log(JSON.stringify(report,null,2));if(errors.length)process.exitCode=1;

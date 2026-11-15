@@ -1,0 +1,1151 @@
+[
+  {
+    "id": "DALL",
+    "recordType": "known_analog",
+    "planet": "Earth",
+    "latitude": 14.24,
+    "longitude": 40.3,
+    "coordinatesApproximate": true,
+    "country": "Ethiopia",
+    "regionName": "Dallol Hydrothermal Field",
+    "discoveryMethod": "M06 curated supplementary reference; distinct from original 26-site atlas",
+    "elevationMeanM": {
+      "value": null,
+      "unit": "m",
+      "sourceId": "supplementary-reference-dall",
+      "qualityStatus": "missing",
+      "processingMethod": "Not retrieved; preserved as null",
+      "observationPeriod": null
+    },
+    "elevationSampleM": {
+      "value": -93.12281036376953,
+      "unit": "m",
+      "sourceId": "copernicus-dem-glo-30",
+      "qualityStatus": "needs_verification",
+      "processingMethod": "Single Copernicus GLO-30 DSM pixel sample at the published approximate coordinate; not a site mean or terrain characterization",
+      "observationPeriod": null
+    },
+    "climate": {
+      "observationPeriod": "2001-01-01/2020-12-31",
+      "meanTemperatureC": {
+        "value": 25.9632950034223,
+        "unit": "°C",
+        "sourceId": "nasa-power-daily",
+        "qualityStatus": "needs_verification",
+        "processingMethod": "Mean of valid NASA POWER daily T2M observations",
+        "observationPeriod": "2001-01-01/2020-12-31"
+      },
+      "meanDailyTemperatureRangeC": {
+        "value": 12.022012320328557,
+        "unit": "°C",
+        "sourceId": "nasa-power-daily",
+        "qualityStatus": "needs_verification",
+        "processingMethod": "Mean of daily T2M_MAX - T2M_MIN only where both inputs are valid",
+        "observationPeriod": "2001-01-01/2020-12-31"
+      },
+      "meanHumidityPct": {
+        "value": 46.83905407255309,
+        "unit": "%",
+        "sourceId": "nasa-power-daily",
+        "qualityStatus": "needs_verification",
+        "processingMethod": "Mean of valid NASA POWER daily RH2M observations",
+        "observationPeriod": "2001-01-01/2020-12-31"
+      },
+      "annualPrecipitationMm": {
+        "value": 447.38949999999977,
+        "unit": "mm/year",
+        "sourceId": "nasa-power-daily",
+        "qualityStatus": "needs_verification",
+        "processingMethod": "Mean of 20 complete calendar-year precipitation totals only",
+        "observationPeriod": "2001-01-01/2020-12-31"
+      },
+      "meanWindSpeedMs": {
+        "value": 3.512971937029424,
+        "unit": "m/s",
+        "sourceId": "nasa-power-daily",
+        "qualityStatus": "needs_verification",
+        "processingMethod": "Mean of valid NASA POWER daily WS10M observations",
+        "observationPeriod": "2001-01-01/2020-12-31"
+      },
+      "meanSolarRadiation": {
+        "value": 21.445301848049326,
+        "unit": "MJ/m²/day",
+        "sourceId": "nasa-power-daily",
+        "qualityStatus": "needs_verification",
+        "processingMethod": "Mean of valid NASA POWER daily broadband solar-radiation observations; not UV",
+        "observationPeriod": "2001-01-01/2020-12-31"
+      },
+      "missingDays": 0,
+      "validDays": 7305,
+      "coverage": 1
+    },
+    "terrain": {
+      "elevationMinM": {
+        "value": null,
+        "unit": "m",
+        "sourceId": "supplementary-reference-dall",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; preserved as null",
+        "observationPeriod": null
+      },
+      "elevationMaxM": {
+        "value": null,
+        "unit": "m",
+        "sourceId": "supplementary-reference-dall",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; preserved as null",
+        "observationPeriod": null
+      },
+      "slopeMeanDeg": {
+        "value": null,
+        "unit": "degrees",
+        "sourceId": "supplementary-reference-dall",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; preserved as null",
+        "observationPeriod": null
+      },
+      "slopeP95Deg": {
+        "value": null,
+        "unit": "degrees",
+        "sourceId": "supplementary-reference-dall",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; preserved as null",
+        "observationPeriod": null
+      },
+      "roughness": {
+        "value": null,
+        "unit": "metric undefined",
+        "sourceId": "supplementary-reference-dall",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; preserved as null",
+        "observationPeriod": null
+      },
+      "rasterResolutionM": 30,
+      "sourceId": "copernicus-dem-glo-30",
+      "qualityStatus": "needs_verification"
+    },
+    "geology": {
+      "lithology": {
+        "classification": "suds__",
+        "sourceId": "glim-v1.1-level-i",
+        "qualityStatus": "needs_verification"
+      },
+      "minerals": [],
+      "formationDescription": "Hydrothermal field and evaporitic setting are described in the cited research.",
+      "rockDescription": null,
+      "references": [
+        {
+          "label": "A geophysical multi-parametric analysis of hydrothermal activity at Dallol, Ethiopia (2010)",
+          "url": "https://www.sciencedirect.com/science/article/abs/pii/S1464343X10000257"
+        },
+        {
+          "label": "Origin and Evolution of the Halo-Volcanic Complex of Dallol: Proto-Volcanism in Northern Afar (2019)",
+          "url": "https://www.frontiersin.org/journals/earth-science/articles/10.3389/feart.2019.00351/full"
+        }
+      ],
+      "evidenceQuality": "needs_verification"
+    },
+    "dataQuality": {
+      "coverage": null,
+      "confidence": null,
+      "missingFactors": [
+        "site-specific mineral evidence",
+        "slope and roughness",
+        "quantitative sediment/regolith properties"
+      ],
+      "warnings": [
+        "Coordinate is rounded and represents a study area, not a selected sampling pool.",
+        "No site-specific climate/DEM/GLiM data has been retrieved yet.",
+        "No mineral list copied into normalized mineral evidence; claims require sample-level traceability.",
+        "Point products use an approximate published coordinate; they are not exact measurements at every named site feature."
+      ],
+      "validationErrors": [],
+      "qualityNotes": [
+        "Review decision: accepted_region_sample; spatial granularity: Approximate study-area coordinate, not an individual pool/sample",
+        "Field evidence classes: published coordinate (derived DMS conversion where noted, approximate); geological text is descriptive publication context; climate, elevation, GLiM, and mineral measurements are missing/not retrieved."
+      ]
+    },
+    "provenance": [
+      {
+        "sourceId": "supplementary-reference-dall",
+        "provider": "Published research review",
+        "endpointOrDataset": "Supplementary site evidence review",
+        "sourceUrl": "https://www.sciencedirect.com/science/article/abs/pii/S1464343X10000257",
+        "retrievedAt": null,
+        "requestParameters": null,
+        "originalUnit": null,
+        "outputUnit": null,
+        "processingMethod": "Identity, coordinate granularity, and supported claims curated from cited publications; no measurements copied into climate/terrain fields",
+        "spatialResolution": "Approximate study-area coordinate, not an individual pool/sample",
+        "temporalResolution": null,
+        "qualityStatus": "needs_verification"
+      },
+      {
+        "sourceId": "nasa-power-daily",
+        "provider": "NASA POWER",
+        "endpointOrDataset": "https://power.larc.nasa.gov/api/temporal/daily/point",
+        "sourceUrl": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M%2CT2M_MAX%2CT2M_MIN%2CRH2M%2CPRECTOTCORR%2CWS10M%2CALLSKY_SFC_SW_DWN&community=AG&longitude=40.3&latitude=14.24&start=20010101&end=20201231&format=JSON&time-standard=UTC",
+        "retrievedAt": "2026-11-14T15:13:30.166Z",
+        "requestParameters": {
+          "latitude": "14.24",
+          "longitude": "40.3",
+          "parameters": "T2M,T2M_MAX,T2M_MIN,RH2M,PRECTOTCORR,WS10M,ALLSKY_SFC_SW_DWN",
+          "community": "AG",
+          "start": "20010101",
+          "end": "20201231",
+          "format": "JSON",
+          "time-standard": "UTC"
+        },
+        "originalUnit": null,
+        "outputUnit": null,
+        "processingMethod": "UTC daily point response; original numeric observations retained; fill sentinel mapped to null; summaries and complete-year precipitation derived without imputation",
+        "spatialResolution": "Meteorology: 0.5° latitude × 0.625° longitude MERRA-2 grid; point request snaps to provider grid",
+        "temporalResolution": "Daily; 2001–2020 requested",
+        "qualityStatus": "needs_verification"
+      },
+      {
+        "sourceId": "copernicus-dem-glo-30",
+        "provider": "Copernicus DEM via AWS Public Dataset",
+        "endpointOrDataset": "COP-DEM_GLO-30-Public; Copernicus DEM 2021 release",
+        "sourceUrl": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N14_00_E040_00_DEM/Copernicus_DSM_COG_10_N14_00_E040_00_DEM.tif",
+        "retrievedAt": "2026-11-14T15:13:33.791Z",
+        "requestParameters": {
+          "latitude": 14.24,
+          "longitude": 40.3
+        },
+        "originalUnit": "m",
+        "outputUnit": "m",
+        "processingMethod": "geotiff.js remote COG range reads; nearest containing raster pixel; no interpolation",
+        "spatialResolution": "Nominal 30 m pixel",
+        "temporalResolution": "Static DEM product",
+        "qualityStatus": "needs_verification"
+      },
+      {
+        "sourceId": "glim-v1.1-level-i",
+        "provider": "GLiM ArcGIS Feature Service",
+        "endpointOrDataset": "GLiM v1.1 (ArcGIS Feature Service description)",
+        "sourceUrl": "https://services8.arcgis.com/4KhTMTZ1x0f76DSg/ArcGIS/rest/services/GLiM_Niveau_I/FeatureServer/1/query",
+        "retrievedAt": "2026-11-14T15:13:35.935Z",
+        "requestParameters": {
+          "x": 40.3,
+          "y": 14.24,
+          "spatialReference": {
+            "wkid": 4326,
+            "latestWkid": 4326
+          }
+        },
+        "originalUnit": null,
+        "outputUnit": "GLiM source code",
+        "processingMethod": "Point-in-polygon query; detailed original fields remain in supplementary normalized geology output",
+        "spatialResolution": "Global map average scale approximately 1:3,750,000; polygon-specific scale varies.",
+        "temporalResolution": "Static map product",
+        "qualityStatus": "needs_verification"
+      }
+    ],
+    "atlas": {
+      "nameAr": "",
+      "nameEn": "Dallol Hydrothermal Field",
+      "analogType": null,
+      "marsCounterpart": null,
+      "whyMarsLike": "Hydrothermal field and evaporitic setting are described in the cited research.",
+      "missionsUses": null,
+      "climateMarsScore": null,
+      "climateMarsScoreNote": "Not applicable; no legacy climate score supplied for this supplementary record."
+    }
+  },
+  {
+    "id": "DAL",
+    "recordType": "known_analog",
+    "planet": "Earth",
+    "latitude": 38.59556,
+    "longitude": 90.985,
+    "coordinatesApproximate": true,
+    "country": "China",
+    "regionName": "Dalangtan Playa sampling pavement, Qaidam Basin",
+    "discoveryMethod": "M06 curated supplementary reference; distinct from original 26-site atlas",
+    "elevationMeanM": {
+      "value": null,
+      "unit": "m",
+      "sourceId": "supplementary-reference-dal",
+      "qualityStatus": "missing",
+      "processingMethod": "Not retrieved; preserved as null",
+      "observationPeriod": null
+    },
+    "elevationSampleM": {
+      "value": 3293.16845703125,
+      "unit": "m",
+      "sourceId": "copernicus-dem-glo-30",
+      "qualityStatus": "needs_verification",
+      "processingMethod": "Single Copernicus GLO-30 DSM pixel sample at the published approximate coordinate; not a site mean or terrain characterization",
+      "observationPeriod": null
+    },
+    "climate": {
+      "observationPeriod": "2001-01-01/2020-12-31",
+      "meanTemperatureC": {
+        "value": 3.2023928815879485,
+        "unit": "°C",
+        "sourceId": "nasa-power-daily",
+        "qualityStatus": "needs_verification",
+        "processingMethod": "Mean of valid NASA POWER daily T2M observations",
+        "observationPeriod": "2001-01-01/2020-12-31"
+      },
+      "meanDailyTemperatureRangeC": {
+        "value": 13.795552361396304,
+        "unit": "°C",
+        "sourceId": "nasa-power-daily",
+        "qualityStatus": "needs_verification",
+        "processingMethod": "Mean of daily T2M_MAX - T2M_MIN only where both inputs are valid",
+        "observationPeriod": "2001-01-01/2020-12-31"
+      },
+      "meanHumidityPct": {
+        "value": 33.54253661875423,
+        "unit": "%",
+        "sourceId": "nasa-power-daily",
+        "qualityStatus": "needs_verification",
+        "processingMethod": "Mean of valid NASA POWER daily RH2M observations",
+        "observationPeriod": "2001-01-01/2020-12-31"
+      },
+      "annualPrecipitationMm": {
+        "value": 49.47500000000001,
+        "unit": "mm/year",
+        "sourceId": "nasa-power-daily",
+        "qualityStatus": "needs_verification",
+        "processingMethod": "Mean of 20 complete calendar-year precipitation totals only",
+        "observationPeriod": "2001-01-01/2020-12-31"
+      },
+      "meanWindSpeedMs": {
+        "value": 3.6123203285420793,
+        "unit": "m/s",
+        "sourceId": "nasa-power-daily",
+        "qualityStatus": "needs_verification",
+        "processingMethod": "Mean of valid NASA POWER daily WS10M observations",
+        "observationPeriod": "2001-01-01/2020-12-31"
+      },
+      "meanSolarRadiation": {
+        "value": 18.293546885694777,
+        "unit": "MJ/m²/day",
+        "sourceId": "nasa-power-daily",
+        "qualityStatus": "needs_verification",
+        "processingMethod": "Mean of valid NASA POWER daily broadband solar-radiation observations; not UV",
+        "observationPeriod": "2001-01-01/2020-12-31"
+      },
+      "missingDays": 0,
+      "validDays": 7305,
+      "coverage": 1
+    },
+    "terrain": {
+      "elevationMinM": {
+        "value": null,
+        "unit": "m",
+        "sourceId": "supplementary-reference-dal",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; preserved as null",
+        "observationPeriod": null
+      },
+      "elevationMaxM": {
+        "value": null,
+        "unit": "m",
+        "sourceId": "supplementary-reference-dal",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; preserved as null",
+        "observationPeriod": null
+      },
+      "slopeMeanDeg": {
+        "value": null,
+        "unit": "degrees",
+        "sourceId": "supplementary-reference-dal",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; preserved as null",
+        "observationPeriod": null
+      },
+      "slopeP95Deg": {
+        "value": null,
+        "unit": "degrees",
+        "sourceId": "supplementary-reference-dal",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; preserved as null",
+        "observationPeriod": null
+      },
+      "roughness": {
+        "value": null,
+        "unit": "metric undefined",
+        "sourceId": "supplementary-reference-dal",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; preserved as null",
+        "observationPeriod": null
+      },
+      "rasterResolutionM": 30,
+      "sourceId": "copernicus-dem-glo-30",
+      "qualityStatus": "needs_verification"
+    },
+    "geology": {
+      "lithology": {
+        "classification": "sumx__",
+        "sourceId": "glim-v1.1-level-i",
+        "qualityStatus": "needs_verification"
+      },
+      "minerals": [],
+      "formationDescription": "The cited study documents collection of surface and below-rock soils at the stated pavement.",
+      "rockDescription": null,
+      "references": [
+        {
+          "label": "Metabolic versatility of soil microbial communities below the rocks of the hyperarid Dalangtan Playa (2024)",
+          "url": "https://journals.asm.org/doi/10.1128/aem.01072-23"
+        },
+        {
+          "label": "The Polygonal Surface Structures in the Dalangtan Playa, Qaidam Basin (2018)",
+          "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2018JE005525"
+        }
+      ],
+      "evidenceQuality": "needs_verification"
+    },
+    "dataQuality": {
+      "coverage": null,
+      "confidence": null,
+      "missingFactors": [
+        "site-specific mineral evidence",
+        "slope and roughness",
+        "quantitative sediment/regolith properties"
+      ],
+      "warnings": [
+        "Sampling field is local and does not represent the entire playa.",
+        "The reported coordinate precision is not a quantified uncertainty estimate.",
+        "No site-specific climate/DEM/GLiM data has been retrieved yet.",
+        "No mineral claims inferred or copied into normalized minerals.",
+        "Point products use an approximate published coordinate; they are not exact measurements at every named site feature."
+      ],
+      "validationErrors": [],
+      "qualityNotes": [
+        "Review decision: accepted_specific_sampling_area; spatial granularity: Published sampling pavement coordinate; local composite sampling field, not a playa-wide point representation",
+        "Field evidence classes: published coordinate (derived DMS conversion where noted, approximate); geological text is descriptive publication context; climate, elevation, GLiM, and mineral measurements are missing/not retrieved."
+      ]
+    },
+    "provenance": [
+      {
+        "sourceId": "supplementary-reference-dal",
+        "provider": "Published research review",
+        "endpointOrDataset": "Supplementary site evidence review",
+        "sourceUrl": "https://journals.asm.org/doi/10.1128/aem.01072-23",
+        "retrievedAt": null,
+        "requestParameters": null,
+        "originalUnit": null,
+        "outputUnit": null,
+        "processingMethod": "Identity, coordinate granularity, and supported claims curated from cited publications; no measurements copied into climate/terrain fields",
+        "spatialResolution": "Published sampling pavement coordinate; local composite sampling field, not a playa-wide point representation",
+        "temporalResolution": null,
+        "qualityStatus": "needs_verification"
+      },
+      {
+        "sourceId": "nasa-power-daily",
+        "provider": "NASA POWER",
+        "endpointOrDataset": "https://power.larc.nasa.gov/api/temporal/daily/point",
+        "sourceUrl": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M%2CT2M_MAX%2CT2M_MIN%2CRH2M%2CPRECTOTCORR%2CWS10M%2CALLSKY_SFC_SW_DWN&community=AG&longitude=90.985&latitude=38.59556&start=20010101&end=20201231&format=JSON&time-standard=UTC",
+        "retrievedAt": "2026-11-14T15:13:38.770Z",
+        "requestParameters": {
+          "latitude": "38.59556",
+          "longitude": "90.985",
+          "parameters": "T2M,T2M_MAX,T2M_MIN,RH2M,PRECTOTCORR,WS10M,ALLSKY_SFC_SW_DWN",
+          "community": "AG",
+          "start": "20010101",
+          "end": "20201231",
+          "format": "JSON",
+          "time-standard": "UTC"
+        },
+        "originalUnit": null,
+        "outputUnit": null,
+        "processingMethod": "UTC daily point response; original numeric observations retained; fill sentinel mapped to null; summaries and complete-year precipitation derived without imputation",
+        "spatialResolution": "Meteorology: 0.5° latitude × 0.625° longitude MERRA-2 grid; point request snaps to provider grid",
+        "temporalResolution": "Daily; 2001–2020 requested",
+        "qualityStatus": "needs_verification"
+      },
+      {
+        "sourceId": "copernicus-dem-glo-30",
+        "provider": "Copernicus DEM via AWS Public Dataset",
+        "endpointOrDataset": "COP-DEM_GLO-30-Public; Copernicus DEM 2021 release",
+        "sourceUrl": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N38_00_E090_00_DEM/Copernicus_DSM_COG_10_N38_00_E090_00_DEM.tif",
+        "retrievedAt": "2026-11-14T15:13:40.876Z",
+        "requestParameters": {
+          "latitude": 38.59556,
+          "longitude": 90.985
+        },
+        "originalUnit": "m",
+        "outputUnit": "m",
+        "processingMethod": "geotiff.js remote COG range reads; nearest containing raster pixel; no interpolation",
+        "spatialResolution": "Nominal 30 m pixel",
+        "temporalResolution": "Static DEM product",
+        "qualityStatus": "needs_verification"
+      },
+      {
+        "sourceId": "glim-v1.1-level-i",
+        "provider": "GLiM ArcGIS Feature Service",
+        "endpointOrDataset": "GLiM v1.1 (ArcGIS Feature Service description)",
+        "sourceUrl": "https://services8.arcgis.com/4KhTMTZ1x0f76DSg/ArcGIS/rest/services/GLiM_Niveau_I/FeatureServer/1/query",
+        "retrievedAt": "2026-11-14T15:13:41.667Z",
+        "requestParameters": {
+          "x": 90.985,
+          "y": 38.59556,
+          "spatialReference": {
+            "wkid": 4326,
+            "latestWkid": 4326
+          }
+        },
+        "originalUnit": null,
+        "outputUnit": "GLiM source code",
+        "processingMethod": "Point-in-polygon query; detailed original fields remain in supplementary normalized geology output",
+        "spatialResolution": "Global map average scale approximately 1:3,750,000; polygon-specific scale varies.",
+        "temporalResolution": "Static map product",
+        "qualityStatus": "needs_verification"
+      }
+    ],
+    "atlas": {
+      "nameAr": "",
+      "nameEn": "Dalangtan Playa sampling pavement, Qaidam Basin",
+      "analogType": null,
+      "marsCounterpart": null,
+      "whyMarsLike": "The cited study documents collection of surface and below-rock soils at the stated pavement.",
+      "missionsUses": null,
+      "climateMarsScore": null,
+      "climateMarsScoreNote": "Not applicable; no legacy climate score supplied for this supplementary record."
+    }
+  },
+  {
+    "id": "SEM",
+    "recordType": "known_analog",
+    "planet": "Earth",
+    "latitude": null,
+    "longitude": null,
+    "coordinatesApproximate": null,
+    "country": "Oman and United Arab Emirates",
+    "regionName": "Semail Ophiolite",
+    "discoveryMethod": "M06 curated supplementary reference; distinct from original 26-site atlas",
+    "elevationMeanM": {
+      "value": null,
+      "unit": "m",
+      "sourceId": "supplementary-reference-sem",
+      "qualityStatus": "missing",
+      "processingMethod": "Not retrieved; preserved as null",
+      "observationPeriod": null
+    },
+    "elevationSampleM": {
+      "value": null,
+      "unit": "m",
+      "sourceId": "supplementary-reference-sem",
+      "qualityStatus": "missing",
+      "processingMethod": "Not retrieved; preserved as null",
+      "observationPeriod": null
+    },
+    "climate": {
+      "observationPeriod": null,
+      "meanTemperatureC": {
+        "value": null,
+        "unit": "°C",
+        "sourceId": "supplementary-reference-sem",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; preserved as null",
+        "observationPeriod": null
+      },
+      "meanDailyTemperatureRangeC": {
+        "value": null,
+        "unit": "°C",
+        "sourceId": "supplementary-reference-sem",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; preserved as null",
+        "observationPeriod": null
+      },
+      "meanHumidityPct": {
+        "value": null,
+        "unit": "%",
+        "sourceId": "supplementary-reference-sem",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; preserved as null",
+        "observationPeriod": null
+      },
+      "annualPrecipitationMm": {
+        "value": null,
+        "unit": "mm/year",
+        "sourceId": "supplementary-reference-sem",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; preserved as null",
+        "observationPeriod": null
+      },
+      "meanWindSpeedMs": {
+        "value": null,
+        "unit": "m/s",
+        "sourceId": "supplementary-reference-sem",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; preserved as null",
+        "observationPeriod": null
+      },
+      "meanSolarRadiation": {
+        "value": null,
+        "unit": "MJ/m²/day",
+        "sourceId": "supplementary-reference-sem",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; preserved as null",
+        "observationPeriod": null
+      },
+      "missingDays": null,
+      "validDays": null,
+      "coverage": null
+    },
+    "terrain": {
+      "elevationMinM": {
+        "value": null,
+        "unit": "m",
+        "sourceId": "supplementary-reference-sem",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; preserved as null",
+        "observationPeriod": null
+      },
+      "elevationMaxM": {
+        "value": null,
+        "unit": "m",
+        "sourceId": "supplementary-reference-sem",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; preserved as null",
+        "observationPeriod": null
+      },
+      "slopeMeanDeg": {
+        "value": null,
+        "unit": "degrees",
+        "sourceId": "supplementary-reference-sem",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; preserved as null",
+        "observationPeriod": null
+      },
+      "slopeP95Deg": {
+        "value": null,
+        "unit": "degrees",
+        "sourceId": "supplementary-reference-sem",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; preserved as null",
+        "observationPeriod": null
+      },
+      "roughness": {
+        "value": null,
+        "unit": "metric undefined",
+        "sourceId": "supplementary-reference-sem",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; preserved as null",
+        "observationPeriod": null
+      },
+      "rasterResolutionM": null,
+      "sourceId": null,
+      "qualityStatus": "missing"
+    },
+    "geology": {
+      "lithology": {
+        "classification": null,
+        "sourceId": "supplementary-reference-sem",
+        "qualityStatus": "missing"
+      },
+      "minerals": [],
+      "formationDescription": "The formation includes mafic-ultramafic units; cited work distinguishes multiple field locations and lithologic contexts.",
+      "rockDescription": null,
+      "references": [
+        {
+          "label": "Tracing Carbonate Formation, Serpentinization, and Biological Materials With Micro-/Meso-Scale Infrared Imaging Spectroscopy in a Mars Analog System, Samail Ophiolite, Oman (2021)",
+          "url": "https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/2021EA001637"
+        }
+      ],
+      "evidenceQuality": "needs_verification"
+    },
+    "dataQuality": {
+      "coverage": null,
+      "confidence": null,
+      "missingFactors": [
+        "NASA POWER climate",
+        "Copernicus DEM elevation",
+        "GLiM lithology",
+        "site-specific mineral evidence",
+        "slope and roughness",
+        "quantitative sediment/regolith properties"
+      ],
+      "warnings": [
+        "Point-based climate, DEM, and GLiM retrieval unavailable until a named field segment is selected.",
+        "Do not use regional name as a single sample locality.",
+        "No mineral record asserted for the region as a whole."
+      ],
+      "validationErrors": [],
+      "qualityNotes": [
+        "Review decision: accepted_region_only; spatial granularity: Large geological formation; no point selected",
+        "Field evidence classes: published coordinate (derived DMS conversion where noted, approximate); geological text is descriptive publication context; climate, elevation, GLiM, and mineral measurements are missing/not retrieved."
+      ]
+    },
+    "provenance": [
+      {
+        "sourceId": "supplementary-reference-sem",
+        "provider": "Published research review",
+        "endpointOrDataset": "Supplementary site evidence review",
+        "sourceUrl": "https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/2021EA001637",
+        "retrievedAt": null,
+        "requestParameters": null,
+        "originalUnit": null,
+        "outputUnit": null,
+        "processingMethod": "Identity, coordinate granularity, and supported claims curated from cited publications; no measurements copied into climate/terrain fields",
+        "spatialResolution": "Large geological formation; no point selected",
+        "temporalResolution": null,
+        "qualityStatus": "needs_verification"
+      }
+    ],
+    "atlas": {
+      "nameAr": "",
+      "nameEn": "Semail Ophiolite",
+      "analogType": null,
+      "marsCounterpart": null,
+      "whyMarsLike": "The formation includes mafic-ultramafic units; cited work distinguishes multiple field locations and lithologic contexts.",
+      "missionsUses": null,
+      "climateMarsScore": null,
+      "climateMarsScoreNote": "Not applicable; no legacy climate score supplied for this supplementary record."
+    }
+  },
+  {
+    "id": "AHS-GH",
+    "recordType": "known_analog",
+    "planet": "Earth",
+    "latitude": 79.4083333,
+    "longitude": -90.7180556,
+    "coordinatesApproximate": true,
+    "country": "Canada",
+    "regionName": "Gypsum Hill cold saline springs, Axel Heiberg Island",
+    "discoveryMethod": "M06 curated supplementary reference; distinct from original 26-site atlas",
+    "elevationMeanM": {
+      "value": null,
+      "unit": "m",
+      "sourceId": "supplementary-reference-ahs-gh",
+      "qualityStatus": "missing",
+      "processingMethod": "Not retrieved; preserved as null",
+      "observationPeriod": null
+    },
+    "elevationSampleM": {
+      "value": 28.26603126525879,
+      "unit": "m",
+      "sourceId": "copernicus-dem-glo-30",
+      "qualityStatus": "needs_verification",
+      "processingMethod": "Single Copernicus GLO-30 DSM pixel sample at the published approximate coordinate; not a site mean or terrain characterization",
+      "observationPeriod": null
+    },
+    "climate": {
+      "observationPeriod": "2001-01-01/2020-12-31",
+      "meanTemperatureC": {
+        "value": -18.27011362080767,
+        "unit": "°C",
+        "sourceId": "nasa-power-daily",
+        "qualityStatus": "needs_verification",
+        "processingMethod": "Mean of valid NASA POWER daily T2M observations",
+        "observationPeriod": "2001-01-01/2020-12-31"
+      },
+      "meanDailyTemperatureRangeC": {
+        "value": 4.070672142368242,
+        "unit": "°C",
+        "sourceId": "nasa-power-daily",
+        "qualityStatus": "needs_verification",
+        "processingMethod": "Mean of daily T2M_MAX - T2M_MIN only where both inputs are valid",
+        "observationPeriod": "2001-01-01/2020-12-31"
+      },
+      "meanHumidityPct": {
+        "value": 93.08803559206017,
+        "unit": "%",
+        "sourceId": "nasa-power-daily",
+        "qualityStatus": "needs_verification",
+        "processingMethod": "Mean of valid NASA POWER daily RH2M observations",
+        "observationPeriod": "2001-01-01/2020-12-31"
+      },
+      "annualPrecipitationMm": {
+        "value": 299.03299999999996,
+        "unit": "mm/year",
+        "sourceId": "nasa-power-daily",
+        "qualityStatus": "needs_verification",
+        "processingMethod": "Mean of 20 complete calendar-year precipitation totals only",
+        "observationPeriod": "2001-01-01/2020-12-31"
+      },
+      "meanWindSpeedMs": {
+        "value": 2.6702669404517354,
+        "unit": "m/s",
+        "sourceId": "nasa-power-daily",
+        "qualityStatus": "needs_verification",
+        "processingMethod": "Mean of valid NASA POWER daily WS10M observations",
+        "observationPeriod": "2001-01-01/2020-12-31"
+      },
+      "meanSolarRadiation": {
+        "value": 9.134425735797395,
+        "unit": "MJ/m²/day",
+        "sourceId": "nasa-power-daily",
+        "qualityStatus": "needs_verification",
+        "processingMethod": "Mean of valid NASA POWER daily broadband solar-radiation observations; not UV",
+        "observationPeriod": "2001-01-01/2020-12-31"
+      },
+      "missingDays": 0,
+      "validDays": 7305,
+      "coverage": 1
+    },
+    "terrain": {
+      "elevationMinM": {
+        "value": null,
+        "unit": "m",
+        "sourceId": "supplementary-reference-ahs-gh",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; preserved as null",
+        "observationPeriod": null
+      },
+      "elevationMaxM": {
+        "value": null,
+        "unit": "m",
+        "sourceId": "supplementary-reference-ahs-gh",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; preserved as null",
+        "observationPeriod": null
+      },
+      "slopeMeanDeg": {
+        "value": null,
+        "unit": "degrees",
+        "sourceId": "supplementary-reference-ahs-gh",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; preserved as null",
+        "observationPeriod": null
+      },
+      "slopeP95Deg": {
+        "value": null,
+        "unit": "degrees",
+        "sourceId": "supplementary-reference-ahs-gh",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; preserved as null",
+        "observationPeriod": null
+      },
+      "roughness": {
+        "value": null,
+        "unit": "metric undefined",
+        "sourceId": "supplementary-reference-ahs-gh",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; preserved as null",
+        "observationPeriod": null
+      },
+      "rasterResolutionM": 30,
+      "sourceId": "copernicus-dem-glo-30",
+      "qualityStatus": "needs_verification"
+    },
+    "geology": {
+      "lithology": {
+        "classification": "smmx__",
+        "sourceId": "glim-v1.1-level-i",
+        "qualityStatus": "needs_verification"
+      },
+      "minerals": [],
+      "formationDescription": "The cited field studies describe perennial cold saline springs and characterize the Gypsum Hill system.",
+      "rockDescription": null,
+      "references": [
+        {
+          "label": "High Arctic saline springs as analogues for springs on Mars (2002)",
+          "url": "https://www.arlis.org/docs/vol1/ICOP/55700698/Pdf/Chapter_067.pdf"
+        },
+        {
+          "label": "Biological Characterization of Microenvironments in a Hypersaline Cold Spring Mars Analog (2017)",
+          "url": "https://www.frontiersin.org/journals/microbiology/articles/10.3389/fmicb.2017.02527/full"
+        }
+      ],
+      "evidenceQuality": "needs_verification"
+    },
+    "dataQuality": {
+      "coverage": null,
+      "confidence": null,
+      "missingFactors": [
+        "site-specific mineral evidence",
+        "slope and roughness",
+        "quantitative sediment/regolith properties"
+      ],
+      "warnings": [
+        "Cluster coordinate is not an outlet coordinate.",
+        "No site-specific climate/DEM/GLiM data has been retrieved yet.",
+        "Do not generalize precipitate/mineral observations across all outlets or across Axel Heiberg Island.",
+        "Point products use an approximate published coordinate; they are not exact measurements at every named site feature."
+      ],
+      "validationErrors": [],
+      "qualityNotes": [
+        "Review decision: accepted_specific_spring_system; spatial granularity: Named spring system; coordinate locates the cluster, not each outlet",
+        "Field evidence classes: published coordinate (derived DMS conversion where noted, approximate); geological text is descriptive publication context; climate, elevation, GLiM, and mineral measurements are missing/not retrieved."
+      ]
+    },
+    "provenance": [
+      {
+        "sourceId": "supplementary-reference-ahs-gh",
+        "provider": "Published research review",
+        "endpointOrDataset": "Supplementary site evidence review",
+        "sourceUrl": "https://www.arlis.org/docs/vol1/ICOP/55700698/Pdf/Chapter_067.pdf",
+        "retrievedAt": null,
+        "requestParameters": null,
+        "originalUnit": null,
+        "outputUnit": null,
+        "processingMethod": "Identity, coordinate granularity, and supported claims curated from cited publications; no measurements copied into climate/terrain fields",
+        "spatialResolution": "Named spring system; coordinate locates the cluster, not each outlet",
+        "temporalResolution": null,
+        "qualityStatus": "needs_verification"
+      },
+      {
+        "sourceId": "nasa-power-daily",
+        "provider": "NASA POWER",
+        "endpointOrDataset": "https://power.larc.nasa.gov/api/temporal/daily/point",
+        "sourceUrl": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M%2CT2M_MAX%2CT2M_MIN%2CRH2M%2CPRECTOTCORR%2CWS10M%2CALLSKY_SFC_SW_DWN&community=AG&longitude=-90.7180556&latitude=79.4083333&start=20010101&end=20201231&format=JSON&time-standard=UTC",
+        "retrievedAt": "2026-11-14T15:13:43.537Z",
+        "requestParameters": {
+          "latitude": "79.4083333",
+          "longitude": "-90.7180556",
+          "parameters": "T2M,T2M_MAX,T2M_MIN,RH2M,PRECTOTCORR,WS10M,ALLSKY_SFC_SW_DWN",
+          "community": "AG",
+          "start": "20010101",
+          "end": "20201231",
+          "format": "JSON",
+          "time-standard": "UTC"
+        },
+        "originalUnit": null,
+        "outputUnit": null,
+        "processingMethod": "UTC daily point response; original numeric observations retained; fill sentinel mapped to null; summaries and complete-year precipitation derived without imputation",
+        "spatialResolution": "Meteorology: 0.5° latitude × 0.625° longitude MERRA-2 grid; point request snaps to provider grid",
+        "temporalResolution": "Daily; 2001–2020 requested",
+        "qualityStatus": "needs_verification"
+      },
+      {
+        "sourceId": "copernicus-dem-glo-30",
+        "provider": "Copernicus DEM via AWS Public Dataset",
+        "endpointOrDataset": "COP-DEM_GLO-30-Public; Copernicus DEM 2021 release",
+        "sourceUrl": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N79_00_W091_00_DEM/Copernicus_DSM_COG_10_N79_00_W091_00_DEM.tif",
+        "retrievedAt": "2026-11-14T15:13:46.424Z",
+        "requestParameters": {
+          "latitude": 79.4083333,
+          "longitude": -90.7180556
+        },
+        "originalUnit": "m",
+        "outputUnit": "m",
+        "processingMethod": "geotiff.js remote COG range reads; nearest containing raster pixel; no interpolation",
+        "spatialResolution": "Nominal 30 m pixel",
+        "temporalResolution": "Static DEM product",
+        "qualityStatus": "needs_verification"
+      },
+      {
+        "sourceId": "glim-v1.1-level-i",
+        "provider": "GLiM ArcGIS Feature Service",
+        "endpointOrDataset": "GLiM v1.1 (ArcGIS Feature Service description)",
+        "sourceUrl": "https://services8.arcgis.com/4KhTMTZ1x0f76DSg/ArcGIS/rest/services/GLiM_Niveau_I/FeatureServer/1/query",
+        "retrievedAt": "2026-11-14T15:13:47.228Z",
+        "requestParameters": {
+          "x": -90.7180556,
+          "y": 79.4083333,
+          "spatialReference": {
+            "wkid": 4326,
+            "latestWkid": 4326
+          }
+        },
+        "originalUnit": null,
+        "outputUnit": "GLiM source code",
+        "processingMethod": "Point-in-polygon query; detailed original fields remain in supplementary normalized geology output",
+        "spatialResolution": "Global map average scale approximately 1:3,750,000; polygon-specific scale varies.",
+        "temporalResolution": "Static map product",
+        "qualityStatus": "needs_verification"
+      }
+    ],
+    "atlas": {
+      "nameAr": "",
+      "nameEn": "Gypsum Hill cold saline springs, Axel Heiberg Island",
+      "analogType": null,
+      "marsCounterpart": null,
+      "whyMarsLike": "The cited field studies describe perennial cold saline springs and characterize the Gypsum Hill system.",
+      "missionsUses": null,
+      "climateMarsScore": null,
+      "climateMarsScoreNote": "Not applicable; no legacy climate score supplied for this supplementary record."
+    }
+  },
+  {
+    "id": "LUT",
+    "recordType": "known_analog",
+    "planet": "Earth",
+    "latitude": null,
+    "longitude": null,
+    "coordinatesApproximate": null,
+    "country": "Iran",
+    "regionName": "Dasht-e Lut (Lut Desert) aeolian analog region",
+    "discoveryMethod": "M06 curated supplementary reference; distinct from original 26-site atlas",
+    "elevationMeanM": {
+      "value": null,
+      "unit": "m",
+      "sourceId": "supplementary-reference-lut",
+      "qualityStatus": "missing",
+      "processingMethod": "Not retrieved; preserved as null",
+      "observationPeriod": null
+    },
+    "elevationSampleM": {
+      "value": null,
+      "unit": "m",
+      "sourceId": "supplementary-reference-lut",
+      "qualityStatus": "missing",
+      "processingMethod": "Not retrieved; preserved as null",
+      "observationPeriod": null
+    },
+    "climate": {
+      "observationPeriod": null,
+      "meanTemperatureC": {
+        "value": null,
+        "unit": "°C",
+        "sourceId": "supplementary-reference-lut",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; preserved as null",
+        "observationPeriod": null
+      },
+      "meanDailyTemperatureRangeC": {
+        "value": null,
+        "unit": "°C",
+        "sourceId": "supplementary-reference-lut",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; preserved as null",
+        "observationPeriod": null
+      },
+      "meanHumidityPct": {
+        "value": null,
+        "unit": "%",
+        "sourceId": "supplementary-reference-lut",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; preserved as null",
+        "observationPeriod": null
+      },
+      "annualPrecipitationMm": {
+        "value": null,
+        "unit": "mm/year",
+        "sourceId": "supplementary-reference-lut",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; preserved as null",
+        "observationPeriod": null
+      },
+      "meanWindSpeedMs": {
+        "value": null,
+        "unit": "m/s",
+        "sourceId": "supplementary-reference-lut",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; preserved as null",
+        "observationPeriod": null
+      },
+      "meanSolarRadiation": {
+        "value": null,
+        "unit": "MJ/m²/day",
+        "sourceId": "supplementary-reference-lut",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; preserved as null",
+        "observationPeriod": null
+      },
+      "missingDays": null,
+      "validDays": null,
+      "coverage": null
+    },
+    "terrain": {
+      "elevationMinM": {
+        "value": null,
+        "unit": "m",
+        "sourceId": "supplementary-reference-lut",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; preserved as null",
+        "observationPeriod": null
+      },
+      "elevationMaxM": {
+        "value": null,
+        "unit": "m",
+        "sourceId": "supplementary-reference-lut",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; preserved as null",
+        "observationPeriod": null
+      },
+      "slopeMeanDeg": {
+        "value": null,
+        "unit": "degrees",
+        "sourceId": "supplementary-reference-lut",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; preserved as null",
+        "observationPeriod": null
+      },
+      "slopeP95Deg": {
+        "value": null,
+        "unit": "degrees",
+        "sourceId": "supplementary-reference-lut",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; preserved as null",
+        "observationPeriod": null
+      },
+      "roughness": {
+        "value": null,
+        "unit": "metric undefined",
+        "sourceId": "supplementary-reference-lut",
+        "qualityStatus": "missing",
+        "processingMethod": "Not retrieved; preserved as null",
+        "observationPeriod": null
+      },
+      "rasterResolutionM": null,
+      "sourceId": null,
+      "qualityStatus": "missing"
+    },
+    "geology": {
+      "lithology": {
+        "classification": null,
+        "sourceId": "supplementary-reference-lut",
+        "qualityStatus": "missing"
+      },
+      "minerals": [],
+      "formationDescription": "The cited work studies aeolian ridge landforms and their morphometry in the Lut Desert.",
+      "rockDescription": null,
+      "references": [
+        {
+          "label": "A terrestrial analog for transverse aeolian ridges: Environment, morphometry, and recent dynamics (2016)",
+          "url": "https://www.sciencedirect.com/science/article/pii/S001910351630481X"
+        },
+        {
+          "label": "UNESCO World Heritage Centre: Lut Desert",
+          "url": "https://whc.unesco.org/en/list/1505/"
+        }
+      ],
+      "evidenceQuality": "needs_verification"
+    },
+    "dataQuality": {
+      "coverage": null,
+      "confidence": null,
+      "missingFactors": [
+        "NASA POWER climate",
+        "Copernicus DEM elevation",
+        "GLiM lithology",
+        "site-specific mineral evidence",
+        "slope and roughness",
+        "quantitative sediment/regolith properties"
+      ],
+      "warnings": [
+        "Point-based climate, DEM, and GLiM retrieval unavailable until a specific landform/sample is selected.",
+        "Regional study results do not describe all of Dasht-e Lut.",
+        "No comprehensive mineral survey is claimed or encoded."
+      ],
+      "validationErrors": [],
+      "qualityNotes": [
+        "Review decision: accepted_region_only; spatial granularity: Study region with published geographic bounds; no single sample coordinate selected",
+        "Field evidence classes: published coordinate (derived DMS conversion where noted, approximate); geological text is descriptive publication context; climate, elevation, GLiM, and mineral measurements are missing/not retrieved."
+      ]
+    },
+    "provenance": [
+      {
+        "sourceId": "supplementary-reference-lut",
+        "provider": "Published research review",
+        "endpointOrDataset": "Supplementary site evidence review",
+        "sourceUrl": "https://www.sciencedirect.com/science/article/pii/S001910351630481X",
+        "retrievedAt": null,
+        "requestParameters": null,
+        "originalUnit": null,
+        "outputUnit": null,
+        "processingMethod": "Identity, coordinate granularity, and supported claims curated from cited publications; no measurements copied into climate/terrain fields",
+        "spatialResolution": "Study region with published geographic bounds; no single sample coordinate selected",
+        "temporalResolution": null,
+        "qualityStatus": "needs_verification"
+      }
+    ],
+    "atlas": {
+      "nameAr": "",
+      "nameEn": "Dasht-e Lut (Lut Desert) aeolian analog region",
+      "analogType": null,
+      "marsCounterpart": null,
+      "whyMarsLike": "The cited work studies aeolian ridge landforms and their morphometry in the Lut Desert.",
+      "missionsUses": null,
+      "climateMarsScore": null,
+      "climateMarsScoreNote": "Not applicable; no legacy climate score supplied for this supplementary record."
+    }
+  }
+]

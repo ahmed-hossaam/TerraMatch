@@ -1,0 +1,56 @@
+{
+  "recordType": "copernicus-dem-point-sample",
+  "locationId": "DALL",
+  "requestedCoordinate": {
+    "latitude": 14.24,
+    "longitude": 40.3
+  },
+  "coordinatesApproximate": true,
+  "sourceAsset": {
+    "productId": "COP-DEM_GLO-30-Public",
+    "version": "Copernicus DEM 2021 release",
+    "tileId": "Copernicus_DSM_COG_10_N14_00_E040_00_DEM",
+    "sourceUrl": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N14_00_E040_00_DEM/Copernicus_DSM_COG_10_N14_00_E040_00_DEM.tif"
+  },
+  "sampleCoordinate": {
+    "latitude": 14.23986111111111,
+    "longitude": 40.30013888888889
+  },
+  "elevation": {
+    "value": -93.12281036376953,
+    "unit": "m",
+    "qualityStatus": "valid",
+    "rawValue": -93.12281036376953
+  },
+  "raster": {
+    "horizontalCrs": "EPSG:4326",
+    "verticalDatum": "EGM2008 (EPSG:3855)",
+    "verticalDatumGeoKey": null,
+    "width": 3600,
+    "height": 3600,
+    "origin": [
+      40,
+      15,
+      0
+    ],
+    "resolution": [
+      0.0002777777777777778,
+      -0.0002777777777777778,
+      0
+    ],
+    "resolutionArcSeconds": {
+      "x": 1,
+      "y": 1
+    },
+    "nominalResolutionM": 30,
+    "nodataValue": null,
+    "sampleMethod": "geotiff.js remote COG range reads; nearest containing raster pixel; no interpolation",
+    "noDataStatus": "valid"
+  },
+  "retrievedAt": "2026-11-14T15:13:33.791Z",
+  "limitations": [
+    "Copernicus DEM GLO-30 Public is a DSM, not bare-earth terrain.",
+    "One pixel is sampled; no slope, roughness, or neighborhood statistics are computed.",
+    "Product accuracy specifications are global statistics and do not guarantee local accuracy."
+  ]
+}

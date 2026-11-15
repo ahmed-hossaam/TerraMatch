@@ -1,0 +1,19 @@
+{
+  "sourceId": "nasa-power-daily",
+  "provider": "NASA POWER",
+  "endpoint": "https://power.larc.nasa.gov/api/temporal/daily/point",
+  "sourceUrl": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M%2CT2M_MAX%2CT2M_MIN%2CRH2M%2CPRECTOTCORR%2CWS10M%2CALLSKY_SFC_SW_DWN&community=AG&longitude=-69.3&latitude=-23.3&start=20010101&end=20201231&format=JSON&time-standard=UTC",
+  "retrievedAt": "2026-11-14T22:46:57.905Z",
+  "requestParameters": {
+    "latitude": "-23.3",
+    "longitude": "-69.3",
+    "parameters": "T2M,T2M_MAX,T2M_MIN,RH2M,PRECTOTCORR,WS10M,ALLSKY_SFC_SW_DWN",
+    "community": "AG",
+    "start": "20010101",
+    "end": "20201231",
+    "format": "JSON",
+    "time-standard": "UTC"
+  },
+  "locationId": "CAND-ATACAMA-CLIM-001-001-S23.3000-W69.3000",
+  "coordinatesApproximate": true
+}

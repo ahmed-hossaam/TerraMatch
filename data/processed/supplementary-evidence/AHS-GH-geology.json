@@ -1,0 +1,199 @@
+{
+  "locationId": "AHS-GH",
+  "requestedCoordinate": {
+    "latitude": 79.4083333,
+    "longitude": -90.7180556
+  },
+  "coordinatesApproximate": true,
+  "serviceUrl": "https://services8.arcgis.com/4KhTMTZ1x0f76DSg/ArcGIS/rest/services/GLiM_Niveau_I/FeatureServer/1",
+  "layerUrl": "https://services8.arcgis.com/4KhTMTZ1x0f76DSg/ArcGIS/rest/services/GLiM_Niveau_I/FeatureServer/1",
+  "glimVersion": "GLiM v1.1 (ArcGIS Feature Service description)",
+  "responseSpatialReference": {
+    "wkid": 4326,
+    "latestWkid": 4326
+  },
+  "queryGeometry": {
+    "x": -90.7180556,
+    "y": 79.4083333,
+    "spatialReference": {
+      "wkid": 4326,
+      "latestWkid": 4326
+    }
+  },
+  "retrievedAt": "2026-11-14T15:13:47.228Z",
+  "lithologyEvidence": {
+    "status": "mapped",
+    "features": [
+      {
+        "objectId": 837683,
+        "identity": "CAN12596",
+        "litho": "smmx__",
+        "levels": {
+          "xx": "sm",
+          "yy": "mx",
+          "zz": "__"
+        },
+        "descriptions": {
+          "xx": "Mixed sedimentary rocks",
+          "yy": "Mixed grain size",
+          "zz": null
+        },
+        "originalAttributes": {
+          "OBJECTID": 837683,
+          "IDENTITY_": "CAN12596",
+          "Litho": "smmx__",
+          "xx": "sm",
+          "yy": "mx",
+          "zz": "__",
+          "xx_Description": "Mixed sedimentary rocks",
+          "yy_Description": "Mixed grain size",
+          "zz_Description": null
+        },
+        "geometry": {
+          "rings": [
+            [
+              [
+                -90.453643957096,
+                79.4672992682617
+              ],
+              [
+                -90.4676726998514,
+                79.4588370304634
+              ],
+              [
+                -90.4807370445555,
+                79.4502752450278
+              ],
+              [
+                -90.4938351892704,
+                79.4417174954024
+              ],
+              [
+                -90.5079633503749,
+                79.4332650337832
+              ],
+              [
+                -90.5241136057092,
+                79.4250255727236
+              ],
+              [
+                -90.543362157645,
+                79.417094503334
+              ],
+              [
+                -90.5699355113221,
+                79.4094814784745
+              ],
+              [
+                -90.6032775916132,
+                79.4027499435097
+              ],
+              [
+                -90.6402867152684,
+                79.397771059896
+              ],
+              [
+                -90.7132041984707,
+                79.3980220268817
+              ],
+              [
+                -90.7534949945212,
+                79.4067255507226
+              ],
+              [
+                -90.780721532106,
+                79.4138971751957
+              ],
+              [
+                -90.792279526046,
+                79.4220876190836
+              ],
+              [
+                -90.7924321516094,
+                79.4310193257505
+              ],
+              [
+                -90.7915924792454,
+                79.440013399988
+              ],
+              [
+                -90.7569188747176,
+                79.4546225652136
+              ],
+              [
+                -90.7327177884496,
+                79.4622695013822
+              ],
+              [
+                -90.6969566825405,
+                79.4663992124459
+              ],
+              [
+                -90.6530390840574,
+                79.4680396901842
+              ],
+              [
+                -90.6375452025484,
+                79.4681434315499
+              ],
+              [
+                -90.6048058280325,
+                79.4683620111727
+              ],
+              [
+                -90.5542061409529,
+                79.4679498369197
+              ],
+              [
+                -90.5031761276145,
+                79.4673988533576
+              ],
+              [
+                -90.453643957096,
+                79.4672992682617
+              ]
+            ]
+          ]
+        }
+      }
+    ]
+  },
+  "provenance": {
+    "provider": "GLiM ArcGIS Feature Service",
+    "dataset": "GLiM v1.1 (ArcGIS Feature Service description)",
+    "endpoint": "https://services8.arcgis.com/4KhTMTZ1x0f76DSg/ArcGIS/rest/services/GLiM_Niveau_I/FeatureServer/1/query",
+    "sourceUrl": "https://services8.arcgis.com/4KhTMTZ1x0f76DSg/ArcGIS/rest/services/GLiM_Niveau_I/FeatureServer/1/query",
+    "retrievedAt": "2026-11-14T15:13:47.228Z",
+    "requestParameters": {
+      "geometry": {
+        "x": -90.7180556,
+        "y": 79.4083333,
+        "spatialReference": {
+          "wkid": 4326,
+          "latestWkid": 4326
+        }
+      },
+      "outFields": [
+        "OBJECTID",
+        "IDENTITY_",
+        "Litho",
+        "xx",
+        "yy",
+        "zz",
+        "xx_Description",
+        "yy_Description",
+        "zz_Description"
+      ],
+      "spatialRel": "esriSpatialRelIntersects",
+      "inSR": 4326,
+      "outSR": 4326
+    },
+    "spatialResolution": "Global map average scale approximately 1:3,750,000; polygon-specific scale varies.",
+    "qualityStatus": "needs_verification"
+  },
+  "warnings": [
+    "Atlas coordinates are approximate; GLiM classification describes mapped polygon(s) intersecting the supplied point, not confirmed geology of the named site.",
+    "GLiM is a generalized global lithology map, not site-level field-verified mineralogy; lithology does not prove mineral presence."
+  ],
+  "minerals": []
+}

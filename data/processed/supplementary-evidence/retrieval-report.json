@@ -1,0 +1,109 @@
+{
+  "schemaVersion": "1.0.0",
+  "generatedAt": "2026-11-14T15:36:27.959Z",
+  "requestedSiteIds": [
+    "DALL",
+    "DAL",
+    "AHS-GH"
+  ],
+  "pointSiteCount": 3,
+  "regionLevelSkippedCount": 0,
+  "providerAttemptCount": 9,
+  "providerSuccessCount": 9,
+  "providerFailureCount": 0,
+  "results": [
+    {
+      "siteId": "DALL",
+      "status": "attempted",
+      "coordinatesApproximate": true,
+      "evidence": {
+        "climate": {
+          "status": "success",
+          "error": null,
+          "rawPath": "data/raw/nasa-power/DALL_2001-2020_2bd42ded3955.json",
+          "expectedRawPath": null,
+          "normalizedPath": "data/processed/supplementary-evidence/DALL-climate.json",
+          "sourceId": "nasa-power-daily"
+        },
+        "terrain": {
+          "status": "success",
+          "error": null,
+          "rawPath": "data/raw/copernicus-dem/DALL_GLO-30.json",
+          "expectedRawPath": null,
+          "normalizedPath": "data/processed/supplementary-evidence/DALL-terrain.json",
+          "sourceId": "Copernicus DEM via AWS Public Dataset"
+        },
+        "geology": {
+          "status": "success",
+          "error": null,
+          "rawPath": "data/raw/glim/DALL_GLiM.json",
+          "expectedRawPath": null,
+          "normalizedPath": "data/processed/supplementary-evidence/DALL-geology.json",
+          "sourceId": "GLiM ArcGIS Feature Service"
+        }
+      }
+    },
+    {
+      "siteId": "DAL",
+      "status": "attempted",
+      "coordinatesApproximate": true,
+      "evidence": {
+        "climate": {
+          "status": "success",
+          "error": null,
+          "rawPath": "data/raw/nasa-power/DAL_2001-2020_3956518325db.json",
+          "expectedRawPath": null,
+          "normalizedPath": "data/processed/supplementary-evidence/DAL-climate.json",
+          "sourceId": "nasa-power-daily"
+        },
+        "terrain": {
+          "status": "success",
+          "error": null,
+          "rawPath": "data/raw/copernicus-dem/DAL_GLO-30.json",
+          "expectedRawPath": null,
+          "normalizedPath": "data/processed/supplementary-evidence/DAL-terrain.json",
+          "sourceId": "Copernicus DEM via AWS Public Dataset"
+        },
+        "geology": {
+          "status": "success",
+          "error": null,
+          "rawPath": "data/raw/glim/DAL_GLiM.json",
+          "expectedRawPath": null,
+          "normalizedPath": "data/processed/supplementary-evidence/DAL-geology.json",
+          "sourceId": "GLiM ArcGIS Feature Service"
+        }
+      }
+    },
+    {
+      "siteId": "AHS-GH",
+      "status": "attempted",
+      "coordinatesApproximate": true,
+      "evidence": {
+        "climate": {
+          "status": "success",
+          "error": null,
+          "rawPath": "data/raw/nasa-power/AHS-GH_2001-2020_277f420cbb51.json",
+          "expectedRawPath": null,
+          "normalizedPath": "data/processed/supplementary-evidence/AHS-GH-climate.json",
+          "sourceId": "nasa-power-daily"
+        },
+        "terrain": {
+          "status": "success",
+          "error": null,
+          "rawPath": "data/raw/copernicus-dem/AHS-GH_GLO-30.json",
+          "expectedRawPath": null,
+          "normalizedPath": "data/processed/supplementary-evidence/AHS-GH-terrain.json",
+          "sourceId": "Copernicus DEM via AWS Public Dataset"
+        },
+        "geology": {
+          "status": "success",
+          "error": null,
+          "rawPath": "data/raw/glim/AHS-GH_GLiM.json",
+          "expectedRawPath": null,
+          "normalizedPath": "data/processed/supplementary-evidence/AHS-GH-geology.json",
+          "sourceId": "GLiM ArcGIS Feature Service"
+        }
+      }
+    }
+  ]
+}

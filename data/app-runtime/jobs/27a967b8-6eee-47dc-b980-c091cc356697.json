@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "1.0.0",
+  "jobId": "27a967b8-6eee-47dc-b980-c091cc356697",
+  "createdAt": "2026-11-14T21:16:46.544Z",
+  "updatedAt": "2026-11-14T21:16:58.141Z",
+  "status": "completed",
+  "missionId": "rover_surface_testing",
+  "missionName": "Rover surface testing",
+  "studyAreaId": "atacama-bounded-test",
+  "studyAreaLabel": "Bounded grid pipeline demonstration near the Atacama region",
+  "configurationStatus": "demonstration_test_configuration_not_a_scientific_discovery",
+  "stages": [
+    {
+      "id": "validation",
+      "status": "completed",
+      "message": "Request, mission profile and allowlisted study area validated."
+    },
+    {
+      "id": "discovery",
+      "status": "completed",
+      "message": "Discovery run 362cace3-532c-4ec0-8023-e1219a9de919 completed with 1 candidate(s)."
+    },
+    {
+      "id": "comparison",
+      "status": "completed",
+      "message": "Comparison run 7b2a5184-05aa-4d05-a9e4-38312818e44d completed."
+    }
+  ],
+  "logs": [
+    {
+      "stage": "discovery",
+      "text": "{\n  \"configurationStatus\": \"demonstration_test_configuration_not_a_scientific_discovery\",\n  \"runId\": \"362cace3-532c-4ec0-8023-e1219a9de919\",\n  \"outputPath\": \"data/app-runtime/discovery-runs/27a967b8-6eee-47dc-b980-c091cc356697.json\",\n  \"archivePath\": \"data/processed/discovery-runs/362cace3-532c-4ec0-8023-e1219a9de919.json\",\n  \"generatedCellCount\": 1,\n  \"excludedReferenceOverlapCount\": 0,\n  \"candidates\": [\n    {\n      \"id\": \"CAND-ATACAMA-BOUN-000-000-S23.5000-W69.2000\",\n      \"recordType\": \"candidate_region\",\n      \"latitude\": -23.5,\n      \"longitude\": -69.2,\n      \"status\": \"insufficient_evidence\",\n      \"missingFactors\": [\n        \"slope_roughness_relief\",\n        \"surface_material_class\",\n        \"sediment_regolith_properties\"\n      ],\n      \"sources\": {\n        \"climate\": \"success\",\n        \"terrain\": \"failed\",\n        \"geology\": \"success\"\n      }\n    }\n  ]\n}\n"
+    },
+    {
+      "stage": "comparison",
+      "text": "{\n  \"schemaVersion\": \"1.0.0\",\n  \"generatedAt\": \"2026-11-14T21:16:57.944Z\",\n  \"status\": \"valid\",\n  \"runId\": \"7b2a5184-05aa-4d05-a9e4-38312818e44d\",\n  \"configurationId\": \"a2540f97d79222c3\",\n  \"candidateCount\": 1,\n  \"referenceCount\": 31,\n  \"comparisonPairCount\": 31,\n  \"factorStatusCounts\": {\n    \"compared\": 80,\n    \"ambiguous\": 0,\n    \"unavailable\": 447,\n    \"failed\": 31,\n    \"missing\": 0\n  },\n  \"errors\": [],\n  \"archivePath\": \"data/processed/comparison-runs/7b2a5184-05aa-4d05-a9e4-38312818e44d.json\",\n  \"latestPath\": \"data/processed/comparison-runs/latest.json\",\n  \"candidateIds\": [\n    \"CAND-ATACAMA-BOUN-000-000-S23.5000-W69.2000\"\n  ]\n}\n"
+    }
+  ],
+  "discoveryRunId": "362cace3-532c-4ec0-8023-e1219a9de919",
+  "comparisonRunId": "7b2a5184-05aa-4d05-a9e4-38312818e44d",
+  "error": null
+}

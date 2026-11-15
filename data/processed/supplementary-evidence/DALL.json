@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "1.0.0",
+  "recordType": "supplementary-point-evidence",
+  "siteId": "DALL",
+  "requestedCoordinate": {
+    "latitude": 14.24,
+    "longitude": 40.3
+  },
+  "coordinatesApproximate": true,
+  "providerStatuses": {
+    "climate": "success",
+    "terrain": "success",
+    "geology": "success"
+  },
+  "normalizedPaths": {
+    "climate": "data/processed/supplementary-evidence/DALL-climate.json",
+    "terrain": "data/processed/supplementary-evidence/DALL-terrain.json",
+    "geology": "data/processed/supplementary-evidence/DALL-geology.json"
+  },
+  "limitations": [
+    "Coordinate is rounded and represents a study area, not a selected sampling pool.",
+    "No site-specific climate/DEM/GLiM data has been retrieved yet.",
+    "No mineral list copied into normalized mineral evidence; claims require sample-level traceability."
+  ]
+}

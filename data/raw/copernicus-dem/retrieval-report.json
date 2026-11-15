@@ -1,0 +1,48 @@
+{
+  "generatedAt": "2026-11-14T14:05:37.000Z",
+  "provider": "Copernicus DEM via AWS Public Dataset",
+  "productId": "COP-DEM_GLO-30-Public",
+  "productVersion": "Copernicus DEM 2021 release",
+  "requestedSiteIds": [
+    "GKC",
+    "GKB",
+    "WDE",
+    "KHA",
+    "RTI"
+  ],
+  "successfulSiteCount": 5,
+  "failedSiteCount": 0,
+  "sites": [
+    {
+      "locationId": "GKC",
+      "status": "reused_existing_raw",
+      "rawPath": "data/raw/copernicus-dem/GKC_GLO-30.json",
+      "valueM": 749.9041748046875
+    },
+    {
+      "locationId": "GKB",
+      "status": "reused_existing_raw",
+      "rawPath": "data/raw/copernicus-dem/GKB_GLO-30.json",
+      "valueM": 1036.06494140625
+    },
+    {
+      "locationId": "WDE",
+      "status": "reused_existing_raw",
+      "rawPath": "data/raw/copernicus-dem/WDE_GLO-30.json",
+      "valueM": 296.91192626953125
+    },
+    {
+      "locationId": "KHA",
+      "status": "reused_existing_raw",
+      "rawPath": "data/raw/copernicus-dem/KHA_GLO-30.json",
+      "valueM": 81.86032104492188
+    },
+    {
+      "locationId": "RTI",
+      "status": "reused_existing_raw",
+      "rawPath": "data/raw/copernicus-dem/RTI_GLO-30.json",
+      "valueM": 308.9146423339844
+    }
+  ],
+  "failures": []
+}

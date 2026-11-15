@@ -1,0 +1,1219 @@
+{
+  "schemaVersion": "1.0.0",
+  "runId": "ad576195-5909-4d11-8a49-34e13e188d3d",
+  "configurationId": "c71cff9028a2e94b",
+  "createdAt": "2026-11-14T22:01:40.151Z",
+  "status": "completed",
+  "missionProfileId": "mars-surface-analog-requirements",
+  "missionProfileVersion": "1.0.0",
+  "missionId": "extreme_environment_operations",
+  "studyArea": {
+    "id": "atacama-climate-transect-v2",
+    "label": "Atacama bounded climate evidence transect (demonstration v2)",
+    "boundingBox": {
+      "minLatitude": -23.6,
+      "minLongitude": -69.6,
+      "maxLatitude": -23.2,
+      "maxLongitude": -69.2
+    },
+    "spacingDegrees": 0.2,
+    "maxCandidates": 4,
+    "referenceExclusionKm": 75
+  },
+  "studyAreaConfigurationStatus": "bounded_demonstration_configuration_not_a_scientific_discovery",
+  "studyAreaLimitations": [
+    "This four-cell study area is a reproducible pipeline demonstration, not a validated discovery or claim that candidates are Mars analogs.",
+    "Atacama is used because the profile addresses measured thermal and meteorological stressors in an extreme environment; this does not make the environment equivalent to Mars.",
+    "A 75 km exclusion expanded by grid-cell half-diagonal masks cells near point-coordinate references. Coordinate-free region references remain explicitly unmasked; masking does not establish geological independence.",
+    "Cell centers are sampling coordinates for coarse grid cells, not precise field locations. Longitude and latitude spacing are angular degrees, so cell dimensions vary by latitude.",
+    "The selected profile requires six NASA POWER-supported climate factors. Provider support does not guarantee retrieval success; mission requirements remain unmet whenever evidence is missing, failed, or invalid.",
+    "Copernicus GLO-30 is a digital surface model point sample. GLiM is generalized mapped lithology. Neither provides the unavailable quantitative operational factors in this mission profile."
+  ],
+  "generatedCellCount": 4,
+  "excludedReferenceOverlapCount": 1,
+  "referenceMasking": {
+    "rule": "Reference point within configured distance after conservative grid-cell half-diagonal expansion; coordinate-free references are unmasked.",
+    "pointReferenceIdsUsed": [
+      "GKC",
+      "GKB",
+      "WDE",
+      "KHA",
+      "ATA",
+      "MOJ",
+      "DEV",
+      "RAM",
+      "DHO",
+      "PIL",
+      "WHS",
+      "MDRS",
+      "GOB",
+      "MET",
+      "BON",
+      "MDV",
+      "RTI",
+      "LON",
+      "SAL",
+      "LAN",
+      "HIS",
+      "HMP",
+      "ETN",
+      "KIL",
+      "SVA",
+      "LAM",
+      "DALL",
+      "DAL",
+      "AHS-GH"
+    ],
+    "unmaskedRegionReferenceIds": [
+      "SEM",
+      "LUT"
+    ],
+    "invalidCoordinateReferenceIds": []
+  },
+  "candidates": [
+    {
+      "id": "CAND-ATACAMA-CLIM-000-000-S23.5000-W69.5000",
+      "recordType": "candidate_region",
+      "planet": "Earth",
+      "latitude": -23.5,
+      "longitude": -69.5,
+      "coordinatesApproximate": true,
+      "spatialSupport": {
+        "studyAreaId": "atacama-climate-transect-v2",
+        "gridRow": 0,
+        "gridColumn": 0,
+        "cellSpacingDegrees": 0.2,
+        "referenceExclusionKm": 75
+      },
+      "status": "rejected_reference_overlap",
+      "screening": {
+        "missionProfileId": "mars-surface-analog-requirements",
+        "missionProfileVersion": "1.0.0",
+        "missionId": "extreme_environment_operations",
+        "status": "rejected_reference_overlap",
+        "requiredFactors": [],
+        "missingFactors": [],
+        "reasons": [
+          "Generated cell footprint reaches within 67.053 km of reference ATA; the configured reference exclusion radius is 75 km (center distance 82.143 km; cell half-diagonal 15.090 km)."
+        ],
+        "scientificClaimLimit": "Geographic exclusion only; this is not a negative analog judgment."
+      },
+      "evidence": [
+        {
+          "factorId": "air_temperature_daily_mean",
+          "status": "missing",
+          "value": {
+            "T2M": null
+          },
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "No valid observations for required climate parameters."
+        },
+        {
+          "factorId": "air_temperature_extremes",
+          "status": "missing",
+          "value": {
+            "T2M_MAX": null,
+            "T2M_MIN": null
+          },
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "No valid observations for required climate parameters."
+        },
+        {
+          "factorId": "daily_temperature_range",
+          "status": "missing",
+          "value": null,
+          "unit": "°C",
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "No valid daily ranges."
+        },
+        {
+          "factorId": "relative_humidity",
+          "status": "missing",
+          "value": {
+            "RH2M": null
+          },
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "No valid observations for required climate parameters."
+        },
+        {
+          "factorId": "precipitation",
+          "status": "missing",
+          "value": {
+            "PRECTOTCORR": null
+          },
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "No valid observations for required climate parameters."
+        },
+        {
+          "factorId": "wind_speed",
+          "status": "missing",
+          "value": {
+            "WS10M": null
+          },
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "No valid observations for required climate parameters."
+        },
+        {
+          "factorId": "solar_radiation",
+          "status": "missing",
+          "value": {
+            "ALLSKY_SFC_SW_DWN": null
+          },
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "No valid observations for required climate parameters."
+        },
+        {
+          "factorId": "mapped_lithology",
+          "status": "missing",
+          "value": null,
+          "unit": "GLiM source categories",
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "No mapped GLiM classification returned."
+        },
+        {
+          "factorId": "mineral_evidence",
+          "status": "missing",
+          "value": null,
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "Mineral evidence is not provided by GLiM and is not inferred from lithology."
+        },
+        {
+          "factorId": "elevation_point",
+          "status": "missing",
+          "value": null,
+          "unit": "m",
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "No valid elevation sample."
+        },
+        {
+          "factorId": "slope_roughness_relief",
+          "status": "missing",
+          "value": null,
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "This factor is not supplied by the currently enabled point integrations."
+        },
+        {
+          "factorId": "surface_material_class",
+          "status": "missing",
+          "value": null,
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "This factor is not supplied by the currently enabled point integrations."
+        },
+        {
+          "factorId": "sediment_regolith_properties",
+          "status": "missing",
+          "value": null,
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "This factor is not supplied by the currently enabled point integrations."
+        },
+        {
+          "factorId": "hydrological_context",
+          "status": "missing",
+          "value": null,
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "This factor is not supplied by the currently enabled point integrations."
+        },
+        {
+          "factorId": "terrestrial_surface_pressure",
+          "status": "missing",
+          "value": null,
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "This factor is not supplied by the currently enabled point integrations."
+        },
+        {
+          "factorId": "uv_radiation",
+          "status": "missing",
+          "value": null,
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "This factor is not supplied by the currently enabled point integrations."
+        },
+        {
+          "factorId": "dust_aerosol",
+          "status": "missing",
+          "value": null,
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "This factor is not supplied by the currently enabled point integrations."
+        },
+        {
+          "factorId": "aridity_water_balance",
+          "status": "missing",
+          "value": null,
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "This factor is not supplied by the currently enabled point integrations."
+        },
+        {
+          "factorId": "geological_process_evidence",
+          "status": "missing",
+          "value": null,
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "Legacy regional narrative is not treated as newly retrieved, location-specific geological-process evidence."
+        }
+      ],
+      "sources": {},
+      "limitations": [
+        "A grid candidate is a screening location, not a confirmed analog.",
+        "Mission result assesses required evidence presence only; no numerical thresholds or comparison scores are used.",
+        "Point products are sampled at approximate grid-cell centers and have source-specific spatial support."
+      ]
+    },
+    {
+      "id": "CAND-ATACAMA-CLIM-000-001-S23.5000-W69.3000",
+      "recordType": "candidate_region",
+      "planet": "Earth",
+      "latitude": -23.5,
+      "longitude": -69.3,
+      "coordinatesApproximate": true,
+      "spatialSupport": {
+        "studyAreaId": "atacama-climate-transect-v2",
+        "gridRow": 0,
+        "gridColumn": 1,
+        "cellSpacingDegrees": 0.2,
+        "referenceExclusionKm": 75
+      },
+      "status": "insufficient_evidence",
+      "screening": {
+        "missionProfileId": "mars-surface-analog-requirements",
+        "missionProfileVersion": "1.0.0",
+        "missionId": "extreme_environment_operations",
+        "status": "insufficient_evidence",
+        "requiredFactors": [
+          {
+            "factorId": "air_temperature_daily_mean",
+            "status": "failed",
+            "note": "NASA POWER request failed after 1 attempts: fetch failed"
+          },
+          {
+            "factorId": "air_temperature_extremes",
+            "status": "failed",
+            "note": "NASA POWER request failed after 1 attempts: fetch failed"
+          },
+          {
+            "factorId": "daily_temperature_range",
+            "status": "failed",
+            "note": "NASA POWER request failed after 1 attempts: fetch failed"
+          },
+          {
+            "factorId": "relative_humidity",
+            "status": "failed",
+            "note": "NASA POWER request failed after 1 attempts: fetch failed"
+          },
+          {
+            "factorId": "precipitation",
+            "status": "failed",
+            "note": "NASA POWER request failed after 1 attempts: fetch failed"
+          },
+          {
+            "factorId": "wind_speed",
+            "status": "failed",
+            "note": "NASA POWER request failed after 1 attempts: fetch failed"
+          }
+        ],
+        "missingFactors": [
+          "air_temperature_daily_mean",
+          "air_temperature_extremes",
+          "daily_temperature_range",
+          "relative_humidity",
+          "precipitation",
+          "wind_speed"
+        ],
+        "reasons": [
+          "Required evidence air_temperature_daily_mean is unavailable, failed, null, or has no valid observations.",
+          "Required evidence air_temperature_extremes is unavailable, failed, null, or has no valid observations.",
+          "Required evidence daily_temperature_range is unavailable, failed, null, or has no valid observations.",
+          "Required evidence relative_humidity is unavailable, failed, null, or has no valid observations.",
+          "Required evidence precipitation is unavailable, failed, null, or has no valid observations.",
+          "Required evidence wind_speed is unavailable, failed, null, or has no valid observations."
+        ],
+        "scientificClaimLimit": "Evidence availability only; not a confirmed Mars analog, mission suitability result, similarity score, or ranking."
+      },
+      "evidence": [
+        {
+          "factorId": "air_temperature_daily_mean",
+          "status": "failed",
+          "value": {
+            "T2M": null
+          },
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "NASA POWER request failed after 1 attempts: fetch failed"
+        },
+        {
+          "factorId": "air_temperature_extremes",
+          "status": "failed",
+          "value": {
+            "T2M_MAX": null,
+            "T2M_MIN": null
+          },
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "NASA POWER request failed after 1 attempts: fetch failed"
+        },
+        {
+          "factorId": "daily_temperature_range",
+          "status": "failed",
+          "value": null,
+          "unit": "°C",
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "NASA POWER request failed after 1 attempts: fetch failed"
+        },
+        {
+          "factorId": "relative_humidity",
+          "status": "failed",
+          "value": {
+            "RH2M": null
+          },
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "NASA POWER request failed after 1 attempts: fetch failed"
+        },
+        {
+          "factorId": "precipitation",
+          "status": "failed",
+          "value": {
+            "PRECTOTCORR": null
+          },
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "NASA POWER request failed after 1 attempts: fetch failed"
+        },
+        {
+          "factorId": "wind_speed",
+          "status": "failed",
+          "value": {
+            "WS10M": null
+          },
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "NASA POWER request failed after 1 attempts: fetch failed"
+        },
+        {
+          "factorId": "solar_radiation",
+          "status": "failed",
+          "value": {
+            "ALLSKY_SFC_SW_DWN": null
+          },
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "NASA POWER request failed after 1 attempts: fetch failed"
+        },
+        {
+          "factorId": "mapped_lithology",
+          "status": "failed",
+          "value": null,
+          "unit": "GLiM source categories",
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "fetch failed"
+        },
+        {
+          "factorId": "mineral_evidence",
+          "status": "missing",
+          "value": null,
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "Mineral evidence is not provided by GLiM and is not inferred from lithology."
+        },
+        {
+          "factorId": "elevation_point",
+          "status": "failed",
+          "value": null,
+          "unit": "m",
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "Copernicus DEM request failed for CAND-ATACAMA-CLIM-000-001-S23.5000-W69.3000 (https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_S23_00_W070_00_DEM/Copernicus_DSM_COG_10_S23_00_W070_00_DEM.tif): Request failed"
+        },
+        {
+          "factorId": "slope_roughness_relief",
+          "status": "missing",
+          "value": null,
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "This factor is not supplied by the currently enabled point integrations."
+        },
+        {
+          "factorId": "surface_material_class",
+          "status": "missing",
+          "value": null,
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "This factor is not supplied by the currently enabled point integrations."
+        },
+        {
+          "factorId": "sediment_regolith_properties",
+          "status": "missing",
+          "value": null,
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "This factor is not supplied by the currently enabled point integrations."
+        },
+        {
+          "factorId": "hydrological_context",
+          "status": "missing",
+          "value": null,
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "This factor is not supplied by the currently enabled point integrations."
+        },
+        {
+          "factorId": "terrestrial_surface_pressure",
+          "status": "missing",
+          "value": null,
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "This factor is not supplied by the currently enabled point integrations."
+        },
+        {
+          "factorId": "uv_radiation",
+          "status": "missing",
+          "value": null,
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "This factor is not supplied by the currently enabled point integrations."
+        },
+        {
+          "factorId": "dust_aerosol",
+          "status": "missing",
+          "value": null,
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "This factor is not supplied by the currently enabled point integrations."
+        },
+        {
+          "factorId": "aridity_water_balance",
+          "status": "missing",
+          "value": null,
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "This factor is not supplied by the currently enabled point integrations."
+        },
+        {
+          "factorId": "geological_process_evidence",
+          "status": "missing",
+          "value": null,
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "Legacy regional narrative is not treated as newly retrieved, location-specific geological-process evidence."
+        }
+      ],
+      "sources": {
+        "climate": {
+          "status": "failed",
+          "provider": "NASA POWER",
+          "endpoint": "https://power.larc.nasa.gov/api/temporal/daily/point",
+          "sourceUrl": null,
+          "requestedCoordinate": {
+            "latitude": -23.5,
+            "longitude": -69.3
+          },
+          "retrievalAttemptedAt": "2026-11-14T22:01:39.395Z",
+          "error": "NASA POWER request failed after 1 attempts: fetch failed",
+          "rawPath": null,
+          "expectedRawPath": null
+        },
+        "terrain": {
+          "status": "failed",
+          "provider": "Copernicus DEM",
+          "endpoint": null,
+          "sourceUrl": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_S23_00_W070_00_DEM/Copernicus_DSM_COG_10_S23_00_W070_00_DEM.tif",
+          "requestedCoordinate": {
+            "latitude": -23.5,
+            "longitude": -69.3
+          },
+          "retrievalAttemptedAt": "2026-11-14T22:01:39.914Z",
+          "error": "Copernicus DEM request failed for CAND-ATACAMA-CLIM-000-001-S23.5000-W69.3000 (https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_S23_00_W070_00_DEM/Copernicus_DSM_COG_10_S23_00_W070_00_DEM.tif): Request failed",
+          "rawPath": null,
+          "expectedRawPath": "data/raw/copernicus-dem/CAND-ATACAMA-CLIM-000-001-S23.5000-W69.3000_GLO-30.json"
+        },
+        "geology": {
+          "status": "failed",
+          "provider": "GLiM ArcGIS Feature Service",
+          "endpoint": null,
+          "sourceUrl": "https://services8.arcgis.com/4KhTMTZ1x0f76DSg/ArcGIS/rest/services/GLiM_Niveau_I/FeatureServer/1",
+          "requestedCoordinate": {
+            "latitude": -23.5,
+            "longitude": -69.3
+          },
+          "retrievalAttemptedAt": "2026-11-14T22:01:40.078Z",
+          "error": "fetch failed",
+          "rawPath": null,
+          "expectedRawPath": "data/raw/glim/CAND-ATACAMA-CLIM-000-001-S23.5000-W69.3000_GLiM.json"
+        }
+      },
+      "limitations": [
+        "A grid candidate is a screening location, not a confirmed analog.",
+        "Mission result assesses required evidence presence only; no numerical thresholds or comparison scores are used.",
+        "Point products are sampled at approximate grid-cell centers and have source-specific spatial support."
+      ]
+    },
+    {
+      "id": "CAND-ATACAMA-CLIM-001-000-S23.3000-W69.5000",
+      "recordType": "candidate_region",
+      "planet": "Earth",
+      "latitude": -23.3,
+      "longitude": -69.5,
+      "coordinatesApproximate": true,
+      "spatialSupport": {
+        "studyAreaId": "atacama-climate-transect-v2",
+        "gridRow": 1,
+        "gridColumn": 0,
+        "cellSpacingDegrees": 0.2,
+        "referenceExclusionKm": 75
+      },
+      "status": "insufficient_evidence",
+      "screening": {
+        "missionProfileId": "mars-surface-analog-requirements",
+        "missionProfileVersion": "1.0.0",
+        "missionId": "extreme_environment_operations",
+        "status": "insufficient_evidence",
+        "requiredFactors": [
+          {
+            "factorId": "air_temperature_daily_mean",
+            "status": "failed",
+            "note": "NASA POWER request failed after 1 attempts: fetch failed"
+          },
+          {
+            "factorId": "air_temperature_extremes",
+            "status": "failed",
+            "note": "NASA POWER request failed after 1 attempts: fetch failed"
+          },
+          {
+            "factorId": "daily_temperature_range",
+            "status": "failed",
+            "note": "NASA POWER request failed after 1 attempts: fetch failed"
+          },
+          {
+            "factorId": "relative_humidity",
+            "status": "failed",
+            "note": "NASA POWER request failed after 1 attempts: fetch failed"
+          },
+          {
+            "factorId": "precipitation",
+            "status": "failed",
+            "note": "NASA POWER request failed after 1 attempts: fetch failed"
+          },
+          {
+            "factorId": "wind_speed",
+            "status": "failed",
+            "note": "NASA POWER request failed after 1 attempts: fetch failed"
+          }
+        ],
+        "missingFactors": [
+          "air_temperature_daily_mean",
+          "air_temperature_extremes",
+          "daily_temperature_range",
+          "relative_humidity",
+          "precipitation",
+          "wind_speed"
+        ],
+        "reasons": [
+          "Required evidence air_temperature_daily_mean is unavailable, failed, null, or has no valid observations.",
+          "Required evidence air_temperature_extremes is unavailable, failed, null, or has no valid observations.",
+          "Required evidence daily_temperature_range is unavailable, failed, null, or has no valid observations.",
+          "Required evidence relative_humidity is unavailable, failed, null, or has no valid observations.",
+          "Required evidence precipitation is unavailable, failed, null, or has no valid observations.",
+          "Required evidence wind_speed is unavailable, failed, null, or has no valid observations."
+        ],
+        "scientificClaimLimit": "Evidence availability only; not a confirmed Mars analog, mission suitability result, similarity score, or ranking."
+      },
+      "evidence": [
+        {
+          "factorId": "air_temperature_daily_mean",
+          "status": "failed",
+          "value": {
+            "T2M": null
+          },
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "NASA POWER request failed after 1 attempts: fetch failed"
+        },
+        {
+          "factorId": "air_temperature_extremes",
+          "status": "failed",
+          "value": {
+            "T2M_MAX": null,
+            "T2M_MIN": null
+          },
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "NASA POWER request failed after 1 attempts: fetch failed"
+        },
+        {
+          "factorId": "daily_temperature_range",
+          "status": "failed",
+          "value": null,
+          "unit": "°C",
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "NASA POWER request failed after 1 attempts: fetch failed"
+        },
+        {
+          "factorId": "relative_humidity",
+          "status": "failed",
+          "value": {
+            "RH2M": null
+          },
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "NASA POWER request failed after 1 attempts: fetch failed"
+        },
+        {
+          "factorId": "precipitation",
+          "status": "failed",
+          "value": {
+            "PRECTOTCORR": null
+          },
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "NASA POWER request failed after 1 attempts: fetch failed"
+        },
+        {
+          "factorId": "wind_speed",
+          "status": "failed",
+          "value": {
+            "WS10M": null
+          },
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "NASA POWER request failed after 1 attempts: fetch failed"
+        },
+        {
+          "factorId": "solar_radiation",
+          "status": "failed",
+          "value": {
+            "ALLSKY_SFC_SW_DWN": null
+          },
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "NASA POWER request failed after 1 attempts: fetch failed"
+        },
+        {
+          "factorId": "mapped_lithology",
+          "status": "failed",
+          "value": null,
+          "unit": "GLiM source categories",
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "fetch failed"
+        },
+        {
+          "factorId": "mineral_evidence",
+          "status": "missing",
+          "value": null,
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "Mineral evidence is not provided by GLiM and is not inferred from lithology."
+        },
+        {
+          "factorId": "elevation_point",
+          "status": "failed",
+          "value": null,
+          "unit": "m",
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "Copernicus DEM request failed for CAND-ATACAMA-CLIM-001-000-S23.3000-W69.5000 (https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_S23_00_W070_00_DEM/Copernicus_DSM_COG_10_S23_00_W070_00_DEM.tif): Request failed"
+        },
+        {
+          "factorId": "slope_roughness_relief",
+          "status": "missing",
+          "value": null,
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "This factor is not supplied by the currently enabled point integrations."
+        },
+        {
+          "factorId": "surface_material_class",
+          "status": "missing",
+          "value": null,
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "This factor is not supplied by the currently enabled point integrations."
+        },
+        {
+          "factorId": "sediment_regolith_properties",
+          "status": "missing",
+          "value": null,
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "This factor is not supplied by the currently enabled point integrations."
+        },
+        {
+          "factorId": "hydrological_context",
+          "status": "missing",
+          "value": null,
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "This factor is not supplied by the currently enabled point integrations."
+        },
+        {
+          "factorId": "terrestrial_surface_pressure",
+          "status": "missing",
+          "value": null,
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "This factor is not supplied by the currently enabled point integrations."
+        },
+        {
+          "factorId": "uv_radiation",
+          "status": "missing",
+          "value": null,
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "This factor is not supplied by the currently enabled point integrations."
+        },
+        {
+          "factorId": "dust_aerosol",
+          "status": "missing",
+          "value": null,
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "This factor is not supplied by the currently enabled point integrations."
+        },
+        {
+          "factorId": "aridity_water_balance",
+          "status": "missing",
+          "value": null,
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "This factor is not supplied by the currently enabled point integrations."
+        },
+        {
+          "factorId": "geological_process_evidence",
+          "status": "missing",
+          "value": null,
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "Legacy regional narrative is not treated as newly retrieved, location-specific geological-process evidence."
+        }
+      ],
+      "sources": {
+        "climate": {
+          "status": "failed",
+          "provider": "NASA POWER",
+          "endpoint": "https://power.larc.nasa.gov/api/temporal/daily/point",
+          "sourceUrl": null,
+          "requestedCoordinate": {
+            "latitude": -23.3,
+            "longitude": -69.5
+          },
+          "retrievalAttemptedAt": "2026-11-14T22:01:40.093Z",
+          "error": "NASA POWER request failed after 1 attempts: fetch failed",
+          "rawPath": null,
+          "expectedRawPath": null
+        },
+        "terrain": {
+          "status": "failed",
+          "provider": "Copernicus DEM",
+          "endpoint": null,
+          "sourceUrl": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_S23_00_W070_00_DEM/Copernicus_DSM_COG_10_S23_00_W070_00_DEM.tif",
+          "requestedCoordinate": {
+            "latitude": -23.3,
+            "longitude": -69.5
+          },
+          "retrievalAttemptedAt": "2026-11-14T22:01:40.112Z",
+          "error": "Copernicus DEM request failed for CAND-ATACAMA-CLIM-001-000-S23.3000-W69.5000 (https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_S23_00_W070_00_DEM/Copernicus_DSM_COG_10_S23_00_W070_00_DEM.tif): Request failed",
+          "rawPath": null,
+          "expectedRawPath": "data/raw/copernicus-dem/CAND-ATACAMA-CLIM-001-000-S23.3000-W69.5000_GLO-30.json"
+        },
+        "geology": {
+          "status": "failed",
+          "provider": "GLiM ArcGIS Feature Service",
+          "endpoint": null,
+          "sourceUrl": "https://services8.arcgis.com/4KhTMTZ1x0f76DSg/ArcGIS/rest/services/GLiM_Niveau_I/FeatureServer/1",
+          "requestedCoordinate": {
+            "latitude": -23.3,
+            "longitude": -69.5
+          },
+          "retrievalAttemptedAt": "2026-11-14T22:01:40.118Z",
+          "error": "fetch failed",
+          "rawPath": null,
+          "expectedRawPath": "data/raw/glim/CAND-ATACAMA-CLIM-001-000-S23.3000-W69.5000_GLiM.json"
+        }
+      },
+      "limitations": [
+        "A grid candidate is a screening location, not a confirmed analog.",
+        "Mission result assesses required evidence presence only; no numerical thresholds or comparison scores are used.",
+        "Point products are sampled at approximate grid-cell centers and have source-specific spatial support."
+      ]
+    },
+    {
+      "id": "CAND-ATACAMA-CLIM-001-001-S23.3000-W69.3000",
+      "recordType": "candidate_region",
+      "planet": "Earth",
+      "latitude": -23.3,
+      "longitude": -69.3,
+      "coordinatesApproximate": true,
+      "spatialSupport": {
+        "studyAreaId": "atacama-climate-transect-v2",
+        "gridRow": 1,
+        "gridColumn": 1,
+        "cellSpacingDegrees": 0.2,
+        "referenceExclusionKm": 75
+      },
+      "status": "insufficient_evidence",
+      "screening": {
+        "missionProfileId": "mars-surface-analog-requirements",
+        "missionProfileVersion": "1.0.0",
+        "missionId": "extreme_environment_operations",
+        "status": "insufficient_evidence",
+        "requiredFactors": [
+          {
+            "factorId": "air_temperature_daily_mean",
+            "status": "failed",
+            "note": "NASA POWER request failed after 1 attempts: fetch failed"
+          },
+          {
+            "factorId": "air_temperature_extremes",
+            "status": "failed",
+            "note": "NASA POWER request failed after 1 attempts: fetch failed"
+          },
+          {
+            "factorId": "daily_temperature_range",
+            "status": "failed",
+            "note": "NASA POWER request failed after 1 attempts: fetch failed"
+          },
+          {
+            "factorId": "relative_humidity",
+            "status": "failed",
+            "note": "NASA POWER request failed after 1 attempts: fetch failed"
+          },
+          {
+            "factorId": "precipitation",
+            "status": "failed",
+            "note": "NASA POWER request failed after 1 attempts: fetch failed"
+          },
+          {
+            "factorId": "wind_speed",
+            "status": "failed",
+            "note": "NASA POWER request failed after 1 attempts: fetch failed"
+          }
+        ],
+        "missingFactors": [
+          "air_temperature_daily_mean",
+          "air_temperature_extremes",
+          "daily_temperature_range",
+          "relative_humidity",
+          "precipitation",
+          "wind_speed"
+        ],
+        "reasons": [
+          "Required evidence air_temperature_daily_mean is unavailable, failed, null, or has no valid observations.",
+          "Required evidence air_temperature_extremes is unavailable, failed, null, or has no valid observations.",
+          "Required evidence daily_temperature_range is unavailable, failed, null, or has no valid observations.",
+          "Required evidence relative_humidity is unavailable, failed, null, or has no valid observations.",
+          "Required evidence precipitation is unavailable, failed, null, or has no valid observations.",
+          "Required evidence wind_speed is unavailable, failed, null, or has no valid observations."
+        ],
+        "scientificClaimLimit": "Evidence availability only; not a confirmed Mars analog, mission suitability result, similarity score, or ranking."
+      },
+      "evidence": [
+        {
+          "factorId": "air_temperature_daily_mean",
+          "status": "failed",
+          "value": {
+            "T2M": null
+          },
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "NASA POWER request failed after 1 attempts: fetch failed"
+        },
+        {
+          "factorId": "air_temperature_extremes",
+          "status": "failed",
+          "value": {
+            "T2M_MAX": null,
+            "T2M_MIN": null
+          },
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "NASA POWER request failed after 1 attempts: fetch failed"
+        },
+        {
+          "factorId": "daily_temperature_range",
+          "status": "failed",
+          "value": null,
+          "unit": "°C",
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "NASA POWER request failed after 1 attempts: fetch failed"
+        },
+        {
+          "factorId": "relative_humidity",
+          "status": "failed",
+          "value": {
+            "RH2M": null
+          },
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "NASA POWER request failed after 1 attempts: fetch failed"
+        },
+        {
+          "factorId": "precipitation",
+          "status": "failed",
+          "value": {
+            "PRECTOTCORR": null
+          },
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "NASA POWER request failed after 1 attempts: fetch failed"
+        },
+        {
+          "factorId": "wind_speed",
+          "status": "failed",
+          "value": {
+            "WS10M": null
+          },
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "NASA POWER request failed after 1 attempts: fetch failed"
+        },
+        {
+          "factorId": "solar_radiation",
+          "status": "failed",
+          "value": {
+            "ALLSKY_SFC_SW_DWN": null
+          },
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "NASA POWER request failed after 1 attempts: fetch failed"
+        },
+        {
+          "factorId": "mapped_lithology",
+          "status": "failed",
+          "value": null,
+          "unit": "GLiM source categories",
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "fetch failed"
+        },
+        {
+          "factorId": "mineral_evidence",
+          "status": "missing",
+          "value": null,
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "Mineral evidence is not provided by GLiM and is not inferred from lithology."
+        },
+        {
+          "factorId": "elevation_point",
+          "status": "failed",
+          "value": null,
+          "unit": "m",
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "Copernicus DEM request failed for CAND-ATACAMA-CLIM-001-001-S23.3000-W69.3000 (https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_S23_00_W070_00_DEM/Copernicus_DSM_COG_10_S23_00_W070_00_DEM.tif): Request failed"
+        },
+        {
+          "factorId": "slope_roughness_relief",
+          "status": "missing",
+          "value": null,
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "This factor is not supplied by the currently enabled point integrations."
+        },
+        {
+          "factorId": "surface_material_class",
+          "status": "missing",
+          "value": null,
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "This factor is not supplied by the currently enabled point integrations."
+        },
+        {
+          "factorId": "sediment_regolith_properties",
+          "status": "missing",
+          "value": null,
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "This factor is not supplied by the currently enabled point integrations."
+        },
+        {
+          "factorId": "hydrological_context",
+          "status": "missing",
+          "value": null,
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "This factor is not supplied by the currently enabled point integrations."
+        },
+        {
+          "factorId": "terrestrial_surface_pressure",
+          "status": "missing",
+          "value": null,
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "This factor is not supplied by the currently enabled point integrations."
+        },
+        {
+          "factorId": "uv_radiation",
+          "status": "missing",
+          "value": null,
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "This factor is not supplied by the currently enabled point integrations."
+        },
+        {
+          "factorId": "dust_aerosol",
+          "status": "missing",
+          "value": null,
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "This factor is not supplied by the currently enabled point integrations."
+        },
+        {
+          "factorId": "aridity_water_balance",
+          "status": "missing",
+          "value": null,
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "This factor is not supplied by the currently enabled point integrations."
+        },
+        {
+          "factorId": "geological_process_evidence",
+          "status": "missing",
+          "value": null,
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "Legacy regional narrative is not treated as newly retrieved, location-specific geological-process evidence."
+        }
+      ],
+      "sources": {
+        "climate": {
+          "status": "failed",
+          "provider": "NASA POWER",
+          "endpoint": "https://power.larc.nasa.gov/api/temporal/daily/point",
+          "sourceUrl": null,
+          "requestedCoordinate": {
+            "latitude": -23.3,
+            "longitude": -69.3
+          },
+          "retrievalAttemptedAt": "2026-11-14T22:01:40.129Z",
+          "error": "NASA POWER request failed after 1 attempts: fetch failed",
+          "rawPath": null,
+          "expectedRawPath": null
+        },
+        "terrain": {
+          "status": "failed",
+          "provider": "Copernicus DEM",
+          "endpoint": null,
+          "sourceUrl": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_S23_00_W070_00_DEM/Copernicus_DSM_COG_10_S23_00_W070_00_DEM.tif",
+          "requestedCoordinate": {
+            "latitude": -23.3,
+            "longitude": -69.3
+          },
+          "retrievalAttemptedAt": "2026-11-14T22:01:40.142Z",
+          "error": "Copernicus DEM request failed for CAND-ATACAMA-CLIM-001-001-S23.3000-W69.3000 (https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_S23_00_W070_00_DEM/Copernicus_DSM_COG_10_S23_00_W070_00_DEM.tif): Request failed",
+          "rawPath": null,
+          "expectedRawPath": "data/raw/copernicus-dem/CAND-ATACAMA-CLIM-001-001-S23.3000-W69.3000_GLO-30.json"
+        },
+        "geology": {
+          "status": "failed",
+          "provider": "GLiM ArcGIS Feature Service",
+          "endpoint": null,
+          "sourceUrl": "https://services8.arcgis.com/4KhTMTZ1x0f76DSg/ArcGIS/rest/services/GLiM_Niveau_I/FeatureServer/1",
+          "requestedCoordinate": {
+            "latitude": -23.3,
+            "longitude": -69.3
+          },
+          "retrievalAttemptedAt": "2026-11-14T22:01:40.149Z",
+          "error": "fetch failed",
+          "rawPath": null,
+          "expectedRawPath": "data/raw/glim/CAND-ATACAMA-CLIM-001-001-S23.3000-W69.3000_GLiM.json"
+        }
+      },
+      "limitations": [
+        "A grid candidate is a screening location, not a confirmed analog.",
+        "Mission result assesses required evidence presence only; no numerical thresholds or comparison scores are used.",
+        "Point products are sampled at approximate grid-cell centers and have source-specific spatial support."
+      ]
+    }
+  ],
+  "limitations": [
+    "Bounded configured study area only; no global coverage.",
+    "Reference masking uses point coordinates; region-level references without coordinates are explicitly unmasked.",
+    "Evidence presence is not similarity, mission suitability, or scientific confirmation.",
+    "NASA POWER is gridded; Copernicus GLO-30 is a DSM; GLiM is a generalized map; approximate cell coordinates add uncertainty."
+  ]
+}

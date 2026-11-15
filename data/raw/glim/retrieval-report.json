@@ -1,0 +1,67 @@
+{
+  "generatedAt": "2026-11-14T14:05:55.659Z",
+  "provider": "GLiM ArcGIS Feature Service",
+  "layer": "GLiM_Niveau_I (FeatureServer/1)",
+  "requestedSiteIds": [
+    "GKC",
+    "GKB",
+    "WDE",
+    "KHA",
+    "RTI"
+  ],
+  "successfulSiteCount": 5,
+  "failedSiteCount": 0,
+  "sites": [
+    {
+      "locationId": "GKC",
+      "status": "retrieved",
+      "rawPath": "data/raw/glim/GKC_GLiM.json",
+      "featureCount": 1,
+      "classificationStatus": "mapped",
+      "objectIds": [
+        936054
+      ]
+    },
+    {
+      "locationId": "GKB",
+      "status": "retrieved",
+      "rawPath": "data/raw/glim/GKB_GLiM.json",
+      "featureCount": 1,
+      "classificationStatus": "mapped",
+      "objectIds": [
+        935813
+      ]
+    },
+    {
+      "locationId": "WDE",
+      "status": "retrieved",
+      "rawPath": "data/raw/glim/WDE_GLiM.json",
+      "featureCount": 1,
+      "classificationStatus": "mapped",
+      "objectIds": [
+        935600
+      ]
+    },
+    {
+      "locationId": "KHA",
+      "status": "retrieved",
+      "rawPath": "data/raw/glim/KHA_GLiM.json",
+      "featureCount": 1,
+      "classificationStatus": "mapped",
+      "objectIds": [
+        935449
+      ]
+    },
+    {
+      "locationId": "RTI",
+      "status": "retrieved",
+      "rawPath": "data/raw/glim/RTI_GLiM.json",
+      "featureCount": 1,
+      "classificationStatus": "mapped",
+      "objectIds": [
+        410261
+      ]
+    }
+  ],
+  "failures": []
+}

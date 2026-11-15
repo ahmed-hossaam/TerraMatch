@@ -1,0 +1,30 @@
+import type { LocationRecord } from "../src/types/location.js";
+import type { MissionProfile } from "../src/types/mission-profile.js";
+import { spawnSync } from "node:child_process";
+import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
+import { randomUUID } from "node:crypto";
+import { loadJson, persistDiscoveryArchive, persistDiscoveryRun, runDiscovery } from "../src/discovery/run.js";
+import { validateStudyArea } from "../src/discovery/grid.js";
+const areaPath=process.env.DISCOVERY_STUDY_AREA??"data/discovery/study-areas/atacama-climate-transect-v2.json";
+const missionId=process.env.DISCOVERY_MISSION_ID??"extreme_environment_operations";
+const outputPath=process.env.DISCOVERY_OUTPUT??"data/processed/discovery-runs/latest.json";
+const areaFile=await loadJson(areaPath); const area=areaFile.studyArea;
+if(areaFile.schemaVersion!=="1.0.0")throw new Error("Study area config schemaVersion must be 1.0.0.");
+if(process.env.DISCOVERY_MAX_CANDIDATES)area.maxCandidates=Number(process.env.DISCOVERY_MAX_CANDIDATES);
+if(areaFile.providerRequestLimit!=null&&area.maxCandidates*3>areaFile.providerRequestLimit)throw new Error(`Configured grid may require ${area.maxCandidates*3} point-provider requests, exceeding the declared limit of ${areaFile.providerRequestLimit}.`);
+const errors=validateStudyArea(area); if(errors.length)throw new Error(`Study area invalid: ${errors.join("; ")}`);
+const references=await loadJson("data/processed/reference-sites.json") as LocationRecord[];
+const profile=await loadJson(process.env.DISCOVERY_MISSION_PROFILE??"data/mission-profiles/mars-surface-v1.json") as MissionProfile;
+const run=await runDiscovery({studyArea:area,studyAreaConfigurationStatus:areaFile.configurationStatus??"user_configured",studyAreaLimitations:areaFile.scientificLimitations??[],missionProfile:profile,missionId,references,retrievalOptions:{timeoutMs:Number(process.env.DISCOVERY_TIMEOUT_MS??20000)}});
+const archivePath=await persistDiscoveryArchive(run);
+if(outputPath==="data/processed/discovery-runs/latest.json") {
+  const validationInput=`data/app-runtime/discovery-validation/${run.runId}.json`,validationPath=`data/processed/discovery-runs/validation-reports/${run.runId}.json`;
+  await persistDiscoveryRun(run,validationInput);
+  const validation=spawnSync(process.execPath,["dist/scripts/validate-discovery.js"],{encoding:"utf8",env:{...process.env,DISCOVERY_OUTPUT:validationInput,DISCOVERY_VALIDATION_OUTPUT:validationPath}});
+  let report:any=null;try{report=JSON.parse(await readFile(validationPath,"utf8"));}catch{}
+  if(validation.status!==0||report?.runId!==run.runId||report?.status!=="valid")throw new Error(`Discovery run ${run.runId} archived at ${archivePath}, but required validation failed: ${(report?.errors??[]).join("; ")||validation.stderr||validation.stdout||"validation report missing or mismatched"}`);
+  await persistDiscoveryRun(run,outputPath);
+  const atomic=async(path:string,value:unknown)=>{await mkdir(path.slice(0,path.lastIndexOf("/")),{recursive:true});const temp=`${path}.${randomUUID()}.tmp`;await writeFile(temp,`${JSON.stringify(value,null,2)}\n`,"utf8");await rename(temp,path);};
+  const latestReport={...report,sourceRunPath:outputPath};await atomic(validationPath,latestReport);await atomic("data/processed/discovery-runs/validation-report.json",latestReport);
+} else await persistDiscoveryRun(run,outputPath);
+console.log(JSON.stringify({configurationStatus:areaFile.configurationStatus??"user_configured",runId:run.runId,outputPath,archivePath,generatedCellCount:run.generatedCellCount,excludedReferenceOverlapCount:run.excludedReferenceOverlapCount,candidates:run.candidates.map(c=>({id:c.id,recordType:c.recordType,latitude:c.latitude,longitude:c.longitude,status:c.status,missingFactors:c.screening.missingFactors,sources:Object.fromEntries(Object.entries(c.sources).map(([key,value]:any)=>[key,value.status]))}))},null,2));

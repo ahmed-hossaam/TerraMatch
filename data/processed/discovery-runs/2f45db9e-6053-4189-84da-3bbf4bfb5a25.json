@@ -1,0 +1,605 @@
+{
+  "schemaVersion": "1.0.0",
+  "runId": "2f45db9e-6053-4189-84da-3bbf4bfb5a25",
+  "configurationId": "ff0f618142e85454",
+  "createdAt": "2026-11-14T17:54:20.960Z",
+  "status": "completed",
+  "missionProfileId": "mars-surface-analog-requirements",
+  "missionProfileVersion": "1.0.0",
+  "missionId": "rover_surface_testing",
+  "studyArea": {
+    "id": "atacama-bounded-test",
+    "label": "Bounded grid pipeline demonstration near the Atacama region",
+    "boundingBox": {
+      "minLatitude": -23.6,
+      "minLongitude": -69.3,
+      "maxLatitude": -23.4,
+      "maxLongitude": -69.1
+    },
+    "spacingDegrees": 0.2,
+    "maxCandidates": 1,
+    "referenceExclusionKm": 75
+  },
+  "studyAreaConfigurationStatus": "demonstration_test_configuration_not_a_scientific_discovery",
+  "studyAreaLimitations": [
+    "This single-cell area is a pipeline demonstration, not a selected discovery region or claim of a new analog.",
+    "The bounding box is adjacent to a known Atacama analog region; a configurable 75 km exclusion around known reference coordinates does not guarantee geological independence.",
+    "The generated grid center is a sampling coordinate for one coarse cell and not a field site."
+  ],
+  "generatedCellCount": 1,
+  "excludedReferenceOverlapCount": 0,
+  "referenceMasking": {
+    "rule": "Reference point within configured distance after conservative grid-cell half-diagonal expansion; coordinate-free references are unmasked.",
+    "pointReferenceIdsUsed": [
+      "GKC",
+      "GKB",
+      "WDE",
+      "KHA",
+      "ATA",
+      "MOJ",
+      "DEV",
+      "RAM",
+      "DHO",
+      "PIL",
+      "WHS",
+      "MDRS",
+      "GOB",
+      "MET",
+      "BON",
+      "MDV",
+      "RTI",
+      "LON",
+      "SAL",
+      "LAN",
+      "HIS",
+      "HMP",
+      "ETN",
+      "KIL",
+      "SVA",
+      "LAM",
+      "DALL",
+      "DAL",
+      "AHS-GH"
+    ],
+    "unmaskedRegionReferenceIds": [
+      "SEM",
+      "LUT"
+    ],
+    "invalidCoordinateReferenceIds": []
+  },
+  "candidates": [
+    {
+      "id": "CAND-ATACAMA-BOUN-000-000-S23.5000-W69.2000",
+      "recordType": "candidate_region",
+      "planet": "Earth",
+      "latitude": -23.5,
+      "longitude": -69.2,
+      "coordinatesApproximate": true,
+      "spatialSupport": {
+        "studyAreaId": "atacama-bounded-test",
+        "gridRow": 0,
+        "gridColumn": 0,
+        "cellSpacingDegrees": 0.2,
+        "referenceExclusionKm": 75
+      },
+      "status": "insufficient_evidence",
+      "screening": {
+        "missionProfileId": "mars-surface-analog-requirements",
+        "missionProfileVersion": "1.0.0",
+        "missionId": "rover_surface_testing",
+        "status": "insufficient_evidence",
+        "requiredFactors": [
+          {
+            "factorId": "slope_roughness_relief",
+            "status": "missing",
+            "note": "This factor is not supplied by the currently enabled point integrations."
+          },
+          {
+            "factorId": "surface_material_class",
+            "status": "missing",
+            "note": "This factor is not supplied by the currently enabled point integrations."
+          },
+          {
+            "factorId": "sediment_regolith_properties",
+            "status": "missing",
+            "note": "This factor is not supplied by the currently enabled point integrations."
+          }
+        ],
+        "missingFactors": [
+          "slope_roughness_relief",
+          "surface_material_class",
+          "sediment_regolith_properties"
+        ],
+        "reasons": [
+          "Required evidence slope_roughness_relief is unavailable, failed, null, or has no valid observations.",
+          "Required evidence surface_material_class is unavailable, failed, null, or has no valid observations.",
+          "Required evidence sediment_regolith_properties is unavailable, failed, null, or has no valid observations."
+        ],
+        "scientificClaimLimit": "Evidence availability only; not a confirmed Mars analog, mission suitability result, similarity score, or ranking."
+      },
+      "evidence": [
+        {
+          "factorId": "air_temperature_daily_mean",
+          "status": "available",
+          "value": {
+            "T2M": 16.884410677618067
+          },
+          "unit": "°C",
+          "sourceId": "nasa-power-daily-point",
+          "provenancePath": "data/raw/nasa-power/CAND-ATACAMA-BOUN-000-000-S23_5000-W69_2000_2001-2020_356d6e9310a9.json",
+          "note": "7305 valid parameter observations; daily summaries come from NASA POWER gridded product."
+        },
+        {
+          "factorId": "air_temperature_extremes",
+          "status": "available",
+          "value": {
+            "T2M_MAX": 26.256355920602136,
+            "T2M_MIN": 9.640316221765914
+          },
+          "unit": "°C, °C",
+          "sourceId": "nasa-power-daily-point",
+          "provenancePath": "data/raw/nasa-power/CAND-ATACAMA-BOUN-000-000-S23_5000-W69_2000_2001-2020_356d6e9310a9.json",
+          "note": "14610 valid parameter observations; daily summaries come from NASA POWER gridded product."
+        },
+        {
+          "factorId": "daily_temperature_range",
+          "status": "available",
+          "value": "daily T2M_MAX - T2M_MIN values present",
+          "unit": "°C",
+          "sourceId": "nasa-power-daily-point",
+          "provenancePath": "data/raw/nasa-power/CAND-ATACAMA-BOUN-000-000-S23_5000-W69_2000_2001-2020_356d6e9310a9.json",
+          "note": "Derived per day only when both extrema are valid."
+        },
+        {
+          "factorId": "relative_humidity",
+          "status": "available",
+          "value": {
+            "RH2M": 28.214602327173175
+          },
+          "unit": "%",
+          "sourceId": "nasa-power-daily-point",
+          "provenancePath": "data/raw/nasa-power/CAND-ATACAMA-BOUN-000-000-S23_5000-W69_2000_2001-2020_356d6e9310a9.json",
+          "note": "7305 valid parameter observations; daily summaries come from NASA POWER gridded product."
+        },
+        {
+          "factorId": "precipitation",
+          "status": "available",
+          "value": {
+            "PRECTOTCORR": 0.029367556468172504
+          },
+          "unit": "mm/day",
+          "sourceId": "nasa-power-daily-point",
+          "provenancePath": "data/raw/nasa-power/CAND-ATACAMA-BOUN-000-000-S23_5000-W69_2000_2001-2020_356d6e9310a9.json",
+          "note": "7305 valid parameter observations; daily summaries come from NASA POWER gridded product."
+        },
+        {
+          "factorId": "wind_speed",
+          "status": "available",
+          "value": {
+            "WS10M": 3.9235181382614646
+          },
+          "unit": "m/s",
+          "sourceId": "nasa-power-daily-point",
+          "provenancePath": "data/raw/nasa-power/CAND-ATACAMA-BOUN-000-000-S23_5000-W69_2000_2001-2020_356d6e9310a9.json",
+          "note": "7305 valid parameter observations; daily summaries come from NASA POWER gridded product."
+        },
+        {
+          "factorId": "solar_radiation",
+          "status": "available",
+          "value": {
+            "ALLSKY_SFC_SW_DWN": 25.85613689253928
+          },
+          "unit": "MJ/m²/day",
+          "sourceId": "nasa-power-daily-point",
+          "provenancePath": "data/raw/nasa-power/CAND-ATACAMA-BOUN-000-000-S23_5000-W69_2000_2001-2020_356d6e9310a9.json",
+          "note": "7305 valid parameter observations; daily summaries come from NASA POWER gridded product."
+        },
+        {
+          "factorId": "mapped_lithology",
+          "status": "available",
+          "value": [
+            {
+              "OBJECTID": 48862,
+              "IDENTITY_": "CHL3021",
+              "Litho": "vbpy__",
+              "xx": "vb",
+              "yy": "py",
+              "zz": "__",
+              "xx_Description": "Basic volcanic rocks",
+              "yy_Description": "Pyroclastics mentioned",
+              "zz_Description": null
+            }
+          ],
+          "unit": "GLiM source categories",
+          "sourceId": "glim-v1.1-level-i",
+          "provenancePath": "data/raw/glim/CAND-ATACAMA-BOUN-000-000-S23.5000-W69.2000_GLiM.json",
+          "note": "One generalized mapped polygon; not field verification or mineralogy."
+        },
+        {
+          "factorId": "mineral_evidence",
+          "status": "missing",
+          "value": null,
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "Mineral evidence is not provided by GLiM and is not inferred from lithology."
+        },
+        {
+          "factorId": "elevation_point",
+          "status": "failed",
+          "value": null,
+          "unit": "m",
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "Copernicus DEM request failed for CAND-ATACAMA-BOUN-000-000-S23.5000-W69.2000 (https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_S23_00_W070_00_DEM/Copernicus_DSM_COG_10_S23_00_W070_00_DEM.tif): Coordinate falls outside raster dimensions."
+        },
+        {
+          "factorId": "slope_roughness_relief",
+          "status": "missing",
+          "value": null,
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "This factor is not supplied by the currently enabled point integrations."
+        },
+        {
+          "factorId": "surface_material_class",
+          "status": "missing",
+          "value": null,
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "This factor is not supplied by the currently enabled point integrations."
+        },
+        {
+          "factorId": "sediment_regolith_properties",
+          "status": "missing",
+          "value": null,
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "This factor is not supplied by the currently enabled point integrations."
+        },
+        {
+          "factorId": "hydrological_context",
+          "status": "missing",
+          "value": null,
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "This factor is not supplied by the currently enabled point integrations."
+        },
+        {
+          "factorId": "terrestrial_surface_pressure",
+          "status": "missing",
+          "value": null,
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "This factor is not supplied by the currently enabled point integrations."
+        },
+        {
+          "factorId": "uv_radiation",
+          "status": "missing",
+          "value": null,
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "This factor is not supplied by the currently enabled point integrations."
+        },
+        {
+          "factorId": "dust_aerosol",
+          "status": "missing",
+          "value": null,
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "This factor is not supplied by the currently enabled point integrations."
+        },
+        {
+          "factorId": "aridity_water_balance",
+          "status": "missing",
+          "value": null,
+          "unit": null,
+          "sourceId": null,
+          "provenancePath": null,
+          "note": "This factor is not supplied by the currently enabled point integrations."
+        }
+      ],
+      "sources": {
+        "climate": {
+          "status": "success",
+          "provider": "NASA POWER",
+          "requestedPeriod": {
+            "start": "2001-01-01",
+            "end": "2020-12-31"
+          },
+          "actualObservationPeriod": {
+            "start": "2001-01-01",
+            "end": "2020-12-31"
+          },
+          "parameters": [
+            "T2M",
+            "T2M_MAX",
+            "T2M_MIN",
+            "RH2M",
+            "PRECTOTCORR",
+            "WS10M",
+            "ALLSKY_SFC_SW_DWN"
+          ],
+          "coverage": {
+            "T2M": {
+              "validObservationCount": 7305,
+              "missingObservationCount": 0,
+              "coveragePercent": 100,
+              "unit": "°C"
+            },
+            "T2M_MAX": {
+              "validObservationCount": 7305,
+              "missingObservationCount": 0,
+              "coveragePercent": 100,
+              "unit": "°C"
+            },
+            "T2M_MIN": {
+              "validObservationCount": 7305,
+              "missingObservationCount": 0,
+              "coveragePercent": 100,
+              "unit": "°C"
+            },
+            "RH2M": {
+              "validObservationCount": 7305,
+              "missingObservationCount": 0,
+              "coveragePercent": 100,
+              "unit": "%"
+            },
+            "PRECTOTCORR": {
+              "validObservationCount": 7305,
+              "missingObservationCount": 0,
+              "coveragePercent": 100,
+              "unit": "mm/day"
+            },
+            "WS10M": {
+              "validObservationCount": 7305,
+              "missingObservationCount": 0,
+              "coveragePercent": 100,
+              "unit": "m/s"
+            },
+            "ALLSKY_SFC_SW_DWN": {
+              "validObservationCount": 7305,
+              "missingObservationCount": 0,
+              "coveragePercent": 100,
+              "unit": "MJ/m²/day"
+            }
+          },
+          "rawPath": "data/raw/nasa-power/CAND-ATACAMA-BOUN-000-000-S23_5000-W69_2000_2001-2020_356d6e9310a9.json",
+          "metadataPath": "data/raw/nasa-power/CAND-ATACAMA-BOUN-000-000-S23_5000-W69_2000_2001-2020_356d6e9310a9.meta.json",
+          "normalizedDailyPath": "data/processed/climate/candidates/CAND-ATACAMA-BOUN-000-000-S23.5000-W69.2000-daily.json",
+          "cacheHit": true,
+          "normalizationPersistence": {
+            "status": "saved"
+          },
+          "provenance": {
+            "sourceId": "nasa-power-daily",
+            "provider": "NASA POWER",
+            "endpoint": "https://power.larc.nasa.gov/api/temporal/daily/point",
+            "sourceUrl": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M%2CT2M_MAX%2CT2M_MIN%2CRH2M%2CPRECTOTCORR%2CWS10M%2CALLSKY_SFC_SW_DWN&community=AG&longitude=-69.2&latitude=-23.5&start=20010101&end=20201231&format=JSON&time-standard=UTC",
+            "retrievedAt": "2026-11-14T15:13:55.561Z",
+            "requestParameters": {
+              "latitude": "-23.5",
+              "longitude": "-69.2",
+              "parameters": "T2M,T2M_MAX,T2M_MIN,RH2M,PRECTOTCORR,WS10M,ALLSKY_SFC_SW_DWN",
+              "community": "AG",
+              "start": "20010101",
+              "end": "20201231",
+              "format": "JSON",
+              "time-standard": "UTC"
+            },
+            "originalUnits": {
+              "T2M": "C",
+              "T2M_MAX": "C",
+              "T2M_MIN": "C",
+              "RH2M": "%",
+              "PRECTOTCORR": "mm/day",
+              "WS10M": "m/s",
+              "ALLSKY_SFC_SW_DWN": "MJ/m^2/day"
+            },
+            "outputUnits": {
+              "T2M": "°C",
+              "T2M_MAX": "°C",
+              "T2M_MIN": "°C",
+              "RH2M": "%",
+              "PRECTOTCORR": "mm/day",
+              "WS10M": "m/s",
+              "ALLSKY_SFC_SW_DWN": "MJ/m²/day"
+            },
+            "processingMethod": "UTC daily point response; original numeric observations retained; fill sentinel mapped to null; summaries and complete-year precipitation derived without imputation",
+            "spatialResolution": "Meteorology: 0.5° latitude × 0.625° longitude MERRA-2 grid; point request snaps to provider grid",
+            "temporalResolution": "Daily",
+            "qualityStatus": "needs_verification"
+          }
+        },
+        "terrain": {
+          "status": "failed",
+          "provider": "Copernicus DEM",
+          "endpoint": null,
+          "sourceUrl": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_S23_00_W070_00_DEM/Copernicus_DSM_COG_10_S23_00_W070_00_DEM.tif",
+          "requestedCoordinate": {
+            "latitude": -23.5,
+            "longitude": -69.2
+          },
+          "retrievalAttemptedAt": "2026-11-14T17:54:20.693Z",
+          "error": "Copernicus DEM request failed for CAND-ATACAMA-BOUN-000-000-S23.5000-W69.2000 (https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_S23_00_W070_00_DEM/Copernicus_DSM_COG_10_S23_00_W070_00_DEM.tif): Coordinate falls outside raster dimensions.",
+          "rawPath": null,
+          "expectedRawPath": "data/raw/copernicus-dem/CAND-ATACAMA-BOUN-000-000-S23.5000-W69.2000_GLO-30.json"
+        },
+        "geology": {
+          "status": "success",
+          "classificationStatus": "mapped",
+          "features": [
+            {
+              "objectId": 48862,
+              "identity": "CHL3021",
+              "litho": "vbpy__",
+              "levels": {
+                "xx": "vb",
+                "yy": "py",
+                "zz": "__"
+              },
+              "descriptions": {
+                "xx": "Basic volcanic rocks",
+                "yy": "Pyroclastics mentioned",
+                "zz": null
+              },
+              "originalAttributes": {
+                "OBJECTID": 48862,
+                "IDENTITY_": "CHL3021",
+                "Litho": "vbpy__",
+                "xx": "vb",
+                "yy": "py",
+                "zz": "__",
+                "xx_Description": "Basic volcanic rocks",
+                "yy_Description": "Pyroclastics mentioned",
+                "zz_Description": null
+              },
+              "geometry": {
+                "rings": [
+                  [
+                    [
+                      -69.1967570908566,
+                      -23.4995381543402
+                    ],
+                    [
+                      -69.205689302933,
+                      -23.5012338236145
+                    ],
+                    [
+                      -69.2096810746958,
+                      -23.5012104358916
+                    ],
+                    [
+                      -69.2126388397525,
+                      -23.4936911106284
+                    ],
+                    [
+                      -69.2128320682685,
+                      -23.4912790784186
+                    ],
+                    [
+                      -69.2118149624661,
+                      -23.4875769995023
+                    ],
+                    [
+                      -69.2088460618931,
+                      -23.4823374371904
+                    ],
+                    [
+                      -69.2073174670461,
+                      -23.4747157468912
+                    ],
+                    [
+                      -69.2074217901967,
+                      -23.4666718412028
+                    ],
+                    [
+                      -69.2094338960589,
+                      -23.4572930275997
+                    ],
+                    [
+                      -69.2087191434182,
+                      -23.4561242274104
+                    ],
+                    [
+                      -69.2037019510468,
+                      -23.4527932075486
+                    ],
+                    [
+                      -69.1984784920114,
+                      -23.4523302284459
+                    ],
+                    [
+                      -69.1937731857234,
+                      -23.4599237679443
+                    ],
+                    [
+                      -69.1867088361258,
+                      -23.4758573450363
+                    ],
+                    [
+                      -69.1896011113033,
+                      -23.4793721547774
+                    ],
+                    [
+                      -69.1931856560866,
+                      -23.4804878288353
+                    ],
+                    [
+                      -69.1926215212747,
+                      -23.4871412261422
+                    ],
+                    [
+                      -69.1977838831927,
+                      -23.4941577985677
+                    ],
+                    [
+                      -69.1967570908566,
+                      -23.4995381543402
+                    ]
+                  ]
+                ]
+              }
+            }
+          ],
+          "provenance": {
+            "provider": "GLiM ArcGIS Feature Service",
+            "dataset": "GLiM v1.1 (ArcGIS Feature Service description)",
+            "endpoint": "https://services8.arcgis.com/4KhTMTZ1x0f76DSg/ArcGIS/rest/services/GLiM_Niveau_I/FeatureServer/1/query",
+            "sourceUrl": "https://services8.arcgis.com/4KhTMTZ1x0f76DSg/ArcGIS/rest/services/GLiM_Niveau_I/FeatureServer/1/query",
+            "retrievedAt": "2026-11-14T15:13:57.458Z",
+            "requestParameters": {
+              "geometry": {
+                "x": -69.2,
+                "y": -23.5,
+                "spatialReference": {
+                  "wkid": 4326,
+                  "latestWkid": 4326
+                }
+              },
+              "outFields": [
+                "OBJECTID",
+                "IDENTITY_",
+                "Litho",
+                "xx",
+                "yy",
+                "zz",
+                "xx_Description",
+                "yy_Description",
+                "zz_Description"
+              ],
+              "spatialRel": "esriSpatialRelIntersects",
+              "inSR": 4326,
+              "outSR": 4326
+            },
+            "spatialResolution": "Global map average scale approximately 1:3,750,000; polygon-specific scale varies.",
+            "qualityStatus": "needs_verification"
+          },
+          "warnings": [
+            "Atlas coordinates are approximate; GLiM classification describes mapped polygon(s) intersecting the supplied point, not confirmed geology of the named site.",
+            "GLiM is a generalized global lithology map, not site-level field-verified mineralogy; lithology does not prove mineral presence."
+          ],
+          "rawPath": "data/raw/glim/CAND-ATACAMA-BOUN-000-000-S23.5000-W69.2000_GLiM.json"
+        }
+      },
+      "limitations": [
+        "A grid candidate is a screening location, not a confirmed analog.",
+        "Mission result assesses required evidence presence only; no numerical thresholds or comparison scores are used.",
+        "Point products are sampled at approximate grid-cell centers and have source-specific spatial support."
+      ]
+    }
+  ],
+  "limitations": [
+    "Bounded configured study area only; no global coverage.",
+    "Reference masking uses point coordinates; region-level references without coordinates are explicitly unmasked.",
+    "Evidence presence is not similarity, mission suitability, or scientific confirmation.",
+    "NASA POWER is gridded; Copernicus GLO-30 is a DSM; GLiM is a generalized map; approximate cell coordinates add uncertainty."
+  ]
+}

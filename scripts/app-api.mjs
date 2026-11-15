@@ -1,0 +1,177 @@
+import { createServer } from "node:http";
+import { spawn } from "node:child_process";
+import { access, mkdir, readFile, readdir, rename, writeFile } from "node:fs/promises";
+import { extname, join, normalize, resolve, sep } from "node:path";
+import { randomUUID } from "node:crypto";
+
+const root = process.cwd();
+const runtime = join(root, "data", "app-runtime");
+const jobsDir = join(runtime, "jobs");
+const outputDir = join(runtime, "discovery-runs");
+const port = Number(process.env.PORT ?? 8787);
+let activeJob = false;
+const json = async (path) => JSON.parse(await readFile(join(root, path), "utf8"));
+const optional = async (path) => { try { await access(join(root, path)); return await json(path); } catch { return null; } };
+const atomic = async (path, value) => { await mkdir(join(root, path, ".."), { recursive: true }); const tmp = `${join(root, path)}.${process.pid}.tmp`; await writeFile(tmp, `${JSON.stringify(value, null, 2)}\n`, "utf8"); await rename(tmp, join(root, path)); };
+const send = (res, status, value) => { res.writeHead(status, { "content-type": "application/json; charset=utf-8", "cache-control": "no-store" }); res.end(JSON.stringify(value)); };
+// Atlas source fields are preserved verbatim on disk. These curated display labels
+// keep the public application English without rewriting research/source artifacts.
+const englishCountries = new Map([["مصر","Egypt"],["تشيلي","Chile"],["الولايات المتحدة","United States"],["إسرائيل","Israel"],["عُمان","Oman"],["أستراليا","Australia"],["الصين","China"],["أنتاركتيكا","Antarctica"],["إسبانيا","Spain"],["الهند","India"],["تركيا","Türkiye"],["كندا","Canada"],["إيطاليا","Italy"],["النرويج","Norway"],["آيسلندا","Iceland"]]);
+function englishDisplayValue(value) {
+  if (typeof value === "string") return /[\u0600-\u06ff]/u.test(value) ? null : value;
+  if (Array.isArray(value)) return value.map(englishDisplayValue);
+  if (value && typeof value === "object") return Object.fromEntries(Object.entries(value).map(([key, child]) => [key, englishDisplayValue(child)]));
+  return value;
+}
+function displayReference(record) {
+  const display = englishDisplayValue(record);
+  const country = record.country == null ? null : englishCountries.get(record.country) ?? record.country;
+  return { ...display, country, atlas: display.atlas ? { ...display.atlas, nameAr: "" } : display.atlas };
+}
+function displayComparison(record) {
+  const display = englishDisplayValue(record);
+  const sites = record?.referenceDataset?.sites;
+  if (!display?.referenceDataset || !Array.isArray(sites)) return display;
+  return { ...display, referenceDataset: { ...display.referenceDataset, sites: sites.map((site, index) => ({ ...display.referenceDataset.sites[index], country: site.country == null ? null : englishCountries.get(site.country) ?? null })) } };
+}
+const idPattern = /^(?!\.{1,2}$)[A-Za-z0-9_.-]{1,120}$/;
+const runPattern = /^[a-f0-9-]{16,64}$/i;
+async function readBody(req) {
+  let body = "";
+  for await (const chunk of req) { body += chunk; if (body.length > 8192) throw Object.assign(new Error("Request body exceeds 8 KB."), { status: 413 }); }
+  try { return body ? JSON.parse(body) : {}; } catch { throw Object.assign(new Error("Request body must be valid JSON."), { status: 400 }); }
+}
+async function files(dir, pattern) {
+  try { return (await readdir(join(root, dir))).filter((name) => pattern.test(name)).sort().reverse(); } catch { return []; }
+}
+async function currentArtifacts() {
+  const [references, fixtures, profile, discovery, comparison, missionReport, discoveryValidation, comparisonValidation] = await Promise.all([
+    json("data/processed/reference-sites.json"), json("data/processed/candidate-points.json"), json("data/mission-profiles/mars-surface-v1.json"),
+    optional("data/processed/discovery-runs/latest.json"), optional("data/processed/comparison-runs/latest.json"), optional("data/processed/mission-profiles/validation-report.json"),
+    optional("data/processed/discovery-runs/validation-report.json"), optional("data/processed/comparison-runs/validation-report.json"),
+  ]);
+  return { references: Array.isArray(references) ? references : references.records ?? [], fixtures: Array.isArray(fixtures) ? fixtures : fixtures.records ?? [], profile, discovery, comparison, missionReport, discoveryValidation, comparisonValidation };
+}
+function validationState(report, run) {
+  if (!report || !run) return { status: "missing", runId: report?.runId ?? null, errors: report?.errors?.length ?? null };
+  if (report.runId !== run.runId) return { status: "stale", runId: report.runId, errors: report.errors?.length ?? null };
+  return { status: report.status === "valid" ? "valid" : "invalid", runId: report.runId, errors: report.errors?.length ?? 0 };
+}
+function candidateCellBounds(candidate, studyArea) {
+  const spacing=candidate?.spatialSupport?.cellSpacingDegrees, row=candidate?.spatialSupport?.gridRow, column=candidate?.spatialSupport?.gridColumn, box=studyArea?.boundingBox;
+  if(!box||![spacing,row,column].every(Number.isFinite)||spacing<=0)return null;
+  const minLatitude=box.minLatitude+row*spacing, minLongitude=box.minLongitude+column*spacing;
+  return {minLatitude:Number(minLatitude.toFixed(10)),maxLatitude:Number(Math.min(minLatitude+spacing,box.maxLatitude).toFixed(10)),minLongitude:Number(minLongitude.toFixed(10)),maxLongitude:Number(Math.min(minLongitude+spacing,box.maxLongitude).toFixed(10))};
+}
+async function listRuns(kind) {
+  const dir = kind === "discovery" ? "data/processed/discovery-runs" : "data/processed/comparison-runs";
+  const pattern = /^[a-f0-9-]{16,64}\.json$/i;
+  const names = await files(dir, pattern);
+  const rows=await Promise.all(names.map(async (name) => {
+    try { const x = await json(`${dir}/${name}`); return kind === "discovery" ? { runId:x.runId, createdAt:x.createdAt, status:x.status, missionId:x.missionId, candidateCount:x.candidates?.length ?? 0, configurationId:x.configurationId, studyArea:x.studyArea?.label } : { runId:x.runId, createdAt:x.createdAt, status:x.status, candidateCount:x.candidateCount, referenceCount:x.referenceDataset?.count, comparisonPairCount:x.comparisonPairCount, discoveryRunId:x.discoveryRun?.runId }; } catch { return null; }
+  }));
+  return rows.filter(Boolean).sort((a,b)=>String(b.createdAt??"").localeCompare(String(a.createdAt??"")));
+}
+async function getJob(jobId) { if (!runPattern.test(jobId)) return null; return optional(`data/app-runtime/jobs/${jobId}.json`); }
+function childRun(args, env) {
+  return new Promise((resolvePromise, reject) => {
+    const child = spawn(process.execPath, args, { cwd: root, env: { ...process.env, ...env }, stdio: ["ignore", "pipe", "pipe"] });
+    let stdout = "", stderr = "";
+    child.stdout.on("data", (chunk) => { stdout += chunk.toString(); });
+    child.stderr.on("data", (chunk) => { stderr += chunk.toString(); });
+    const timer = setTimeout(() => child.kill("SIGTERM"), Number(process.env.APP_JOB_TIMEOUT_MS ?? 180000));
+    child.on("error", (err) => { clearTimeout(timer); reject(err); });
+    child.on("close", (code) => { clearTimeout(timer); if (code === 0) resolvePromise({ stdout, stderr }); else reject(new Error((stderr || stdout || `Child exited ${code}`).slice(-3000))); });
+  });
+}
+async function launchJob(input) {
+  if(!input||typeof input!=="object"||Array.isArray(input))throw Object.assign(new Error("Request must contain missionId and studyAreaId."),{status:400});
+  if (activeJob) throw Object.assign(new Error("A discovery job is already running."), { status: 409 });
+  const profile = await json("data/mission-profiles/mars-surface-v1.json");
+  const mission = profile.missions.find((item) => item.id === input.missionId);
+  if (!mission) throw Object.assign(new Error("Select a mission in the configured Mars profile."), { status: 400 });
+  const areaFiles = await files("data/discovery/study-areas", /^[-A-Za-z0-9_]+\.json$/);
+  let selected = null;
+  for (const file of areaFiles) { const item = await json(`data/discovery/study-areas/${file}`); if (item.studyArea?.id === input.studyAreaId) selected = { file, item }; }
+  if (!selected) throw Object.assign(new Error("Study area is not allowlisted."), { status: 400 });
+  const area = selected.item.studyArea;
+  const box = area.boundingBox;
+  if (![box.minLatitude,box.maxLatitude,box.minLongitude,box.maxLongitude,area.spacingDegrees].every(Number.isFinite) || box.minLatitude < -90 || box.maxLatitude > 90 || box.minLongitude < -180 || box.maxLongitude > 180 || area.maxCandidates > 100 || area.maxCandidates < 1) throw Object.assign(new Error("Configured study area failed API bounds checks."), { status: 400 });
+  if(selected.item.providerRequestLimit!=null&&(!Number.isInteger(selected.item.providerRequestLimit)||selected.item.providerRequestLimit<1||area.maxCandidates*3>selected.item.providerRequestLimit))throw Object.assign(new Error("Configured study area exceeds its declared maximum provider request budget."),{status:400});
+  activeJob = true;
+  const jobId = randomUUID(); const createdAt = new Date().toISOString();
+  const discoveryOutput = `data/app-runtime/discovery-runs/${jobId}.json`;
+  const job = { schemaVersion:"1.0.0", jobId, createdAt, updatedAt:createdAt, status:"queued", missionId:mission.id, missionName:mission.name, studyAreaId:area.id, studyAreaLabel:area.label, configurationStatus:selected.item.configurationStatus ?? "user_configured", stages:[{id:"configuration_validation",status:"completed",message:"Request, mission profile and allowlisted study area validated."},{id:"discovery",status:"queued",message:"Bounded provider retrieval and evidence screening."},{id:"discovery_validation",status:"queued",message:"Validate this exact discovery run and its archived output."},{id:"comparison",status:"queued",message:"Factor-level comparisons against current reference inventory."},{id:"comparison_validation",status:"queued",message:"Validate comparison relationships and factor states."}], logs:[], discoveryRunId:null, discoveryValidation:null, comparisonRunId:null, comparisonValidation:null, failureStage:null, error:null };
+  await mkdir(jobsDir,{recursive:true}); await mkdir(outputDir,{recursive:true}); await mkdir(join(root,"data/app-runtime/discovery-runs"),{recursive:true});
+  await atomic(`data/app-runtime/jobs/${jobId}.json`,job);
+  void (async () => {
+    try {
+      job.status="running"; job.updatedAt=new Date().toISOString(); job.stages[1].status="running"; await atomic(`data/app-runtime/jobs/${jobId}.json`,job);
+      const result = await childRun(["dist/scripts/run-discovery.js"], { DISCOVERY_STUDY_AREA:`data/discovery/study-areas/${selected.file}`, DISCOVERY_MISSION_ID:mission.id, DISCOVERY_OUTPUT:discoveryOutput });
+      const generated = JSON.parse(result.stdout); const discoveryRun=await json(discoveryOutput); job.discoveryRunId=generated.runId;
+      if (discoveryRun.runId !== generated.runId) throw Object.assign(new Error("Discovery output identity did not match the runner result."),{stage:"discovery_validation"});
+      job.logs.push({stage:"discovery",text:result.stdout.slice(-5000)}); job.stages[1]={id:"discovery",status:"completed",message:`Discovery run ${generated.runId} completed with ${generated.candidates?.length ?? 0} candidate record(s).`};
+      job.stages[2].status="running"; job.updatedAt=new Date().toISOString(); await atomic(`data/app-runtime/jobs/${jobId}.json`,job);
+      const runReportPath=`data/processed/discovery-runs/validation-reports/${generated.runId}.json`;
+      const validation = await childRun(["dist/scripts/validate-discovery.js"], { DISCOVERY_OUTPUT:discoveryOutput, DISCOVERY_VALIDATION_OUTPUT:runReportPath });
+      const report=JSON.parse(await readFile(join(root,runReportPath),"utf8")); job.discoveryValidation={runId:report.runId,status:report.status,errors:report.errors};
+      if(report.runId!==generated.runId||report.status!=="valid") throw Object.assign(new Error(`Discovery validation ${report.status} for run ${generated.runId}: ${(report.errors??[]).join("; ")||"run identity mismatch"}`),{stage:"discovery_validation"});
+      const latestReport={...report,sourceRunPath:"data/processed/discovery-runs/latest.json"};
+      await atomic("data/processed/discovery-runs/latest.json",discoveryRun);
+      await atomic("data/processed/discovery-runs/validation-report.json",latestReport);
+      job.logs.push({stage:"discovery_validation",text:validation.stdout.slice(-5000)}); job.stages[2]={id:"discovery_validation",status:"completed",message:`Discovery run ${generated.runId} passed validation.`};
+      job.stages[3].status="running"; job.updatedAt=new Date().toISOString(); await atomic(`data/app-runtime/jobs/${jobId}.json`,job);
+      const compared = await childRun(["dist/scripts/run-comparison.js"], { DISCOVERY_OUTPUT:discoveryOutput });
+      const comparison = JSON.parse(compared.stdout); job.comparisonRunId=comparison.runId; job.logs.push({stage:"comparison",text:compared.stdout.slice(-5000)}); job.stages[3]={id:"comparison",status:"completed",message:`Comparison run ${comparison.runId} generated for discovery ${generated.runId}.`};
+      job.stages[4].status="running"; job.updatedAt=new Date().toISOString(); await atomic(`data/app-runtime/jobs/${jobId}.json`,job);
+      const comparedValidation = await childRun(["dist/scripts/validate-comparison.js"]);
+      const comparisonReport=JSON.parse(await readFile(join(root,"data/processed/comparison-runs/validation-report.json"),"utf8"));
+      job.comparisonValidation={runId:comparisonReport.runId,status:comparisonReport.status,errors:comparisonReport.errors};
+      if(comparisonReport.runId!==comparison.runId||comparisonReport.status!=="valid") throw Object.assign(new Error(`Comparison validation ${comparisonReport.status} for run ${comparison.runId}: ${(comparisonReport.errors??[]).join("; ")||"run identity mismatch"}`),{stage:"comparison_validation"});
+      job.logs.push({stage:"comparison_validation",text:comparedValidation.stdout.slice(-5000)}); job.stages[4]={id:"comparison_validation",status:"completed",message:`Comparison run ${comparison.runId} passed validation against discovery ${generated.runId}.`};
+      job.status="completed"; job.updatedAt=new Date().toISOString(); await atomic(`data/app-runtime/jobs/${jobId}.json`,job);
+    } catch (error) { job.status="failed"; job.failureStage=error?.stage??job.stages.find((s)=>s.status==="running")?.id??"execution"; job.error=String(error?.message ?? error).slice(0,3000); job.updatedAt=new Date().toISOString(); const pending=job.stages.find((s)=>s.status==="running"); if(pending)pending.status="failed"; await atomic(`data/app-runtime/jobs/${jobId}.json`,job); }
+    finally { activeJob=false; }
+  })();
+  return job;
+}
+
+const server = createServer(async (req,res) => {
+  try {
+    const url = new URL(req.url ?? "/", `http://${req.headers.host ?? "localhost"}`);
+    if (req.method === "GET" && url.pathname === "/api/health") return send(res,200,{status:"ok",app:"TerraMatch",planetaryScope:"Mars",apiVersion:"1.0.0"});
+    if (url.pathname.startsWith("/api/")) {
+      if(req.method==="GET"&&url.pathname==="/api/jobs"){const names=await files("data/app-runtime/jobs",/^[a-f0-9-]{16,64}\.json$/i);const jobs=await Promise.all(names.map((name)=>optional(`data/app-runtime/jobs/${name}`)));return send(res,200,{jobs:jobs.filter(Boolean)});}
+      const jobMatch=url.pathname.match(/^\/api\/jobs\/([^/]+)$/);if(req.method==="GET"&&jobMatch){const job=await getJob(jobMatch[1]);return job?send(res,200,job):send(res,404,{error:"Job not found."});}
+      if(req.method==="GET"&&url.pathname==="/api/discovery-runs")return send(res,200,{runs:await listRuns("discovery")});
+      if(req.method==="GET"&&url.pathname==="/api/comparison-runs")return send(res,200,{runs:await listRuns("comparison")});
+      const artifacts = await currentArtifacts();
+      if (req.method === "GET" && url.pathname === "/api/summary") {
+        const discovery=artifacts.discovery, comparison=artifacts.comparison;
+        const candidates=(discovery?.candidates??[]).filter((c)=>c.recordType==="candidate_region");
+        const factorStatusCounts={};for(const pair of comparison?.comparisons??[])for(const factor of pair.factors??[])factorStatusCounts[factor.status]=(factorStatusCounts[factor.status]??0)+1;
+        const latestDiscovery=discovery?{runId:discovery.runId,configurationId:discovery.configurationId,createdAt:discovery.createdAt,status:discovery.status,missionId:discovery.missionId,missionProfileId:discovery.missionProfileId,studyArea:discovery.studyArea,studyAreaConfigurationStatus:discovery.studyAreaConfigurationStatus,generatedCellCount:discovery.generatedCellCount,excludedReferenceOverlapCount:discovery.excludedReferenceOverlapCount,candidates:candidates.map((c)=>({id:c.id,recordType:c.recordType,latitude:c.latitude,longitude:c.longitude,coordinatesApproximate:c.coordinatesApproximate,status:c.status,spatialSupport:c.spatialSupport,cellBounds:candidateCellBounds(c,discovery.studyArea),screening:c.screening,sources:Object.fromEntries(Object.entries(c.sources??{}).map(([key,value])=>[key,{status:value?.status,provider:value?.provider,error:value?.error}]))}))}:null;
+        const latestComparison=comparison?{runId:comparison.runId,createdAt:comparison.createdAt,status:comparison.status,candidateCount:comparison.candidateCount,comparisonPairCount:comparison.comparisonPairCount,referenceDataset:{count:comparison.referenceDataset?.count},factorStatusCounts}:null;
+        const discoveryValidation=validationState(artifacts.discoveryValidation,discovery);
+        const comparisonValidation=validationState(artifacts.comparisonValidation,comparison);
+        if(comparison&&discovery&&comparison.discoveryRun?.runId!==discovery.runId)comparisonValidation.status="stale_discovery_relationship";
+        return send(res,200,{referenceCount:artifacts.references.length,fixtureCount:artifacts.fixtures.length,candidateCount:candidates.length,comparisonPairCount:comparison?.comparisonPairCount ?? 0,latestDiscoveryRunId:discovery?.runId ?? null,latestComparisonRunId:comparison?.runId ?? null,latestDiscovery,latestComparison,latestDiscoveryValidation:discoveryValidation,latestComparisonValidation:comparisonValidation});
+      }
+      if (req.method === "GET" && url.pathname === "/api/references") return send(res,200,{schemaVersion:"1.0.0",recordType:"known_analog",records:artifacts.references.map((r)=>{const d=displayReference(r);return{id:d.id,recordType:d.recordType,regionName:d.regionName,country:d.country,latitude:d.latitude,longitude:d.longitude,coordinatesApproximate:d.coordinatesApproximate,spatialGranularity:d.latitude==null||d.longitude==null?"region_level":"point_or_area",climate:d.climate,terrain:d.terrain,geology:d.geology,provenance:d.provenance,limitations:d.dataQuality?.warnings ?? []};})});
+      if (req.method === "GET" && url.pathname.startsWith("/api/references/")) { const id=decodeURIComponent(url.pathname.slice("/api/references/".length)); if(!idPattern.test(id)) return send(res,400,{error:"Invalid reference ID."}); const record=artifacts.references.find((r)=>r.id===id); return record?send(res,200,displayReference(record)):send(res,404,{error:"Reference not found."}); }
+      if (req.method === "GET" && url.pathname === "/api/profile") return send(res,200,englishDisplayValue(artifacts.profile));
+      if (req.method === "GET" && url.pathname === "/api/study-areas") { const names=await files("data/discovery/study-areas",/^[-A-Za-z0-9_]+\.json$/); const records=await Promise.all(names.map((name)=>json(`data/discovery/study-areas/${name}`))); return send(res,200,englishDisplayValue({studyAreas:records.map((r)=>({schemaVersion:r.schemaVersion,configurationStatus:r.configurationStatus,demonstrationRationale:r.demonstrationRationale??null,providerRequestLimit:r.providerRequestLimit??null,scientificLimitations:r.scientificLimitations,studyArea:r.studyArea}))})); }
+      if (req.method === "GET" && url.pathname === "/api/discovery-runs") return send(res,200,{runs:await listRuns("discovery")});
+      if (req.method === "GET" && url.pathname === "/api/comparison-runs") return send(res,200,{runs:await listRuns("comparison")});
+      if (req.method === "GET" && url.pathname === "/api/discovery-runs/latest") return artifacts.discovery?send(res,200,englishDisplayValue(artifacts.discovery)):send(res,404,{error:"No discovery run is stored."});
+      if (req.method === "GET" && url.pathname === "/api/comparison-runs/latest") return artifacts.comparison?send(res,200,displayComparison(artifacts.comparison)):send(res,404,{error:"No comparison run is stored."});
+      const runMatch=url.pathname.match(/^\/api\/(discovery|comparison)-runs\/([^/]+)$/); if(req.method==="GET"&&runMatch){const [,kind,id]=runMatch;if(!runPattern.test(id))return send(res,400,{error:"Invalid run ID."});const path=kind==="discovery"?`data/processed/discovery-runs/${id}.json`:`data/processed/comparison-runs/${id}.json`;const item=await optional(path);return item?send(res,200,kind==="comparison"?displayComparison(item):englishDisplayValue(item)):send(res,404,{error:"Run not found."});}
+      if(req.method==="POST"&&url.pathname==="/api/jobs"){const body=await readBody(req);const job=await launchJob(body);return send(res,202,job);}
+      const candidateMatch=url.pathname.match(/^\/api\/candidates\/([^/]+)\/evidence$/);if(req.method==="GET"&&candidateMatch){const id=decodeURIComponent(candidateMatch[1]);if(!idPattern.test(id))return send(res,400,{error:"Invalid candidate ID."});const runId=url.searchParams.get("run");if(runId&&!runPattern.test(runId))return send(res,400,{error:"Invalid discovery run ID."});const run=runId?await optional(`data/processed/discovery-runs/${runId}.json`):artifacts.discovery;const candidate=run?.candidates?.find((x)=>x.id===id&&x.recordType==="candidate_region");if(!candidate)return send(res,404,{error:"Candidate not found in a stored discovery run."});const candidates=await optional(`data/processed/climate/candidates/${id}-daily.json`);return send(res,200,{candidate:{...candidate,cellBounds:candidateCellBounds(candidate,run.studyArea),missionId:run.missionId,missionProfileId:run.missionProfileId,studyArea:run.studyArea,discoveryRunId:run.runId},sources:{climate:candidates,terrain:candidate.sources?.terrain??null,geology:candidate.sources?.geology??null}});}
+      return send(res,404,{error:"API route not found."});
+    }
+    const webRoot=resolve(root,"web-dist");const requested=decodeURIComponent(url.pathname==="/"?"/index.html":url.pathname);const resolved=resolve(webRoot,`.${normalize(requested)}`);if(!resolved.startsWith(webRoot+sep)&&resolved!==webRoot)return send(res,400,{error:"Invalid path."});let target=resolved;try{await access(target);}catch{target=join(webRoot,"index.html");}try{const data=await readFile(target);const ext=extname(target);const mime={".html":"text/html; charset=utf-8",".js":"text/javascript; charset=utf-8",".css":"text/css; charset=utf-8",".svg":"image/svg+xml",".json":"application/json"}[ext]??"application/octet-stream";res.writeHead(200,{"content-type":mime});res.end(data);}catch{return send(res,404,{error:"Frontend build not found. Run npm run build:web."});}
+  } catch(error) { send(res,error?.status??500,{error:error?.status?error.message:"Request could not be completed."}); }
+});
+server.requestTimeout=15000;
+server.listen(port,"127.0.0.1",()=>console.log(`TerraMatch API listening at http://127.0.0.1:${port}`));

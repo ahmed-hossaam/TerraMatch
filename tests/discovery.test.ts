@@ -62,10 +62,26 @@ describe("bounded reference-guided candidate discovery",()=>{
     const mission=profile.missions.find(m=>m.id==="extreme_environment_operations")!;
     const all:FactorEvidence[]=mission.requiredFactorIds.map(factorId=>({factorId,status:"available",value:1,unit:"source unit",sourceId:"mock-source",provenancePath:"mock.json",note:"Mocked evidence for a deterministic logic test."}));
     assert.equal(screenCandidate(profile,mission,all).status,"evidence_supported_for_review");
+    const nullValue=all.map((factor,index)=>index===0?{...factor,value:null}:factor);
+    assert.equal(screenCandidate(profile,mission,nullValue).status,"insufficient_evidence");
+    assert.equal(screenCandidate(profile,mission,nullValue).requiredFactors[0].status,"missing");
     all[0]={...all[0],status:"failed",value:null};
     const partial=screenCandidate(profile,mission,all);
     assert.equal(partial.status,"insufficient_evidence"); assert.equal(partial.missingFactors.includes(mission.requiredFactorIds[0]),true);
     assert.equal(Object.keys(partial).some(key=>/score|rank|weight/i.test(key)),false);
+    assert.equal(partial.missionObjective,mission.objective);
+    assert.equal(partial.optionalFactors.length,mission.optionalFactorIds.length);
+    assert.equal(partial.requiredFactors[0].factorId,mission.requiredFactorIds[0]);
+  });
+  it("keeps mission-specific requirements distinct and rejects explicitly ineligible references",async()=>{
+    const profile=await json("data/mission-profiles/mars-surface-v1.json") as MissionProfile;
+    const extreme=profile.missions.find(m=>m.id==="extreme_environment_operations")!;
+    const rover=profile.missions.find(m=>m.id==="rover_surface_testing")!;
+    assert.notEqual(JSON.stringify(extreme.requiredFactorIds),JSON.stringify(rover.requiredFactorIds));
+    assert.notEqual(extreme.objective,rover.objective);
+    await assert.rejects(()=>runDiscovery({studyArea:{...area,maxCandidates:1},missionProfile:profile,missionId:extreme.id,references:[minimalRef],referenceEligibility:{policyId:"reference-curation-v1-point-eligibility",policyVersion:"1.0.0",archiveRecordCount:1,excludedReferenceIds:[minimalRef.id]},retrieve:async()=>({})}),/explicitly excluded/);
+    const run=await runDiscovery({studyArea:{...area,maxCandidates:1},missionProfile:profile,missionId:extreme.id,references:[minimalRef],referenceEligibility:{policyId:"reference-curation-v1-point-eligibility",policyVersion:"1.0.0",archiveRecordCount:1,excludedReferenceIds:[]},retrieve:async()=>({})});
+    assert.equal(run.referenceMasking.eligibilityPolicyId,"reference-curation-v1-point-eligibility");assert.equal(run.referenceMasking.eligibilityPolicyVersion,"1.0.0");assert.deepEqual(run.referenceMasking.pointReferenceIdsUsed,[minimalRef.id]);assert.deepEqual(validateDiscoveryRun(run),[]);
   });
   it("returns stable candidate IDs, keeps source failures explicit, and never returns references as candidates",async()=>{
     const profile=await json("data/mission-profiles/mars-surface-v1.json") as MissionProfile;

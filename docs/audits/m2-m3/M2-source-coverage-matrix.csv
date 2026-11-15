@@ -1,0 +1,6 @@
+"sourceId","officialName","officialUrl","accessMethod","sitesReviewed","sitesQueried","matchedSites","recordsRetrieved","sourceOutcome","rawArtifactCount","normalizedEvidenceCount"
+"usgs-tadp-sciencebase","USGS Terrestrial Analogs Data Portal / ScienceBase","https://tadp.astrogeology.usgs.gov/","catalog","31","1","0","0","blocked_http_403","0","0"
+"usgs-paad","USGS Planetary Aeolian Analog Database","https://doi.org/10.5066/P9IFVZEX","dataset","31","1","0","0","blocked_http_403","0","0"
+"earthchem-petdb","EarthChem / PetDB","https://earthchem.github.io/ec-doc/documentation/petdb_api.html","catalog","31","2","0","0","provider_http_5xx","0","0"
+"georoc","GEOROC","https://georoc.eu/georoc/","download_catalog","31","1","1","4","retrieved_with_spatial_limits","1","4"
+"usgs-publications","USGS Open-File Report 2024-1062 and associated Meteor Crater data release","https://doi.org/10.3133/ofr20241062","official_report_and_data_release","31","1","1","195","retrieved_with_spatial_limits","1","195"

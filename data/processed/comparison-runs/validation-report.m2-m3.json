@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "1.0.0",
+  "generatedAt": "2026-11-15T17:20:40.797Z",
+  "status": "valid",
+  "runId": "626a4e76-042f-4539-8626-b9fc1a7bfb31",
+  "candidateCount": 4,
+  "referenceCount": 31,
+  "fixtureCount": 3,
+  "comparisonPairCount": 124,
+  "factorStatusCounts": {
+    "compared": 232,
+    "ambiguous": 0,
+    "unavailable": 2031,
+    "failed": 93,
+    "missing": 0
+  },
+  "errors": []
+}

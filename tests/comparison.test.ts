@@ -1,6 +1,7 @@
 import { describe,it } from "node:test";
 import assert from "node:assert/strict";
 import { compareCandidateToReferences, createComparisonRun, validateComparisonRun } from "../src/comparison/compare.js";
+import { selectPointEligibleReferences } from "../src/evidence/unified.js";
 import type { LocationRecord } from "../src/types/location.js";
 
 const daily=(id:string,values:(number|null)[],unit="°C",period={start:"2001-01-01",end:"2001-01-03"})=>({locationId:id,provider:"NASA POWER",actualObservationPeriod:period,parameters:["T2M"],daily:values.map((value,index)=>({date:`2001-01-0${index+1}`,measurements:{T2M:{value,unit,provider:"NASA POWER",parameterId:"T2M",qualityStatus:value===null?"missing":"valid"}}})),provenance:{sourceId:"nasa-power-daily",sourceUrl:"https://power.example"}});
@@ -33,6 +34,12 @@ describe("M08 evidence-based comparisons",()=>{
     const summaryRef={...daily("R1",[]),daily:[],summaries:{T2M:{mean:1,unit:"°C",validObservationCount:3,missingObservationCount:0,coveragePercent:100}}};
     const summaryContext={...context,candidateHistories:{"CAND-1":summaryOnly},referenceHistories:{R1:summaryRef}};
     const summaryFactor=compareCandidateToReferences(candidate,[ref("R1")],summaryContext)[0].factors[0];assert.equal(summaryFactor.status,"compared");assert.equal(summaryFactor.result.candidateMinusReferenceMean,2);assert.match(summaryFactor.method,/period means/);
+    const nullMean={...summaryOnly,summaries:{T2M:{...summaryOnly.summaries.T2M,mean:null}}};
+    assert.equal(compareCandidateToReferences(candidate,[ref("R1")],{...summaryContext,candidateHistories:{"CAND-1":nullMean}})[0].factors[0].status,"unavailable");
+    const zeroCount={...summaryOnly,summaries:{T2M:{...summaryOnly.summaries.T2M,validObservationCount:0}}};
+    assert.equal(compareCandidateToReferences(candidate,[ref("R1")],{...summaryContext,candidateHistories:{"CAND-1":zeroCount}})[0].factors[0].status,"unavailable");
+    const wrongLocation={...context,candidateHistories:{"CAND-1":daily("OTHER",[1,2,3])}};
+    assert.equal(compareCandidateToReferences(candidate,[ref("R1")],wrongLocation)[0].factors[0].status,"unavailable");
   });
   it("compares GLiM categories at matching levels, preserves differences, and flags ambiguous polygons",()=>{
     let factors=compareCandidateToReferences(candidate,[ref("R1")],context)[0].factors;
@@ -43,13 +50,15 @@ describe("M08 evidence-based comparisons",()=>{
     factors=compareCandidateToReferences(ambiguous,[ref("R1")],context)[0].factors;
     assert.equal(factors.find((f:any)=>f.factorId==="glim_xx").status,"ambiguous");
   });
-  it("reports only compatible DSM point differences and keeps region-level references in the matrix",()=>{
-    const terrainCandidate={...candidate,sources:{...candidate.sources,terrain:{status:"success",elevation:{value:123,unit:"m"},productId:"COP-DEM_GLO-30-Public",tileId:"tile",sourceUrl:"https://dem.example",horizontalCrs:"EPSG:4326",verticalDatum:"EGM2008 (EPSG:3855)",spatialResolutionNominalM:30,provenance:{verticalDatum:"EGM2008 (EPSG:3855)"}}}};
-    const compatibleRef={...context,referenceTerrains:{R1:{elevationSampleM:{value:100,unit:"m"},productId:"COP-DEM_GLO-30-Public",horizontalCrs:"EPSG:4326",verticalDatum:"EGM2008 (EPSG:3855)",spatialResolutionNominalM:30}}};
+  it("reports compatible DSM point differences and omits region-level references from point comparisons",()=>{
+    const terrainCandidate={...candidate,sources:{...candidate.sources,terrain:{status:"success",elevation:{value:123,unit:"m",qualityStatus:"valid"},productId:"COP-DEM_GLO-30-Public",tileId:"tile",sourceUrl:"https://dem.example",horizontalCrs:"EPSG:4326",verticalDatum:"EGM2008 (EPSG:3855)",spatialResolutionNominalM:30,provenance:{verticalDatum:"EGM2008 (EPSG:3855)"}}}};
+    const compatibleRef={...context,referenceTerrains:{R1:{elevationSampleM:{value:100,unit:"m",qualityStatus:"valid" as any},productId:"COP-DEM_GLO-30-Public",horizontalCrs:"EPSG:4326",verticalDatum:"EGM2008 (EPSG:3855)",spatialResolutionNominalM:30}}};
     let factors=compareCandidateToReferences(terrainCandidate,[ref("R1")],compatibleRef)[0].factors;
     const elevation=factors.find((f:any)=>f.factorId==="elevation_point");assert.equal(elevation.result.candidateMinusReferenceM,23);assert.match(elevation.method,/Point-sample elevation difference/);
-    const region=compareCandidateToReferences(candidate,[ref("REGION",null)],context)[0];assert.equal(region.referenceCoordinates,null);assert.equal(region.factors.find((f:any)=>f.factorId==="elevation_point").status,"failed");
+    const region=compareCandidateToReferences(candidate,[ref("REGION",null)],context);assert.deepEqual(region,[]);
     assert.equal(compareCandidateToReferences(candidate,[ref("R1")],context)[0].factors.find((f:any)=>f.factorId==="elevation_point").status,"failed");
+    const unverifiedTerrain={...compatibleRef,referenceTerrains:{R1:{...compatibleRef.referenceTerrains.R1,elevationSampleM:{...compatibleRef.referenceTerrains.R1.elevationSampleM,qualityStatus:"needs_verification"}}}};
+    assert.equal(compareCandidateToReferences(terrainCandidate,[ref("R1")],unverifiedTerrain)[0].factors.find((f:any)=>f.factorId==="elevation_point").status,"unavailable");
     const missingDatum={...terrainCandidate,sources:{...terrainCandidate.sources,terrain:{...terrainCandidate.sources.terrain,provenance:{},verticalDatum:undefined,horizontalCrs:undefined,spatialResolutionNominalM:undefined,productId:undefined}}};
     assert.equal(compareCandidateToReferences(missingDatum,[ref("R1")],compatibleRef)[0].factors.find((f:any)=>f.factorId==="elevation_point").status,"unavailable");
   });
@@ -61,5 +70,16 @@ describe("M08 evidence-based comparisons",()=>{
     assert.deepEqual(run.comparisons,repeated.comparisons);
     const score=structuredClone(run) as any;score.comparisons[0].score=0.9;assert.notEqual(validateComparisonRun(score).length,0);
     const fixtureCandidate={...candidate,id:"GRID-TEST-01",recordType:"test_fixture"};assert.throws(()=>compareCandidateToReferences(fixtureCandidate,[ref("R1")],context),/candidate_region/);
+  });
+  it("marks new comparison runs with a curation policy and excludes ineligible point references",()=>{
+    const discovery={runId:"curated-discovery",missionProfileId:"mars-surface-analog-requirements",missionProfileVersion:"1.0.0",missionId:"extreme_environment_operations",candidates:[candidate]};
+    const policy=[{stableId:"R1",preliminaryDecision:"keep_with_limitations" as const,pointComparisonEligible:true,locationType:"point"},{stableId:"REGION",preliminaryDecision:"region_only" as const,pointComparisonEligible:false,locationType:"region"}];
+    const references=selectPointEligibleReferences([ref("R1"),ref("REGION",null)],policy);
+    const run=createComparisonRun({discoveryRun:discovery,references,...context,referenceSelection:{policyId:"reference-curation-v1-point-eligibility",policyVersion:"1.0.0",archiveRecordCount:2,excludedReferenceIds:["REGION"]}});
+    assert.equal(run.discoveryRun.referenceEligibilityPolicyId,null);
+    assert.deepEqual(run.referenceDataset.siteIds,["R1"]);assert.equal(run.comparisonPairCount,1);assert.deepEqual(validateComparisonRun(run),[]);
+    const invalid=structuredClone(run) as any;invalid.comparisons[0].referenceSiteId="REGION";assert.ok(validateComparisonRun(invalid).some((message)=>/excluded/.test(message)));
+    const badPolicyVersion=structuredClone(run) as any;badPolicyVersion.referenceSelection.policyVersion="2.0.0";assert.ok(validateComparisonRun(badPolicyVersion).some((message)=>/eligibility selection metadata/.test(message)));
+    assert.throws(()=>createComparisonRun({discoveryRun:discovery,references:[ref("REGION",null)],...context,referenceSelection:{policyId:"reference-curation-v1-point-eligibility",policyVersion:"1.0.0",archiveRecordCount:2,excludedReferenceIds:["REGION"]}}),/explicitly excluded/);
   });
 });

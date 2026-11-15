@@ -5,6 +5,7 @@ import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
 import { randomUUID } from "node:crypto";
 import { loadJson, persistDiscoveryArchive, persistDiscoveryRun, runDiscovery } from "../src/discovery/run.js";
 import { validateStudyArea } from "../src/discovery/grid.js";
+import { selectPointEligibleReferences } from "../src/evidence/unified.js";
 const areaPath=process.env.DISCOVERY_STUDY_AREA??"data/discovery/study-areas/atacama-climate-transect-v2.json";
 const missionId=process.env.DISCOVERY_MISSION_ID??"extreme_environment_operations";
 const outputPath=process.env.DISCOVERY_OUTPUT??"data/processed/discovery-runs/latest.json";
@@ -13,9 +14,12 @@ if(areaFile.schemaVersion!=="1.0.0")throw new Error("Study area config schemaVer
 if(process.env.DISCOVERY_MAX_CANDIDATES)area.maxCandidates=Number(process.env.DISCOVERY_MAX_CANDIDATES);
 if(areaFile.providerRequestLimit!=null&&area.maxCandidates*3>areaFile.providerRequestLimit)throw new Error(`Configured grid may require ${area.maxCandidates*3} point-provider requests, exceeding the declared limit of ${areaFile.providerRequestLimit}.`);
 const errors=validateStudyArea(area); if(errors.length)throw new Error(`Study area invalid: ${errors.join("; ")}`);
-const references=await loadJson("data/processed/reference-sites.json") as LocationRecord[];
+const allReferences=await loadJson("data/processed/reference-sites.json") as LocationRecord[];
+const curation=await loadJson("data/curation/reference-curation-v1.json") as any;
+const references=selectPointEligibleReferences(allReferences,curation.records);
+const excludedReferenceIds=allReferences.filter((record)=>!references.some((eligible)=>eligible.id===record.id)).map((record)=>record.id);
 const profile=await loadJson(process.env.DISCOVERY_MISSION_PROFILE??"data/mission-profiles/mars-surface-v1.json") as MissionProfile;
-const run=await runDiscovery({studyArea:area,studyAreaConfigurationStatus:areaFile.configurationStatus??"user_configured",studyAreaLimitations:areaFile.scientificLimitations??[],missionProfile:profile,missionId,references,retrievalOptions:{timeoutMs:Number(process.env.DISCOVERY_TIMEOUT_MS??20000)}});
+const run=await runDiscovery({studyArea:area,studyAreaConfigurationStatus:areaFile.configurationStatus??"user_configured",studyAreaLimitations:areaFile.scientificLimitations??[],missionProfile:profile,missionId,references,referenceEligibility:{policyId:"reference-curation-v1-point-eligibility",policyVersion:"1.0.0",archiveRecordCount:allReferences.length,excludedReferenceIds},retrievalOptions:{timeoutMs:Number(process.env.DISCOVERY_TIMEOUT_MS??20000)}});
 const archivePath=await persistDiscoveryArchive(run);
 if(outputPath==="data/processed/discovery-runs/latest.json") {
   const validationInput=`data/app-runtime/discovery-validation/${run.runId}.json`,validationPath=`data/processed/discovery-runs/validation-reports/${run.runId}.json`;

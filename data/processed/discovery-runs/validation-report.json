@@ -1,16 +1,16 @@
 {
   "schemaVersion": "1.0.0",
-  "generatedAt": "2026-11-14T22:36:20.162Z",
+  "generatedAt": "2026-11-15T20:30:59.411Z",
   "status": "valid",
-  "runId": "ad576195-5909-4d11-8a49-34e13e188d3d",
-  "configurationId": "c71cff9028a2e94b",
+  "runId": "eb788a2d-c9a7-49b9-94b4-557254d3dc93",
+  "configurationId": "92fbbee7e4c1ade0",
   "sourceRunPath": "data/processed/discovery-runs/latest.json",
-  "generatedCellCount": 4,
-  "candidateCount": 4,
+  "generatedCellCount": 1,
+  "candidateCount": 1,
   "statusCounts": {
     "evidence_supported_for_review": 0,
-    "insufficient_evidence": 3,
-    "rejected_reference_overlap": 1
+    "insufficient_evidence": 1,
+    "rejected_reference_overlap": 0
   },
   "referenceCount": 31,
   "fixtureCount": 3,

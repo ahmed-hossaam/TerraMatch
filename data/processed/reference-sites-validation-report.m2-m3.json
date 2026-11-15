@@ -1,0 +1,105 @@
+{
+  "schemaVersion": "1.0.0",
+  "generatedAt": "2026-11-15T17:20:28.073Z",
+  "status": "valid",
+  "originalAtlasCount": 26,
+  "acceptedSupplementaryCount": 5,
+  "pendingCount": 0,
+  "rejectedCount": 0,
+  "finalReferenceCount": 31,
+  "pointRetrievalEligibleIds": [
+    "DALL",
+    "DAL",
+    "AHS-GH"
+  ],
+  "regionLevelIds": [
+    "SEM",
+    "LUT"
+  ],
+  "supplementaryProviderAttempts": 9,
+  "supplementaryProviderSuccesses": 9,
+  "supplementaryProviderFailures": 0,
+  "siteEvidence": [
+    {
+      "siteId": "DALL",
+      "status": "attempted",
+      "climateStatus": "success",
+      "terrainStatus": "success",
+      "geologyStatus": "success",
+      "climateCoverage": 1,
+      "glimClassification": "suds__",
+      "files": {
+        "climate": {
+          "status": "success",
+          "rawPresent": true,
+          "normalizedPresent": true
+        },
+        "terrain": {
+          "status": "success",
+          "rawPresent": true,
+          "normalizedPresent": true
+        },
+        "geology": {
+          "status": "success",
+          "rawPresent": true,
+          "normalizedPresent": true
+        }
+      }
+    },
+    {
+      "siteId": "DAL",
+      "status": "attempted",
+      "climateStatus": "success",
+      "terrainStatus": "success",
+      "geologyStatus": "success",
+      "climateCoverage": 1,
+      "glimClassification": "sumx__",
+      "files": {
+        "climate": {
+          "status": "success",
+          "rawPresent": true,
+          "normalizedPresent": true
+        },
+        "terrain": {
+          "status": "success",
+          "rawPresent": true,
+          "normalizedPresent": true
+        },
+        "geology": {
+          "status": "success",
+          "rawPresent": true,
+          "normalizedPresent": true
+        }
+      }
+    },
+    {
+      "siteId": "AHS-GH",
+      "status": "attempted",
+      "climateStatus": "success",
+      "terrainStatus": "success",
+      "geologyStatus": "success",
+      "climateCoverage": 1,
+      "glimClassification": "smmx__",
+      "files": {
+        "climate": {
+          "status": "success",
+          "rawPresent": true,
+          "normalizedPresent": true
+        },
+        "terrain": {
+          "status": "success",
+          "rawPresent": true,
+          "normalizedPresent": true
+        },
+        "geology": {
+          "status": "success",
+          "rawPresent": true,
+          "normalizedPresent": true
+        }
+      }
+    }
+  ],
+  "candidateFixtureCount": 3,
+  "fixtureClassification": "test_fixture records remain separate in candidate-points.json",
+  "errors": []
+}

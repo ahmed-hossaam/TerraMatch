@@ -1,0 +1,97 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+<title>GEOROC-Query Results</title>
+<link rel="stylesheet" type="text/css" href="StyleSheet.css" />
+<style type="text/css">
+	.arial12
+	{
+		font-family: arial, helvetica;
+		font-size: 12px;
+		font-weight: bold;
+	}
+	.arial12c
+	{
+		font-family: arial, helvetica;
+		font-size: 12px;
+		font-weight: bold;
+		text-align: center;
+	}
+	.arial16
+	{
+		font-family: arial, helvetica;
+		font-size: 16px;
+		font-weight: bold;
+	}
+	a:visited
+	{
+		text-decoration: none;
+		color: #0000cc;
+	}
+	a:hover
+	{
+		text-decoration: underline;
+		color: #0000cc;
+	}
+</style>
+<script type="text/javascript">
+function checkSP2()
+{
+ if ((navigator.appVersion.indexOf('MSIE 5.') != -1)
+  && (navigator.appMinorVersion.indexOf('SP2') == -1))
+ {
+  return true;
+ }
+ else {return false;}
+}
+
+function checkIE(stvirt, stqryvirt, stfile)
+{
+ if ((navigator.appVersion.indexOf('MSIE 5.5') != -1) || (navigator.appVersion.indexOf('MSIE 6.') != -1))
+  {parent.location.href="download_header.asp?virtpath=" + stqryvirt + "&fil=" + stfile;}
+ else
+  {parent.location.href=stvirt;}
+}
+</script>
+</head>
+<body>
+<script type="text/javascript">
+<!--
+if (checkSP2())
+ {
+ document.writeln("<p class=\"arial12\">");
+ document.writeln("You are using Microsoft Internet Explorer 5.x without Service Pack 2. ");
+ document.writeln("This may cause problems with the download of comma-separated textfiles: ");
+ document.writeln("the browser doesn't offer the file for dowload but opens it. ");
+ document.writeln("If you notice this behavior, download Microsoft Internet Explorer 5.x ");
+ document.writeln("Service Pack 2 from the Microsoft Website and install it or upgrade ");
+ document.writeln("your Internet Explorer to a higher version to solve this problem.");
+ document.writeln("</p>");
+ }
+//-->
+</script>
+<p class="arial16" style="border-style: ridge; border-width: 1px; border-color: #000099; text-align: center; padding: 3px;">
+If you have questions or suggestions, or if you have recognized typos / errors, please write an E-Mail: <a class ="my" href="mailto:digis-info@uni-goettingen.de">DIGIS TEAM</a></br></p></p>
+
+<form method="post" action="./ResultsTxt.aspx" id="resultstext">
+<div class="aspNetHidden">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKLTQ5NDcwMzkzM2Rk2XsY3n10lbWj7S8W1Zp5DxJB2floJX7D4OYS8LCYoDo=" />
+</div>
+
+<p class="arial16"><a href="javascript: checkIE('/georoc/results/F4755352830866051115202665042PM.csv','%2fgeoroc%2fresults%2fF4755352830866051115202665042PM.csv','F4755352830866051115202665042PM.csv');" id="download">Download the table for EXCEL</a></p>
+
+<p class="arial12">Note: The data are downloaded (use <span style="color: #8b0000;">'save as'</span>) as comma separated text file with the file extension '.csv'.<br />
+This file may be opened and saved by EXCEL</p>
+
+
+
+
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="E59AAAD8" />
+</div></form>
+</body>
+</html>

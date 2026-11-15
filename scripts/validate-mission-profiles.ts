@@ -41,6 +41,6 @@ const report = {
 await mkdir("data/processed/mission-profiles", { recursive: true });
 const temporary = `data/processed/mission-profiles/validation-report.${process.pid ?? "run"}.tmp`;
 await writeFile(temporary, `${JSON.stringify(report, null, 2)}\n`, "utf8");
-await rename(temporary, "data/processed/mission-profiles/validation-report.json");
+await rename(temporary, process.env.MISSION_PROFILE_VALIDATION_OUTPUT ?? "data/processed/mission-profiles/validation-report.json");
 console.log(JSON.stringify(report, null, 2));
 if (errors.length) process.exitCode = 1;

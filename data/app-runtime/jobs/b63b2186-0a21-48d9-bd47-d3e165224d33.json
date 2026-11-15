@@ -1,0 +1,71 @@
+{
+  "schemaVersion": "1.0.0",
+  "jobId": "b63b2186-0a21-48d9-bd47-d3e165224d33",
+  "createdAt": "2026-11-15T20:30:55.931Z",
+  "updatedAt": "2026-11-15T20:31:12.404Z",
+  "status": "completed",
+  "missionId": "drilling_subsurface",
+  "missionName": "Drilling and subsurface exploration",
+  "studyAreaId": "atacama-bounded-test",
+  "studyAreaLabel": "Bounded grid pipeline demonstration near the Atacama region",
+  "configurationStatus": "demonstration_test_configuration_not_a_scientific_discovery",
+  "stages": [
+    {
+      "id": "configuration_validation",
+      "status": "completed",
+      "message": "Request, mission profile and allowlisted study area validated."
+    },
+    {
+      "id": "discovery",
+      "status": "completed",
+      "message": "Discovery run eb788a2d-c9a7-49b9-94b4-557254d3dc93 completed with 1 candidate record(s)."
+    },
+    {
+      "id": "discovery_validation",
+      "status": "completed",
+      "message": "Discovery run eb788a2d-c9a7-49b9-94b4-557254d3dc93 passed validation."
+    },
+    {
+      "id": "comparison",
+      "status": "completed",
+      "message": "Comparison run 53633878-2abe-4deb-a880-b3153fcd4be7 generated for discovery eb788a2d-c9a7-49b9-94b4-557254d3dc93."
+    },
+    {
+      "id": "comparison_validation",
+      "status": "completed",
+      "message": "Comparison run 53633878-2abe-4deb-a880-b3153fcd4be7 passed validation against discovery eb788a2d-c9a7-49b9-94b4-557254d3dc93."
+    }
+  ],
+  "logs": [
+    {
+      "stage": "discovery",
+      "text": "{\n  \"configurationStatus\": \"demonstration_test_configuration_not_a_scientific_discovery\",\n  \"runId\": \"eb788a2d-c9a7-49b9-94b4-557254d3dc93\",\n  \"outputPath\": \"data/app-runtime/discovery-runs/b63b2186-0a21-48d9-bd47-d3e165224d33.json\",\n  \"archivePath\": \"data/processed/discovery-runs/eb788a2d-c9a7-49b9-94b4-557254d3dc93.json\",\n  \"generatedCellCount\": 1,\n  \"excludedReferenceOverlapCount\": 0,\n  \"candidates\": [\n    {\n      \"id\": \"CAND-ATACAMA-BOUN-000-000-S23.5000-W69.2000\",\n      \"recordType\": \"candidate_region\",\n      \"latitude\": -23.5,\n      \"longitude\": -69.2,\n      \"status\": \"insufficient_evidence\",\n      \"missingFactors\": [\n        \"sediment_regolith_properties\",\n        \"hydrological_context\",\n        \"mineral_evidence\"\n      ],\n      \"sources\": {\n        \"climate\": \"success\",\n        \"terrain\": \"failed\",\n        \"geology\": \"success\"\n      }\n    }\n  ]\n}\n"
+    },
+    {
+      "stage": "discovery_validation",
+      "text": "{\n  \"schemaVersion\": \"1.0.0\",\n  \"generatedAt\": \"2026-11-15T20:30:59.411Z\",\n  \"status\": \"valid\",\n  \"runId\": \"eb788a2d-c9a7-49b9-94b4-557254d3dc93\",\n  \"configurationId\": \"92fbbee7e4c1ade0\",\n  \"sourceRunPath\": \"data/app-runtime/discovery-runs/b63b2186-0a21-48d9-bd47-d3e165224d33.json\",\n  \"generatedCellCount\": 1,\n  \"candidateCount\": 1,\n  \"statusCounts\": {\n    \"evidence_supported_for_review\": 0,\n    \"insufficient_evidence\": 1,\n    \"rejected_reference_overlap\": 0\n  },\n  \"referenceCount\": 31,\n  \"fixtureCount\": 3,\n  \"errors\": []\n}\n"
+    },
+    {
+      "stage": "comparison",
+      "text": "{\n  \"schemaVersion\": \"1.0.0\",\n  \"generatedAt\": \"2026-11-15T20:31:11.697Z\",\n  \"status\": \"valid\",\n  \"runId\": \"53633878-2abe-4deb-a880-b3153fcd4be7\",\n  \"configurationId\": \"0e41184db7fabda3\",\n  \"candidateCount\": 1,\n  \"referenceCount\": 24,\n  \"comparisonPairCount\": 24,\n  \"factorStatusCounts\": {\n    \"compared\": 80,\n    \"ambiguous\": 0,\n    \"unavailable\": 352,\n    \"failed\": 24,\n    \"missing\": 0\n  },\n  \"errors\": [],\n  \"archivePath\": \"data/processed/comparison-runs/53633878-2abe-4deb-a880-b3153fcd4be7.json\",\n  \"latestPath\": \"data/processed/comparison-runs/latest.json\",\n  \"candidateIds\": [\n    \"CAND-ATACAMA-BOUN-000-000-S23.5000-W69.2000\"\n  ]\n}\n"
+    },
+    {
+      "stage": "comparison_validation",
+      "text": "{\n  \"schemaVersion\": \"1.0.0\",\n  \"generatedAt\": \"2026-11-15T20:31:12.353Z\",\n  \"status\": \"valid\",\n  \"runId\": \"53633878-2abe-4deb-a880-b3153fcd4be7\",\n  \"candidateCount\": 1,\n  \"referenceCount\": 24,\n  \"fixtureCount\": 3,\n  \"comparisonPairCount\": 24,\n  \"factorStatusCounts\": {\n    \"compared\": 80,\n    \"ambiguous\": 0,\n    \"unavailable\": 352,\n    \"failed\": 24,\n    \"missing\": 0\n  },\n  \"errors\": []\n}\n"
+    }
+  ],
+  "discoveryRunId": "eb788a2d-c9a7-49b9-94b4-557254d3dc93",
+  "discoveryValidation": {
+    "runId": "eb788a2d-c9a7-49b9-94b4-557254d3dc93",
+    "status": "valid",
+    "errors": []
+  },
+  "comparisonRunId": "53633878-2abe-4deb-a880-b3153fcd4be7",
+  "comparisonValidation": {
+    "runId": "53633878-2abe-4deb-a880-b3153fcd4be7",
+    "status": "valid",
+    "errors": []
+  },
+  "failureStage": null,
+  "error": null
+}

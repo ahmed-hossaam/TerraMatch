@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "1.0.0",
+  "generatedAt": "2026-11-15T19:25:04.699Z",
+  "status": "valid",
+  "referenceCount": 31,
+  "fixtureCount": 3,
+  "factorCount": 19,
+  "evidenceRecordCount": 589,
+  "supplementalEvidenceRecordCount": 199,
+  "acquisitionSourceRecordCount": 199,
+  "supplementalSites": [
+    "MET",
+    "ETN"
+  ],
+  "eligibleSiteIds": [
+    "GKC",
+    "GKB",
+    "WDE",
+    "KHA",
+    "ATA",
+    "MOJ",
+    "RAM",
+    "DHO",
+    "PIL",
+    "WHS",
+    "MDRS",
+    "MET",
+    "BON",
+    "RTI",
+    "LON",
+    "SAL",
+    "HIS",
+    "HMP",
+    "ETN",
+    "KIL",
+    "LAM",
+    "DALL",
+    "DAL",
+    "AHS-GH"
+  ],
+  "excludedSiteIds": [
+    "DEV",
+    "GOB",
+    "MDV",
+    "LAN",
+    "SVA",
+    "SEM",
+    "LUT"
+  ],
+  "stateCounts": {
+    "available": 80,
+    "not_retrieved": 230,
+    "no_matching_records": 0,
+    "retrieval_failed": 0,
+    "unavailable": 278,
+    "not_representative": 1,
+    "insufficient_provenance": 0,
+    "source_no_data_class": 0,
+    "ambiguous": 0,
+    "missing": 0
+  },
+  "errors": []
+}

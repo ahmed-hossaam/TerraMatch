@@ -1,0 +1,107 @@
+{
+  "schemaVersion": "1.0.0",
+  "acquisitionDate": "2026-11-15",
+  "siteSelection": [
+    { "siteId": "MET", "reason": "Meteor Crater is a named impact locality in the curated inventory; USGS publishes an impact-melt dataset and site-specific report with geochemical tables." },
+    { "siteId": "ETN", "reason": "Mount Etna is a volcanic analog lead; GEOROC returned a named Etna/Sicily sample locality with mineral/component analyses and an original paper citation." },
+    { "siteId": "WHS", "reason": "White Sands is an aeolian reference with potential relevance to the dune-focused PAAD release; the targeted catalog query was blocked." },
+    { "siteId": "RTI", "reason": "Río Tinto is a hydrothermal/acidic-environment reference for which sample-level geochemistry is a relevant EarthChem target; API filtering failed." }
+  ],
+  "attempts": [
+    {
+      "sourceId": "usgs-tadp-sciencebase",
+      "siteId": "MET",
+      "method": "GET",
+      "url": "https://www.sciencebase.gov/catalog/items?q=Meteor%20Crater&format=json&max=5",
+      "query": "ScienceBase catalog title search for Meteor Crater; JSON; maximum 5 results.",
+      "attemptedAt": null,
+      "httpStatus": 403,
+      "responseSummary": "Forbidden. No item JSON returned; this is not a no-match result.",
+      "outcome": "failed_access"
+    },
+    {
+      "sourceId": "usgs-paad",
+      "siteId": "WHS",
+      "method": "GET",
+      "url": "https://www.sciencebase.gov/catalog/items?q=Planetary%20Aeolian%20Analog%20Database&format=json&max=5",
+      "query": "ScienceBase catalog title search for the PAAD release; JSON; maximum 5 results.",
+      "attemptedAt": null,
+      "httpStatus": 403,
+      "responseSummary": "Forbidden. No PAAD item metadata or release files returned; this is not a no-match result.",
+      "outcome": "failed_access"
+    },
+    {
+      "sourceId": "usgs-tadp-sciencebase",
+      "siteId": "MET",
+      "method": "GET",
+      "url": "https://www.sciencebase.gov/catalog/item/64d672a0d34ef477cf3e135a?format=json",
+      "query": "USGS ScienceBase item metadata request for the USGS Meteor Crater Impact Melt data release, item 64d672a0d34ef477cf3e135a.",
+      "attemptedAt": null,
+      "httpStatus": 403,
+      "responseSummary": "Forbidden. The ScienceBase REST response body was not retained by the command runner.",
+      "outcome": "failed_access"
+    },
+    {
+      "sourceId": "earthchem-petdb",
+      "siteId": "MET",
+      "method": "GET",
+      "url": "https://api.earthchem.org/v4/locations/point?latitude=35.03&longitude=-111.02&radius=10&size=5",
+      "query": "Initial coordinate probe at the MET atlas marker (35.03, -111.02), nominal 10 km, size 5. The parameter names were exploratory and were not established by the API documentation.",
+      "attemptedAt": null,
+      "httpStatus": 200,
+      "responseSummary": "Returned count=1147; the first returned sample was at 92.1951333 E, 29.2398333 N. The supplied coordinate filters were not demonstrated to apply; result rejected and not matched.",
+      "outcome": "retrieved_unfiltered_response_rejected"
+    },
+    {
+      "sourceId": "earthchem-petdb",
+      "siteId": "MET",
+      "method": "GET",
+      "url": "https://api.earthchem.org/v4/locations/samples?boundingBox=topLeft%3A%3A%5B35.1%2C-110.9%5D%20bottomRight%3A%3A%5B34.9%2C-111.1%5D&size=5",
+      "query": "Documented PetDB v4 boundingBox syntax, narrow box around the Meteor Crater atlas point, size 5.",
+      "attemptedAt": null,
+      "httpStatus": 502,
+      "responseSummary": "Bad Gateway. No sample results returned; not classified as an empty search.",
+      "outcome": "failed_service"
+    },
+    {
+      "sourceId": "earthchem-petdb",
+      "siteId": "RTI",
+      "method": "GET",
+      "url": "https://api.earthchem.org/v4/locations/samples?boundingBox=topLeft%3A%3A%5B37.74%2C-6.50%5D%20bottomRight%3A%3A%5B37.64%2C-6.62%5D&size=5",
+      "query": "Documented PetDB v4 boundingBox syntax; narrow box around the Río Tinto atlas marker (37.69, -6.56), size 5.",
+      "attemptedAt": null,
+      "httpStatus": 502,
+      "responseSummary": "Bad Gateway. No sample results returned; not classified as an empty search.",
+      "outcome": "failed_service"
+    },
+    {
+      "sourceId": "georoc",
+      "siteId": "ETN",
+      "method": "POST",
+      "url": "https://georoc.eu/georoc/GeographCoord.asp",
+      "query": "Form fields LatMin=37.74, LatMax=37.76, LongMin=14.98, LongMax=15.00; selected sample SDV-1; analyte FEOT; analytical rows requested with NumBase=ANALYSES_NUM. GEOROC reported 11 data rows in the bounded query, then 4 FEOT analytical rows for SDV-1.",
+      "attemptedAt": "2026-11-15T17:51:34.2229287Z",
+      "httpStatus": 200,
+      "responseSummary": "The source result labels sample SDV-1, location ETNA/SICILY, and supplies four FEOT(WT%) rows. Source coordinate bounds are 37–38.5 N and 14–16 E, much broader than the query box; this is regional context, not an exact sample coordinate.",
+      "downloadUrl": "https://georoc.eu/georoc/results/F4755352830866051115202665042PM.csv",
+      "rawArtifactPath": "data/evidence/m2/raw/georoc/ETN-SDV-1-FEOT.csv",
+      "finalResponsePageUrl": "https://georoc.eu/georoc/ResultsTxt.aspx",
+      "finalResponsePageArtifactPath": "data/evidence/m2/raw/georoc/ETN-SDV-1-FEOT.txt",
+      "outcome": "retrieved_regional_records"
+    },
+    {
+      "sourceId": "usgs-publications",
+      "siteId": "MET",
+      "method": "GET",
+      "url": "https://pubs.usgs.gov/publication/ofr20241062/full",
+      "query": "Official USGS Open-File Report 2024-1062 full text, including Table 1 (15 mount-average columns × 13 reported rows: 12 oxides plus analytical Total); report tables only, not the linked ScienceBase package.",
+      "attemptedAt": "2026-11-15T17:44:34.1279503Z",
+      "httpStatus": 200,
+      "responseSummary": "344015 bytes of official report HTML. Table 1 reports mount-average pristine impact-melt glass composition by WDS; individual mount coordinates are not reported in Table 1.",
+      "rawArtifactPath": "data/evidence/m2/raw/usgs/ofr2024-1062-full.html",
+      "relatedDataReleaseUrl": "https://doi.org/10.5066/P9OGAJ8P",
+      "outcome": "retrieved_published_measurements"
+    }
+  ],
+  "timestampCaveat": "The host clock timestamp was captured from raw artifact filesystem write times for successful downloads. The earlier failed API attempts were logged with HTTP status and URL but their exact wall-clock timestamp was not persisted by the command runner; attemptedAt is null rather than guessed."
+}

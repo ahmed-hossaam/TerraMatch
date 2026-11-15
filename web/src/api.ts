@@ -2,6 +2,7 @@ export interface ReferenceSite {
   id:string; recordType:"known_analog"; regionName:string|null; country:string|null; latitude:number|null; longitude:number|null;
   coordinatesApproximate:boolean|null; spatialGranularity:"point_or_area"|"region_level"; climate:Record<string,unknown>;
   terrain:Record<string,unknown>; elevationSampleM?:{value:number|null;unit:string|null}; elevationMeanM?:{value:number|null;unit:string|null}; geology:{lithology?:{classification:string|null};[key:string]:unknown}; provenance:Record<string,unknown>[]; limitations:string[];
+  curation?:{preliminaryDecision:string;decisionRationale:string;locationType:string;pointComparisonEligible:boolean;coordinateAssessment:{providerSamplingDefensible:boolean};evidenceByDimension:Record<string,{status:string;note:string}>;claimCitations:{title:string;doiOrStableUrl:string;supportedClaimOrDimension:string;limitations:string}[];knownLimitations:string[]}|null;
 }
 export interface RunSummary { runId:string; createdAt:string; status:string; missionId?:string; candidateCount?:number; comparisonPairCount?:number; referenceCount?:number; configurationId?:string; studyArea?:string; }
 export interface ApiSummary { referenceCount:number; fixtureCount:number; candidateCount:number; comparisonPairCount:number; latestDiscoveryRunId:string|null; latestComparisonRunId:string|null; latestDiscovery:any; latestComparison:any; }

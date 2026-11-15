@@ -1,0 +1,3709 @@
+{
+  "schemaVersion": "1.0.0",
+  "curationVersion": "1.0.0",
+  "createdAt": "2026-11-15",
+  "sourceInventory": {
+    "path": "data/processed/reference-sites.json",
+    "count": 31,
+    "recordsPreserved": true
+  },
+  "policy": {
+    "scope": "Reversible curation overlay; does not rewrite the complete reference archive.",
+    "keepVerifiedCriteria": "Requires reviewed location-specific and claim-specific traceable evidence; no record meets this threshold in this milestone.",
+    "regionOnly": "Regional claim/location only; not eligible for point sampling or point comparison.",
+    "pending": "Unresolved material identity, location, or claim-source questions; not proof of irrelevance.",
+    "pointComparisonPolicy": "Only keep_verified and keep_with_limitations point/area records are eligible, subject to factor-level evidence status; region-only and pending records are excluded from point comparisons."
+  },
+  "records": [
+    {
+      "stableId": "GKC",
+      "displayName": "Gilf Kebir Crater Field",
+      "originalSourceName": "حقل فوهات الجلف الكبير",
+      "countryOrRegion": "Egypt",
+      "locationType": "approximate_area_marker",
+      "coordinateAssessment": {
+        "originalLatitude": 22.8,
+        "originalLongitude": 26.2,
+        "coordinateSource": "Supplied structured atlas; exact source-to-coordinate relationship not established in the M0 repository audit.",
+        "locationType": "approximate_area_marker",
+        "statedUncertainty": null,
+        "precisionIsAccuracy": false,
+        "representsSiteOrSample": "Approximate site/area marker; named field or sample point not established.",
+        "providerSamplingDefensible": true,
+        "curationNote": "Do not infer uncertainty from decimal places."
+      },
+      "preliminaryDecision": "keep_with_limitations",
+      "decisionRationale": "Named crater-field analog lead; point is approximate and claims remain unevenly sourced.",
+      "evidenceByDimension": {
+        "identity": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "coordinates": {
+          "status": "atlas_claim",
+          "note": "Location source and uncertainty are not documented at sufficient precision."
+        },
+        "climate": {
+          "status": "primary_dataset",
+          "note": "NASA POWER gridded/model-derived history is present for this ID; not a ground station."
+        },
+        "terrain": {
+          "status": "primary_dataset",
+          "note": "One Copernicus GLO-30 DSM pixel is stored; not a terrain summary."
+        },
+        "geomorphology": {
+          "status": "atlas_claim",
+          "note": "Atlas narrative is preserved as a claim; no independent site-specific geomorphology validation was established here."
+        },
+        "lithology": {
+          "status": "primary_dataset",
+          "note": "Generalized GLiM mapped lithology; not mineral detection."
+        },
+        "mineralogy": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "water_ice": {
+          "status": "unverified",
+          "note": "No separate, traceable water/ice evidence was established in M0; this missing evidence is not evidence of absence."
+        },
+        "geological_processes": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mars_analog_relevance": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        }
+      },
+      "claimCitations": [
+        {
+          "title": "NASA POWER Daily API",
+          "authorsOrOrganization": "NASA Langley Research Center",
+          "publicationYear": null,
+          "doiOrStableUrl": "https://power.larc.nasa.gov/docs/services/api/temporal/daily/",
+          "sourceType": "primary_dataset",
+          "supportedClaimOrDimension": "Stored coordinate-requested daily gridded climate history, 2001-01-01 through 2020-12-31; not a ground-station observation.",
+          "relevantPageSectionTable": "Daily API product documentation; exact response files remain in data/raw/nasa-power/",
+          "geographicScope": "Requested coordinate for GKC",
+          "limitations": "Grid/model product; stored response is tied to the record's requested coordinate but does not validate that coordinate as the named site's representative location."
+        },
+        {
+          "title": "Copernicus DEM GLO-30 product",
+          "authorsOrOrganization": "Copernicus / European Union; WorldDEM produced by DLR and Airbus",
+          "publicationYear": 2021,
+          "doiOrStableUrl": "https://doi.org/10.5270/ESA-c5d3d65",
+          "sourceType": "primary_dataset",
+          "supportedClaimOrDimension": "Stored one-pixel GLO-30 digital surface model elevation sample at the requested coordinate.",
+          "relevantPageSectionTable": "COP-DEM_GLO-30-Public product; raw site sample remains in data/raw/copernicus-dem/",
+          "geographicScope": "Requested coordinate for GKC",
+          "limitations": "One DSM pixel is not mean elevation, terrain summary, or a ground-surface guarantee."
+        },
+        {
+          "title": "Global Lithological Map (GLiM)",
+          "authorsOrOrganization": "Hartmann and Moosdorf; ArcGIS service layer GLiM_Niveau_I",
+          "publicationYear": 2012,
+          "doiOrStableUrl": "https://doi.org/10.1029/2012GC004370",
+          "sourceType": "primary_dataset",
+          "supportedClaimOrDimension": "Stored generalized mapped lithology feature intersecting the requested coordinate.",
+          "relevantPageSectionTable": "GLiM Level I; raw query response remains in data/raw/glim/",
+          "geographicScope": "Mapped polygon at requested coordinate for GKC",
+          "limitations": "Generalized map category at global map scale; no mineral detection, local field truth, or process evidence."
+        }
+      ],
+      "knownLimitations": [
+        "Legacy atlas claims remain preserved and are not independently verified merely by being present.",
+        "Null, unavailable, failed retrieval, and confirmed absence are distinct states.",
+        "Provider products have different spatial support: gridded climate, single-pixel DSM, and generalized lithology."
+      ],
+      "unresolvedConflicts": [],
+      "reviewStatus": "m0_evidence_reconciled_no_new_site_specific_review",
+      "curationVersion": "1.0.0",
+      "pointComparisonEligible": true,
+      "providerCoverage": {
+        "NASA_POWER": {
+          "status": "stored_response",
+          "rawResponsePresent": true,
+          "normalizedEvidencePresent": true,
+          "coordinateMatchesRecord": "M0 reported all 8/8 IDs and request coordinates matched the normalized record",
+          "periodOrVersion": "2001-01-01 to 2020-12-31; daily",
+          "product": "NASA POWER daily gridded/model-derived parameters",
+          "validationResult": "M0 artifact and coordinate linkage passed; does not validate site truth",
+          "failed": false,
+          "note": "M0 audit found site-linked raw and normalized evidence; provider result does not establish claim validity."
+        },
+        "Copernicus_GLO30": {
+          "status": "stored_response",
+          "rawResponsePresent": true,
+          "normalizedEvidencePresent": true,
+          "coordinateMatchesRecord": "M0 reported all 8/8 IDs and request coordinates matched the normalized record",
+          "periodOrVersion": "not individually stored",
+          "product": "COP-DEM_GLO-30-Public; one DSM pixel",
+          "validationResult": "M0 artifact and coordinate linkage passed; does not validate site truth",
+          "failed": false,
+          "note": "M0 audit found site-linked raw and normalized evidence; provider result does not establish claim validity."
+        },
+        "GLiM": {
+          "status": "stored_response",
+          "rawResponsePresent": true,
+          "normalizedEvidencePresent": true,
+          "coordinateMatchesRecord": "M0 reported all 8/8 IDs and request coordinates matched the normalized record",
+          "periodOrVersion": "not individually stored",
+          "product": "GLiM Level I generalized feature",
+          "validationResult": "M0 artifact and coordinate linkage passed; does not validate site truth",
+          "failed": false,
+          "note": "M0 audit found site-linked raw and normalized evidence; provider result does not establish claim validity."
+        }
+      }
+    },
+    {
+      "stableId": "GKB",
+      "displayName": "Gilf Kebir Plateau",
+      "originalSourceName": "هضبة الجلف الكبير",
+      "countryOrRegion": "Egypt",
+      "locationType": "approximate_area_marker",
+      "coordinateAssessment": {
+        "originalLatitude": 23.5,
+        "originalLongitude": 26,
+        "coordinateSource": "Supplied structured atlas; exact source-to-coordinate relationship not established in the M0 repository audit.",
+        "locationType": "approximate_area_marker",
+        "statedUncertainty": null,
+        "precisionIsAccuracy": false,
+        "representsSiteOrSample": "Approximate site/area marker; named field or sample point not established.",
+        "providerSamplingDefensible": true,
+        "curationNote": "Do not infer uncertainty from decimal places."
+      },
+      "preliminaryDecision": "keep_with_limitations",
+      "decisionRationale": "Named plateau/valley analog lead; approximate point and legacy claims need site-level verification.",
+      "evidenceByDimension": {
+        "identity": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "coordinates": {
+          "status": "atlas_claim",
+          "note": "Location source and uncertainty are not documented at sufficient precision."
+        },
+        "climate": {
+          "status": "primary_dataset",
+          "note": "NASA POWER gridded/model-derived history is present for this ID; not a ground station."
+        },
+        "terrain": {
+          "status": "primary_dataset",
+          "note": "One Copernicus GLO-30 DSM pixel is stored; not a terrain summary."
+        },
+        "geomorphology": {
+          "status": "atlas_claim",
+          "note": "Atlas narrative is preserved as a claim; no independent site-specific geomorphology validation was established here."
+        },
+        "lithology": {
+          "status": "primary_dataset",
+          "note": "Generalized GLiM mapped lithology; not mineral detection."
+        },
+        "mineralogy": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "water_ice": {
+          "status": "unverified",
+          "note": "No separate, traceable water/ice evidence was established in M0; this missing evidence is not evidence of absence."
+        },
+        "geological_processes": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mars_analog_relevance": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        }
+      },
+      "claimCitations": [
+        {
+          "title": "NASA POWER Daily API",
+          "authorsOrOrganization": "NASA Langley Research Center",
+          "publicationYear": null,
+          "doiOrStableUrl": "https://power.larc.nasa.gov/docs/services/api/temporal/daily/",
+          "sourceType": "primary_dataset",
+          "supportedClaimOrDimension": "Stored coordinate-requested daily gridded climate history, 2001-01-01 through 2020-12-31; not a ground-station observation.",
+          "relevantPageSectionTable": "Daily API product documentation; exact response files remain in data/raw/nasa-power/",
+          "geographicScope": "Requested coordinate for GKB",
+          "limitations": "Grid/model product; stored response is tied to the record's requested coordinate but does not validate that coordinate as the named site's representative location."
+        },
+        {
+          "title": "Copernicus DEM GLO-30 product",
+          "authorsOrOrganization": "Copernicus / European Union; WorldDEM produced by DLR and Airbus",
+          "publicationYear": 2021,
+          "doiOrStableUrl": "https://doi.org/10.5270/ESA-c5d3d65",
+          "sourceType": "primary_dataset",
+          "supportedClaimOrDimension": "Stored one-pixel GLO-30 digital surface model elevation sample at the requested coordinate.",
+          "relevantPageSectionTable": "COP-DEM_GLO-30-Public product; raw site sample remains in data/raw/copernicus-dem/",
+          "geographicScope": "Requested coordinate for GKB",
+          "limitations": "One DSM pixel is not mean elevation, terrain summary, or a ground-surface guarantee."
+        },
+        {
+          "title": "Global Lithological Map (GLiM)",
+          "authorsOrOrganization": "Hartmann and Moosdorf; ArcGIS service layer GLiM_Niveau_I",
+          "publicationYear": 2012,
+          "doiOrStableUrl": "https://doi.org/10.1029/2012GC004370",
+          "sourceType": "primary_dataset",
+          "supportedClaimOrDimension": "Stored generalized mapped lithology feature intersecting the requested coordinate.",
+          "relevantPageSectionTable": "GLiM Level I; raw query response remains in data/raw/glim/",
+          "geographicScope": "Mapped polygon at requested coordinate for GKB",
+          "limitations": "Generalized map category at global map scale; no mineral detection, local field truth, or process evidence."
+        }
+      ],
+      "knownLimitations": [
+        "Legacy atlas claims remain preserved and are not independently verified merely by being present.",
+        "Null, unavailable, failed retrieval, and confirmed absence are distinct states.",
+        "Provider products have different spatial support: gridded climate, single-pixel DSM, and generalized lithology."
+      ],
+      "unresolvedConflicts": [],
+      "reviewStatus": "m0_evidence_reconciled_no_new_site_specific_review",
+      "curationVersion": "1.0.0",
+      "pointComparisonEligible": true,
+      "providerCoverage": {
+        "NASA_POWER": {
+          "status": "stored_response",
+          "rawResponsePresent": true,
+          "normalizedEvidencePresent": true,
+          "coordinateMatchesRecord": "M0 reported all 8/8 IDs and request coordinates matched the normalized record",
+          "periodOrVersion": "2001-01-01 to 2020-12-31; daily",
+          "product": "NASA POWER daily gridded/model-derived parameters",
+          "validationResult": "M0 artifact and coordinate linkage passed; does not validate site truth",
+          "failed": false,
+          "note": "M0 audit found site-linked raw and normalized evidence; provider result does not establish claim validity."
+        },
+        "Copernicus_GLO30": {
+          "status": "stored_response",
+          "rawResponsePresent": true,
+          "normalizedEvidencePresent": true,
+          "coordinateMatchesRecord": "M0 reported all 8/8 IDs and request coordinates matched the normalized record",
+          "periodOrVersion": "not individually stored",
+          "product": "COP-DEM_GLO-30-Public; one DSM pixel",
+          "validationResult": "M0 artifact and coordinate linkage passed; does not validate site truth",
+          "failed": false,
+          "note": "M0 audit found site-linked raw and normalized evidence; provider result does not establish claim validity."
+        },
+        "GLiM": {
+          "status": "stored_response",
+          "rawResponsePresent": true,
+          "normalizedEvidencePresent": true,
+          "coordinateMatchesRecord": "M0 reported all 8/8 IDs and request coordinates matched the normalized record",
+          "periodOrVersion": "not individually stored",
+          "product": "GLiM Level I generalized feature",
+          "validationResult": "M0 artifact and coordinate linkage passed; does not validate site truth",
+          "failed": false,
+          "note": "M0 audit found site-linked raw and normalized evidence; provider result does not establish claim validity."
+        }
+      }
+    },
+    {
+      "stableId": "WDE",
+      "displayName": "Western Desert, SW Egypt",
+      "originalSourceName": "الصحراء الغربية – جنوب غرب مصر",
+      "countryOrRegion": "Egypt",
+      "locationType": "approximate_area_marker",
+      "coordinateAssessment": {
+        "originalLatitude": 22,
+        "originalLongitude": 28.5,
+        "coordinateSource": "Supplied structured atlas; exact source-to-coordinate relationship not established in the M0 repository audit.",
+        "locationType": "approximate_area_marker",
+        "statedUncertainty": null,
+        "precisionIsAccuracy": false,
+        "representsSiteOrSample": "Approximate site/area marker; named field or sample point not established.",
+        "providerSamplingDefensible": true,
+        "curationNote": "Do not infer uncertainty from decimal places."
+      },
+      "preliminaryDecision": "keep_with_limitations",
+      "decisionRationale": "Broad desert analog context; coordinate is an approximate marker, not a verified study point.",
+      "evidenceByDimension": {
+        "identity": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "coordinates": {
+          "status": "atlas_claim",
+          "note": "Location source and uncertainty are not documented at sufficient precision."
+        },
+        "climate": {
+          "status": "primary_dataset",
+          "note": "NASA POWER gridded/model-derived history is present for this ID; not a ground station."
+        },
+        "terrain": {
+          "status": "primary_dataset",
+          "note": "One Copernicus GLO-30 DSM pixel is stored; not a terrain summary."
+        },
+        "geomorphology": {
+          "status": "atlas_claim",
+          "note": "Atlas narrative is preserved as a claim; no independent site-specific geomorphology validation was established here."
+        },
+        "lithology": {
+          "status": "primary_dataset",
+          "note": "Generalized GLiM mapped lithology; not mineral detection."
+        },
+        "mineralogy": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "water_ice": {
+          "status": "unverified",
+          "note": "No separate, traceable water/ice evidence was established in M0; this missing evidence is not evidence of absence."
+        },
+        "geological_processes": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mars_analog_relevance": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        }
+      },
+      "claimCitations": [
+        {
+          "title": "NASA POWER Daily API",
+          "authorsOrOrganization": "NASA Langley Research Center",
+          "publicationYear": null,
+          "doiOrStableUrl": "https://power.larc.nasa.gov/docs/services/api/temporal/daily/",
+          "sourceType": "primary_dataset",
+          "supportedClaimOrDimension": "Stored coordinate-requested daily gridded climate history, 2001-01-01 through 2020-12-31; not a ground-station observation.",
+          "relevantPageSectionTable": "Daily API product documentation; exact response files remain in data/raw/nasa-power/",
+          "geographicScope": "Requested coordinate for WDE",
+          "limitations": "Grid/model product; stored response is tied to the record's requested coordinate but does not validate that coordinate as the named site's representative location."
+        },
+        {
+          "title": "Copernicus DEM GLO-30 product",
+          "authorsOrOrganization": "Copernicus / European Union; WorldDEM produced by DLR and Airbus",
+          "publicationYear": 2021,
+          "doiOrStableUrl": "https://doi.org/10.5270/ESA-c5d3d65",
+          "sourceType": "primary_dataset",
+          "supportedClaimOrDimension": "Stored one-pixel GLO-30 digital surface model elevation sample at the requested coordinate.",
+          "relevantPageSectionTable": "COP-DEM_GLO-30-Public product; raw site sample remains in data/raw/copernicus-dem/",
+          "geographicScope": "Requested coordinate for WDE",
+          "limitations": "One DSM pixel is not mean elevation, terrain summary, or a ground-surface guarantee."
+        },
+        {
+          "title": "Global Lithological Map (GLiM)",
+          "authorsOrOrganization": "Hartmann and Moosdorf; ArcGIS service layer GLiM_Niveau_I",
+          "publicationYear": 2012,
+          "doiOrStableUrl": "https://doi.org/10.1029/2012GC004370",
+          "sourceType": "primary_dataset",
+          "supportedClaimOrDimension": "Stored generalized mapped lithology feature intersecting the requested coordinate.",
+          "relevantPageSectionTable": "GLiM Level I; raw query response remains in data/raw/glim/",
+          "geographicScope": "Mapped polygon at requested coordinate for WDE",
+          "limitations": "Generalized map category at global map scale; no mineral detection, local field truth, or process evidence."
+        }
+      ],
+      "knownLimitations": [
+        "Legacy atlas claims remain preserved and are not independently verified merely by being present.",
+        "Null, unavailable, failed retrieval, and confirmed absence are distinct states.",
+        "Provider products have different spatial support: gridded climate, single-pixel DSM, and generalized lithology."
+      ],
+      "unresolvedConflicts": [],
+      "reviewStatus": "m0_evidence_reconciled_no_new_site_specific_review",
+      "curationVersion": "1.0.0",
+      "pointComparisonEligible": true,
+      "providerCoverage": {
+        "NASA_POWER": {
+          "status": "stored_response",
+          "rawResponsePresent": true,
+          "normalizedEvidencePresent": true,
+          "coordinateMatchesRecord": "M0 reported all 8/8 IDs and request coordinates matched the normalized record",
+          "periodOrVersion": "2001-01-01 to 2020-12-31; daily",
+          "product": "NASA POWER daily gridded/model-derived parameters",
+          "validationResult": "M0 artifact and coordinate linkage passed; does not validate site truth",
+          "failed": false,
+          "note": "M0 audit found site-linked raw and normalized evidence; provider result does not establish claim validity."
+        },
+        "Copernicus_GLO30": {
+          "status": "stored_response",
+          "rawResponsePresent": true,
+          "normalizedEvidencePresent": true,
+          "coordinateMatchesRecord": "M0 reported all 8/8 IDs and request coordinates matched the normalized record",
+          "periodOrVersion": "not individually stored",
+          "product": "COP-DEM_GLO-30-Public; one DSM pixel",
+          "validationResult": "M0 artifact and coordinate linkage passed; does not validate site truth",
+          "failed": false,
+          "note": "M0 audit found site-linked raw and normalized evidence; provider result does not establish claim validity."
+        },
+        "GLiM": {
+          "status": "stored_response",
+          "rawResponsePresent": true,
+          "normalizedEvidencePresent": true,
+          "coordinateMatchesRecord": "M0 reported all 8/8 IDs and request coordinates matched the normalized record",
+          "periodOrVersion": "not individually stored",
+          "product": "GLiM Level I generalized feature",
+          "validationResult": "M0 artifact and coordinate linkage passed; does not validate site truth",
+          "failed": false,
+          "note": "M0 audit found site-linked raw and normalized evidence; provider result does not establish claim validity."
+        }
+      }
+    },
+    {
+      "stableId": "KHA",
+      "displayName": "Kharga Depression",
+      "originalSourceName": "منخفض الخارجة",
+      "countryOrRegion": "Egypt",
+      "locationType": "approximate_area_marker",
+      "coordinateAssessment": {
+        "originalLatitude": 25.45,
+        "originalLongitude": 30.55,
+        "coordinateSource": "Supplied structured atlas; exact source-to-coordinate relationship not established in the M0 repository audit.",
+        "locationType": "approximate_area_marker",
+        "statedUncertainty": null,
+        "precisionIsAccuracy": false,
+        "representsSiteOrSample": "Approximate site/area marker; named field or sample point not established.",
+        "providerSamplingDefensible": true,
+        "curationNote": "Do not infer uncertainty from decimal places."
+      },
+      "preliminaryDecision": "keep_with_limitations",
+      "decisionRationale": "Named depression analog lead; approximate coordinate and atlas claims need source-level review.",
+      "evidenceByDimension": {
+        "identity": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "coordinates": {
+          "status": "atlas_claim",
+          "note": "Location source and uncertainty are not documented at sufficient precision."
+        },
+        "climate": {
+          "status": "primary_dataset",
+          "note": "NASA POWER gridded/model-derived history is present for this ID; not a ground station."
+        },
+        "terrain": {
+          "status": "primary_dataset",
+          "note": "One Copernicus GLO-30 DSM pixel is stored; not a terrain summary."
+        },
+        "geomorphology": {
+          "status": "atlas_claim",
+          "note": "Atlas narrative is preserved as a claim; no independent site-specific geomorphology validation was established here."
+        },
+        "lithology": {
+          "status": "primary_dataset",
+          "note": "Generalized GLiM mapped lithology; not mineral detection."
+        },
+        "mineralogy": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "water_ice": {
+          "status": "unverified",
+          "note": "No separate, traceable water/ice evidence was established in M0; this missing evidence is not evidence of absence."
+        },
+        "geological_processes": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mars_analog_relevance": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        }
+      },
+      "claimCitations": [
+        {
+          "title": "NASA POWER Daily API",
+          "authorsOrOrganization": "NASA Langley Research Center",
+          "publicationYear": null,
+          "doiOrStableUrl": "https://power.larc.nasa.gov/docs/services/api/temporal/daily/",
+          "sourceType": "primary_dataset",
+          "supportedClaimOrDimension": "Stored coordinate-requested daily gridded climate history, 2001-01-01 through 2020-12-31; not a ground-station observation.",
+          "relevantPageSectionTable": "Daily API product documentation; exact response files remain in data/raw/nasa-power/",
+          "geographicScope": "Requested coordinate for KHA",
+          "limitations": "Grid/model product; stored response is tied to the record's requested coordinate but does not validate that coordinate as the named site's representative location."
+        },
+        {
+          "title": "Copernicus DEM GLO-30 product",
+          "authorsOrOrganization": "Copernicus / European Union; WorldDEM produced by DLR and Airbus",
+          "publicationYear": 2021,
+          "doiOrStableUrl": "https://doi.org/10.5270/ESA-c5d3d65",
+          "sourceType": "primary_dataset",
+          "supportedClaimOrDimension": "Stored one-pixel GLO-30 digital surface model elevation sample at the requested coordinate.",
+          "relevantPageSectionTable": "COP-DEM_GLO-30-Public product; raw site sample remains in data/raw/copernicus-dem/",
+          "geographicScope": "Requested coordinate for KHA",
+          "limitations": "One DSM pixel is not mean elevation, terrain summary, or a ground-surface guarantee."
+        },
+        {
+          "title": "Global Lithological Map (GLiM)",
+          "authorsOrOrganization": "Hartmann and Moosdorf; ArcGIS service layer GLiM_Niveau_I",
+          "publicationYear": 2012,
+          "doiOrStableUrl": "https://doi.org/10.1029/2012GC004370",
+          "sourceType": "primary_dataset",
+          "supportedClaimOrDimension": "Stored generalized mapped lithology feature intersecting the requested coordinate.",
+          "relevantPageSectionTable": "GLiM Level I; raw query response remains in data/raw/glim/",
+          "geographicScope": "Mapped polygon at requested coordinate for KHA",
+          "limitations": "Generalized map category at global map scale; no mineral detection, local field truth, or process evidence."
+        }
+      ],
+      "knownLimitations": [
+        "Legacy atlas claims remain preserved and are not independently verified merely by being present.",
+        "Null, unavailable, failed retrieval, and confirmed absence are distinct states.",
+        "Provider products have different spatial support: gridded climate, single-pixel DSM, and generalized lithology."
+      ],
+      "unresolvedConflicts": [],
+      "reviewStatus": "m0_evidence_reconciled_no_new_site_specific_review",
+      "curationVersion": "1.0.0",
+      "pointComparisonEligible": true,
+      "providerCoverage": {
+        "NASA_POWER": {
+          "status": "stored_response",
+          "rawResponsePresent": true,
+          "normalizedEvidencePresent": true,
+          "coordinateMatchesRecord": "M0 reported all 8/8 IDs and request coordinates matched the normalized record",
+          "periodOrVersion": "2001-01-01 to 2020-12-31; daily",
+          "product": "NASA POWER daily gridded/model-derived parameters",
+          "validationResult": "M0 artifact and coordinate linkage passed; does not validate site truth",
+          "failed": false,
+          "note": "M0 audit found site-linked raw and normalized evidence; provider result does not establish claim validity."
+        },
+        "Copernicus_GLO30": {
+          "status": "stored_response",
+          "rawResponsePresent": true,
+          "normalizedEvidencePresent": true,
+          "coordinateMatchesRecord": "M0 reported all 8/8 IDs and request coordinates matched the normalized record",
+          "periodOrVersion": "not individually stored",
+          "product": "COP-DEM_GLO-30-Public; one DSM pixel",
+          "validationResult": "M0 artifact and coordinate linkage passed; does not validate site truth",
+          "failed": false,
+          "note": "M0 audit found site-linked raw and normalized evidence; provider result does not establish claim validity."
+        },
+        "GLiM": {
+          "status": "stored_response",
+          "rawResponsePresent": true,
+          "normalizedEvidencePresent": true,
+          "coordinateMatchesRecord": "M0 reported all 8/8 IDs and request coordinates matched the normalized record",
+          "periodOrVersion": "not individually stored",
+          "product": "GLiM Level I generalized feature",
+          "validationResult": "M0 artifact and coordinate linkage passed; does not validate site truth",
+          "failed": false,
+          "note": "M0 audit found site-linked raw and normalized evidence; provider result does not establish claim validity."
+        }
+      }
+    },
+    {
+      "stableId": "ATA",
+      "displayName": "Atacama Desert – Yungay",
+      "originalSourceName": "صحراء أتاكاما (يونغاي)",
+      "countryOrRegion": "Chile",
+      "locationType": "approximate_area_marker",
+      "coordinateAssessment": {
+        "originalLatitude": -24.08,
+        "originalLongitude": -70,
+        "coordinateSource": "Supplied structured atlas; exact source-to-coordinate relationship not established in the M0 repository audit.",
+        "locationType": "approximate_area_marker",
+        "statedUncertainty": null,
+        "precisionIsAccuracy": false,
+        "representsSiteOrSample": "Approximate site/area marker; named field or sample point not established.",
+        "providerSamplingDefensible": false,
+        "curationNote": "Do not infer uncertainty from decimal places."
+      },
+      "preliminaryDecision": "keep_with_limitations",
+      "decisionRationale": "Yungay hyperarid analog literature is relevant; atlas precipitation claim conflicts with field context and coordinates are approximate.",
+      "evidenceByDimension": {
+        "identity": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "coordinates": {
+          "status": "atlas_claim",
+          "note": "Location source and uncertainty are not documented at sufficient precision."
+        },
+        "climate": {
+          "status": "conflicting",
+          "note": "The atlas value conflicts with a separately cited field value; product and period reconciliation remains unresolved."
+        },
+        "terrain": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "geomorphology": {
+          "status": "atlas_claim",
+          "note": "Atlas narrative is preserved as a claim; no independent site-specific geomorphology validation was established here."
+        },
+        "lithology": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mineralogy": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "water_ice": {
+          "status": "unverified",
+          "note": "No separate, traceable water/ice evidence was established in M0; this missing evidence is not evidence of absence."
+        },
+        "geological_processes": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mars_analog_relevance": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        }
+      },
+      "claimCitations": [],
+      "knownLimitations": [
+        "Legacy atlas claims remain preserved and are not independently verified merely by being present.",
+        "Null, unavailable, failed retrieval, and confirmed absence are distinct states."
+      ],
+      "unresolvedConflicts": [
+        "Atlas precipitation value is flagged in M0 as conflicting with a cited field value; the two periods/products are not reconciled here."
+      ],
+      "reviewStatus": "m0_evidence_reconciled_no_new_site_specific_review",
+      "curationVersion": "1.0.0",
+      "pointComparisonEligible": true,
+      "providerCoverage": {
+        "NASA_POWER": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "NASA POWER daily gridded/model-derived parameters",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        },
+        "Copernicus_GLO30": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "COP-DEM_GLO-30-Public; one DSM pixel",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        },
+        "GLiM": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "GLiM Level I generalized feature",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        }
+      }
+    },
+    {
+      "stableId": "MOJ",
+      "displayName": "Mojave Desert",
+      "originalSourceName": "صحراء موهافي",
+      "countryOrRegion": "United States",
+      "locationType": "approximate_area_marker",
+      "coordinateAssessment": {
+        "originalLatitude": 35,
+        "originalLongitude": -116,
+        "coordinateSource": "Supplied structured atlas; exact source-to-coordinate relationship not established in the M0 repository audit.",
+        "locationType": "approximate_area_marker",
+        "statedUncertainty": null,
+        "precisionIsAccuracy": false,
+        "representsSiteOrSample": "Approximate site/area marker; named field or sample point not established.",
+        "providerSamplingDefensible": false,
+        "curationNote": "Do not infer uncertainty from decimal places."
+      },
+      "preliminaryDecision": "keep_with_limitations",
+      "decisionRationale": "Useful desert/volcanic-material analog lead; the broad marker does not identify all cited sample localities.",
+      "evidenceByDimension": {
+        "identity": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "coordinates": {
+          "status": "atlas_claim",
+          "note": "Location source and uncertainty are not documented at sufficient precision."
+        },
+        "climate": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "terrain": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "geomorphology": {
+          "status": "atlas_claim",
+          "note": "Atlas narrative is preserved as a claim; no independent site-specific geomorphology validation was established here."
+        },
+        "lithology": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mineralogy": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "water_ice": {
+          "status": "unverified",
+          "note": "No separate, traceable water/ice evidence was established in M0; this missing evidence is not evidence of absence."
+        },
+        "geological_processes": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mars_analog_relevance": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        }
+      },
+      "claimCitations": [],
+      "knownLimitations": [
+        "Legacy atlas claims remain preserved and are not independently verified merely by being present.",
+        "Null, unavailable, failed retrieval, and confirmed absence are distinct states."
+      ],
+      "unresolvedConflicts": [],
+      "reviewStatus": "m0_evidence_reconciled_no_new_site_specific_review",
+      "curationVersion": "1.0.0",
+      "pointComparisonEligible": true,
+      "providerCoverage": {
+        "NASA_POWER": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "NASA POWER daily gridded/model-derived parameters",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        },
+        "Copernicus_GLO30": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "COP-DEM_GLO-30-Public; one DSM pixel",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        },
+        "GLiM": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "GLiM Level I generalized feature",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        }
+      }
+    },
+    {
+      "stableId": "DEV",
+      "displayName": "Death Valley",
+      "originalSourceName": "وادي الموت",
+      "countryOrRegion": "United States",
+      "locationType": "region",
+      "coordinateAssessment": {
+        "originalLatitude": 36.5,
+        "originalLongitude": -117,
+        "coordinateSource": "Supplied structured atlas; exact source-to-coordinate relationship not established in the M0 repository audit.",
+        "locationType": "region",
+        "statedUncertainty": null,
+        "precisionIsAccuracy": false,
+        "representsSiteOrSample": "No; atlas marker is not the Badwater study location cited in retrieved literature.",
+        "providerSamplingDefensible": false,
+        "curationNote": "Do not infer uncertainty from decimal places."
+      },
+      "preliminaryDecision": "region_only",
+      "decisionRationale": "Death Valley has site-specific Mars-analog literature, but the atlas point does not match the cited Badwater study locality; do not sample this marker as that site.",
+      "evidenceByDimension": {
+        "identity": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "coordinates": {
+          "status": "atlas_claim",
+          "note": "Location source and uncertainty are not documented at sufficient precision."
+        },
+        "climate": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "terrain": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "geomorphology": {
+          "status": "atlas_claim",
+          "note": "Atlas narrative is preserved as a claim; no independent site-specific geomorphology validation was established here."
+        },
+        "lithology": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mineralogy": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "water_ice": {
+          "status": "unverified",
+          "note": "No separate, traceable water/ice evidence was established in M0; this missing evidence is not evidence of absence."
+        },
+        "geological_processes": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mars_analog_relevance": {
+          "status": "peer_reviewed_source",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        }
+      },
+      "claimCitations": [
+        {
+          "title": "Mars remote-sensing analog studies in the Badwater Basin, Death Valley, California",
+          "authorsOrOrganization": "Baldridge, Farmer, and Moersch",
+          "publicationYear": 2004,
+          "doiOrStableUrl": "https://doi.org/10.1029/2004JE002315",
+          "sourceType": "peer_reviewed_source",
+          "supportedClaimOrDimension": "Badwater Basin as an evaporite and remote-sensing analog; not the atlas coordinate.",
+          "relevantPageSectionTable": "Study locality and abstract",
+          "geographicScope": "Badwater Basin, Death Valley",
+          "limitations": "Supports the named basin study area, not the Death Valley-wide atlas marker."
+        }
+      ],
+      "knownLimitations": [
+        "Legacy atlas claims remain preserved and are not independently verified merely by being present.",
+        "Null, unavailable, failed retrieval, and confirmed absence are distinct states."
+      ],
+      "unresolvedConflicts": [
+        "Death Valley atlas marker does not represent the Badwater locality in retrieved site-specific literature."
+      ],
+      "reviewStatus": "literature_reviewed_limited_scope",
+      "curationVersion": "1.0.0",
+      "pointComparisonEligible": false,
+      "providerCoverage": {
+        "NASA_POWER": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "NASA POWER daily gridded/model-derived parameters",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        },
+        "Copernicus_GLO30": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "COP-DEM_GLO-30-Public; one DSM pixel",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        },
+        "GLiM": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "GLiM Level I generalized feature",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        }
+      }
+    },
+    {
+      "stableId": "RAM",
+      "displayName": "Ramon Crater, Negev",
+      "originalSourceName": "مكتيش رامون – النقب",
+      "countryOrRegion": "Israel",
+      "locationType": "approximate_area_marker",
+      "coordinateAssessment": {
+        "originalLatitude": 30.6,
+        "originalLongitude": 34.8,
+        "coordinateSource": "Supplied structured atlas; exact source-to-coordinate relationship not established in the M0 repository audit.",
+        "locationType": "approximate_area_marker",
+        "statedUncertainty": null,
+        "precisionIsAccuracy": false,
+        "representsSiteOrSample": "Approximate site/area marker; named field or sample point not established.",
+        "providerSamplingDefensible": false,
+        "curationNote": "Do not infer uncertainty from decimal places."
+      },
+      "preliminaryDecision": "keep_with_limitations",
+      "decisionRationale": "Ramon is a documented planetary-analog field-operation region; the record point is not established as a study or simulation center.",
+      "evidenceByDimension": {
+        "identity": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "coordinates": {
+          "status": "atlas_claim",
+          "note": "Location source and uncertainty are not documented at sufficient precision."
+        },
+        "climate": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "terrain": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "geomorphology": {
+          "status": "atlas_claim",
+          "note": "Atlas narrative is preserved as a claim; no independent site-specific geomorphology validation was established here."
+        },
+        "lithology": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mineralogy": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "water_ice": {
+          "status": "unverified",
+          "note": "No separate, traceable water/ice evidence was established in M0; this missing evidence is not evidence of absence."
+        },
+        "geological_processes": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mars_analog_relevance": {
+          "status": "official_documentation",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        }
+      },
+      "claimCitations": [
+        {
+          "title": "AMADEE-20 Mission Report v1.0 (public version)",
+          "authorsOrOrganization": "Austrian Space Forum / AMADEE-20 mission team",
+          "publicationYear": 2022,
+          "doiOrStableUrl": "https://webstorage.cienciaviva.pt/public/pt.esero.www/uploads/20220310161114_A20_Mission_Report_8_Jan_2022.pdf",
+          "sourceType": "official_documentation",
+          "supportedClaimOrDimension": "The AMADEE-20 Mars-analog simulation test site was in the Negev within the erosion structures of Ramon Crater; supports regional analog operations and terrain context, not every atlas geology claim.",
+          "relevantPageSectionTable": "Section 3, pp. 7–8",
+          "geographicScope": "AMADEE-20 test area near Mitzpe Ramon / Ramon Crater, Negev",
+          "limitations": "Report describes one mission test site and does not establish the atlas coordinate as a sampling coordinate."
+        }
+      ],
+      "knownLimitations": [
+        "Legacy atlas claims remain preserved and are not independently verified merely by being present.",
+        "Null, unavailable, failed retrieval, and confirmed absence are distinct states."
+      ],
+      "unresolvedConflicts": [],
+      "reviewStatus": "literature_reviewed_limited_scope",
+      "curationVersion": "1.0.0",
+      "pointComparisonEligible": true,
+      "providerCoverage": {
+        "NASA_POWER": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "NASA POWER daily gridded/model-derived parameters",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        },
+        "Copernicus_GLO30": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "COP-DEM_GLO-30-Public; one DSM pixel",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        },
+        "GLiM": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "GLiM Level I generalized feature",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        }
+      }
+    },
+    {
+      "stableId": "DHO",
+      "displayName": "Dhofar Desert",
+      "originalSourceName": "صحراء ظفار",
+      "countryOrRegion": "Oman",
+      "locationType": "approximate_area_marker",
+      "coordinateAssessment": {
+        "originalLatitude": 18.15,
+        "originalLongitude": 55.2,
+        "coordinateSource": "Supplied structured atlas; exact source-to-coordinate relationship not established in the M0 repository audit.",
+        "locationType": "approximate_area_marker",
+        "statedUncertainty": null,
+        "precisionIsAccuracy": false,
+        "representsSiteOrSample": "Approximate site/area marker; named field or sample point not established.",
+        "providerSamplingDefensible": false,
+        "curationNote": "Do not infer uncertainty from decimal places."
+      },
+      "preliminaryDecision": "keep_with_limitations",
+      "decisionRationale": "Named desert analog lead; approximate location and uneven claim-level provenance remain.",
+      "evidenceByDimension": {
+        "identity": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "coordinates": {
+          "status": "atlas_claim",
+          "note": "Location source and uncertainty are not documented at sufficient precision."
+        },
+        "climate": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "terrain": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "geomorphology": {
+          "status": "atlas_claim",
+          "note": "Atlas narrative is preserved as a claim; no independent site-specific geomorphology validation was established here."
+        },
+        "lithology": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mineralogy": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "water_ice": {
+          "status": "unverified",
+          "note": "No separate, traceable water/ice evidence was established in M0; this missing evidence is not evidence of absence."
+        },
+        "geological_processes": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mars_analog_relevance": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        }
+      },
+      "claimCitations": [],
+      "knownLimitations": [
+        "Legacy atlas claims remain preserved and are not independently verified merely by being present.",
+        "Null, unavailable, failed retrieval, and confirmed absence are distinct states."
+      ],
+      "unresolvedConflicts": [],
+      "reviewStatus": "m0_evidence_reconciled_no_new_site_specific_review",
+      "curationVersion": "1.0.0",
+      "pointComparisonEligible": true,
+      "providerCoverage": {
+        "NASA_POWER": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "NASA POWER daily gridded/model-derived parameters",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        },
+        "Copernicus_GLO30": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "COP-DEM_GLO-30-Public; one DSM pixel",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        },
+        "GLiM": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "GLiM Level I generalized feature",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        }
+      }
+    },
+    {
+      "stableId": "PIL",
+      "displayName": "Pilbara – North Pole Dome",
+      "originalSourceName": "بيلبارا – قبة القطب الشمالي",
+      "countryOrRegion": "Australia",
+      "locationType": "approximate_area_marker",
+      "coordinateAssessment": {
+        "originalLatitude": -21.1,
+        "originalLongitude": 119.4,
+        "coordinateSource": "Supplied structured atlas; exact source-to-coordinate relationship not established in the M0 repository audit.",
+        "locationType": "approximate_area_marker",
+        "statedUncertainty": null,
+        "precisionIsAccuracy": false,
+        "representsSiteOrSample": "Approximate site/area marker; named field or sample point not established.",
+        "providerSamplingDefensible": false,
+        "curationNote": "Do not infer uncertainty from decimal places."
+      },
+      "preliminaryDecision": "keep_with_limitations",
+      "decisionRationale": "North Pole Dome is a useful geological analog lead; exact point and legacy claims require source-level review.",
+      "evidenceByDimension": {
+        "identity": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "coordinates": {
+          "status": "atlas_claim",
+          "note": "Location source and uncertainty are not documented at sufficient precision."
+        },
+        "climate": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "terrain": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "geomorphology": {
+          "status": "atlas_claim",
+          "note": "Atlas narrative is preserved as a claim; no independent site-specific geomorphology validation was established here."
+        },
+        "lithology": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mineralogy": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "water_ice": {
+          "status": "unverified",
+          "note": "No separate, traceable water/ice evidence was established in M0; this missing evidence is not evidence of absence."
+        },
+        "geological_processes": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mars_analog_relevance": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        }
+      },
+      "claimCitations": [],
+      "knownLimitations": [
+        "Legacy atlas claims remain preserved and are not independently verified merely by being present.",
+        "Null, unavailable, failed retrieval, and confirmed absence are distinct states."
+      ],
+      "unresolvedConflicts": [],
+      "reviewStatus": "m0_evidence_reconciled_no_new_site_specific_review",
+      "curationVersion": "1.0.0",
+      "pointComparisonEligible": true,
+      "providerCoverage": {
+        "NASA_POWER": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "NASA POWER daily gridded/model-derived parameters",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        },
+        "Copernicus_GLO30": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "COP-DEM_GLO-30-Public; one DSM pixel",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        },
+        "GLiM": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "GLiM Level I generalized feature",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        }
+      }
+    },
+    {
+      "stableId": "WHS",
+      "displayName": "White Sands dunes",
+      "originalSourceName": "كثبان وايت ساندز",
+      "countryOrRegion": "United States",
+      "locationType": "approximate_area_marker",
+      "coordinateAssessment": {
+        "originalLatitude": 32.8,
+        "originalLongitude": -106.33,
+        "coordinateSource": "Supplied structured atlas; exact source-to-coordinate relationship not established in the M0 repository audit.",
+        "locationType": "approximate_area_marker",
+        "statedUncertainty": null,
+        "precisionIsAccuracy": false,
+        "representsSiteOrSample": "Approximate site/area marker; named field or sample point not established.",
+        "providerSamplingDefensible": false,
+        "curationNote": "Do not infer uncertainty from decimal places."
+      },
+      "preliminaryDecision": "keep_with_limitations",
+      "decisionRationale": "Dune-field analog lead; approximate point and legacy claims require localized evidence.",
+      "evidenceByDimension": {
+        "identity": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "coordinates": {
+          "status": "atlas_claim",
+          "note": "Location source and uncertainty are not documented at sufficient precision."
+        },
+        "climate": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "terrain": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "geomorphology": {
+          "status": "atlas_claim",
+          "note": "Atlas narrative is preserved as a claim; no independent site-specific geomorphology validation was established here."
+        },
+        "lithology": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mineralogy": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "water_ice": {
+          "status": "unverified",
+          "note": "No separate, traceable water/ice evidence was established in M0; this missing evidence is not evidence of absence."
+        },
+        "geological_processes": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mars_analog_relevance": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        }
+      },
+      "claimCitations": [],
+      "knownLimitations": [
+        "Legacy atlas claims remain preserved and are not independently verified merely by being present.",
+        "Null, unavailable, failed retrieval, and confirmed absence are distinct states."
+      ],
+      "unresolvedConflicts": [],
+      "reviewStatus": "m0_evidence_reconciled_no_new_site_specific_review",
+      "curationVersion": "1.0.0",
+      "pointComparisonEligible": true,
+      "providerCoverage": {
+        "NASA_POWER": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "NASA POWER daily gridded/model-derived parameters",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        },
+        "Copernicus_GLO30": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "COP-DEM_GLO-30-Public; one DSM pixel",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        },
+        "GLiM": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "GLiM Level I generalized feature",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        }
+      }
+    },
+    {
+      "stableId": "MDRS",
+      "displayName": "Mars Desert Research Station, Utah",
+      "originalSourceName": "محطة أبحاث صحراء المريخ – يوتا",
+      "countryOrRegion": "United States",
+      "locationType": "point_or_area_unquantified",
+      "coordinateAssessment": {
+        "originalLatitude": 38.4065,
+        "originalLongitude": -110.7919,
+        "coordinateSource": "Supplied structured atlas; exact source-to-coordinate relationship not established in the M0 repository audit.",
+        "locationType": "point_or_area_unquantified",
+        "statedUncertainty": null,
+        "precisionIsAccuracy": false,
+        "representsSiteOrSample": "Approximate site/area marker; named field or sample point not established.",
+        "providerSamplingDefensible": false,
+        "curationNote": "Legacy flag says non-approximate, but no numeric uncertainty/source was found."
+      },
+      "preliminaryDecision": "keep_with_limitations",
+      "decisionRationale": "Facility identity and site-specific soil research are traceable; the atlas point is not a validated sampling coordinate and facility context is not planetary suitability.",
+      "evidenceByDimension": {
+        "identity": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "coordinates": {
+          "status": "atlas_claim",
+          "note": "Location source and uncertainty are not documented at sufficient precision."
+        },
+        "climate": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "terrain": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "geomorphology": {
+          "status": "atlas_claim",
+          "note": "Atlas narrative is preserved as a claim; no independent site-specific geomorphology validation was established here."
+        },
+        "lithology": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mineralogy": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "water_ice": {
+          "status": "unverified",
+          "note": "No separate, traceable water/ice evidence was established in M0; this missing evidence is not evidence of absence."
+        },
+        "geological_processes": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mars_analog_relevance": {
+          "status": "peer_reviewed_source",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        }
+      },
+      "claimCitations": [
+        {
+          "title": "Mineralogical, chemical, organic and microbial properties of subsurface soil cores from Mars Desert Research Station (Utah, USA): Phyllosilicate and sulfate analogues to Mars mission landing sites",
+          "authorsOrOrganization": "Stoker, Clarke, Direito, Blake, Martin, Zavaleta, and Foing",
+          "publicationYear": 2011,
+          "doiOrStableUrl": "https://doi.org/10.1017/S1473550411000115",
+          "sourceType": "peer_reviewed_source",
+          "supportedClaimOrDimension": "Subsurface cores from MDRS and the properties measured in that study.",
+          "relevantPageSectionTable": "Methods and study site; pp. 269–289",
+          "geographicScope": "Four geologic units surrounding MDRS, Utah",
+          "limitations": "Supports the sampled cores, not the atlas coordinate or claims outside the studied cores."
+        }
+      ],
+      "knownLimitations": [
+        "Legacy atlas claims remain preserved and are not independently verified merely by being present.",
+        "Null, unavailable, failed retrieval, and confirmed absence are distinct states."
+      ],
+      "unresolvedConflicts": [],
+      "reviewStatus": "literature_reviewed_limited_scope",
+      "curationVersion": "1.0.0",
+      "pointComparisonEligible": true,
+      "providerCoverage": {
+        "NASA_POWER": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "NASA POWER daily gridded/model-derived parameters",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        },
+        "Copernicus_GLO30": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "COP-DEM_GLO-30-Public; one DSM pixel",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        },
+        "GLiM": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "GLiM Level I generalized feature",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        }
+      }
+    },
+    {
+      "stableId": "GOB",
+      "displayName": "Gobi – Mars Base 1, Gansu",
+      "originalSourceName": "صحراء جوبي – قاعدة المريخ 1",
+      "countryOrRegion": "China",
+      "locationType": "approximate_area_marker",
+      "coordinateAssessment": {
+        "originalLatitude": 38.5,
+        "originalLongitude": 102.2,
+        "coordinateSource": "Supplied structured atlas; exact source-to-coordinate relationship not established in the M0 repository audit.",
+        "locationType": "approximate_area_marker",
+        "statedUncertainty": null,
+        "precisionIsAccuracy": false,
+        "representsSiteOrSample": "Approximate site/area marker; named field or sample point not established.",
+        "providerSamplingDefensible": false,
+        "curationNote": "Do not infer uncertainty from decimal places."
+      },
+      "preliminaryDecision": "exclude_pending_review",
+      "decisionRationale": "Secondary habitat descriptions do not establish site-specific geology, coordinates, or Mars-analog evidence.",
+      "evidenceByDimension": {
+        "identity": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "coordinates": {
+          "status": "atlas_claim",
+          "note": "Location source and uncertainty are not documented at sufficient precision."
+        },
+        "climate": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "terrain": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "geomorphology": {
+          "status": "atlas_claim",
+          "note": "Atlas narrative is preserved as a claim; no independent site-specific geomorphology validation was established here."
+        },
+        "lithology": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mineralogy": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "water_ice": {
+          "status": "unverified",
+          "note": "No separate, traceable water/ice evidence was established in M0; this missing evidence is not evidence of absence."
+        },
+        "geological_processes": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mars_analog_relevance": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        }
+      },
+      "claimCitations": [],
+      "knownLimitations": [
+        "Legacy atlas claims remain preserved and are not independently verified merely by being present.",
+        "Null, unavailable, failed retrieval, and confirmed absence are distinct states."
+      ],
+      "unresolvedConflicts": [],
+      "reviewStatus": "m0_evidence_reconciled_no_new_site_specific_review",
+      "curationVersion": "1.0.0",
+      "pointComparisonEligible": false,
+      "providerCoverage": {
+        "NASA_POWER": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "NASA POWER daily gridded/model-derived parameters",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        },
+        "Copernicus_GLO30": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "COP-DEM_GLO-30-Public; one DSM pixel",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        },
+        "GLiM": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "GLiM Level I generalized feature",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        }
+      }
+    },
+    {
+      "stableId": "MET",
+      "displayName": "Meteor Crater, Arizona",
+      "originalSourceName": "فوهة النيزك – أريزونا",
+      "countryOrRegion": "United States",
+      "locationType": "approximate_area_marker",
+      "coordinateAssessment": {
+        "originalLatitude": 35.027,
+        "originalLongitude": -111.022,
+        "coordinateSource": "Supplied structured atlas; exact source-to-coordinate relationship not established in the M0 repository audit.",
+        "locationType": "approximate_area_marker",
+        "statedUncertainty": null,
+        "precisionIsAccuracy": false,
+        "representsSiteOrSample": "Approximate site/area marker; named field or sample point not established.",
+        "providerSamplingDefensible": false,
+        "curationNote": "Do not infer uncertainty from decimal places."
+      },
+      "preliminaryDecision": "keep_with_limitations",
+      "decisionRationale": "Meteor Crater is an officially documented impact-process training/analog site; preserve the atlas point as approximate pending coordinate-source review.",
+      "evidenceByDimension": {
+        "identity": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "coordinates": {
+          "status": "atlas_claim",
+          "note": "Location source and uncertainty are not documented at sufficient precision."
+        },
+        "climate": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "terrain": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "geomorphology": {
+          "status": "atlas_claim",
+          "note": "Atlas narrative is preserved as a claim; no independent site-specific geomorphology validation was established here."
+        },
+        "lithology": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mineralogy": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "water_ice": {
+          "status": "unverified",
+          "note": "No separate, traceable water/ice evidence was established in M0; this missing evidence is not evidence of absence."
+        },
+        "geological_processes": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mars_analog_relevance": {
+          "status": "official_documentation",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        }
+      },
+      "claimCitations": [
+        {
+          "title": "Meteor Crater Topography",
+          "authorsOrOrganization": "NASA Scientific Visualization Studio",
+          "publicationYear": null,
+          "doiOrStableUrl": "https://svs.gsfc.nasa.gov/3335",
+          "sourceType": "official_documentation",
+          "supportedClaimOrDimension": "Identifies Meteor Crater as an Earth/Mars study site and provides aerially collected 2 m topography; supports impact-site identity/context.",
+          "relevantPageSectionTable": "Project description",
+          "geographicScope": "Meteor Crater, Arizona",
+          "limitations": "Does not validate the atlas coordinate or its legacy climate/mineral claims."
+        }
+      ],
+      "knownLimitations": [
+        "Legacy atlas claims remain preserved and are not independently verified merely by being present.",
+        "Null, unavailable, failed retrieval, and confirmed absence are distinct states."
+      ],
+      "unresolvedConflicts": [],
+      "reviewStatus": "literature_reviewed_limited_scope",
+      "curationVersion": "1.0.0",
+      "pointComparisonEligible": true,
+      "providerCoverage": {
+        "NASA_POWER": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "NASA POWER daily gridded/model-derived parameters",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        },
+        "Copernicus_GLO30": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "COP-DEM_GLO-30-Public; one DSM pixel",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        },
+        "GLiM": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "GLiM Level I generalized feature",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        }
+      }
+    },
+    {
+      "stableId": "BON",
+      "displayName": "Bonneville Salt Flats",
+      "originalSourceName": "سهول بونفيل الملحية",
+      "countryOrRegion": "United States",
+      "locationType": "approximate_area_marker",
+      "coordinateAssessment": {
+        "originalLatitude": 40.76,
+        "originalLongitude": -113.89,
+        "coordinateSource": "Supplied structured atlas; exact source-to-coordinate relationship not established in the M0 repository audit.",
+        "locationType": "approximate_area_marker",
+        "statedUncertainty": null,
+        "precisionIsAccuracy": false,
+        "representsSiteOrSample": "Approximate site/area marker; named field or sample point not established.",
+        "providerSamplingDefensible": false,
+        "curationNote": "Do not infer uncertainty from decimal places."
+      },
+      "preliminaryDecision": "keep_with_limitations",
+      "decisionRationale": "Bonneville has peer-reviewed hypersaline and paleolake analog research; the atlas point is not tied to the specific sampled sites.",
+      "evidenceByDimension": {
+        "identity": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "coordinates": {
+          "status": "atlas_claim",
+          "note": "Location source and uncertainty are not documented at sufficient precision."
+        },
+        "climate": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "terrain": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "geomorphology": {
+          "status": "atlas_claim",
+          "note": "Atlas narrative is preserved as a claim; no independent site-specific geomorphology validation was established here."
+        },
+        "lithology": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mineralogy": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "water_ice": {
+          "status": "unverified",
+          "note": "No separate, traceable water/ice evidence was established in M0; this missing evidence is not evidence of absence."
+        },
+        "geological_processes": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mars_analog_relevance": {
+          "status": "peer_reviewed_source",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        }
+      },
+      "claimCitations": [
+        {
+          "title": "Metabolic Potential of Microbial Communities in the Hypersaline Sediments of the Bonneville Salt Flats",
+          "authorsOrOrganization": "McGonigle, Bernau, Bowen, and Brazelton",
+          "publicationYear": 2022,
+          "doiOrStableUrl": "https://doi.org/10.1128/msystems.00846-22",
+          "sourceType": "peer_reviewed_source",
+          "supportedClaimOrDimension": "Microbial communities in hypersaline sediments of the Bonneville Salt Flats; relevant only to that sampled environment.",
+          "relevantPageSectionTable": "Study site and methods",
+          "geographicScope": "Bonneville Salt Flats, Utah",
+          "limitations": "Does not validate all atlas claims or establish the atlas point as the study sampling location."
+        }
+      ],
+      "knownLimitations": [
+        "Legacy atlas claims remain preserved and are not independently verified merely by being present.",
+        "Null, unavailable, failed retrieval, and confirmed absence are distinct states."
+      ],
+      "unresolvedConflicts": [],
+      "reviewStatus": "literature_reviewed_limited_scope",
+      "curationVersion": "1.0.0",
+      "pointComparisonEligible": true,
+      "providerCoverage": {
+        "NASA_POWER": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "NASA POWER daily gridded/model-derived parameters",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        },
+        "Copernicus_GLO30": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "COP-DEM_GLO-30-Public; one DSM pixel",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        },
+        "GLiM": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "GLiM Level I generalized feature",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        }
+      }
+    },
+    {
+      "stableId": "MDV",
+      "displayName": "McMurdo Dry Valleys",
+      "originalSourceName": "الوديان الجافة – ماكموردو",
+      "countryOrRegion": "Antarctica",
+      "locationType": "region",
+      "coordinateAssessment": {
+        "originalLatitude": -77.62,
+        "originalLongitude": 162.9,
+        "coordinateSource": "Supplied structured atlas; exact source-to-coordinate relationship not established in the M0 repository audit.",
+        "locationType": "region",
+        "statedUncertainty": null,
+        "precisionIsAccuracy": false,
+        "representsSiteOrSample": "Atlas point, if present, is retained only as a source marker; regional representation has no approved sampling coordinate.",
+        "providerSamplingDefensible": false,
+        "curationNote": "Do not infer uncertainty from decimal places."
+      },
+      "preliminaryDecision": "region_only",
+      "decisionRationale": "Official NASA astrobiology documentation identifies the Dry Valleys as a Mars-analog region; this broad regional record has no defensible point sample location.",
+      "evidenceByDimension": {
+        "identity": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "coordinates": {
+          "status": "atlas_claim",
+          "note": "Location source and uncertainty are not documented at sufficient precision."
+        },
+        "climate": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "terrain": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "geomorphology": {
+          "status": "atlas_claim",
+          "note": "Atlas narrative is preserved as a claim; no independent site-specific geomorphology validation was established here."
+        },
+        "lithology": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mineralogy": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "water_ice": {
+          "status": "unverified",
+          "note": "No separate, traceable water/ice evidence was established in M0; this missing evidence is not evidence of absence."
+        },
+        "geological_processes": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mars_analog_relevance": {
+          "status": "official_documentation",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        }
+      },
+      "claimCitations": [
+        {
+          "title": "Astrobiology Field Sites: McMurdo Dry Valleys",
+          "authorsOrOrganization": "NASA Astrobiology Program",
+          "publicationYear": null,
+          "doiOrStableUrl": "https://astrobiology.nasa.gov/research-locations/",
+          "sourceType": "official_documentation",
+          "supportedClaimOrDimension": "McMurdo Dry Valleys have long served as a Mars analog and a field site for life-detection research.",
+          "relevantPageSectionTable": "McMurdo Dry Valleys entry",
+          "geographicScope": "McMurdo Dry Valleys, Antarctica",
+          "limitations": "Regional overview; does not establish the atlas coordinate as a sample site."
+        }
+      ],
+      "knownLimitations": [
+        "Legacy atlas claims remain preserved and are not independently verified merely by being present.",
+        "Null, unavailable, failed retrieval, and confirmed absence are distinct states."
+      ],
+      "unresolvedConflicts": [],
+      "reviewStatus": "literature_reviewed_limited_scope",
+      "curationVersion": "1.0.0",
+      "pointComparisonEligible": false,
+      "providerCoverage": {
+        "NASA_POWER": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "NASA POWER daily gridded/model-derived parameters",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        },
+        "Copernicus_GLO30": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "COP-DEM_GLO-30-Public; one DSM pixel",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        },
+        "GLiM": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "GLiM Level I generalized feature",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        }
+      }
+    },
+    {
+      "stableId": "RTI",
+      "displayName": "Río Tinto",
+      "originalSourceName": "نهر ريو تينتو",
+      "countryOrRegion": "Spain",
+      "locationType": "approximate_area_marker",
+      "coordinateAssessment": {
+        "originalLatitude": 37.69,
+        "originalLongitude": -6.56,
+        "coordinateSource": "Supplied structured atlas; exact source-to-coordinate relationship not established in the M0 repository audit.",
+        "locationType": "approximate_area_marker",
+        "statedUncertainty": null,
+        "precisionIsAccuracy": false,
+        "representsSiteOrSample": "Approximate site/area marker; named field or sample point not established.",
+        "providerSamplingDefensible": true,
+        "curationNote": "Do not infer uncertainty from decimal places."
+      },
+      "preliminaryDecision": "keep_with_limitations",
+      "decisionRationale": "Named acidic mine/river analog lead; evidence is heterogeneous and coordinate specificity remains limited.",
+      "evidenceByDimension": {
+        "identity": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "coordinates": {
+          "status": "atlas_claim",
+          "note": "Location source and uncertainty are not documented at sufficient precision."
+        },
+        "climate": {
+          "status": "primary_dataset",
+          "note": "NASA POWER gridded/model-derived history is present for this ID; not a ground station."
+        },
+        "terrain": {
+          "status": "primary_dataset",
+          "note": "One Copernicus GLO-30 DSM pixel is stored; not a terrain summary."
+        },
+        "geomorphology": {
+          "status": "atlas_claim",
+          "note": "Atlas narrative is preserved as a claim; no independent site-specific geomorphology validation was established here."
+        },
+        "lithology": {
+          "status": "primary_dataset",
+          "note": "Generalized GLiM mapped lithology; not mineral detection."
+        },
+        "mineralogy": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "water_ice": {
+          "status": "unverified",
+          "note": "No separate, traceable water/ice evidence was established in M0; this missing evidence is not evidence of absence."
+        },
+        "geological_processes": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mars_analog_relevance": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        }
+      },
+      "claimCitations": [
+        {
+          "title": "NASA POWER Daily API",
+          "authorsOrOrganization": "NASA Langley Research Center",
+          "publicationYear": null,
+          "doiOrStableUrl": "https://power.larc.nasa.gov/docs/services/api/temporal/daily/",
+          "sourceType": "primary_dataset",
+          "supportedClaimOrDimension": "Stored coordinate-requested daily gridded climate history, 2001-01-01 through 2020-12-31; not a ground-station observation.",
+          "relevantPageSectionTable": "Daily API product documentation; exact response files remain in data/raw/nasa-power/",
+          "geographicScope": "Requested coordinate for RTI",
+          "limitations": "Grid/model product; stored response is tied to the record's requested coordinate but does not validate that coordinate as the named site's representative location."
+        },
+        {
+          "title": "Copernicus DEM GLO-30 product",
+          "authorsOrOrganization": "Copernicus / European Union; WorldDEM produced by DLR and Airbus",
+          "publicationYear": 2021,
+          "doiOrStableUrl": "https://doi.org/10.5270/ESA-c5d3d65",
+          "sourceType": "primary_dataset",
+          "supportedClaimOrDimension": "Stored one-pixel GLO-30 digital surface model elevation sample at the requested coordinate.",
+          "relevantPageSectionTable": "COP-DEM_GLO-30-Public product; raw site sample remains in data/raw/copernicus-dem/",
+          "geographicScope": "Requested coordinate for RTI",
+          "limitations": "One DSM pixel is not mean elevation, terrain summary, or a ground-surface guarantee."
+        },
+        {
+          "title": "Global Lithological Map (GLiM)",
+          "authorsOrOrganization": "Hartmann and Moosdorf; ArcGIS service layer GLiM_Niveau_I",
+          "publicationYear": 2012,
+          "doiOrStableUrl": "https://doi.org/10.1029/2012GC004370",
+          "sourceType": "primary_dataset",
+          "supportedClaimOrDimension": "Stored generalized mapped lithology feature intersecting the requested coordinate.",
+          "relevantPageSectionTable": "GLiM Level I; raw query response remains in data/raw/glim/",
+          "geographicScope": "Mapped polygon at requested coordinate for RTI",
+          "limitations": "Generalized map category at global map scale; no mineral detection, local field truth, or process evidence."
+        }
+      ],
+      "knownLimitations": [
+        "Legacy atlas claims remain preserved and are not independently verified merely by being present.",
+        "Null, unavailable, failed retrieval, and confirmed absence are distinct states.",
+        "Provider products have different spatial support: gridded climate, single-pixel DSM, and generalized lithology."
+      ],
+      "unresolvedConflicts": [],
+      "reviewStatus": "m0_evidence_reconciled_no_new_site_specific_review",
+      "curationVersion": "1.0.0",
+      "pointComparisonEligible": true,
+      "providerCoverage": {
+        "NASA_POWER": {
+          "status": "stored_response",
+          "rawResponsePresent": true,
+          "normalizedEvidencePresent": true,
+          "coordinateMatchesRecord": "M0 reported all 8/8 IDs and request coordinates matched the normalized record",
+          "periodOrVersion": "2001-01-01 to 2020-12-31; daily",
+          "product": "NASA POWER daily gridded/model-derived parameters",
+          "validationResult": "M0 artifact and coordinate linkage passed; does not validate site truth",
+          "failed": false,
+          "note": "M0 audit found site-linked raw and normalized evidence; provider result does not establish claim validity."
+        },
+        "Copernicus_GLO30": {
+          "status": "stored_response",
+          "rawResponsePresent": true,
+          "normalizedEvidencePresent": true,
+          "coordinateMatchesRecord": "M0 reported all 8/8 IDs and request coordinates matched the normalized record",
+          "periodOrVersion": "not individually stored",
+          "product": "COP-DEM_GLO-30-Public; one DSM pixel",
+          "validationResult": "M0 artifact and coordinate linkage passed; does not validate site truth",
+          "failed": false,
+          "note": "M0 audit found site-linked raw and normalized evidence; provider result does not establish claim validity."
+        },
+        "GLiM": {
+          "status": "stored_response",
+          "rawResponsePresent": true,
+          "normalizedEvidencePresent": true,
+          "coordinateMatchesRecord": "M0 reported all 8/8 IDs and request coordinates matched the normalized record",
+          "periodOrVersion": "not individually stored",
+          "product": "GLiM Level I generalized feature",
+          "validationResult": "M0 artifact and coordinate linkage passed; does not validate site truth",
+          "failed": false,
+          "note": "M0 audit found site-linked raw and normalized evidence; provider result does not establish claim validity."
+        }
+      }
+    },
+    {
+      "stableId": "LON",
+      "displayName": "Lonar Crater",
+      "originalSourceName": "فوهة لونار",
+      "countryOrRegion": "India",
+      "locationType": "approximate_area_marker",
+      "coordinateAssessment": {
+        "originalLatitude": 19.98,
+        "originalLongitude": 76.51,
+        "coordinateSource": "Supplied structured atlas; exact source-to-coordinate relationship not established in the M0 repository audit.",
+        "locationType": "approximate_area_marker",
+        "statedUncertainty": null,
+        "precisionIsAccuracy": false,
+        "representsSiteOrSample": "Approximate site/area marker; named field or sample point not established.",
+        "providerSamplingDefensible": false,
+        "curationNote": "Do not infer uncertainty from decimal places."
+      },
+      "preliminaryDecision": "keep_with_limitations",
+      "decisionRationale": "Named impact-crater analog lead; location and claim-level provenance need explicit limitations.",
+      "evidenceByDimension": {
+        "identity": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "coordinates": {
+          "status": "atlas_claim",
+          "note": "Location source and uncertainty are not documented at sufficient precision."
+        },
+        "climate": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "terrain": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "geomorphology": {
+          "status": "atlas_claim",
+          "note": "Atlas narrative is preserved as a claim; no independent site-specific geomorphology validation was established here."
+        },
+        "lithology": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mineralogy": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "water_ice": {
+          "status": "unverified",
+          "note": "No separate, traceable water/ice evidence was established in M0; this missing evidence is not evidence of absence."
+        },
+        "geological_processes": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mars_analog_relevance": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        }
+      },
+      "claimCitations": [],
+      "knownLimitations": [
+        "Legacy atlas claims remain preserved and are not independently verified merely by being present.",
+        "Null, unavailable, failed retrieval, and confirmed absence are distinct states."
+      ],
+      "unresolvedConflicts": [],
+      "reviewStatus": "m0_evidence_reconciled_no_new_site_specific_review",
+      "curationVersion": "1.0.0",
+      "pointComparisonEligible": true,
+      "providerCoverage": {
+        "NASA_POWER": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "NASA POWER daily gridded/model-derived parameters",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        },
+        "Copernicus_GLO30": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "COP-DEM_GLO-30-Public; one DSM pixel",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        },
+        "GLiM": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "GLiM Level I generalized feature",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        }
+      }
+    },
+    {
+      "stableId": "SAL",
+      "displayName": "Lake Salda",
+      "originalSourceName": "بحيرة سالدا",
+      "countryOrRegion": "Türkiye",
+      "locationType": "point_or_area_unquantified",
+      "coordinateAssessment": {
+        "originalLatitude": 37.55,
+        "originalLongitude": 29.68,
+        "coordinateSource": "Supplied structured atlas; exact source-to-coordinate relationship not established in the M0 repository audit.",
+        "locationType": "point_or_area_unquantified",
+        "statedUncertainty": null,
+        "precisionIsAccuracy": false,
+        "representsSiteOrSample": "Approximate site/area marker; named field or sample point not established.",
+        "providerSamplingDefensible": false,
+        "curationNote": "Legacy flag says non-approximate, but no numeric uncertainty/source was found."
+      },
+      "preliminaryDecision": "keep_with_limitations",
+      "decisionRationale": "Named saline-lake analog lead; non-approximate flag is not a quantified uncertainty and source point needs review.",
+      "evidenceByDimension": {
+        "identity": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "coordinates": {
+          "status": "atlas_claim",
+          "note": "Location source and uncertainty are not documented at sufficient precision."
+        },
+        "climate": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "terrain": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "geomorphology": {
+          "status": "atlas_claim",
+          "note": "Atlas narrative is preserved as a claim; no independent site-specific geomorphology validation was established here."
+        },
+        "lithology": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mineralogy": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "water_ice": {
+          "status": "unverified",
+          "note": "No separate, traceable water/ice evidence was established in M0; this missing evidence is not evidence of absence."
+        },
+        "geological_processes": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mars_analog_relevance": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        }
+      },
+      "claimCitations": [],
+      "knownLimitations": [
+        "Legacy atlas claims remain preserved and are not independently verified merely by being present.",
+        "Null, unavailable, failed retrieval, and confirmed absence are distinct states."
+      ],
+      "unresolvedConflicts": [],
+      "reviewStatus": "m0_evidence_reconciled_no_new_site_specific_review",
+      "curationVersion": "1.0.0",
+      "pointComparisonEligible": true,
+      "providerCoverage": {
+        "NASA_POWER": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "NASA POWER daily gridded/model-derived parameters",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        },
+        "Copernicus_GLO30": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "COP-DEM_GLO-30-Public; one DSM pixel",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        },
+        "GLiM": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "GLiM Level I generalized feature",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        }
+      }
+    },
+    {
+      "stableId": "LAN",
+      "displayName": "Lanzarote – Timanfaya",
+      "originalSourceName": "لانزاروتي – تيمانفايا",
+      "countryOrRegion": "Spain",
+      "locationType": "approximate_area_marker",
+      "coordinateAssessment": {
+        "originalLatitude": 29,
+        "originalLongitude": -13.75,
+        "coordinateSource": "Supplied structured atlas; exact source-to-coordinate relationship not established in the M0 repository audit.",
+        "locationType": "approximate_area_marker",
+        "statedUncertainty": null,
+        "precisionIsAccuracy": false,
+        "representsSiteOrSample": "Approximate site/area marker; named field or sample point not established.",
+        "providerSamplingDefensible": false,
+        "curationNote": "Do not infer uncertainty from decimal places."
+      },
+      "preliminaryDecision": "exclude_pending_review",
+      "decisionRationale": "New planetary-analog studies support specific Lanzarote lava-tube localities, but the current Timanfaya marker is not demonstrated to identify those sampled sites.",
+      "evidenceByDimension": {
+        "identity": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "coordinates": {
+          "status": "atlas_claim",
+          "note": "Location source and uncertainty are not documented at sufficient precision."
+        },
+        "climate": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "terrain": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "geomorphology": {
+          "status": "atlas_claim",
+          "note": "Atlas narrative is preserved as a claim; no independent site-specific geomorphology validation was established here."
+        },
+        "lithology": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mineralogy": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "water_ice": {
+          "status": "unverified",
+          "note": "No separate, traceable water/ice evidence was established in M0; this missing evidence is not evidence of absence."
+        },
+        "geological_processes": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mars_analog_relevance": {
+          "status": "peer_reviewed_source",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        }
+      },
+      "claimCitations": [
+        {
+          "title": "Magnetic Signature of the Corona Lava Tube (Lanzarote, Canary Islands), a Lunar and Martian Planetary Analog",
+          "authorsOrOrganization": "Peer-reviewed Journal of Geophysical Research: Planets article",
+          "publicationYear": 2026,
+          "doiOrStableUrl": "https://doi.org/10.1029/2025JE009616",
+          "sourceType": "peer_reviewed_source",
+          "supportedClaimOrDimension": "Planetary analog research at Corona Lava Tube, Lanzarote.",
+          "relevantPageSectionTable": "Abstract and study locality",
+          "geographicScope": "Corona Lava Tube, Lanzarote",
+          "limitations": "Specific tube locality; does not validate the atlas Timanfaya marker."
+        }
+      ],
+      "knownLimitations": [
+        "Legacy atlas claims remain preserved and are not independently verified merely by being present.",
+        "Null, unavailable, failed retrieval, and confirmed absence are distinct states."
+      ],
+      "unresolvedConflicts": [],
+      "reviewStatus": "literature_reviewed_limited_scope",
+      "curationVersion": "1.0.0",
+      "pointComparisonEligible": false,
+      "providerCoverage": {
+        "NASA_POWER": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "NASA POWER daily gridded/model-derived parameters",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        },
+        "Copernicus_GLO30": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "COP-DEM_GLO-30-Public; one DSM pixel",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        },
+        "GLiM": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "GLiM Level I generalized feature",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        }
+      }
+    },
+    {
+      "stableId": "HIS",
+      "displayName": "Mauna Loa (HI-SEAS)",
+      "originalSourceName": "ماونا لوا – HI-SEAS",
+      "countryOrRegion": "United States",
+      "locationType": "approximate_area_marker",
+      "coordinateAssessment": {
+        "originalLatitude": 19.6,
+        "originalLongitude": -155.49,
+        "coordinateSource": "Supplied structured atlas; exact source-to-coordinate relationship not established in the M0 repository audit.",
+        "locationType": "approximate_area_marker",
+        "statedUncertainty": null,
+        "precisionIsAccuracy": false,
+        "representsSiteOrSample": "Approximate site/area marker; named field or sample point not established.",
+        "providerSamplingDefensible": false,
+        "curationNote": "Do not infer uncertainty from decimal places."
+      },
+      "preliminaryDecision": "keep_with_limitations",
+      "decisionRationale": "NASA documentation identifies HI-SEAS on Mauna Loa as a Mars-analog human exploration site with lava-flow context; the atlas marker is approximate and must not stand for sampled rock or broader volcanic geology.",
+      "evidenceByDimension": {
+        "identity": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "coordinates": {
+          "status": "atlas_claim",
+          "note": "Location source and uncertainty are not documented at sufficient precision."
+        },
+        "climate": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "terrain": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "geomorphology": {
+          "status": "atlas_claim",
+          "note": "Atlas narrative is preserved as a claim; no independent site-specific geomorphology validation was established here."
+        },
+        "lithology": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mineralogy": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "water_ice": {
+          "status": "unverified",
+          "note": "No separate, traceable water/ice evidence was established in M0; this missing evidence is not evidence of absence."
+        },
+        "geological_processes": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mars_analog_relevance": {
+          "status": "official_documentation",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        }
+      },
+      "claimCitations": [
+        {
+          "title": "Living the Mars Life on Mauna Loa",
+          "authorsOrOrganization": "NASA Earth Observatory",
+          "publicationYear": 2018,
+          "doiOrStableUrl": "https://science.nasa.gov/earth/earth-observatory/living-the-mars-life-on-mauna-loa-92630/",
+          "sourceType": "official_documentation",
+          "supportedClaimOrDimension": "HI-SEAS long-duration mission habitat on Mauna Loa's northern slope and volcanic landscape context.",
+          "relevantPageSectionTable": "Project description",
+          "geographicScope": "HI-SEAS habitat, Mauna Loa, Hawai'i",
+          "limitations": "Human-factors simulation and site context do not validate every atlas geology claim or the marker as a rock sampling coordinate."
+        }
+      ],
+      "knownLimitations": [
+        "Legacy atlas claims remain preserved and are not independently verified merely by being present.",
+        "Null, unavailable, failed retrieval, and confirmed absence are distinct states."
+      ],
+      "unresolvedConflicts": [],
+      "reviewStatus": "literature_reviewed_limited_scope",
+      "curationVersion": "1.0.0",
+      "pointComparisonEligible": true,
+      "providerCoverage": {
+        "NASA_POWER": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "NASA POWER daily gridded/model-derived parameters",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        },
+        "Copernicus_GLO30": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "COP-DEM_GLO-30-Public; one DSM pixel",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        },
+        "GLiM": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "GLiM Level I generalized feature",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        }
+      }
+    },
+    {
+      "stableId": "HMP",
+      "displayName": "Haughton Crater, Devon Island",
+      "originalSourceName": "فوهة هوتون – جزيرة ديفون",
+      "countryOrRegion": "Canada",
+      "locationType": "approximate_area_marker",
+      "coordinateAssessment": {
+        "originalLatitude": 75.38,
+        "originalLongitude": -89.68,
+        "coordinateSource": "Supplied structured atlas; exact source-to-coordinate relationship not established in the M0 repository audit.",
+        "locationType": "approximate_area_marker",
+        "statedUncertainty": null,
+        "precisionIsAccuracy": false,
+        "representsSiteOrSample": "Approximate site/area marker; named field or sample point not established.",
+        "providerSamplingDefensible": false,
+        "curationNote": "Do not infer uncertainty from decimal places."
+      },
+      "preliminaryDecision": "keep_with_limitations",
+      "decisionRationale": "Recognized polar impact-crater analog lead; approximate coordinates and legacy claims remain incompletely traceable.",
+      "evidenceByDimension": {
+        "identity": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "coordinates": {
+          "status": "atlas_claim",
+          "note": "Location source and uncertainty are not documented at sufficient precision."
+        },
+        "climate": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "terrain": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "geomorphology": {
+          "status": "atlas_claim",
+          "note": "Atlas narrative is preserved as a claim; no independent site-specific geomorphology validation was established here."
+        },
+        "lithology": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mineralogy": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "water_ice": {
+          "status": "unverified",
+          "note": "No separate, traceable water/ice evidence was established in M0; this missing evidence is not evidence of absence."
+        },
+        "geological_processes": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mars_analog_relevance": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        }
+      },
+      "claimCitations": [],
+      "knownLimitations": [
+        "Legacy atlas claims remain preserved and are not independently verified merely by being present.",
+        "Null, unavailable, failed retrieval, and confirmed absence are distinct states."
+      ],
+      "unresolvedConflicts": [],
+      "reviewStatus": "m0_evidence_reconciled_no_new_site_specific_review",
+      "curationVersion": "1.0.0",
+      "pointComparisonEligible": true,
+      "providerCoverage": {
+        "NASA_POWER": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "NASA POWER daily gridded/model-derived parameters",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        },
+        "Copernicus_GLO30": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "COP-DEM_GLO-30-Public; one DSM pixel",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        },
+        "GLiM": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "GLiM Level I generalized feature",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        }
+      }
+    },
+    {
+      "stableId": "ETN",
+      "displayName": "Mount Etna",
+      "originalSourceName": "بركان إتنا",
+      "countryOrRegion": "Italy",
+      "locationType": "approximate_area_marker",
+      "coordinateAssessment": {
+        "originalLatitude": 37.75,
+        "originalLongitude": 14.99,
+        "coordinateSource": "Supplied structured atlas; exact source-to-coordinate relationship not established in the M0 repository audit.",
+        "locationType": "approximate_area_marker",
+        "statedUncertainty": null,
+        "precisionIsAccuracy": false,
+        "representsSiteOrSample": "Approximate site/area marker; named field or sample point not established.",
+        "providerSamplingDefensible": false,
+        "curationNote": "Do not infer uncertainty from decimal places."
+      },
+      "preliminaryDecision": "keep_with_limitations",
+      "decisionRationale": "Peer-reviewed Etna Mars-analog work supports basaltic/hydrothermal analog research, but the atlas marker is not the paper's specific sampling locality.",
+      "evidenceByDimension": {
+        "identity": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "coordinates": {
+          "status": "atlas_claim",
+          "note": "Location source and uncertainty are not documented at sufficient precision."
+        },
+        "climate": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "terrain": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "geomorphology": {
+          "status": "atlas_claim",
+          "note": "Atlas narrative is preserved as a claim; no independent site-specific geomorphology validation was established here."
+        },
+        "lithology": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mineralogy": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "water_ice": {
+          "status": "unverified",
+          "note": "No separate, traceable water/ice evidence was established in M0; this missing evidence is not evidence of absence."
+        },
+        "geological_processes": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mars_analog_relevance": {
+          "status": "peer_reviewed_source",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        }
+      },
+      "claimCitations": [
+        {
+          "title": "Volcanic Holocrystalline Bedrock and Hydrothermal Alteration: A Terrestrial Analogue for Mars",
+          "authorsOrOrganization": "Tangari, Marinangeli, Scarciglia, Pompilio, and Piluso",
+          "publicationYear": 2020,
+          "doiOrStableUrl": "https://doi.org/10.3390/min10121082",
+          "sourceType": "peer_reviewed_source",
+          "supportedClaimOrDimension": "Basalt from near Acireale on Etna and its volcanic/hydrothermal analog relevance; mineral observations refer to sample AC1R2.",
+          "relevantPageSectionTable": "Sections 2.1–2.2 and Figure 1",
+          "geographicScope": "Southeastern Etna near Acireale, Sicily",
+          "limitations": "Atlas coordinate is not established as the paper's sample location."
+        }
+      ],
+      "knownLimitations": [
+        "Legacy atlas claims remain preserved and are not independently verified merely by being present.",
+        "Null, unavailable, failed retrieval, and confirmed absence are distinct states."
+      ],
+      "unresolvedConflicts": [],
+      "reviewStatus": "literature_reviewed_limited_scope",
+      "curationVersion": "1.0.0",
+      "pointComparisonEligible": true,
+      "providerCoverage": {
+        "NASA_POWER": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "NASA POWER daily gridded/model-derived parameters",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        },
+        "Copernicus_GLO30": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "COP-DEM_GLO-30-Public; one DSM pixel",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        },
+        "GLiM": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "GLiM Level I generalized feature",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        }
+      }
+    },
+    {
+      "stableId": "KIL",
+      "displayName": "Kilauea lava tubes, Hawaii",
+      "originalSourceName": "أنفاق حمم كيلاويا",
+      "countryOrRegion": "United States",
+      "locationType": "approximate_area_marker",
+      "coordinateAssessment": {
+        "originalLatitude": 19.41,
+        "originalLongitude": -155.28,
+        "coordinateSource": "Supplied structured atlas; exact source-to-coordinate relationship not established in the M0 repository audit.",
+        "locationType": "approximate_area_marker",
+        "statedUncertainty": null,
+        "precisionIsAccuracy": false,
+        "representsSiteOrSample": "Approximate site/area marker; named field or sample point not established.",
+        "providerSamplingDefensible": false,
+        "curationNote": "Do not infer uncertainty from decimal places."
+      },
+      "preliminaryDecision": "keep_with_limitations",
+      "decisionRationale": "Lava-tube analog lead; broad coordinate does not establish the exact sampled tube or claim locations.",
+      "evidenceByDimension": {
+        "identity": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "coordinates": {
+          "status": "atlas_claim",
+          "note": "Location source and uncertainty are not documented at sufficient precision."
+        },
+        "climate": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "terrain": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "geomorphology": {
+          "status": "atlas_claim",
+          "note": "Atlas narrative is preserved as a claim; no independent site-specific geomorphology validation was established here."
+        },
+        "lithology": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mineralogy": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "water_ice": {
+          "status": "unverified",
+          "note": "No separate, traceable water/ice evidence was established in M0; this missing evidence is not evidence of absence."
+        },
+        "geological_processes": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mars_analog_relevance": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        }
+      },
+      "claimCitations": [],
+      "knownLimitations": [
+        "Legacy atlas claims remain preserved and are not independently verified merely by being present.",
+        "Null, unavailable, failed retrieval, and confirmed absence are distinct states."
+      ],
+      "unresolvedConflicts": [],
+      "reviewStatus": "m0_evidence_reconciled_no_new_site_specific_review",
+      "curationVersion": "1.0.0",
+      "pointComparisonEligible": true,
+      "providerCoverage": {
+        "NASA_POWER": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "NASA POWER daily gridded/model-derived parameters",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        },
+        "Copernicus_GLO30": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "COP-DEM_GLO-30-Public; one DSM pixel",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        },
+        "GLiM": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "GLiM Level I generalized feature",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        }
+      }
+    },
+    {
+      "stableId": "SVA",
+      "displayName": "Svalbard",
+      "originalSourceName": "سفالبارد",
+      "countryOrRegion": "Norway",
+      "locationType": "approximate_area_marker",
+      "coordinateAssessment": {
+        "originalLatitude": 78.9,
+        "originalLongitude": 16,
+        "coordinateSource": "Supplied structured atlas; exact source-to-coordinate relationship not established in the M0 repository audit.",
+        "locationType": "approximate_area_marker",
+        "statedUncertainty": null,
+        "precisionIsAccuracy": false,
+        "representsSiteOrSample": "Approximate site/area marker; named field or sample point not established.",
+        "providerSamplingDefensible": false,
+        "curationNote": "Do not infer uncertainty from decimal places."
+      },
+      "preliminaryDecision": "exclude_pending_review",
+      "decisionRationale": "AMASE and related work establish Svalbard as a Mars-analog region, but the atlas record lacks an identified field site and defensible point coordinate.",
+      "evidenceByDimension": {
+        "identity": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "coordinates": {
+          "status": "atlas_claim",
+          "note": "Location source and uncertainty are not documented at sufficient precision."
+        },
+        "climate": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "terrain": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "geomorphology": {
+          "status": "atlas_claim",
+          "note": "Atlas narrative is preserved as a claim; no independent site-specific geomorphology validation was established here."
+        },
+        "lithology": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mineralogy": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "water_ice": {
+          "status": "unverified",
+          "note": "No separate, traceable water/ice evidence was established in M0; this missing evidence is not evidence of absence."
+        },
+        "geological_processes": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mars_analog_relevance": {
+          "status": "official_documentation",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        }
+      },
+      "claimCitations": [
+        {
+          "title": "AMASE: Arctic Mars Analogue Svalbard Expedition",
+          "authorsOrOrganization": "NASA Jet Propulsion Laboratory",
+          "publicationYear": 2006,
+          "doiOrStableUrl": "https://robotics.jpl.nasa.gov/what-we-do/research-tasks/amase-arctic-mars-analogue-svalbard-expedition/",
+          "sourceType": "official_documentation",
+          "supportedClaimOrDimension": "Field testing and sample characterization at three Svalbard field sites for Mars life-detection instrumentation.",
+          "relevantPageSectionTable": "Project description",
+          "geographicScope": "Three field sites in Svalbard",
+          "limitations": "Does not identify which field site the atlas coordinate represents."
+        }
+      ],
+      "knownLimitations": [
+        "Legacy atlas claims remain preserved and are not independently verified merely by being present.",
+        "Null, unavailable, failed retrieval, and confirmed absence are distinct states."
+      ],
+      "unresolvedConflicts": [],
+      "reviewStatus": "literature_reviewed_limited_scope",
+      "curationVersion": "1.0.0",
+      "pointComparisonEligible": false,
+      "providerCoverage": {
+        "NASA_POWER": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "NASA POWER daily gridded/model-derived parameters",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        },
+        "Copernicus_GLO30": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "COP-DEM_GLO-30-Public; one DSM pixel",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        },
+        "GLiM": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "GLiM Level I generalized feature",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        }
+      }
+    },
+    {
+      "stableId": "LAM",
+      "displayName": "Lambahraun lava field",
+      "originalSourceName": "حقل حمم لامباهراون",
+      "countryOrRegion": "Iceland",
+      "locationType": "approximate_area_marker",
+      "coordinateAssessment": {
+        "originalLatitude": 64.43,
+        "originalLongitude": -20.45,
+        "coordinateSource": "Supplied structured atlas; exact source-to-coordinate relationship not established in the M0 repository audit.",
+        "locationType": "approximate_area_marker",
+        "statedUncertainty": null,
+        "precisionIsAccuracy": false,
+        "representsSiteOrSample": "Approximate site/area marker; named field or sample point not established.",
+        "providerSamplingDefensible": false,
+        "curationNote": "Do not infer uncertainty from decimal places."
+      },
+      "preliminaryDecision": "keep_with_limitations",
+      "decisionRationale": "Lava-field analog lead; approximate marker and claim-to-locality links remain incomplete.",
+      "evidenceByDimension": {
+        "identity": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "coordinates": {
+          "status": "atlas_claim",
+          "note": "Location source and uncertainty are not documented at sufficient precision."
+        },
+        "climate": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "terrain": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "geomorphology": {
+          "status": "atlas_claim",
+          "note": "Atlas narrative is preserved as a claim; no independent site-specific geomorphology validation was established here."
+        },
+        "lithology": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mineralogy": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "water_ice": {
+          "status": "unverified",
+          "note": "No separate, traceable water/ice evidence was established in M0; this missing evidence is not evidence of absence."
+        },
+        "geological_processes": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mars_analog_relevance": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        }
+      },
+      "claimCitations": [],
+      "knownLimitations": [
+        "Legacy atlas claims remain preserved and are not independently verified merely by being present.",
+        "Null, unavailable, failed retrieval, and confirmed absence are distinct states."
+      ],
+      "unresolvedConflicts": [],
+      "reviewStatus": "m0_evidence_reconciled_no_new_site_specific_review",
+      "curationVersion": "1.0.0",
+      "pointComparisonEligible": true,
+      "providerCoverage": {
+        "NASA_POWER": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "NASA POWER daily gridded/model-derived parameters",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        },
+        "Copernicus_GLO30": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "COP-DEM_GLO-30-Public; one DSM pixel",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        },
+        "GLiM": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "GLiM Level I generalized feature",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        }
+      }
+    },
+    {
+      "stableId": "DALL",
+      "displayName": "Dallol Hydrothermal Field",
+      "originalSourceName": "",
+      "countryOrRegion": "Ethiopia",
+      "locationType": "approximate_area_marker",
+      "coordinateAssessment": {
+        "originalLatitude": 14.24,
+        "originalLongitude": 40.3,
+        "coordinateSource": "Supplied structured atlas; exact source-to-coordinate relationship not established in the M0 repository audit.",
+        "locationType": "approximate_area_marker",
+        "statedUncertainty": null,
+        "precisionIsAccuracy": false,
+        "representsSiteOrSample": "Approximate site/area marker; named field or sample point not established.",
+        "providerSamplingDefensible": true,
+        "curationNote": "Do not infer uncertainty from decimal places."
+      },
+      "preliminaryDecision": "keep_with_limitations",
+      "decisionRationale": "Hydrothermal analog lead with provider evidence; extreme local heterogeneity makes an approximate point insufficient for generalization.",
+      "evidenceByDimension": {
+        "identity": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "coordinates": {
+          "status": "atlas_claim",
+          "note": "Location source and uncertainty are not documented at sufficient precision."
+        },
+        "climate": {
+          "status": "primary_dataset",
+          "note": "NASA POWER gridded/model-derived history is present for this ID; not a ground station."
+        },
+        "terrain": {
+          "status": "primary_dataset",
+          "note": "One Copernicus GLO-30 DSM pixel is stored; not a terrain summary."
+        },
+        "geomorphology": {
+          "status": "atlas_claim",
+          "note": "Atlas narrative is preserved as a claim; no independent site-specific geomorphology validation was established here."
+        },
+        "lithology": {
+          "status": "primary_dataset",
+          "note": "Generalized GLiM mapped lithology; not mineral detection."
+        },
+        "mineralogy": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "water_ice": {
+          "status": "unverified",
+          "note": "No separate, traceable water/ice evidence was established in M0; this missing evidence is not evidence of absence."
+        },
+        "geological_processes": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mars_analog_relevance": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        }
+      },
+      "claimCitations": [
+        {
+          "title": "NASA POWER Daily API",
+          "authorsOrOrganization": "NASA Langley Research Center",
+          "publicationYear": null,
+          "doiOrStableUrl": "https://power.larc.nasa.gov/docs/services/api/temporal/daily/",
+          "sourceType": "primary_dataset",
+          "supportedClaimOrDimension": "Stored coordinate-requested daily gridded climate history, 2001-01-01 through 2020-12-31; not a ground-station observation.",
+          "relevantPageSectionTable": "Daily API product documentation; exact response files remain in data/raw/nasa-power/",
+          "geographicScope": "Requested coordinate for DALL",
+          "limitations": "Grid/model product; stored response is tied to the record's requested coordinate but does not validate that coordinate as the named site's representative location."
+        },
+        {
+          "title": "Copernicus DEM GLO-30 product",
+          "authorsOrOrganization": "Copernicus / European Union; WorldDEM produced by DLR and Airbus",
+          "publicationYear": 2021,
+          "doiOrStableUrl": "https://doi.org/10.5270/ESA-c5d3d65",
+          "sourceType": "primary_dataset",
+          "supportedClaimOrDimension": "Stored one-pixel GLO-30 digital surface model elevation sample at the requested coordinate.",
+          "relevantPageSectionTable": "COP-DEM_GLO-30-Public product; raw site sample remains in data/raw/copernicus-dem/",
+          "geographicScope": "Requested coordinate for DALL",
+          "limitations": "One DSM pixel is not mean elevation, terrain summary, or a ground-surface guarantee."
+        },
+        {
+          "title": "Global Lithological Map (GLiM)",
+          "authorsOrOrganization": "Hartmann and Moosdorf; ArcGIS service layer GLiM_Niveau_I",
+          "publicationYear": 2012,
+          "doiOrStableUrl": "https://doi.org/10.1029/2012GC004370",
+          "sourceType": "primary_dataset",
+          "supportedClaimOrDimension": "Stored generalized mapped lithology feature intersecting the requested coordinate.",
+          "relevantPageSectionTable": "GLiM Level I; raw query response remains in data/raw/glim/",
+          "geographicScope": "Mapped polygon at requested coordinate for DALL",
+          "limitations": "Generalized map category at global map scale; no mineral detection, local field truth, or process evidence."
+        }
+      ],
+      "knownLimitations": [
+        "Legacy atlas claims remain preserved and are not independently verified merely by being present.",
+        "Null, unavailable, failed retrieval, and confirmed absence are distinct states.",
+        "Provider products have different spatial support: gridded climate, single-pixel DSM, and generalized lithology."
+      ],
+      "unresolvedConflicts": [],
+      "reviewStatus": "m0_evidence_reconciled_no_new_site_specific_review",
+      "curationVersion": "1.0.0",
+      "pointComparisonEligible": true,
+      "providerCoverage": {
+        "NASA_POWER": {
+          "status": "stored_response",
+          "rawResponsePresent": true,
+          "normalizedEvidencePresent": true,
+          "coordinateMatchesRecord": "M0 reported all 8/8 IDs and request coordinates matched the normalized record",
+          "periodOrVersion": "2001-01-01 to 2020-12-31; daily",
+          "product": "NASA POWER daily gridded/model-derived parameters",
+          "validationResult": "M0 artifact and coordinate linkage passed; does not validate site truth",
+          "failed": false,
+          "note": "M0 audit found site-linked raw and normalized evidence; provider result does not establish claim validity."
+        },
+        "Copernicus_GLO30": {
+          "status": "stored_response",
+          "rawResponsePresent": true,
+          "normalizedEvidencePresent": true,
+          "coordinateMatchesRecord": "M0 reported all 8/8 IDs and request coordinates matched the normalized record",
+          "periodOrVersion": "not individually stored",
+          "product": "COP-DEM_GLO-30-Public; one DSM pixel",
+          "validationResult": "M0 artifact and coordinate linkage passed; does not validate site truth",
+          "failed": false,
+          "note": "M0 audit found site-linked raw and normalized evidence; provider result does not establish claim validity."
+        },
+        "GLiM": {
+          "status": "stored_response",
+          "rawResponsePresent": true,
+          "normalizedEvidencePresent": true,
+          "coordinateMatchesRecord": "M0 reported all 8/8 IDs and request coordinates matched the normalized record",
+          "periodOrVersion": "not individually stored",
+          "product": "GLiM Level I generalized feature",
+          "validationResult": "M0 artifact and coordinate linkage passed; does not validate site truth",
+          "failed": false,
+          "note": "M0 audit found site-linked raw and normalized evidence; provider result does not establish claim validity."
+        }
+      }
+    },
+    {
+      "stableId": "DAL",
+      "displayName": "Dalangtan Playa sampling pavement, Qaidam Basin",
+      "originalSourceName": "",
+      "countryOrRegion": "China",
+      "locationType": "approximate_area_marker",
+      "coordinateAssessment": {
+        "originalLatitude": 38.59556,
+        "originalLongitude": 90.985,
+        "coordinateSource": "Supplied structured atlas; exact source-to-coordinate relationship not established in the M0 repository audit.",
+        "locationType": "approximate_area_marker",
+        "statedUncertainty": null,
+        "precisionIsAccuracy": false,
+        "representsSiteOrSample": "Approximate site/area marker; named field or sample point not established.",
+        "providerSamplingDefensible": true,
+        "curationNote": "Do not infer uncertainty from decimal places."
+      },
+      "preliminaryDecision": "keep_with_limitations",
+      "decisionRationale": "Named sampling pavement and linked evidence are useful; provider samples remain point/grid/map products and coordinate uncertainty is unquantified.",
+      "evidenceByDimension": {
+        "identity": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "coordinates": {
+          "status": "atlas_claim",
+          "note": "Location source and uncertainty are not documented at sufficient precision."
+        },
+        "climate": {
+          "status": "primary_dataset",
+          "note": "NASA POWER gridded/model-derived history is present for this ID; not a ground station."
+        },
+        "terrain": {
+          "status": "primary_dataset",
+          "note": "One Copernicus GLO-30 DSM pixel is stored; not a terrain summary."
+        },
+        "geomorphology": {
+          "status": "atlas_claim",
+          "note": "Atlas narrative is preserved as a claim; no independent site-specific geomorphology validation was established here."
+        },
+        "lithology": {
+          "status": "primary_dataset",
+          "note": "Generalized GLiM mapped lithology; not mineral detection."
+        },
+        "mineralogy": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "water_ice": {
+          "status": "unverified",
+          "note": "No separate, traceable water/ice evidence was established in M0; this missing evidence is not evidence of absence."
+        },
+        "geological_processes": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mars_analog_relevance": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        }
+      },
+      "claimCitations": [
+        {
+          "title": "NASA POWER Daily API",
+          "authorsOrOrganization": "NASA Langley Research Center",
+          "publicationYear": null,
+          "doiOrStableUrl": "https://power.larc.nasa.gov/docs/services/api/temporal/daily/",
+          "sourceType": "primary_dataset",
+          "supportedClaimOrDimension": "Stored coordinate-requested daily gridded climate history, 2001-01-01 through 2020-12-31; not a ground-station observation.",
+          "relevantPageSectionTable": "Daily API product documentation; exact response files remain in data/raw/nasa-power/",
+          "geographicScope": "Requested coordinate for DAL",
+          "limitations": "Grid/model product; stored response is tied to the record's requested coordinate but does not validate that coordinate as the named site's representative location."
+        },
+        {
+          "title": "Copernicus DEM GLO-30 product",
+          "authorsOrOrganization": "Copernicus / European Union; WorldDEM produced by DLR and Airbus",
+          "publicationYear": 2021,
+          "doiOrStableUrl": "https://doi.org/10.5270/ESA-c5d3d65",
+          "sourceType": "primary_dataset",
+          "supportedClaimOrDimension": "Stored one-pixel GLO-30 digital surface model elevation sample at the requested coordinate.",
+          "relevantPageSectionTable": "COP-DEM_GLO-30-Public product; raw site sample remains in data/raw/copernicus-dem/",
+          "geographicScope": "Requested coordinate for DAL",
+          "limitations": "One DSM pixel is not mean elevation, terrain summary, or a ground-surface guarantee."
+        },
+        {
+          "title": "Global Lithological Map (GLiM)",
+          "authorsOrOrganization": "Hartmann and Moosdorf; ArcGIS service layer GLiM_Niveau_I",
+          "publicationYear": 2012,
+          "doiOrStableUrl": "https://doi.org/10.1029/2012GC004370",
+          "sourceType": "primary_dataset",
+          "supportedClaimOrDimension": "Stored generalized mapped lithology feature intersecting the requested coordinate.",
+          "relevantPageSectionTable": "GLiM Level I; raw query response remains in data/raw/glim/",
+          "geographicScope": "Mapped polygon at requested coordinate for DAL",
+          "limitations": "Generalized map category at global map scale; no mineral detection, local field truth, or process evidence."
+        }
+      ],
+      "knownLimitations": [
+        "Legacy atlas claims remain preserved and are not independently verified merely by being present.",
+        "Null, unavailable, failed retrieval, and confirmed absence are distinct states.",
+        "Provider products have different spatial support: gridded climate, single-pixel DSM, and generalized lithology."
+      ],
+      "unresolvedConflicts": [],
+      "reviewStatus": "m0_evidence_reconciled_no_new_site_specific_review",
+      "curationVersion": "1.0.0",
+      "pointComparisonEligible": true,
+      "providerCoverage": {
+        "NASA_POWER": {
+          "status": "stored_response",
+          "rawResponsePresent": true,
+          "normalizedEvidencePresent": true,
+          "coordinateMatchesRecord": "M0 reported all 8/8 IDs and request coordinates matched the normalized record",
+          "periodOrVersion": "2001-01-01 to 2020-12-31; daily",
+          "product": "NASA POWER daily gridded/model-derived parameters",
+          "validationResult": "M0 artifact and coordinate linkage passed; does not validate site truth",
+          "failed": false,
+          "note": "M0 audit found site-linked raw and normalized evidence; provider result does not establish claim validity."
+        },
+        "Copernicus_GLO30": {
+          "status": "stored_response",
+          "rawResponsePresent": true,
+          "normalizedEvidencePresent": true,
+          "coordinateMatchesRecord": "M0 reported all 8/8 IDs and request coordinates matched the normalized record",
+          "periodOrVersion": "not individually stored",
+          "product": "COP-DEM_GLO-30-Public; one DSM pixel",
+          "validationResult": "M0 artifact and coordinate linkage passed; does not validate site truth",
+          "failed": false,
+          "note": "M0 audit found site-linked raw and normalized evidence; provider result does not establish claim validity."
+        },
+        "GLiM": {
+          "status": "stored_response",
+          "rawResponsePresent": true,
+          "normalizedEvidencePresent": true,
+          "coordinateMatchesRecord": "M0 reported all 8/8 IDs and request coordinates matched the normalized record",
+          "periodOrVersion": "not individually stored",
+          "product": "GLiM Level I generalized feature",
+          "validationResult": "M0 artifact and coordinate linkage passed; does not validate site truth",
+          "failed": false,
+          "note": "M0 audit found site-linked raw and normalized evidence; provider result does not establish claim validity."
+        }
+      }
+    },
+    {
+      "stableId": "SEM",
+      "displayName": "Semail Ophiolite",
+      "originalSourceName": "",
+      "countryOrRegion": "Oman and United Arab Emirates",
+      "locationType": "region",
+      "coordinateAssessment": {
+        "originalLatitude": null,
+        "originalLongitude": null,
+        "coordinateSource": "Supplied structured atlas; exact source-to-coordinate relationship not established in the M0 repository audit.",
+        "locationType": "region",
+        "statedUncertainty": null,
+        "precisionIsAccuracy": false,
+        "representsSiteOrSample": "Atlas point, if present, is retained only as a source marker; regional representation has no approved sampling coordinate.",
+        "providerSamplingDefensible": false,
+        "curationNote": "Do not infer uncertainty from decimal places."
+      },
+      "preliminaryDecision": "region_only",
+      "decisionRationale": "Ophiolite evidence is regional; no representative point is established.",
+      "evidenceByDimension": {
+        "identity": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "coordinates": {
+          "status": "unverified",
+          "note": "Location source and uncertainty are not documented at sufficient precision."
+        },
+        "climate": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "terrain": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "geomorphology": {
+          "status": "atlas_claim",
+          "note": "Atlas narrative is preserved as a claim; no independent site-specific geomorphology validation was established here."
+        },
+        "lithology": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mineralogy": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "water_ice": {
+          "status": "unverified",
+          "note": "No separate, traceable water/ice evidence was established in M0; this missing evidence is not evidence of absence."
+        },
+        "geological_processes": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mars_analog_relevance": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        }
+      },
+      "claimCitations": [],
+      "knownLimitations": [
+        "Legacy atlas claims remain preserved and are not independently verified merely by being present.",
+        "Null, unavailable, failed retrieval, and confirmed absence are distinct states."
+      ],
+      "unresolvedConflicts": [],
+      "reviewStatus": "m0_evidence_reconciled_no_new_site_specific_review",
+      "curationVersion": "1.0.0",
+      "pointComparisonEligible": false,
+      "providerCoverage": {
+        "NASA_POWER": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "NASA POWER daily gridded/model-derived parameters",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        },
+        "Copernicus_GLO30": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "COP-DEM_GLO-30-Public; one DSM pixel",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        },
+        "GLiM": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "GLiM Level I generalized feature",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        }
+      }
+    },
+    {
+      "stableId": "AHS-GH",
+      "displayName": "Gypsum Hill cold saline springs, Axel Heiberg Island",
+      "originalSourceName": "",
+      "countryOrRegion": "Canada",
+      "locationType": "approximate_area_marker",
+      "coordinateAssessment": {
+        "originalLatitude": 79.4083333,
+        "originalLongitude": -90.7180556,
+        "coordinateSource": "Supplied structured atlas; exact source-to-coordinate relationship not established in the M0 repository audit.",
+        "locationType": "approximate_area_marker",
+        "statedUncertainty": null,
+        "precisionIsAccuracy": false,
+        "representsSiteOrSample": "Approximate site/area marker; named field or sample point not established.",
+        "providerSamplingDefensible": true,
+        "curationNote": "Do not infer uncertainty from decimal places."
+      },
+      "preliminaryDecision": "keep_with_limitations",
+      "decisionRationale": "Named cold saline spring analog with provider context; point uncertainty and provider spatial representativeness remain limited.",
+      "evidenceByDimension": {
+        "identity": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "coordinates": {
+          "status": "atlas_claim",
+          "note": "Location source and uncertainty are not documented at sufficient precision."
+        },
+        "climate": {
+          "status": "primary_dataset",
+          "note": "NASA POWER gridded/model-derived history is present for this ID; not a ground station."
+        },
+        "terrain": {
+          "status": "primary_dataset",
+          "note": "One Copernicus GLO-30 DSM pixel is stored; not a terrain summary."
+        },
+        "geomorphology": {
+          "status": "atlas_claim",
+          "note": "Atlas narrative is preserved as a claim; no independent site-specific geomorphology validation was established here."
+        },
+        "lithology": {
+          "status": "primary_dataset",
+          "note": "Generalized GLiM mapped lithology; not mineral detection."
+        },
+        "mineralogy": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "water_ice": {
+          "status": "unverified",
+          "note": "No separate, traceable water/ice evidence was established in M0; this missing evidence is not evidence of absence."
+        },
+        "geological_processes": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mars_analog_relevance": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        }
+      },
+      "claimCitations": [
+        {
+          "title": "NASA POWER Daily API",
+          "authorsOrOrganization": "NASA Langley Research Center",
+          "publicationYear": null,
+          "doiOrStableUrl": "https://power.larc.nasa.gov/docs/services/api/temporal/daily/",
+          "sourceType": "primary_dataset",
+          "supportedClaimOrDimension": "Stored coordinate-requested daily gridded climate history, 2001-01-01 through 2020-12-31; not a ground-station observation.",
+          "relevantPageSectionTable": "Daily API product documentation; exact response files remain in data/raw/nasa-power/",
+          "geographicScope": "Requested coordinate for AHS-GH",
+          "limitations": "Grid/model product; stored response is tied to the record's requested coordinate but does not validate that coordinate as the named site's representative location."
+        },
+        {
+          "title": "Copernicus DEM GLO-30 product",
+          "authorsOrOrganization": "Copernicus / European Union; WorldDEM produced by DLR and Airbus",
+          "publicationYear": 2021,
+          "doiOrStableUrl": "https://doi.org/10.5270/ESA-c5d3d65",
+          "sourceType": "primary_dataset",
+          "supportedClaimOrDimension": "Stored one-pixel GLO-30 digital surface model elevation sample at the requested coordinate.",
+          "relevantPageSectionTable": "COP-DEM_GLO-30-Public product; raw site sample remains in data/raw/copernicus-dem/",
+          "geographicScope": "Requested coordinate for AHS-GH",
+          "limitations": "One DSM pixel is not mean elevation, terrain summary, or a ground-surface guarantee."
+        },
+        {
+          "title": "Global Lithological Map (GLiM)",
+          "authorsOrOrganization": "Hartmann and Moosdorf; ArcGIS service layer GLiM_Niveau_I",
+          "publicationYear": 2012,
+          "doiOrStableUrl": "https://doi.org/10.1029/2012GC004370",
+          "sourceType": "primary_dataset",
+          "supportedClaimOrDimension": "Stored generalized mapped lithology feature intersecting the requested coordinate.",
+          "relevantPageSectionTable": "GLiM Level I; raw query response remains in data/raw/glim/",
+          "geographicScope": "Mapped polygon at requested coordinate for AHS-GH",
+          "limitations": "Generalized map category at global map scale; no mineral detection, local field truth, or process evidence."
+        }
+      ],
+      "knownLimitations": [
+        "Legacy atlas claims remain preserved and are not independently verified merely by being present.",
+        "Null, unavailable, failed retrieval, and confirmed absence are distinct states.",
+        "Provider products have different spatial support: gridded climate, single-pixel DSM, and generalized lithology."
+      ],
+      "unresolvedConflicts": [],
+      "reviewStatus": "m0_evidence_reconciled_no_new_site_specific_review",
+      "curationVersion": "1.0.0",
+      "pointComparisonEligible": true,
+      "providerCoverage": {
+        "NASA_POWER": {
+          "status": "stored_response",
+          "rawResponsePresent": true,
+          "normalizedEvidencePresent": true,
+          "coordinateMatchesRecord": "M0 reported all 8/8 IDs and request coordinates matched the normalized record",
+          "periodOrVersion": "2001-01-01 to 2020-12-31; daily",
+          "product": "NASA POWER daily gridded/model-derived parameters",
+          "validationResult": "M0 artifact and coordinate linkage passed; does not validate site truth",
+          "failed": false,
+          "note": "M0 audit found site-linked raw and normalized evidence; provider result does not establish claim validity."
+        },
+        "Copernicus_GLO30": {
+          "status": "stored_response",
+          "rawResponsePresent": true,
+          "normalizedEvidencePresent": true,
+          "coordinateMatchesRecord": "M0 reported all 8/8 IDs and request coordinates matched the normalized record",
+          "periodOrVersion": "not individually stored",
+          "product": "COP-DEM_GLO-30-Public; one DSM pixel",
+          "validationResult": "M0 artifact and coordinate linkage passed; does not validate site truth",
+          "failed": false,
+          "note": "M0 audit found site-linked raw and normalized evidence; provider result does not establish claim validity."
+        },
+        "GLiM": {
+          "status": "stored_response",
+          "rawResponsePresent": true,
+          "normalizedEvidencePresent": true,
+          "coordinateMatchesRecord": "M0 reported all 8/8 IDs and request coordinates matched the normalized record",
+          "periodOrVersion": "not individually stored",
+          "product": "GLiM Level I generalized feature",
+          "validationResult": "M0 artifact and coordinate linkage passed; does not validate site truth",
+          "failed": false,
+          "note": "M0 audit found site-linked raw and normalized evidence; provider result does not establish claim validity."
+        }
+      }
+    },
+    {
+      "stableId": "LUT",
+      "displayName": "Dasht-e Lut (Lut Desert) aeolian analog region",
+      "originalSourceName": "",
+      "countryOrRegion": "Iran",
+      "locationType": "region",
+      "coordinateAssessment": {
+        "originalLatitude": null,
+        "originalLongitude": null,
+        "coordinateSource": "Supplied structured atlas; exact source-to-coordinate relationship not established in the M0 repository audit.",
+        "locationType": "region",
+        "statedUncertainty": null,
+        "precisionIsAccuracy": false,
+        "representsSiteOrSample": "Atlas point, if present, is retained only as a source marker; regional representation has no approved sampling coordinate.",
+        "providerSamplingDefensible": false,
+        "curationNote": "Do not infer uncertainty from decimal places."
+      },
+      "preliminaryDecision": "region_only",
+      "decisionRationale": "Aeolian analog context is regional; no representative point is established.",
+      "evidenceByDimension": {
+        "identity": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "coordinates": {
+          "status": "unverified",
+          "note": "Location source and uncertainty are not documented at sufficient precision."
+        },
+        "climate": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "terrain": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "geomorphology": {
+          "status": "atlas_claim",
+          "note": "Atlas narrative is preserved as a claim; no independent site-specific geomorphology validation was established here."
+        },
+        "lithology": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mineralogy": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "water_ice": {
+          "status": "unverified",
+          "note": "No separate, traceable water/ice evidence was established in M0; this missing evidence is not evidence of absence."
+        },
+        "geological_processes": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        },
+        "mars_analog_relevance": {
+          "status": "atlas_claim",
+          "note": "Legacy narrative/value retained as an atlas claim unless a citation below is explicitly mapped to this dimension."
+        }
+      },
+      "claimCitations": [],
+      "knownLimitations": [
+        "Legacy atlas claims remain preserved and are not independently verified merely by being present.",
+        "Null, unavailable, failed retrieval, and confirmed absence are distinct states."
+      ],
+      "unresolvedConflicts": [],
+      "reviewStatus": "m0_evidence_reconciled_no_new_site_specific_review",
+      "curationVersion": "1.0.0",
+      "pointComparisonEligible": false,
+      "providerCoverage": {
+        "NASA_POWER": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "NASA POWER daily gridded/model-derived parameters",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        },
+        "Copernicus_GLO30": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "COP-DEM_GLO-30-Public; one DSM pixel",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        },
+        "GLiM": {
+          "status": "not_retrieved",
+          "rawResponsePresent": false,
+          "normalizedEvidencePresent": false,
+          "coordinateMatchesRecord": "not_applicable",
+          "periodOrVersion": "not individually stored",
+          "product": "GLiM Level I generalized feature",
+          "validationResult": "no stored response to validate",
+          "failed": false,
+          "note": "No stored site-linked response in the audited inventory; this is not a failed request or evidence of absence."
+        }
+      }
+    }
+  ]
+}

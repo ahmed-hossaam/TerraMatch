@@ -139,6 +139,10 @@ docs/data-sources/            data-source evaluation and source notes
 
 Known sites and test fixtures share a normalized location structure. Retrieved climate is stored as linked date-indexed records with measurement values, units, source IDs, quality statuses, summaries, and coverage. Terrain elevation is kept separately with product, tile, coordinate reference, and provenance. Missing values remain null; mineral evidence is kept distinct from lithology. Similarity, coverage, and confidence are separate concepts.
 
+## Deployment
+
+The Vite frontend is hosted on Vercel; the Node API is configured as a separate Render web service. See [`docs/deployment/render-backend.md`](docs/deployment/render-backend.md) for the persistent-disk layout, CORS origin, build/start commands, and Vercel API-base setting. The backend is not considered deployed until the Render service is created and its health route is verified.
+
 ## Current limitations
 
 - M02 has daily histories for five original atlas sites and three accepted supplementary point-area sites; it is not global climate discovery. Coordinates are approximate and NASA POWER is gridded.

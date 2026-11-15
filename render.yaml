@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: terramatch-api
+    runtime: node
+    plan: 1c-2g
+    region: ohio
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: HOST
+        value: 0.0.0.0
+      - key: CORS_ALLOWED_ORIGINS
+        value: https://terramatch-blue.vercel.app
+      - key: TERRAMATCH_PERSISTENT_DATA_DIR
+        value: /var/data/terramatch
+    disk:
+      name: terramatch-data
+      mountPath: /var/data/terramatch
+      sizeGB: 2

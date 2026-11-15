@@ -7,11 +7,24 @@ const probe=createServer();
 await new Promise((resolve)=>probe.listen(0,"127.0.0.1",resolve));
 const port=probe.address().port;
 await new Promise((resolve)=>probe.close(resolve));
-const server=spawn(process.execPath,["scripts/app-api.mjs"],{env:{...process.env,PORT:String(port)},stdio:["ignore","pipe","pipe"]});
+const server=spawn(process.execPath,["scripts/app-api.mjs"],{env:{...process.env,PORT:String(port),CORS_ALLOWED_ORIGINS:"https://terramatch-blue.vercel.app"},stdio:["ignore","pipe","pipe"]});
 let output="";server.stdout.on("data",(chunk)=>output+=chunk.toString());server.stderr.on("data",(chunk)=>output+=chunk.toString());
 const base=`http://127.0.0.1:${port}`;
 after(()=>server.kill());
 async function waitForServer(){for(let attempt=0;attempt<50;attempt++){try{const response=await fetch(`${base}/api/health`);if(response.ok)return; }catch{} await new Promise((resolve)=>setTimeout(resolve,100));}throw new Error(`API failed to start: ${output}`);}
+
+test("app API allows the configured frontend origin and handles preflight",async()=>{
+  await waitForServer();
+  const origin="https://terramatch-blue.vercel.app";
+  const allowed=await fetch(`${base}/api/health`,{headers:{Origin:origin}});
+  assert.equal(allowed.headers.get("access-control-allow-origin"),origin);
+  const blocked=await fetch(`${base}/api/health`,{headers:{Origin:"https://untrusted.example"}});
+  assert.equal(blocked.headers.get("access-control-allow-origin"),null);
+  const preflight=await fetch(`${base}/api/jobs`,{method:"OPTIONS",headers:{Origin:origin,"Access-Control-Request-Method":"POST","Access-Control-Request-Headers":"content-type"}});
+  assert.equal(preflight.status,204);
+  assert.equal(preflight.headers.get("access-control-allow-origin"),origin);
+  assert.match(preflight.headers.get("access-control-allow-methods")??"",/POST/);
+});
 
 test("app API exposes validated project artifacts and rejects unsafe inputs",async()=>{
   await waitForServer();

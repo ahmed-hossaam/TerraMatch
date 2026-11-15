@@ -3,17 +3,37 @@ import { spawn } from "node:child_process";
 import { access, mkdir, readFile, readdir, rename, writeFile } from "node:fs/promises";
 import { extname, join, normalize, resolve, sep } from "node:path";
 import { randomUUID } from "node:crypto";
+import { preparePersistentData } from "./prepare-persistent-data.mjs";
 
 const root = process.cwd();
+await preparePersistentData({ projectRoot: root });
 const runtime = join(root, "data", "app-runtime");
 const jobsDir = join(runtime, "jobs");
 const outputDir = join(runtime, "discovery-runs");
 const port = Number(process.env.PORT ?? 8787);
+const host = process.env.HOST ?? (process.env.NODE_ENV === "production" ? "0.0.0.0" : "127.0.0.1");
+const allowedOrigins = new Set((process.env.CORS_ALLOWED_ORIGINS ?? "").split(",").map((origin) => origin.trim()).filter(Boolean));
 let activeJob = false;
 const json = async (path) => JSON.parse(await readFile(join(root, path), "utf8"));
 const optional = async (path) => { try { await access(join(root, path)); return await json(path); } catch { return null; } };
 const atomic = async (path, value) => { await mkdir(join(root, path, ".."), { recursive: true }); const tmp = `${join(root, path)}.${process.pid}.tmp`; await writeFile(tmp, `${JSON.stringify(value, null, 2)}\n`, "utf8"); await rename(tmp, join(root, path)); };
 const send = (res, status, value) => { res.writeHead(status, { "content-type": "application/json; charset=utf-8", "cache-control": "no-store" }); res.end(JSON.stringify(value)); };
+function applyApiCors(req, res, pathname) {
+  if (pathname !== "/api" && !pathname.startsWith("/api/")) return false;
+  res.setHeader("Vary", "Origin");
+  const origin = req.headers.origin;
+  if (origin && allowedOrigins.has(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    res.setHeader("Access-Control-Max-Age", "600");
+  }
+  if (req.method !== "OPTIONS") return false;
+  if (!origin || !allowedOrigins.has(origin)) return send(res, 403, { error: "Origin is not allowed." }), true;
+  res.writeHead(204);
+  res.end();
+  return true;
+}
 // Atlas source fields are preserved verbatim on disk. These curated display labels
 // keep the public application English without rewriting research/source artifacts.
 const englishCountries = new Map([["مصر","Egypt"],["تشيلي","Chile"],["الولايات المتحدة","United States"],["إسرائيل","Israel"],["عُمان","Oman"],["أستراليا","Australia"],["الصين","China"],["أنتاركتيكا","Antarctica"],["إسبانيا","Spain"],["الهند","India"],["تركيا","Türkiye"],["كندا","Canada"],["إيطاليا","Italy"],["النرويج","Norway"],["آيسلندا","Iceland"]]);
@@ -139,6 +159,7 @@ async function launchJob(input) {
 const server = createServer(async (req,res) => {
   try {
     const url = new URL(req.url ?? "/", `http://${req.headers.host ?? "localhost"}`);
+    if (applyApiCors(req, res, url.pathname)) return;
     if (req.method === "GET" && url.pathname === "/api/health") return send(res,200,{status:"ok",app:"TerraMatch",planetaryScope:"Mars",apiVersion:"1.0.0"});
     if (url.pathname.startsWith("/api/")) {
       if(req.method==="GET"&&url.pathname==="/api/jobs"){const names=await files("data/app-runtime/jobs",/^[a-f0-9-]{16,64}\.json$/i);const jobs=await Promise.all(names.map((name)=>optional(`data/app-runtime/jobs/${name}`)));return send(res,200,{jobs:jobs.filter(Boolean)});}
@@ -174,4 +195,4 @@ const server = createServer(async (req,res) => {
   } catch(error) { send(res,error?.status??500,{error:error?.status?error.message:"Request could not be completed."}); }
 });
 server.requestTimeout=15000;
-server.listen(port,"127.0.0.1",()=>console.log(`TerraMatch API listening at http://127.0.0.1:${port}`));
+server.listen(port,host,()=>console.log(`TerraMatch API listening at http://${host}:${port}`));

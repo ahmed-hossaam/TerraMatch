@@ -1,4 +1,6 @@
-# Deploy the TerraMatch API on Render
+# Archived: Render deployment plan
+
+> This is historical documentation and is not the supported deployment path. TerraMatch's required hosting architecture is Vercel Functions and Workflows with Neon and private Vercel Blob. The former root `render.yaml` Blueprint has been removed so it cannot be mistaken for an active deployment target. Do not follow the deployment steps below.
 
 The React/Vite frontend remains on Vercel at `https://terramatch-blue.vercel.app`. This Render service runs only the existing Node API and its discovery/comparison child scripts.
 

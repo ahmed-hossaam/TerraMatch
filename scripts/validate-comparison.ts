@@ -1,7 +1,9 @@
 import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
 import { validateComparisonRun } from "../src/comparison/compare.js";
 const path=process.env.COMPARISON_OUTPUT??"data/processed/comparison-runs/latest.json";
-const run=JSON.parse(await readFile(path,"utf8"));const refs=JSON.parse(await readFile("data/processed/reference-sites.json","utf8"));const curation=JSON.parse(await readFile("data/curation/reference-curation-v1.json","utf8"));const fixtures=JSON.parse(await readFile("data/processed/candidate-points.json","utf8"));const discovery=JSON.parse(await readFile("data/processed/discovery-runs/latest.json","utf8"));
+const run=JSON.parse(await readFile(path,"utf8"));const refs=JSON.parse(await readFile("data/processed/reference-sites.json","utf8"));const curation=JSON.parse(await readFile("data/curation/reference-curation-v1.json","utf8"));const fixtures=JSON.parse(await readFile("data/processed/candidate-points.json","utf8"));
+const discoveryPath=process.env.DISCOVERY_OUTPUT??(run.discoveryRun?.runId?`data/processed/discovery-runs/${run.discoveryRun.runId}.json`:"data/processed/discovery-runs/latest.json");const discovery=JSON.parse(await readFile(discoveryPath,"utf8"));
+if(run.discoveryRun?.runId&&run.discoveryRun.runId!==discovery.runId)throw new Error(`Comparison ${run.runId} names discovery ${run.discoveryRun.runId}, but ${discoveryPath} contains ${discovery.runId}.`);
 const errors=[...validateComparisonRun(run)];
 if(process.env.COMPARISON_REQUIRE_CURATION_POLICY==="true"&&!run.referenceSelection)errors.push("comparison is missing required M1 curation eligibility metadata");
 const eligibleIds=curation.records.filter((item:any)=>item.pointComparisonEligible===true&&["keep_verified","keep_with_limitations"].includes(item.preliminaryDecision)).map((item:any)=>item.stableId).sort();

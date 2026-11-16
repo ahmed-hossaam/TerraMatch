@@ -141,7 +141,7 @@ Known sites and test fixtures share a normalized location structure. Retrieved c
 
 ## Deployment
 
-The Vite frontend is hosted on Vercel; the Node API is configured as a separate Render web service. See [`docs/deployment/render-backend.md`](docs/deployment/render-backend.md) for the persistent-disk layout, CORS origin, build/start commands, and Vercel API-base setting. The backend is not considered deployed until the Render service is created and its health route is verified.
+The target hosting architecture is Vercel-only: the Vite frontend, Node API functions, and durable Discovery/Comparison Workflows run in the existing `terramatch` project. Neon PostgreSQL is intended for job and artifact metadata; the connected private Vercel Blob store is intended for durable artifacts. The root Vercel build verifies required deployment environment names and builds the full-stack app; data migration is a separate, explicitly invoked command and is not run automatically during Preview builds. Preview database isolation must be confirmed before invoking that migration or any write workflow. See [`docs/deployment/vercel-full-stack.md`](docs/deployment/vercel-full-stack.md).
 
 ## Current limitations
 

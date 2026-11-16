@@ -9,8 +9,9 @@ export default defineConfig({
   plugins: [nitro({
     preset: "vercel",
     serverDir: "./server",
+    serverAssets: [{ baseName: "job-runners", dir: "./build/job-runners" }],
     vercel: {
-      functions: { runtime: "nodejs22.x", maxDuration: 300, includeFiles: "build/job-runners/**" },
+      functions: { runtime: "nodejs22.x", maxDuration: 300 },
     },
   }), workflow(), react()],
   root: ".",

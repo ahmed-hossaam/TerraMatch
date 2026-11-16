@@ -3,6 +3,8 @@ import { mkdtemp, mkdir, readFile, readdir, rm, writeFile } from "node:fs/promis
 import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { createVercelArtifactStoreFromEnvironment } from "../../scripts/storage/vercel-json-artifact-store.mjs";
+import { useStorage } from "nitro/storage";
+import { hydrateJobRunnerAssets } from "./job-runner-assets.mjs";
 
 const FIXED_INPUTS = [
   "processed/reference-sites.json",
@@ -72,7 +74,7 @@ async function hydrateProviderCache(store, workspace) {
 }
 
 function runRunner(name, workspace, env = {}) {
-  const script = resolve(process.cwd(), "build/job-runners", `${name}.mjs`);
+  const script = resolve(workspace, "build/job-runners", `${name}.mjs`);
   return new Promise((resolvePromise, reject) => {
     const child = spawn(process.execPath, [script], {
       cwd: workspace,
@@ -140,6 +142,7 @@ async function runDiscovery(jobId, input) {
     const payload = await jobState(store, jobId, "running", "discovery");
     const workspace = await mkdtemp(join(tmpdir(), `terramatch-${jobId}-discovery-`));
     try {
+      await hydrateJobRunnerAssets(useStorage("assets:job-runners"), workspace);
       await hydrate(store, workspace, [
         ...FIXED_INPUTS.slice(0, 4),
         `discovery/study-areas/${input.studyAreaFile}`,
@@ -183,6 +186,7 @@ async function validateDiscovery(jobId, discoveryRunId) {
     await jobState(store, jobId, "running", "discovery_validation");
     const workspace = await mkdtemp(join(tmpdir(), `terramatch-${jobId}-validate-discovery-`));
     try {
+      await hydrateJobRunnerAssets(useStorage("assets:job-runners"), workspace);
       const runKey = `processed/discovery-runs/${discoveryRunId}.json`;
       await hydrate(store, workspace, [...FIXED_INPUTS.slice(0, 2), "curation/reference-curation-v1.json", runKey, `app-runtime/discovery-runs/${jobId}.json`]);
       const run = await store.readJson(runKey);
@@ -209,6 +213,7 @@ async function runComparison(jobId, discoveryRunId) {
     await jobState(store, jobId, "running", "comparison");
     const workspace = await mkdtemp(join(tmpdir(), `terramatch-${jobId}-comparison-`));
     try {
+      await hydrateJobRunnerAssets(useStorage("assets:job-runners"), workspace);
       const discoveryKey = `processed/discovery-runs/${discoveryRunId}.json`;
       const discovery = await store.readJson(discoveryKey);
       const candidateHistories = (discovery.candidates ?? [])
@@ -236,6 +241,7 @@ async function validateComparison(jobId, discoveryRunId, comparisonRunId) {
     await jobState(store, jobId, "running", "comparison_validation");
     const workspace = await mkdtemp(join(tmpdir(), `terramatch-${jobId}-validate-comparison-`));
     try {
+      await hydrateJobRunnerAssets(useStorage("assets:job-runners"), workspace);
       const discoveryKey = `processed/discovery-runs/${discoveryRunId}.json`;
       const comparisonKey = `processed/comparison-runs/${comparisonRunId}.json`;
       await hydrate(store, workspace, [...FIXED_INPUTS.slice(0, 2), "curation/reference-curation-v1.json", discoveryKey, comparisonKey]);

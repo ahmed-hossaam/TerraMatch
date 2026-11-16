@@ -1,5 +1,5 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "vite",
-  "buildCommand": "node scripts/verify-vercel-build-env.mjs && node scripts/migrate-preview-on-vercel-build.mjs && npm run build:vercel"
+  "buildCommand": "node scripts/verify-vercel-build-env.mjs && node scripts/migrate-preview-on-vercel-build.mjs && if [ \"$VERCEL_ENV\" = \"production\" ] && [ \"$TERRAMATCH_PRODUCTION_MIGRATION_APPROVED\" = \"true\" ]; then npm run migrate:vercel-data; fi && npm run build:vercel"
 }

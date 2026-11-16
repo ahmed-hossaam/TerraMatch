@@ -140,6 +140,7 @@ test("Vercel job storage deduplicates submissions and atomically claims and retr
     async query(sql,values=[]){
       if(sql.includes("CREATE TABLE IF NOT EXISTS"))return{rows:[]};
       if(sql.includes("UPDATE terramatch_jobs SET status = 'starting'")){const row=jobs.get(values[0]);if(!row)return{rows:[]};const queued=["queued","retrying"].includes(row.status),stale=row.status==="starting"&&Date.now()-row.updatedAtMs>60000;if(!queued&&!stale)return{rows:[]};row.status="starting";if(queued)row.attempt++;row.updated_at=new Date().toISOString();row.updatedAtMs=Date.now();return{rows:[{job_id:row.job_id,attempt:row.attempt,status:row.status,payload:row.payload}]};}
+      if(sql.includes("UPDATE terramatch_jobs SET") && !sql.includes("status = 'starting'") && !sql.includes("status = 'retrying'")){const row=jobs.get(values[0]);if(!row)return{rows:[]};if(values[1])row.status=values[1];if(values[2])row.payload=JSON.parse(values[2]);if(values[3])row.workflow_run_id=values[3];if(values[4])row.artifact_key=values[4];if(values[5])row.attempt++;return{rows:[publicRow(row)]};}
       if(sql.includes("UPDATE terramatch_jobs SET status = 'retrying'")){const row=jobs.get(values[0]);if(!row||row.status!=="failed")return{rows:[]};row.status="retrying";row.workflow_run_id=null;row.updated_at=new Date().toISOString();return{rows:[{job_id:row.job_id,attempt:row.attempt,payload:row.payload}]};}
       throw new Error(`Unexpected job query: ${sql.slice(0,80)}`);
     },
@@ -156,6 +157,9 @@ test("Vercel job storage deduplicates submissions and atomically claims and retr
   assert.equal(sameKey[0].job_id,sameKey[1].job_id);assert.equal(jobs.size,1);
   const claims=await Promise.all([store.claimWorkflowStart(sameKey[0].job_id),store.claimWorkflowStart(sameKey[0].job_id)]);
   assert.equal(claims.filter(Boolean).length,1);assert.equal(jobs.get(sameKey[0].job_id).attempt,1);
+  const startingPayload={status:"starting",attempt:1};
+  const starting=await store.updateJob(sameKey[0].job_id,{status:"starting",payload:startingPayload});
+  assert.equal(starting.status,"starting");assert.deepEqual(starting.payload,startingPayload);
   jobs.get(sameKey[0].job_id).updatedAtMs=Date.now()-120000;
   const recovery=await store.claimWorkflowStart(sameKey[0].job_id);assert.equal(recovery.attempt,1);
   jobs.get(sameKey[0].job_id).status="failed";

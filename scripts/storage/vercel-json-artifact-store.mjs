@@ -247,7 +247,7 @@ export class VercelJsonArtifactStore {
 
   async updateJob(jobId, { status, payload, workflowRunId, artifactKey, incrementAttempt = false, expectedStatuses } = {}) {
     await this.ensureSchema();
-    const allowed = ["queued", "running", "completed", "failed", "retrying"];
+    const allowed = ["queued", "starting", "running", "completed", "failed", "retrying"];
     if (status && !allowed.includes(status)) throw new Error(`Invalid job status: ${status}`);
     const { rows } = await this.pool.query(`
       UPDATE terramatch_jobs SET

@@ -403,19 +403,28 @@ tbody tr:hover{background:color-mix(in srgb,var(--cyan) 5%,transparent)}
 .report-page{max-width:1220px}
 .report-actions{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
 .print-report{padding:38px;border:1px solid var(--line);background:var(--surface);box-shadow:var(--shadow)}
+.print-report{color:var(--text)}
+.report-brand .brand{color:var(--text)}
+.report-brand .brand small{color:var(--subtle)}
+.report-brand>span{color:var(--cyan)}
+.print-report .report-lede{color:var(--muted)}
+.print-report .report-scope{color:var(--muted)}
 .report-brand{display:flex;align-items:center;justify-content:space-between;gap:15px;padding-bottom:16px;border-bottom:1px solid var(--line)}
 .report-brand>span{color:var(--subtle);font:600 8px var(--font-mono);letter-spacing:.12em}
 .print-report h1{margin:24px 0 8px;font-size:32px}
 .print-report h2{margin-top:25px;font-size:18px}
 .report-lede{max-width:800px;color:var(--muted);font-size:12px}
-.report-meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:18px 0}
-.report-meta>div{display:grid;gap:5px;padding:11px;border:1px solid var(--line-soft);border-radius:3px 9px 9px 9px}
+.report-meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:18px 0;background:transparent}
+.report-meta>div{display:grid;gap:5px;padding:11px;border:1px solid var(--line-soft);border-radius:3px 9px 9px 9px;background:var(--surface-2)}
 .report-meta small{color:var(--subtle);font:600 8px var(--font-mono)}
-.report-meta b{font-size:10px;overflow-wrap:anywhere}
+.report-meta b{color:var(--text);font-size:10px;overflow-wrap:anywhere}
 .report-pair{margin:16px 0;padding-top:6px;break-inside:avoid}
-.report-pair h3{font-size:12px}
+.report-pair h3{color:var(--cyan);font-size:12px}
+.report-pair h3 span{color:var(--muted-2)}
 .report-limit{margin-top:30px;padding-top:12px;border-top:1px solid var(--line)}
 .report-limit p{color:var(--muted);font-size:10px}
+.report-pair th{background:var(--surface-2);color:var(--muted);font-size:8px}
+.report-pair td{color:var(--text);border-color:var(--line);}
 .report-pair table{min-width:620px}
 .report-pair td,.report-pair th{font-size:8px}
 

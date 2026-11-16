@@ -7,6 +7,7 @@ import { preparePersistentData } from "./prepare-persistent-data.mjs";
 import { LocalJsonArtifactStore } from "./storage/local-json-artifact-store.mjs";
 import { createVercelArtifactStoreFromEnvironment } from "./storage/vercel-json-artifact-store.mjs";
 import { verifyPreviewDatabaseIdentity } from "./preview-database-identity.mjs";
+import { createRetryPayload } from "../server/workflows/job-retry-state.mjs";
 
 const root = resolve(process.env.TERRAMATCH_DATA_DIR ?? process.cwd());
 const onVercel = process.env.VERCEL === "1" || process.env.VERCEL === "true";
@@ -280,7 +281,7 @@ export async function handleApiRequest(req, res) {
       if(req.method==="POST"&&retryMatch&&onVercel){
         const jobId=decodeURIComponent(retryMatch[1]);if(!runPattern.test(jobId))return send(res,400,{error:"Invalid job ID."});
         const retry=await artifactStore.queueJobRetry(jobId);if(!retry)return send(res,409,{error:"Only a failed job can be retried."});
-        const retryPayload={...retry.payload,status:"retrying",workflowRunId:null,updatedAt:new Date().toISOString()};
+        const retryPayload=createRetryPayload(retry.payload);
         await artifactStore.updateJob(jobId,{status:"retrying",payload:retryPayload});
         const job=await startDurableWorkflow(jobId,{missionId:retry.payload.missionId,studyAreaId:retry.payload.studyAreaId,studyAreaFile:retry.payload.studyAreaFile});
         return send(res,202,job);

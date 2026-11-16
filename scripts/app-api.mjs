@@ -6,6 +6,7 @@ import { randomUUID } from "node:crypto";
 import { preparePersistentData } from "./prepare-persistent-data.mjs";
 import { LocalJsonArtifactStore } from "./storage/local-json-artifact-store.mjs";
 import { createVercelArtifactStoreFromEnvironment } from "./storage/vercel-json-artifact-store.mjs";
+import { verifyPreviewDatabaseIdentity } from "./preview-database-identity.mjs";
 
 const root = resolve(process.env.TERRAMATCH_DATA_DIR ?? process.cwd());
 const onVercel = process.env.VERCEL === "1" || process.env.VERCEL === "true";
@@ -262,6 +263,11 @@ export async function handleApiRequest(req, res) {
     const url = new URL(req.url ?? "/", `http://${req.headers.host ?? "localhost"}`);
     if (applyApiCors(req, res, url.pathname)) return;
     if (req.method === "GET" && url.pathname === "/api/health") return send(res,200,{status:"ok",app:"TerraMatch",planetaryScope:"Mars",apiVersion:"1.0.0"});
+    if (url.pathname === "/api/diagnostics/database-identity") {
+      if (req.method !== "GET") return send(res, 404, { error: "Not found." });
+      const verification = await verifyPreviewDatabaseIdentity();
+      return send(res, verification.statusCode, verification.body);
+    }
     if (url.pathname.startsWith("/api/")) {
       if(req.method==="GET"&&url.pathname==="/api/jobs"){
         if (onVercel) {

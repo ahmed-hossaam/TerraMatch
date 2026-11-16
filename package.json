@@ -28,6 +28,8 @@
     "build:reference-sites": "npm run build && node dist/scripts/build-reference-dataset.js",
     "validate:reference-sites": "npm run build && node dist/scripts/validate-reference-sites.js",
     "retrieve:supplementary-evidence": "npm run build && node dist/scripts/retrieve-supplementary-evidence.js",
+    "acquire:mars-rems": "npm run build && node scripts/acquire-mars-rems.mjs",
+    "validate:mars-rems": "npm run build && node dist/scripts/validate-mars-rems.js",
     "discover:candidates": "npm run build && node dist/scripts/run-discovery.js",
     "validate:discovery": "npm run build && node dist/scripts/validate-discovery.js",
     "compare:candidates": "npm run build && node dist/scripts/run-comparison.js",

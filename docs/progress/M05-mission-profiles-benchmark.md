@@ -23,6 +23,10 @@
 4. **Geological/lithological context:** GLiM mapped categories are available for five original points and three supplementary point-area records, retaining source levels. GLiM is generalized mapping (about 1:3.75 million), not field truth or mineral detection. Mineral evidence is unavailable; legacy atlas descriptions remain unverified context.
 5. **Surface materials, sediments, and hydrology:** generalized mapped lithology is available for eight point-area records. Quantitative grain size, sand/rock fractions, regolith depth, geotechnical properties, and direct water/ice/groundwater evidence are unavailable.
 
+## Mars observational context added after M05
+
+Curiosity REMS MODRDR ambient-air-temperature samples are now available in a separate evidence artifact. They do not revise this profile's factor definitions or make its Earth factors directly comparable: POWER T2M is gridded/model-derived at 2 m, while REMS is an irregularly sampled rover-mast ambient estimate. See [Mars observational REMS integration](Mars-observational-rems.md) for product provenance, QC, sampling coverage, and the four-profile evidence gap view.
+
 Each factor records rationale, definition, unit/category description, requirement status, evidence kind, source and provenance, available site IDs, spatial/temporal support, limitations, and the next evidence need. Missing values are not represented as zero. Evidence availability is distinct from confidence; no confidence calculation is made.
 
 Four mission profiles are represented independently: rover surface testing, geological surface exploration, extreme environment operations, and drilling/subsurface. Drilling explicitly requires subsurface/material evidence; surface climate or elevation alone cannot satisfy it. The current evidence-state labels are requirements planning indicators, not scientific scores.

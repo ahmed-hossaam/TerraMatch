@@ -170,5 +170,6 @@
   "data/raw/nasa-power/RTI_2001-2020_78a821a07d2f.json",
   "data/raw/nasa-power/RTI_2001-2020_78a821a07d2f.meta.json",
   "data/raw/nasa-power/WDE_2001-2020_53c11ceeb900.json",
-  "data/raw/nasa-power/WDE_2001-2020_53c11ceeb900.meta.json"
+  "data/raw/nasa-power/WDE_2001-2020_53c11ceeb900.meta.json",
+  "data/processed/mars/rems-air-temperature-v1.json"
 ]

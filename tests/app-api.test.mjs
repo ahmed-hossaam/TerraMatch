@@ -33,6 +33,7 @@ test("app API exposes validated project artifacts and rejects unsafe inputs",asy
   assert.equal(health.status,"ok");assert.equal(health.planetaryScope,"Mars");
   const summary=await fetch(`${base}/api/summary`).then((r)=>r.json());
   assert.equal(summary.referenceCount,31);assert.equal(summary.fixtureCount,3);
+  const marsResponse=await fetch(`${base}/api/mars-evidence/rems`);assert.equal(marsResponse.status,200);const marsEvidence=await marsResponse.json();assert.equal(marsEvidence.dataset.datasetId,"MSL-M-REMS-5-MODRDR-V1.0");assert.equal(marsEvidence.qualityControl.validSampleCount+marsEvidence.qualityControl.rejectedSampleCount,marsEvidence.coverage.sourceRecordCount);assert.equal(marsEvidence.earthReferenceComparisons.length,8);assert.equal(marsEvidence.missionEvidenceGaps.length,4);assert.equal(Object.hasOwn(marsEvidence,"rawSamples"),false);assert.ok(marsEvidence.qualityControl.confidenceCharacterCounts.length===9);
   assert.ok(summary.latestDiscoveryRunId);assert.equal(summary.latestDiscoveryRunId,summary.latestDiscovery.runId);
   assert.equal(summary.latestDiscoveryValidation.runId,summary.latestDiscoveryRunId);assert.equal(summary.latestDiscoveryValidation.status,"valid");
   assert.equal(summary.candidateCount,summary.latestDiscovery.candidates.length);

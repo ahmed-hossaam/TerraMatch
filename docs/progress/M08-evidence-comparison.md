@@ -51,3 +51,7 @@ For a clean checkout with network access and no cached raw data, retrieve the co
 - There is no validated factor normalization, scientific weighting, or calibration dataset. Any future numerical ranking requires expert-selected methods, independent positive and contrast/control examples, coordinate-aware holdout design, and external scientific review.
 
 No M09 work is included.
+
+## Separate Mars observational evidence context
+
+Curiosity REMS MODRDR air-temperature evidence is presented by a separate `/mars-evidence` experience and `/api/mars-evidence/rems` artifact. This does not change the historical M08 comparison calculations or turn REMS and NASA POWER into compatible paired observations. Their different measurement basis, height, sampling cadence, and periods are explicitly shown; no cross-source numeric difference or analog suitability result is produced. See [Mars observational REMS integration](Mars-observational-rems.md).

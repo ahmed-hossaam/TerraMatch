@@ -1,0 +1,1918 @@
+{
+  "schemaVersion": "1.0.0",
+  "extractionVersion": "terramatch-rems-modrdr-1.0.0",
+  "generatedAt": "2026-11-16T21:31:36.466Z",
+  "status": "available",
+  "dataset": {
+    "datasetId": "MSL-M-REMS-5-MODRDR-V1.0",
+    "volumeId": "mslrem_1001",
+    "datasetUrl": "https://pds.nasa.gov/ds-view/pds/viewProfile.jsp?dsid=MSL-M-REMS-5-MODRDR-V1.0",
+    "volumeUrl": "https://atmos.nmsu.edu/PDS/data/mslrem_1001/",
+    "temperatureDocumentationUrl": "https://atmos.nmsu.edu/data_and_services/atmospheres_data/MARS/curiosity/rems_temperature.html",
+    "sisUrl": "https://cab.inta-csic.es/rems/wp-content/uploads/2013/04/REMS_RDR_SIS.pdf",
+    "solarLongitudeMethodUrl": "https://www.giss.nasa.gov/tools/mars24/help/algorithm.html",
+    "productVersion": "PDS3 dataset V1.0; PDS4 converted bundle label version 1.0",
+    "volumeDescription": "PDS Atmospheres mslrem_1001; retrieved MODRDR and matching product labels for selected sols only"
+  },
+  "measurement": {
+    "parameter": "AMBIENT_TEMP",
+    "name": "Estimated ambient air temperature",
+    "unit": "K",
+    "type": "In-situ rover-mounted measurement estimate, processed/model-corrected MODRDR",
+    "groundTemperatureIncluded": false,
+    "humidityIncluded": false,
+    "pressureContextOnly": true
+  },
+  "solarLongitude": {
+    "property": "planetocentric/areocentric solar longitude Ls",
+    "sourceStatus": "derived_from_PDS4_product_UTC_interval_midpoint",
+    "method": "NASA GISS Mars24 algorithm based primarily on Allison and McEwen (2000), with published perturber terms and UTC-to-TT offsets; one Ls is derived at the midpoint of each PDS4 product start_date_time/stop_date_time UTC interval and assigned to its sol rows. REMS counter timestamps are not independently converted to UTC.",
+    "sourceUrl": "https://www.giss.nasa.gov/tools/mars24/help/algorithm.html",
+    "binWidthDegrees": 30,
+    "bins": "[0,30), [30,60), ... [330,360)"
+  },
+  "qualityControl": {
+    "field": "AMBIENT_TEMP_CONFIDENCE_LEVEL",
+    "sourceDefinitionUrl": "https://pds.nasa.gov/ds-view/pds/viewProfile.jsp?dsid=MSL-M-REMS-5-MODRDR-V1.0",
+    "productLabelDefinition": "Nine characters, byte 0 leftmost: byte 7 = operational-range error below 5 K; byte 8 = observation reliability.",
+    "sourceSemantics": "PDS code characters represent documented quality factors; 1=good, 0=bad, X=unknown. Context flags are preserved, and are not all treated as air-temperature acceptance gates.",
+    "terramatchFilter": "Accept only a finite non-sentinel AMBIENT_TEMP value, a nine-character [01X] confidence code, byte 7 equal to 1 (error within operational range, <5 K), and byte 8 equal to 1 (observation reliable). This explicit two-flag rule is a TerraMatch filter, not a PDS-published single quality threshold.",
+    "unknownContextFlagRecordCount": 335221,
+    "confidenceCharacterCounts": [
+      {
+        "0": 98213,
+        "1": 237008,
+        "-": 300
+      },
+      {
+        "0": 800,
+        "1": 334421,
+        "9": 300
+      },
+      {
+        "1": 335221,
+        "9": 300
+      },
+      {
+        "9": 300,
+        "X": 335221
+      },
+      {
+        "X": 335221,
+        ".": 300
+      },
+      {
+        "0": 85707,
+        "1": 249814
+      },
+      {
+        "0": 74375,
+        "1": 261146
+      },
+      {
+        "0": 85534,
+        "1": 249687,
+        "?": 300
+      },
+      {
+        "0": 30,
+        "1": 335191,
+        "?": 300
+      }
+    ],
+    "rejectedSamplesAreNot": "Rejected records are not interpreted as zero or as evidence of absence.",
+    "validSampleCount": 249657,
+    "rejectedSampleCount": 85864,
+    "rejectionCounts": {
+      "missingTemperature": 300,
+      "unknownOrMalformedConfidence": 0,
+      "nonOptimalConfidence": 85564
+    }
+  },
+  "coverage": {
+    "sourceRecordCount": 335521,
+    "sourceProductCount": 10,
+    "plannedSolIds": [
+      1718,
+      1781,
+      1847,
+      1913,
+      1975,
+      2032,
+      2084,
+      2132,
+      2179,
+      2226,
+      2275,
+      2328
+    ],
+    "noProductSolIds": [
+      2179,
+      2328
+    ],
+    "noProductSolDetails": [
+      {
+        "sol": 2179,
+        "reason": "sol_directory_not_listed_in_source_parent",
+        "httpStatus": null
+      },
+      {
+        "sol": 2328,
+        "reason": "sol_directory_not_listed_in_source_parent",
+        "httpStatus": null
+      }
+    ],
+    "selectedSolCount": 10,
+    "validSolCount": 10,
+    "firstSelectedSol": 1718,
+    "lastSelectedSol": 2275,
+    "selectedSolIds": [
+      1718,
+      1781,
+      1847,
+      1913,
+      1975,
+      2032,
+      2084,
+      2132,
+      2226,
+      2275
+    ],
+    "lsBinsWithValidSamples": [
+      "000-030",
+      "030-060",
+      "060-090",
+      "090-120",
+      "120-150",
+      "150-180",
+      "180-210",
+      "210-240",
+      "270-300",
+      "300-330"
+    ],
+    "sourceCoverageDescription": "Focused seasonal sample: one selected sol per 30-degree Ls bin in a central archived Mars year. Bin quantiles describe accepted rows from the selected sol(s), not between-sol or multi-year climate variability; this is not a continuous archive or full climatology."
+  },
+  "summary": {
+    "perSolMeanTemperatureDistribution": {
+      "unit": "K",
+      "perSolCount": 10,
+      "q25": 214.63966458232636,
+      "median": 220.7208685057496,
+      "q75": 227.6489043267197
+    },
+    "solarLongitudeBins": [
+      {
+        "bin": "000-030",
+        "startDegrees": 0,
+        "endDegreesExclusive": 30,
+        "perSolSampleMeanK": {
+          "q25": 227.2101268897372,
+          "median": 227.2101268897372,
+          "q75": 227.2101268897372,
+          "validSolCount": 1
+        },
+        "perSolObservedSampleMinimumK": {
+          "q25": 197.09,
+          "median": 197.09,
+          "q75": 197.09,
+          "validSolCount": 1
+        },
+        "perSolObservedSampleMaximumK": {
+          "q25": 256.51,
+          "median": 256.51,
+          "q75": 256.51,
+          "validSolCount": 1
+        },
+        "perSolObservedSampleRangeK": {
+          "q25": 59.41999999999999,
+          "median": 59.41999999999999,
+          "q75": 59.41999999999999,
+          "validSolCount": 1
+        },
+        "sampledSolTemperatureDistributionK": {
+          "q25": 206.13,
+          "median": 225.22,
+          "q75": 245.76,
+          "validSampleCount": 23879,
+          "sampledSolCount": 1
+        },
+        "validSampleCount": 23879,
+        "rejectedSampleCount": 10641,
+        "solIds": [
+          1718
+        ]
+      },
+      {
+        "bin": "030-060",
+        "startDegrees": 30,
+        "endDegreesExclusive": 60,
+        "perSolSampleMeanK": {
+          "q25": 214.2591281418798,
+          "median": 214.2591281418798,
+          "q75": 214.2591281418798,
+          "validSolCount": 1
+        },
+        "perSolObservedSampleMinimumK": {
+          "q25": 195.73,
+          "median": 195.73,
+          "q75": 195.73,
+          "validSolCount": 1
+        },
+        "perSolObservedSampleMaximumK": {
+          "q25": 250.25,
+          "median": 250.25,
+          "q75": 250.25,
+          "validSolCount": 1
+        },
+        "perSolObservedSampleRangeK": {
+          "q25": 54.52000000000001,
+          "median": 54.52000000000001,
+          "q75": 54.52000000000001,
+          "validSolCount": 1
+        },
+        "sampledSolTemperatureDistributionK": {
+          "q25": 203.05,
+          "median": 207.01,
+          "q75": 224.65,
+          "validSampleCount": 23513,
+          "sampledSolCount": 1
+        },
+        "validSampleCount": 23513,
+        "rejectedSampleCount": 7608,
+        "solIds": [
+          1781
+        ]
+      },
+      {
+        "bin": "060-090",
+        "startDegrees": 60,
+        "endDegreesExclusive": 90,
+        "perSolSampleMeanK": {
+          "q25": 211.69017908894963,
+          "median": 211.69017908894963,
+          "q75": 211.69017908894963,
+          "validSolCount": 1
+        },
+        "perSolObservedSampleMinimumK": {
+          "q25": 192.98,
+          "median": 192.98,
+          "q75": 192.98,
+          "validSolCount": 1
+        },
+        "perSolObservedSampleMaximumK": {
+          "q25": 243.36,
+          "median": 243.36,
+          "q75": 243.36,
+          "validSolCount": 1
+        },
+        "perSolObservedSampleRangeK": {
+          "q25": 50.380000000000024,
+          "median": 50.380000000000024,
+          "q75": 50.380000000000024,
+          "validSolCount": 1
+        },
+        "sampledSolTemperatureDistributionK": {
+          "q25": 197.11,
+          "median": 206.74,
+          "q75": 231.37,
+          "validSampleCount": 13457,
+          "sampledSolCount": 1
+        },
+        "validSampleCount": 13457,
+        "rejectedSampleCount": 4108,
+        "solIds": [
+          1847
+        ]
+      },
+      {
+        "bin": "090-120",
+        "startDegrees": 90,
+        "endDegreesExclusive": 120,
+        "perSolSampleMeanK": {
+          "q25": 210.0547069927764,
+          "median": 210.0547069927764,
+          "q75": 210.0547069927764,
+          "validSolCount": 1
+        },
+        "perSolObservedSampleMinimumK": {
+          "q25": 194.49,
+          "median": 194.49,
+          "q75": 194.49,
+          "validSolCount": 1
+        },
+        "perSolObservedSampleMaximumK": {
+          "q25": 247.02,
+          "median": 247.02,
+          "q75": 247.02,
+          "validSolCount": 1
+        },
+        "perSolObservedSampleRangeK": {
+          "q25": 52.53,
+          "median": 52.53,
+          "q75": 52.53,
+          "validSolCount": 1
+        },
+        "sampledSolTemperatureDistributionK": {
+          "q25": 200.34,
+          "median": 205.08,
+          "q75": 214.1825,
+          "validSampleCount": 24368,
+          "sampledSolCount": 1
+        },
+        "validSampleCount": 24368,
+        "rejectedSampleCount": 10081,
+        "solIds": [
+          1913
+        ]
+      },
+      {
+        "bin": "120-150",
+        "startDegrees": 120,
+        "endDegreesExclusive": 150,
+        "perSolSampleMeanK": {
+          "q25": 215.78127390366595,
+          "median": 215.78127390366595,
+          "q75": 215.78127390366595,
+          "validSolCount": 1
+        },
+        "perSolObservedSampleMinimumK": {
+          "q25": 195.9,
+          "median": 195.9,
+          "q75": 195.9,
+          "validSolCount": 1
+        },
+        "perSolObservedSampleMaximumK": {
+          "q25": 255.33,
+          "median": 255.33,
+          "q75": 255.33,
+          "validSolCount": 1
+        },
+        "perSolObservedSampleRangeK": {
+          "q25": 59.43000000000001,
+          "median": 59.43000000000001,
+          "q75": 59.43000000000001,
+          "validSolCount": 1
+        },
+        "sampledSolTemperatureDistributionK": {
+          "q25": 200.59,
+          "median": 210.39,
+          "q75": 228.28,
+          "validSampleCount": 20865,
+          "sampledSolCount": 1
+        },
+        "validSampleCount": 20865,
+        "rejectedSampleCount": 7439,
+        "solIds": [
+          1975
+        ]
+      },
+      {
+        "bin": "150-180",
+        "startDegrees": 150,
+        "endDegreesExclusive": 180,
+        "perSolSampleMeanK": {
+          "q25": 234.00760750190284,
+          "median": 234.00760750190284,
+          "q75": 234.00760750190284,
+          "validSolCount": 1
+        },
+        "perSolObservedSampleMinimumK": {
+          "q25": 202.41,
+          "median": 202.41,
+          "q75": 202.41,
+          "validSolCount": 1
+        },
+        "perSolObservedSampleMaximumK": {
+          "q25": 267.56,
+          "median": 267.56,
+          "q75": 267.56,
+          "validSolCount": 1
+        },
+        "perSolObservedSampleRangeK": {
+          "q25": 65.15,
+          "median": 65.15,
+          "q75": 65.15,
+          "validSolCount": 1
+        },
+        "sampledSolTemperatureDistributionK": {
+          "q25": 212.66,
+          "median": 225.29000000000002,
+          "q75": 256.55,
+          "validSampleCount": 23674,
+          "sampledSolCount": 1
+        },
+        "validSampleCount": 23674,
+        "rejectedSampleCount": 7455,
+        "solIds": [
+          2032
+        ]
+      },
+      {
+        "bin": "180-210",
+        "startDegrees": 180,
+        "endDegreesExclusive": 210,
+        "perSolSampleMeanK": {
+          "q25": 228.49584206848465,
+          "median": 228.49584206848465,
+          "q75": 228.49584206848465,
+          "validSolCount": 1
+        },
+        "perSolObservedSampleMinimumK": {
+          "q25": 206.65,
+          "median": 206.65,
+          "q75": 206.65,
+          "validSolCount": 1
+        },
+        "perSolObservedSampleMaximumK": {
+          "q25": 251.5,
+          "median": 251.5,
+          "q75": 251.5,
+          "validSolCount": 1
+        },
+        "perSolObservedSampleRangeK": {
+          "q25": 44.849999999999994,
+          "median": 44.849999999999994,
+          "q75": 44.849999999999994,
+          "validSolCount": 1
+        },
+        "sampledSolTemperatureDistributionK": {
+          "q25": 218.93,
+          "median": 226.35500000000002,
+          "q75": 238.46,
+          "validSampleCount": 37206,
+          "sampledSolCount": 1
+        },
+        "validSampleCount": 37206,
+        "rejectedSampleCount": 7487,
+        "solIds": [
+          2084
+        ]
+      },
+      {
+        "bin": "210-240",
+        "startDegrees": 210,
+        "endDegreesExclusive": 240,
+        "perSolSampleMeanK": {
+          "q25": 227.79516347238052,
+          "median": 227.79516347238052,
+          "q75": 227.79516347238052,
+          "validSolCount": 1
+        },
+        "perSolObservedSampleMinimumK": {
+          "q25": 205.9,
+          "median": 205.9,
+          "q75": 205.9,
+          "validSolCount": 1
+        },
+        "perSolObservedSampleMaximumK": {
+          "q25": 254.61,
+          "median": 254.61,
+          "q75": 254.61,
+          "validSolCount": 1
+        },
+        "perSolObservedSampleRangeK": {
+          "q25": 48.71000000000001,
+          "median": 48.71000000000001,
+          "q75": 48.71000000000001,
+          "validSolCount": 1
+        },
+        "sampledSolTemperatureDistributionK": {
+          "q25": 219.52,
+          "median": 225.12,
+          "q75": 238.115,
+          "validSampleCount": 32819,
+          "sampledSolCount": 1
+        },
+        "validSampleCount": 32819,
+        "rejectedSampleCount": 8483,
+        "solIds": [
+          2132
+        ]
+      },
+      {
+        "bin": "240-270",
+        "startDegrees": 240,
+        "endDegreesExclusive": 270,
+        "perSolSampleMeanK": {
+          "q25": null,
+          "median": null,
+          "q75": null,
+          "validSolCount": 0
+        },
+        "perSolObservedSampleMinimumK": {
+          "q25": null,
+          "median": null,
+          "q75": null,
+          "validSolCount": 0
+        },
+        "perSolObservedSampleMaximumK": {
+          "q25": null,
+          "median": null,
+          "q75": null,
+          "validSolCount": 0
+        },
+        "perSolObservedSampleRangeK": {
+          "q25": null,
+          "median": null,
+          "q75": null,
+          "validSolCount": 0
+        },
+        "sampledSolTemperatureDistributionK": {
+          "q25": null,
+          "median": null,
+          "q75": null,
+          "validSampleCount": 0,
+          "sampledSolCount": 0
+        },
+        "validSampleCount": 0,
+        "rejectedSampleCount": 0,
+        "solIds": []
+      },
+      {
+        "bin": "270-300",
+        "startDegrees": 270,
+        "endDegreesExclusive": 300,
+        "perSolSampleMeanK": {
+          "q25": 220.73215770196398,
+          "median": 220.73215770196398,
+          "q75": 220.73215770196398,
+          "validSolCount": 1
+        },
+        "perSolObservedSampleMinimumK": {
+          "q25": 200.28,
+          "median": 200.28,
+          "q75": 200.28,
+          "validSolCount": 1
+        },
+        "perSolObservedSampleMaximumK": {
+          "q25": 268.83,
+          "median": 268.83,
+          "q75": 268.83,
+          "validSolCount": 1
+        },
+        "perSolObservedSampleRangeK": {
+          "q25": 68.54999999999998,
+          "median": 68.54999999999998,
+          "q75": 68.54999999999998,
+          "validSolCount": 1
+        },
+        "sampledSolTemperatureDistributionK": {
+          "q25": 204.86,
+          "median": 216.73,
+          "q75": 234.43,
+          "validSampleCount": 24299,
+          "sampledSolCount": 1
+        },
+        "validSampleCount": 24299,
+        "rejectedSampleCount": 10177,
+        "solIds": [
+          2226
+        ]
+      },
+      {
+        "bin": "300-330",
+        "startDegrees": 300,
+        "endDegreesExclusive": 330,
+        "perSolSampleMeanK": {
+          "q25": 220.70957930953523,
+          "median": 220.70957930953523,
+          "q75": 220.70957930953523,
+          "validSolCount": 1
+        },
+        "perSolObservedSampleMinimumK": {
+          "q25": 201.17,
+          "median": 201.17,
+          "q75": 201.17,
+          "validSolCount": 1
+        },
+        "perSolObservedSampleMaximumK": {
+          "q25": 265.75,
+          "median": 265.75,
+          "q75": 265.75,
+          "validSolCount": 1
+        },
+        "perSolObservedSampleRangeK": {
+          "q25": 64.58000000000001,
+          "median": 64.58000000000001,
+          "q75": 64.58000000000001,
+          "validSolCount": 1
+        },
+        "sampledSolTemperatureDistributionK": {
+          "q25": 206.77,
+          "median": 216.75,
+          "q75": 230.05,
+          "validSampleCount": 25577,
+          "sampledSolCount": 1
+        },
+        "validSampleCount": 25577,
+        "rejectedSampleCount": 12385,
+        "solIds": [
+          2275
+        ]
+      },
+      {
+        "bin": "330-360",
+        "startDegrees": 330,
+        "endDegreesExclusive": 360,
+        "perSolSampleMeanK": {
+          "q25": null,
+          "median": null,
+          "q75": null,
+          "validSolCount": 0
+        },
+        "perSolObservedSampleMinimumK": {
+          "q25": null,
+          "median": null,
+          "q75": null,
+          "validSolCount": 0
+        },
+        "perSolObservedSampleMaximumK": {
+          "q25": null,
+          "median": null,
+          "q75": null,
+          "validSolCount": 0
+        },
+        "perSolObservedSampleRangeK": {
+          "q25": null,
+          "median": null,
+          "q75": null,
+          "validSolCount": 0
+        },
+        "sampledSolTemperatureDistributionK": {
+          "q25": null,
+          "median": null,
+          "q75": null,
+          "validSampleCount": 0,
+          "sampledSolCount": 0
+        },
+        "validSampleCount": 0,
+        "rejectedSampleCount": 0,
+        "solIds": []
+      }
+    ]
+  },
+  "solSummaries": [
+    {
+      "sol": 1718,
+      "solarLongitudeDegrees": 15.5113064435036,
+      "solarLongitudeBin": "000-030",
+      "marsYearIndex": 0,
+      "sourceProducts": [
+        {
+          "productId": "RME_549960903RMD17180000000_______P2",
+          "productUrl": "https://atmos.nmsu.edu/PDS/data/mslrem_1001/DATA/SOL_01649_01772/SOL01718/RME_549960903RMD17180000000_______P2.TAB",
+          "sourceSha256": "1b0616d20528dbeaa4901d8f01622269e69a08b67d0ab91c7a77d6bdcbbbccec",
+          "labelSha256": "6fb7af255bba75451d6565d68081e186d4cdc77ae236db122029aff297882fc9",
+          "startUtc": "2017-06-05T19:22:03.210Z",
+          "stopUtc": "2017-06-06T19:04:59.016Z"
+        }
+      ],
+      "sourceRecordCount": 34520,
+      "validSampleCount": 23879,
+      "rejectedSampleCount": 10641,
+      "rejectionCounts": {
+        "missingTemperature": 0,
+        "unknownOrMalformedConfidence": 0,
+        "nonOptimalConfidence": 10641
+      },
+      "confidenceCodeCounts": {
+        "111XX1111": 15331,
+        "011XX1111": 8102,
+        "011XX1101": 1683,
+        "111XX1101": 8516,
+        "111XX1011": 89,
+        "111XX1001": 54,
+        "111XX0001": 388,
+        "111XX0011": 357
+      },
+      "sampleMeanK": 227.2101268897372,
+      "observedSampleMinimumK": 197.09,
+      "observedSampleMaximumK": 256.51,
+      "observedSampleRangeK": 59.41999999999999
+    },
+    {
+      "sol": 1781,
+      "solarLongitudeDegrees": 45.23660291654369,
+      "solarLongitudeBin": "030-060",
+      "marsYearIndex": 0,
+      "sourceProducts": [
+        {
+          "productId": "RME_555553691RMD17810000000_______P2",
+          "productUrl": "https://atmos.nmsu.edu/PDS/data/mslrem_1001/DATA/SOL_01773_01869/SOL01781/RME_555553691RMD17810000000_______P2.TAB",
+          "sourceSha256": "c895e797bceaa5c9ef48cb0d010a7ac942c3c8de9fe63274da8a6851df15d4f6",
+          "labelSha256": "4f12e9ad51fe0d73f35e87e5c657f0edf6f9ee9c861d6f847889c51d595b0ccd",
+          "startUtc": "2017-08-09T12:55:06.994Z",
+          "stopUtc": "2017-08-10T13:34:40.832Z"
+        }
+      ],
+      "sourceRecordCount": 31121,
+      "validSampleCount": 23513,
+      "rejectedSampleCount": 7608,
+      "rejectionCounts": {
+        "missingTemperature": 0,
+        "unknownOrMalformedConfidence": 0,
+        "nonOptimalConfidence": 7608
+      },
+      "confidenceCodeCounts": {
+        "011XX1101": 2599,
+        "011XX1111": 13799,
+        "011XX0101": 196,
+        "011XX0111": 420,
+        "111XX0111": 2300,
+        "111XX0101": 1891,
+        "111XX0001": 1784,
+        "111XX1111": 1633,
+        "111XX0011": 5135,
+        "111XX1101": 1056,
+        "111XX1011": 226,
+        "111XX1001": 82
+      },
+      "sampleMeanK": 214.2591281418798,
+      "observedSampleMinimumK": 195.73,
+      "observedSampleMaximumK": 250.25,
+      "observedSampleRangeK": 54.52000000000001
+    },
+    {
+      "sol": 1847,
+      "solarLongitudeDegrees": 74.99832002166659,
+      "solarLongitudeBin": "060-090",
+      "marsYearIndex": 0,
+      "sourceProducts": [
+        {
+          "productId": "RME_561412802RMD18470000000_______P2",
+          "productUrl": "https://atmos.nmsu.edu/PDS/data/mslrem_1001/DATA/SOL_01773_01869/SOL01847/RME_561412802RMD18470000000_______P2.TAB",
+          "sourceSha256": "c8f4bf276efdd9c28494e1c25b30cc38b505568bc0d906b1226c8ec5df5bd2fd",
+          "labelSha256": "7b1425c94901f4cb3857cccde50a19f40d3e9d89fc1c3e705e43c32de09b5ba6",
+          "startUtc": "2017-10-16T08:29:03.293Z",
+          "stopUtc": "2017-10-17T08:12:02.099Z"
+        }
+      ],
+      "sourceRecordCount": 17565,
+      "validSampleCount": 13457,
+      "rejectedSampleCount": 4108,
+      "rejectionCounts": {
+        "missingTemperature": 0,
+        "unknownOrMalformedConfidence": 0,
+        "nonOptimalConfidence": 4108
+      },
+      "confidenceCodeCounts": {
+        "011XX1111": 9063,
+        "011XX1101": 1894,
+        "111XX1111": 2805,
+        "111XX1101": 1644,
+        "111XX1001": 56,
+        "111XX1011": 25,
+        "111XX0111": 1453,
+        "111XX0101": 413,
+        "111XX0011": 111,
+        "111XX0001": 101
+      },
+      "sampleMeanK": 211.69017908894963,
+      "observedSampleMinimumK": 192.98,
+      "observedSampleMaximumK": 243.36,
+      "observedSampleRangeK": 50.380000000000024
+    },
+    {
+      "sol": 1913,
+      "solarLongitudeDegrees": 104.99243157306228,
+      "solarLongitudeBin": "090-120",
+      "marsYearIndex": 0,
+      "sourceProducts": [
+        {
+          "productId": "RME_567271913RMD19130000000_______P2",
+          "productUrl": "https://atmos.nmsu.edu/PDS/data/mslrem_1001/DATA/SOL_01870_02003/SOL01913/RME_567271913RMD19130000000_______P2.TAB",
+          "sourceSha256": "248cd5fc4281528956daf03b2f7af60c67a11f621e10fd935c75a2317658c930",
+          "labelSha256": "dda55f6ed407d5fa127c8dd22fa400f0611e72d15603f1b1ad79b995f049c12a",
+          "startUtc": "2017-12-23T04:01:50.591Z",
+          "stopUtc": "2017-12-24T04:40:13.429Z"
+        }
+      ],
+      "sourceRecordCount": 34449,
+      "validSampleCount": 24368,
+      "rejectedSampleCount": 10081,
+      "rejectionCounts": {
+        "missingTemperature": 0,
+        "unknownOrMalformedConfidence": 0,
+        "nonOptimalConfidence": 10081
+      },
+      "confidenceCodeCounts": {
+        "011XX1111": 14809,
+        "011XX1101": 2539,
+        "111XX1101": 5482,
+        "111XX1111": 7238,
+        "111XX0101": 1428,
+        "111XX0111": 1303,
+        "111XX0001": 632,
+        "111XX0011": 1018
+      },
+      "sampleMeanK": 210.0547069927764,
+      "observedSampleMinimumK": 194.49,
+      "observedSampleMaximumK": 247.02,
+      "observedSampleRangeK": 52.53
+    },
+    {
+      "sol": 1975,
+      "solarLongitudeDegrees": 134.8041770872619,
+      "solarLongitudeBin": "120-150",
+      "marsYearIndex": 0,
+      "sourceProducts": [
+        {
+          "productId": "RME_572775926RMD19750000000_______P3",
+          "productUrl": "https://atmos.nmsu.edu/PDS/data/mslrem_1001/DATA/SOL_01870_02003/SOL01975/RME_572775926RMD19750000000_______P3.TAB",
+          "sourceSha256": "0fe217adbf88872327f6ade85f88b2b457e9db2e73a9b907e269f84bc59c65f6",
+          "labelSha256": "f309dac14daeff85b3e33d4bb03fc1456e78c26e4dec18a39796040f2374973c",
+          "startUtc": "2018-02-24T20:55:04.538Z",
+          "stopUtc": "2018-02-25T20:39:10.344Z"
+        }
+      ],
+      "sourceRecordCount": 28304,
+      "validSampleCount": 20865,
+      "rejectedSampleCount": 7439,
+      "rejectionCounts": {
+        "missingTemperature": 300,
+        "unknownOrMalformedConfidence": 0,
+        "nonOptimalConfidence": 7139
+      },
+      "confidenceCodeCounts": {
+        "011XX1101": 1209,
+        "011XX1111": 6720,
+        "111XX1101": 2893,
+        "111XX1111": 6332,
+        "011XX0011": 2997,
+        "011XX0001": 673,
+        "111XX0011": 3229,
+        "111XX0001": 1515,
+        "111XX0111": 175,
+        "111XX0101": 133,
+        "111XX1001": 582,
+        "111XX1011": 716,
+        "111XX0010": 30,
+        "-999.00": 300,
+        "101XX0011": 696,
+        "101XX0001": 104
+      },
+      "sampleMeanK": 215.78127390366595,
+      "observedSampleMinimumK": 195.9,
+      "observedSampleMaximumK": 255.33,
+      "observedSampleRangeK": 59.43000000000001
+    },
+    {
+      "sol": 2032,
+      "solarLongitudeDegrees": 164.76588930460457,
+      "solarLongitudeBin": "150-180",
+      "marsYearIndex": 0,
+      "sourceProducts": [
+        {
+          "productId": "RME_577836067RMD20320000000_______P2",
+          "productUrl": "https://atmos.nmsu.edu/PDS/data/mslrem_1001/DATA/SOL_02004_02127/SOL02032/RME_577836067RMD20320000000_______P2.TAB",
+          "sourceSha256": "1e9930d920c06afae0b0287cc901090e79282fdc8fb3c0b003875e226afc22a0",
+          "labelSha256": "b8082319aa6c5dddb1e59e66fe160a46ec554f59a5570f92ff030b261459c1a7",
+          "startUtc": "2018-04-24T10:32:35.296Z",
+          "stopUtc": "2018-04-25T10:15:35.102Z"
+        }
+      ],
+      "sourceRecordCount": 31129,
+      "validSampleCount": 23674,
+      "rejectedSampleCount": 7455,
+      "rejectionCounts": {
+        "missingTemperature": 0,
+        "unknownOrMalformedConfidence": 0,
+        "nonOptimalConfidence": 7455
+      },
+      "confidenceCodeCounts": {
+        "111XX1101": 4149,
+        "011XX1101": 632,
+        "011XX1111": 3361,
+        "111XX1111": 13290,
+        "011XX0011": 232,
+        "011XX0001": 76,
+        "111XX0001": 2058,
+        "111XX0011": 5800,
+        "111XX0111": 443,
+        "111XX0101": 220,
+        "111XX1001": 320,
+        "111XX1011": 548
+      },
+      "sampleMeanK": 234.00760750190284,
+      "observedSampleMinimumK": 202.41,
+      "observedSampleMaximumK": 267.56,
+      "observedSampleRangeK": 65.15
+    },
+    {
+      "sol": 2084,
+      "solarLongitudeDegrees": 194.82084673253803,
+      "solarLongitudeBin": "180-210",
+      "marsYearIndex": 0,
+      "sourceProducts": [
+        {
+          "productId": "RME_582452336RMD20840000000_______P2",
+          "productUrl": "https://atmos.nmsu.edu/PDS/data/mslrem_1001/DATA/SOL_02004_02127/SOL02084/RME_582452336RMD20840000000_______P2.TAB",
+          "sourceSha256": "a06c8a79728184e78ded4278870357579fc3ac705e17cdc69af8a59bd59e3d3e",
+          "labelSha256": "19b2d5db3a85409c52bbf7d3d7d7f203748c44fedcb0573ea740255708f41b99",
+          "startUtc": "2018-06-16T20:50:53.864Z",
+          "stopUtc": "2018-06-17T20:34:04.670Z"
+        }
+      ],
+      "sourceRecordCount": 44693,
+      "validSampleCount": 37206,
+      "rejectedSampleCount": 7487,
+      "rejectionCounts": {
+        "missingTemperature": 0,
+        "unknownOrMalformedConfidence": 0,
+        "nonOptimalConfidence": 7487
+      },
+      "confidenceCodeCounts": {
+        "111XX1111": 25019,
+        "111XX1101": 5162,
+        "111XX0001": 2119,
+        "111XX0011": 11185,
+        "111XX0111": 1002,
+        "111XX0101": 206
+      },
+      "sampleMeanK": 228.49584206848465,
+      "observedSampleMinimumK": 206.65,
+      "observedSampleMaximumK": 251.5,
+      "observedSampleRangeK": 44.849999999999994
+    },
+    {
+      "sol": 2132,
+      "solarLongitudeDegrees": 224.7559672473849,
+      "solarLongitudeBin": "210-240",
+      "marsYearIndex": 0,
+      "sourceProducts": [
+        {
+          "productId": "RME_586713508RMD21320000000_______P3",
+          "productUrl": "https://atmos.nmsu.edu/PDS/data/mslrem_1001/DATA/SOL_02128_02224/SOL02132/RME_586713508RMD21320000000_______P3.TAB",
+          "sourceSha256": "0e134ba9146a10305b3c39cf546dbef0c61a7538dcee2680b468c553e025d8c7",
+          "labelSha256": "5b33617c83fba9a9c551f5e748b3603745fba49c65670a741fdf59e464eacc27",
+          "startUtc": "2018-08-05T04:31:10.081Z",
+          "stopUtc": "2018-08-06T04:14:08.887Z"
+        }
+      ],
+      "sourceRecordCount": 41302,
+      "validSampleCount": 32819,
+      "rejectedSampleCount": 8483,
+      "rejectionCounts": {
+        "missingTemperature": 0,
+        "unknownOrMalformedConfidence": 0,
+        "nonOptimalConfidence": 8483
+      },
+      "confidenceCodeCounts": {
+        "111XX1111": 24333,
+        "111XX1101": 6449,
+        "011XX1101": 29,
+        "011XX1111": 90,
+        "011XX0011": 138,
+        "011XX0001": 10,
+        "111XX0011": 4425,
+        "111XX0001": 703,
+        "111XX0101": 1261,
+        "111XX0111": 3711,
+        "111XX1011": 122,
+        "111XX1001": 31
+      },
+      "sampleMeanK": 227.79516347238052,
+      "observedSampleMinimumK": 205.9,
+      "observedSampleMaximumK": 254.61,
+      "observedSampleRangeK": 48.71000000000001
+    },
+    {
+      "sol": 2226,
+      "solarLongitudeDegrees": 285.563142804815,
+      "solarLongitudeBin": "270-300",
+      "marsYearIndex": 0,
+      "sourceProducts": [
+        {
+          "productId": "RME_595058302RMD22260000000_______P2",
+          "productUrl": "https://atmos.nmsu.edu/PDS/data/mslrem_1001/DATA/SOL_02225_02358/SOL02226/RME_595058302RMD22260000000_______P2.TAB",
+          "sourceSha256": "fc3022b4de9b538ac915c3cb744a23cc0df7a10cefa03645d97548963251e371",
+          "labelSha256": "7981108b3cc140823b336aec11a5aee9ac4be4bf7428cf639ae4ce01e307159c",
+          "startUtc": "2018-11-09T18:32:16.839Z",
+          "stopUtc": "2018-11-10T19:11:04.677Z"
+        }
+      ],
+      "sourceRecordCount": 34476,
+      "validSampleCount": 24299,
+      "rejectedSampleCount": 10177,
+      "rejectionCounts": {
+        "missingTemperature": 0,
+        "unknownOrMalformedConfidence": 0,
+        "nonOptimalConfidence": 10177
+      },
+      "confidenceCodeCounts": {
+        "111XX1101": 2930,
+        "111XX1111": 5780,
+        "011XX1101": 1540,
+        "011XX1111": 9461,
+        "011XX0111": 1011,
+        "011XX0101": 209,
+        "111XX0001": 1594,
+        "111XX0011": 4548,
+        "111XX0101": 684,
+        "111XX0111": 632,
+        "111XX1011": 2867,
+        "111XX1001": 3220
+      },
+      "sampleMeanK": 220.73215770196398,
+      "observedSampleMinimumK": 200.28,
+      "observedSampleMaximumK": 268.83,
+      "observedSampleRangeK": 68.54999999999998
+    },
+    {
+      "sol": 2275,
+      "solarLongitudeDegrees": 315.58077245735876,
+      "solarLongitudeBin": "300-330",
+      "marsYearIndex": 0,
+      "sourceProducts": [
+        {
+          "productId": "RME_599408248RMD22750000000_______P2",
+          "productUrl": "https://atmos.nmsu.edu/PDS/data/mslrem_1001/DATA/SOL_02225_02358/SOL02275/RME_599408248RMD22750000000_______P2.TAB",
+          "sourceSha256": "6233f2abebe87508be6d14e6705f17087ae6c4c5c53d940b2bfb7e2f1b215e1c",
+          "labelSha256": "554b83edb57ebb9760ff533f2522faa786f7ad664fa49a60abf631347a4705da",
+          "startUtc": "2018-12-30T02:51:17.894Z",
+          "stopUtc": "2018-12-31T02:35:15.700Z"
+        }
+      ],
+      "sourceRecordCount": 37962,
+      "validSampleCount": 25577,
+      "rejectedSampleCount": 12385,
+      "rejectionCounts": {
+        "missingTemperature": 0,
+        "unknownOrMalformedConfidence": 0,
+        "nonOptimalConfidence": 12385
+      },
+      "confidenceCodeCounts": {
+        "111XX1111": 7657,
+        "111XX1101": 5035,
+        "011XX1101": 2387,
+        "011XX1111": 8225,
+        "011XX0011": 2882,
+        "011XX0001": 1227,
+        "111XX0011": 6078,
+        "111XX0001": 3292,
+        "111XX0111": 735,
+        "111XX0101": 444
+      },
+      "sampleMeanK": 220.70957930953523,
+      "observedSampleMinimumK": 201.17,
+      "observedSampleMaximumK": 265.75,
+      "observedSampleRangeK": 64.58000000000001
+    }
+  ],
+  "earthReferenceComparisons": [
+    {
+      "siteId": "GKC",
+      "status": "ambiguous",
+      "method": "Unpaired descriptive distribution juxtaposition; no date alignment and no value subtraction; no suitability inference or ranking.",
+      "mars": {
+        "provider": "NASA PDS Atmospheres Node / Curiosity REMS",
+        "measurementType": "In-situ rover ambient-air-temperature estimate; per-sol mean of QC-filtered MODRDR samples",
+        "parameter": "AMBIENT_TEMP",
+        "unit": "K",
+        "validSolCount": 10,
+        "validSampleCount": 249657,
+        "q25K": 214.63966458232636,
+        "medianK": 220.7208685057496,
+        "q75K": 227.6489043267197
+      },
+      "earth": {
+        "provider": "NASA POWER",
+        "dataset": "Daily Point API T2M",
+        "measurementType": "Gridded/model-derived daily 2 m air-temperature product",
+        "parameter": "T2M",
+        "unit": "°C",
+        "period": {
+          "start": "2001-01-01",
+          "end": "2020-12-31"
+        },
+        "requestedCoordinate": {
+          "latitude": 22.8,
+          "longitude": 26.2
+        },
+        "providerResponseCoordinate": {
+          "longitude": 26.2,
+          "latitude": 22.8,
+          "elevationM": 799.05
+        },
+        "validObservationCount": 7305,
+        "missingObservationCount": 0,
+        "q25": 14.85,
+        "median": 22.69,
+        "q75": 28.01,
+        "provenance": {
+          "sourceUrl": "https://power.larc.nasa.gov/api/temporal/daily/point",
+          "sourceId": "nasa-power-daily-point"
+        }
+      },
+      "limitations": [
+        "REMS is an in-situ estimate from sensors on the rover mast with irregular within-sol session sampling; NASA POWER T2M is a gridded/model-derived daily 2 m product.",
+        "The two records cover different periods and are not same-time observations; no numerical delta is calculated.",
+        "REMS observed sample extrema are not guaranteed full-sol daily extrema.",
+        "The juxtaposition is descriptive context, not analog confirmation or a mission-suitability result."
+      ]
+    },
+    {
+      "siteId": "GKB",
+      "status": "ambiguous",
+      "method": "Unpaired descriptive distribution juxtaposition; no date alignment and no value subtraction; no suitability inference or ranking.",
+      "mars": {
+        "provider": "NASA PDS Atmospheres Node / Curiosity REMS",
+        "measurementType": "In-situ rover ambient-air-temperature estimate; per-sol mean of QC-filtered MODRDR samples",
+        "parameter": "AMBIENT_TEMP",
+        "unit": "K",
+        "validSolCount": 10,
+        "validSampleCount": 249657,
+        "q25K": 214.63966458232636,
+        "medianK": 220.7208685057496,
+        "q75K": 227.6489043267197
+      },
+      "earth": {
+        "provider": "NASA POWER",
+        "dataset": "Daily Point API T2M",
+        "measurementType": "Gridded/model-derived daily 2 m air-temperature product",
+        "parameter": "T2M",
+        "unit": "°C",
+        "period": {
+          "start": "2001-01-01",
+          "end": "2020-12-31"
+        },
+        "requestedCoordinate": {
+          "latitude": 23.5,
+          "longitude": 26
+        },
+        "providerResponseCoordinate": {
+          "longitude": 26,
+          "latitude": 23.5,
+          "elevationM": 889.82
+        },
+        "validObservationCount": 7305,
+        "missingObservationCount": 0,
+        "q25": 13.9,
+        "median": 21.55,
+        "q75": 26.76,
+        "provenance": {
+          "sourceUrl": "https://power.larc.nasa.gov/api/temporal/daily/point",
+          "sourceId": "nasa-power-daily-point"
+        }
+      },
+      "limitations": [
+        "REMS is an in-situ estimate from sensors on the rover mast with irregular within-sol session sampling; NASA POWER T2M is a gridded/model-derived daily 2 m product.",
+        "The two records cover different periods and are not same-time observations; no numerical delta is calculated.",
+        "REMS observed sample extrema are not guaranteed full-sol daily extrema.",
+        "The juxtaposition is descriptive context, not analog confirmation or a mission-suitability result."
+      ]
+    },
+    {
+      "siteId": "WDE",
+      "status": "ambiguous",
+      "method": "Unpaired descriptive distribution juxtaposition; no date alignment and no value subtraction; no suitability inference or ranking.",
+      "mars": {
+        "provider": "NASA PDS Atmospheres Node / Curiosity REMS",
+        "measurementType": "In-situ rover ambient-air-temperature estimate; per-sol mean of QC-filtered MODRDR samples",
+        "parameter": "AMBIENT_TEMP",
+        "unit": "K",
+        "validSolCount": 10,
+        "validSampleCount": 249657,
+        "q25K": 214.63966458232636,
+        "medianK": 220.7208685057496,
+        "q75K": 227.6489043267197
+      },
+      "earth": {
+        "provider": "NASA POWER",
+        "dataset": "Daily Point API T2M",
+        "measurementType": "Gridded/model-derived daily 2 m air-temperature product",
+        "parameter": "T2M",
+        "unit": "°C",
+        "period": {
+          "start": "2001-01-01",
+          "end": "2020-12-31"
+        },
+        "requestedCoordinate": {
+          "latitude": 22,
+          "longitude": 28.5
+        },
+        "providerResponseCoordinate": {
+          "longitude": 28.5,
+          "latitude": 22,
+          "elevationM": 289.77
+        },
+        "validObservationCount": 7305,
+        "missingObservationCount": 0,
+        "q25": 17.14,
+        "median": 25.24,
+        "q75": 30.82,
+        "provenance": {
+          "sourceUrl": "https://power.larc.nasa.gov/api/temporal/daily/point",
+          "sourceId": "nasa-power-daily-point"
+        }
+      },
+      "limitations": [
+        "REMS is an in-situ estimate from sensors on the rover mast with irregular within-sol session sampling; NASA POWER T2M is a gridded/model-derived daily 2 m product.",
+        "The two records cover different periods and are not same-time observations; no numerical delta is calculated.",
+        "REMS observed sample extrema are not guaranteed full-sol daily extrema.",
+        "The juxtaposition is descriptive context, not analog confirmation or a mission-suitability result."
+      ]
+    },
+    {
+      "siteId": "KHA",
+      "status": "ambiguous",
+      "method": "Unpaired descriptive distribution juxtaposition; no date alignment and no value subtraction; no suitability inference or ranking.",
+      "mars": {
+        "provider": "NASA PDS Atmospheres Node / Curiosity REMS",
+        "measurementType": "In-situ rover ambient-air-temperature estimate; per-sol mean of QC-filtered MODRDR samples",
+        "parameter": "AMBIENT_TEMP",
+        "unit": "K",
+        "validSolCount": 10,
+        "validSampleCount": 249657,
+        "q25K": 214.63966458232636,
+        "medianK": 220.7208685057496,
+        "q75K": 227.6489043267197
+      },
+      "earth": {
+        "provider": "NASA POWER",
+        "dataset": "Daily Point API T2M",
+        "measurementType": "Gridded/model-derived daily 2 m air-temperature product",
+        "parameter": "T2M",
+        "unit": "°C",
+        "period": {
+          "start": "2001-01-01",
+          "end": "2020-12-31"
+        },
+        "requestedCoordinate": {
+          "latitude": 25.45,
+          "longitude": 30.55
+        },
+        "providerResponseCoordinate": {
+          "longitude": 30.55,
+          "latitude": 25.45,
+          "elevationM": 192.03
+        },
+        "validObservationCount": 7305,
+        "missingObservationCount": 0,
+        "q25": 16.87,
+        "median": 24.62,
+        "q75": 30.14,
+        "provenance": {
+          "sourceUrl": "https://power.larc.nasa.gov/api/temporal/daily/point",
+          "sourceId": "nasa-power-daily-point"
+        }
+      },
+      "limitations": [
+        "REMS is an in-situ estimate from sensors on the rover mast with irregular within-sol session sampling; NASA POWER T2M is a gridded/model-derived daily 2 m product.",
+        "The two records cover different periods and are not same-time observations; no numerical delta is calculated.",
+        "REMS observed sample extrema are not guaranteed full-sol daily extrema.",
+        "The juxtaposition is descriptive context, not analog confirmation or a mission-suitability result."
+      ]
+    },
+    {
+      "siteId": "RTI",
+      "status": "ambiguous",
+      "method": "Unpaired descriptive distribution juxtaposition; no date alignment and no value subtraction; no suitability inference or ranking.",
+      "mars": {
+        "provider": "NASA PDS Atmospheres Node / Curiosity REMS",
+        "measurementType": "In-situ rover ambient-air-temperature estimate; per-sol mean of QC-filtered MODRDR samples",
+        "parameter": "AMBIENT_TEMP",
+        "unit": "K",
+        "validSolCount": 10,
+        "validSampleCount": 249657,
+        "q25K": 214.63966458232636,
+        "medianK": 220.7208685057496,
+        "q75K": 227.6489043267197
+      },
+      "earth": {
+        "provider": "NASA POWER",
+        "dataset": "Daily Point API T2M",
+        "measurementType": "Gridded/model-derived daily 2 m air-temperature product",
+        "parameter": "T2M",
+        "unit": "°C",
+        "period": {
+          "start": "2001-01-01",
+          "end": "2020-12-31"
+        },
+        "requestedCoordinate": {
+          "latitude": 37.69,
+          "longitude": -6.56
+        },
+        "providerResponseCoordinate": {
+          "longitude": -6.56,
+          "latitude": 37.69,
+          "elevationM": 187.78
+        },
+        "validObservationCount": 7305,
+        "missingObservationCount": 0,
+        "q25": 11.47,
+        "median": 16.96,
+        "q75": 24.82,
+        "provenance": {
+          "sourceUrl": "https://power.larc.nasa.gov/api/temporal/daily/point",
+          "sourceId": "nasa-power-daily-point"
+        }
+      },
+      "limitations": [
+        "REMS is an in-situ estimate from sensors on the rover mast with irregular within-sol session sampling; NASA POWER T2M is a gridded/model-derived daily 2 m product.",
+        "The two records cover different periods and are not same-time observations; no numerical delta is calculated.",
+        "REMS observed sample extrema are not guaranteed full-sol daily extrema.",
+        "The juxtaposition is descriptive context, not analog confirmation or a mission-suitability result."
+      ]
+    },
+    {
+      "siteId": "DALL",
+      "status": "ambiguous",
+      "method": "Unpaired descriptive distribution juxtaposition; no date alignment and no value subtraction; no suitability inference or ranking.",
+      "mars": {
+        "provider": "NASA PDS Atmospheres Node / Curiosity REMS",
+        "measurementType": "In-situ rover ambient-air-temperature estimate; per-sol mean of QC-filtered MODRDR samples",
+        "parameter": "AMBIENT_TEMP",
+        "unit": "K",
+        "validSolCount": 10,
+        "validSampleCount": 249657,
+        "q25K": 214.63966458232636,
+        "medianK": 220.7208685057496,
+        "q75K": 227.6489043267197
+      },
+      "earth": {
+        "provider": "NASA POWER",
+        "dataset": "Daily Point API T2M",
+        "measurementType": "Gridded/model-derived daily 2 m air-temperature product",
+        "parameter": "T2M",
+        "unit": "°C",
+        "period": {
+          "start": "2001-01-01",
+          "end": "2020-12-31"
+        },
+        "requestedCoordinate": {
+          "latitude": 14.24,
+          "longitude": 40.3
+        },
+        "providerResponseCoordinate": {
+          "longitude": 40.3,
+          "latitude": 14.24,
+          "elevationM": 1063.31
+        },
+        "validObservationCount": 7305,
+        "missingObservationCount": 0,
+        "q25": 23.47,
+        "median": 26.2,
+        "q75": 28.53,
+        "provenance": {
+          "sourceUrl": "https://power.larc.nasa.gov/api/temporal/daily/point",
+          "sourceId": "nasa-power-daily-point"
+        }
+      },
+      "limitations": [
+        "REMS is an in-situ estimate from sensors on the rover mast with irregular within-sol session sampling; NASA POWER T2M is a gridded/model-derived daily 2 m product.",
+        "The two records cover different periods and are not same-time observations; no numerical delta is calculated.",
+        "REMS observed sample extrema are not guaranteed full-sol daily extrema.",
+        "The juxtaposition is descriptive context, not analog confirmation or a mission-suitability result."
+      ]
+    },
+    {
+      "siteId": "DAL",
+      "status": "ambiguous",
+      "method": "Unpaired descriptive distribution juxtaposition; no date alignment and no value subtraction; no suitability inference or ranking.",
+      "mars": {
+        "provider": "NASA PDS Atmospheres Node / Curiosity REMS",
+        "measurementType": "In-situ rover ambient-air-temperature estimate; per-sol mean of QC-filtered MODRDR samples",
+        "parameter": "AMBIENT_TEMP",
+        "unit": "K",
+        "validSolCount": 10,
+        "validSampleCount": 249657,
+        "q25K": 214.63966458232636,
+        "medianK": 220.7208685057496,
+        "q75K": 227.6489043267197
+      },
+      "earth": {
+        "provider": "NASA POWER",
+        "dataset": "Daily Point API T2M",
+        "measurementType": "Gridded/model-derived daily 2 m air-temperature product",
+        "parameter": "T2M",
+        "unit": "°C",
+        "period": {
+          "start": "2001-01-01",
+          "end": "2020-12-31"
+        },
+        "requestedCoordinate": {
+          "latitude": 38.59556,
+          "longitude": 90.985
+        },
+        "providerResponseCoordinate": {
+          "longitude": 90.985,
+          "latitude": 38.596,
+          "elevationM": 3015.38
+        },
+        "validObservationCount": 7305,
+        "missingObservationCount": 0,
+        "q25": -4.95,
+        "median": 3.27,
+        "q75": 11.64,
+        "provenance": {
+          "sourceUrl": "https://power.larc.nasa.gov/api/temporal/daily/point",
+          "sourceId": "nasa-power-daily-point"
+        }
+      },
+      "limitations": [
+        "REMS is an in-situ estimate from sensors on the rover mast with irregular within-sol session sampling; NASA POWER T2M is a gridded/model-derived daily 2 m product.",
+        "The two records cover different periods and are not same-time observations; no numerical delta is calculated.",
+        "REMS observed sample extrema are not guaranteed full-sol daily extrema.",
+        "The juxtaposition is descriptive context, not analog confirmation or a mission-suitability result."
+      ]
+    },
+    {
+      "siteId": "AHS-GH",
+      "status": "ambiguous",
+      "method": "Unpaired descriptive distribution juxtaposition; no date alignment and no value subtraction; no suitability inference or ranking.",
+      "mars": {
+        "provider": "NASA PDS Atmospheres Node / Curiosity REMS",
+        "measurementType": "In-situ rover ambient-air-temperature estimate; per-sol mean of QC-filtered MODRDR samples",
+        "parameter": "AMBIENT_TEMP",
+        "unit": "K",
+        "validSolCount": 10,
+        "validSampleCount": 249657,
+        "q25K": 214.63966458232636,
+        "medianK": 220.7208685057496,
+        "q75K": 227.6489043267197
+      },
+      "earth": {
+        "provider": "NASA POWER",
+        "dataset": "Daily Point API T2M",
+        "measurementType": "Gridded/model-derived daily 2 m air-temperature product",
+        "parameter": "T2M",
+        "unit": "°C",
+        "period": {
+          "start": "2001-01-01",
+          "end": "2020-12-31"
+        },
+        "requestedCoordinate": {
+          "latitude": 79.4083333,
+          "longitude": -90.7180556
+        },
+        "providerResponseCoordinate": {
+          "longitude": -90.718,
+          "latitude": 79.408,
+          "elevationM": 763.54
+        },
+        "validObservationCount": 7305,
+        "missingObservationCount": 0,
+        "q25": -29.6,
+        "median": -20.44,
+        "q75": -6.29,
+        "provenance": {
+          "sourceUrl": "https://power.larc.nasa.gov/api/temporal/daily/point",
+          "sourceId": "nasa-power-daily-point"
+        }
+      },
+      "limitations": [
+        "REMS is an in-situ estimate from sensors on the rover mast with irregular within-sol session sampling; NASA POWER T2M is a gridded/model-derived daily 2 m product.",
+        "The two records cover different periods and are not same-time observations; no numerical delta is calculated.",
+        "REMS observed sample extrema are not guaranteed full-sol daily extrema.",
+        "The juxtaposition is descriptive context, not analog confirmation or a mission-suitability result."
+      ]
+    }
+  ],
+  "evidenceDimensions": [
+    {
+      "dimensionId": "climate",
+      "name": "Climate and thermal environment",
+      "marsObservationStatus": "partial_temperature_only",
+      "note": "REMS ambient-air temperature samples are present. Other climate factors are outside this integration and are not implied by temperature coverage."
+    },
+    {
+      "dimensionId": "atmosphere_environment",
+      "name": "Atmospheric and environmental context",
+      "marsObservationStatus": "no_mars_observational_evidence_in_scope",
+      "note": "No Mars observational dataset for this dimension is included in this milestone."
+    },
+    {
+      "dimensionId": "terrain",
+      "name": "Terrain and topography",
+      "marsObservationStatus": "no_mars_observational_evidence_in_scope",
+      "note": "No Mars observational dataset for this dimension is included in this milestone."
+    },
+    {
+      "dimensionId": "geology_lithology",
+      "name": "Geological and lithological context",
+      "marsObservationStatus": "no_mars_observational_evidence_in_scope",
+      "note": "No Mars observational dataset for this dimension is included in this milestone."
+    },
+    {
+      "dimensionId": "surface_material_hydrology",
+      "name": "Surface materials, sediments, and hydrological context",
+      "marsObservationStatus": "no_mars_observational_evidence_in_scope",
+      "note": "No Mars observational dataset for this dimension is included in this milestone."
+    }
+  ],
+  "missionEvidenceGaps": [
+    {
+      "missionId": "rover_surface_testing",
+      "missionName": "Rover surface testing",
+      "objective": "Describe surface mobility and operational terrain evidence without inferring suitability from a point elevation.",
+      "requiredFactors": [
+        {
+          "factorId": "slope_roughness_relief",
+          "name": "Slope, roughness, and local relief",
+          "dimensionId": "terrain",
+          "dimensionName": "Terrain and topography",
+          "status": "unavailable",
+          "marsEvidence": "No matching Mars observational evidence was integrated for this factor.",
+          "earthEvidence": "No matching Earth evidence recorded in the current profile.",
+          "limitation": "Missing or out-of-scope evidence is not evidence that the environmental factor is absent.",
+          "nextEvidenceNeeded": "Define neighborhood scale and reproducible algorithms before extraction."
+        },
+        {
+          "factorId": "surface_material_class",
+          "name": "Mapped surface lithology/material class",
+          "dimensionId": "surface_material_hydrology",
+          "dimensionName": "Surface materials, sediments, and hydrological context",
+          "status": "unavailable",
+          "marsEvidence": "No matching Mars observational evidence was integrated for this factor.",
+          "earthEvidence": "GLiM ArcGIS Feature Service: GLiM Niveau I service layer",
+          "limitation": "Missing or out-of-scope evidence is not evidence that the environmental factor is absent.",
+          "nextEvidenceNeeded": "Identify validated high-resolution land-surface/material observations for operational sites."
+        },
+        {
+          "factorId": "sediment_regolith_properties",
+          "name": "Sediment and regolith properties",
+          "dimensionId": "surface_material_hydrology",
+          "dimensionName": "Surface materials, sediments, and hydrological context",
+          "status": "unavailable",
+          "marsEvidence": "No matching Mars observational evidence was integrated for this factor.",
+          "earthEvidence": "No matching Earth evidence recorded in the current profile.",
+          "limitation": "Missing or out-of-scope evidence is not evidence that the environmental factor is absent.",
+          "nextEvidenceNeeded": "Source field measurements or mission-relevant validated remote sensing with explicit uncertainty."
+        }
+      ],
+      "nonGoals": [
+        "No readiness or suitability score",
+        "No ranking",
+        "No confirmation that an Earth location is a Mars analog"
+      ]
+    },
+    {
+      "missionId": "geological_surface_exploration",
+      "missionName": "Geological surface exploration",
+      "objective": "Organize mapped lithology and traceable geological/mineral evidence while preserving evidence quality.",
+      "requiredFactors": [
+        {
+          "factorId": "mapped_lithology",
+          "name": "Mapped lithology",
+          "dimensionId": "geology_lithology",
+          "dimensionName": "Geological and lithological context",
+          "status": "unavailable",
+          "marsEvidence": "No matching Mars observational evidence was integrated for this factor.",
+          "earthEvidence": "GLiM ArcGIS Feature Service: GLiM Niveau I service layer; original returned attributes preserved",
+          "limitation": "Missing or out-of-scope evidence is not evidence that the environmental factor is absent.",
+          "nextEvidenceNeeded": "Acquire site-specific geological mapping or field-verified samples for selected locations."
+        },
+        {
+          "factorId": "mineral_evidence",
+          "name": "Mineral evidence",
+          "dimensionId": "geology_lithology",
+          "dimensionName": "Geological and lithological context",
+          "status": "unavailable",
+          "marsEvidence": "No matching Mars observational evidence was integrated for this factor.",
+          "earthEvidence": "No matching Earth evidence recorded in the current profile.",
+          "limitation": "Missing or out-of-scope evidence is not evidence that the environmental factor is absent.",
+          "nextEvidenceNeeded": "Collect site-specific assay, spectroscopy, or peer-reviewed field observations with traceable location."
+        },
+        {
+          "factorId": "geological_process_evidence",
+          "name": "Geological formation and process descriptions",
+          "dimensionId": "geology_lithology",
+          "dimensionName": "Geological and lithological context",
+          "status": "unavailable",
+          "marsEvidence": "No matching Mars observational evidence was integrated for this factor.",
+          "earthEvidence": "No matching Earth evidence recorded in the current profile.",
+          "limitation": "Missing or out-of-scope evidence is not evidence that the environmental factor is absent.",
+          "nextEvidenceNeeded": "Review each claim against primary geological references and identify location-specific evidence."
+        }
+      ],
+      "nonGoals": [
+        "No readiness or suitability score",
+        "No ranking",
+        "No confirmation that an Earth location is a Mars analog"
+      ]
+    },
+    {
+      "missionId": "extreme_environment_operations",
+      "missionName": "Extreme environment operations",
+      "objective": "Describe measured thermal and meteorological stressors with explicit temporal coverage and product provenance.",
+      "requiredFactors": [
+        {
+          "factorId": "air_temperature_daily_mean",
+          "name": "Daily mean air temperature",
+          "dimensionId": "climate",
+          "dimensionName": "Climate and thermal environment",
+          "status": "ambiguous",
+          "marsEvidence": "REMS MODRDR ambient air-temperature samples are available as a separate Mars observation; they do not satisfy the existing Earth-factor definition or form a compatible paired comparison.",
+          "earthEvidence": "NASA POWER: Daily Point API; meteorological sources reported by response",
+          "limitation": "REMS is rover-mounted, irregularly sampled in-situ/model-corrected ambient temperature; Earth T2M is gridded daily 2 m data. No direct value difference is reported.",
+          "nextEvidenceNeeded": "Define a comparable sampling and measurement-height basis before any factor-level Mars/Earth comparison."
+        },
+        {
+          "factorId": "air_temperature_extremes",
+          "name": "Daily maximum and minimum air temperature",
+          "dimensionId": "climate",
+          "dimensionName": "Climate and thermal environment",
+          "status": "ambiguous",
+          "marsEvidence": "REMS MODRDR ambient air-temperature samples are available as a separate Mars observation; they do not satisfy the existing Earth-factor definition or form a compatible paired comparison.",
+          "earthEvidence": "NASA POWER: Daily Point API; meteorological sources reported by response",
+          "limitation": "REMS is rover-mounted, irregularly sampled in-situ/model-corrected ambient temperature; Earth T2M is gridded daily 2 m data. No direct value difference is reported.",
+          "nextEvidenceNeeded": "Define a comparable sampling and measurement-height basis before any factor-level Mars/Earth comparison."
+        },
+        {
+          "factorId": "daily_temperature_range",
+          "name": "Daily temperature range",
+          "dimensionId": "climate",
+          "dimensionName": "Climate and thermal environment",
+          "status": "ambiguous",
+          "marsEvidence": "REMS MODRDR ambient air-temperature samples are available as a separate Mars observation; they do not satisfy the existing Earth-factor definition or form a compatible paired comparison.",
+          "earthEvidence": "NASA POWER: Derived from T2M_MAX and T2M_MIN",
+          "limitation": "REMS is rover-mounted, irregularly sampled in-situ/model-corrected ambient temperature; Earth T2M is gridded daily 2 m data. No direct value difference is reported.",
+          "nextEvidenceNeeded": "Define a comparable sampling and measurement-height basis before any factor-level Mars/Earth comparison."
+        },
+        {
+          "factorId": "relative_humidity",
+          "name": "Relative humidity",
+          "dimensionId": "climate",
+          "dimensionName": "Climate and thermal environment",
+          "status": "unavailable",
+          "marsEvidence": "No matching Mars observational evidence was integrated for this factor.",
+          "earthEvidence": "NASA POWER: Daily Point API",
+          "limitation": "Missing or out-of-scope evidence is not evidence that the environmental factor is absent.",
+          "nextEvidenceNeeded": "Pair with independently sourced surface/soil moisture or water-balance evidence if required."
+        },
+        {
+          "factorId": "precipitation",
+          "name": "Precipitation",
+          "dimensionId": "climate",
+          "dimensionName": "Climate and thermal environment",
+          "status": "unavailable",
+          "marsEvidence": "No matching Mars observational evidence was integrated for this factor.",
+          "earthEvidence": "NASA POWER: Daily Point API",
+          "limitation": "Missing or out-of-scope evidence is not evidence that the environmental factor is absent.",
+          "nextEvidenceNeeded": "Research a defensible evapotranspiration/water-balance source and method before claiming aridity."
+        },
+        {
+          "factorId": "wind_speed",
+          "name": "Wind speed",
+          "dimensionId": "climate",
+          "dimensionName": "Climate and thermal environment",
+          "status": "unavailable",
+          "marsEvidence": "No matching Mars observational evidence was integrated for this factor.",
+          "earthEvidence": "NASA POWER: Daily Point API",
+          "limitation": "Missing or out-of-scope evidence is not evidence that the environmental factor is absent.",
+          "nextEvidenceNeeded": "Assess dust and gust observations separately if mission requirements justify them."
+        }
+      ],
+      "nonGoals": [
+        "No readiness or suitability score",
+        "No ranking",
+        "No confirmation that an Earth location is a Mars analog"
+      ]
+    },
+    {
+      "missionId": "drilling_subsurface",
+      "missionName": "Drilling and subsurface exploration",
+      "objective": "Identify direct subsurface evidence relevant to drilling and sampling; surface proxies alone are inadequate.",
+      "requiredFactors": [
+        {
+          "factorId": "sediment_regolith_properties",
+          "name": "Sediment and regolith properties",
+          "dimensionId": "surface_material_hydrology",
+          "dimensionName": "Surface materials, sediments, and hydrological context",
+          "status": "unavailable",
+          "marsEvidence": "No matching Mars observational evidence was integrated for this factor.",
+          "earthEvidence": "No matching Earth evidence recorded in the current profile.",
+          "limitation": "Missing or out-of-scope evidence is not evidence that the environmental factor is absent.",
+          "nextEvidenceNeeded": "Source field measurements or mission-relevant validated remote sensing with explicit uncertainty."
+        },
+        {
+          "factorId": "hydrological_context",
+          "name": "Surface and subsurface hydrological context",
+          "dimensionId": "surface_material_hydrology",
+          "dimensionName": "Surface materials, sediments, and hydrological context",
+          "status": "unavailable",
+          "marsEvidence": "No matching Mars observational evidence was integrated for this factor.",
+          "earthEvidence": "No matching Earth evidence recorded in the current profile.",
+          "limitation": "Missing or out-of-scope evidence is not evidence that the environmental factor is absent.",
+          "nextEvidenceNeeded": "Define mission-relevant hydrological observations and evaluate authoritative datasets."
+        },
+        {
+          "factorId": "mineral_evidence",
+          "name": "Mineral evidence",
+          "dimensionId": "geology_lithology",
+          "dimensionName": "Geological and lithological context",
+          "status": "unavailable",
+          "marsEvidence": "No matching Mars observational evidence was integrated for this factor.",
+          "earthEvidence": "No matching Earth evidence recorded in the current profile.",
+          "limitation": "Missing or out-of-scope evidence is not evidence that the environmental factor is absent.",
+          "nextEvidenceNeeded": "Collect site-specific assay, spectroscopy, or peer-reviewed field observations with traceable location."
+        }
+      ],
+      "nonGoals": [
+        "No readiness or suitability score",
+        "No ranking",
+        "No confirmation that an Earth location is a Mars analog"
+      ]
+    }
+  ],
+  "provenance": {
+    "provider": "NASA Planetary Data System Atmospheres Node",
+    "retrievedAt": "2026-11-16T21:31:36.466Z",
+    "retrievalMethod": "Focused HTTP download of selected per-sol MODRDR ASCII tables and PDS4 XML labels; raw files kept outside repository.",
+    "extractionVersion": "terramatch-rems-modrdr-1.0.0",
+    "rawFiles": [
+      {
+        "sol": 1718,
+        "productId": "RME_549960903RMD17180000000_______P2",
+        "productUrl": "https://atmos.nmsu.edu/PDS/data/mslrem_1001/DATA/SOL_01649_01772/SOL01718/RME_549960903RMD17180000000_______P2.TAB",
+        "sourceSha256": "1b0616d20528dbeaa4901d8f01622269e69a08b67d0ab91c7a77d6bdcbbbccec",
+        "labelSha256": "6fb7af255bba75451d6565d68081e186d4cdc77ae236db122029aff297882fc9",
+        "retrievedAt": "2026-11-16T21:19:16.810Z",
+        "startUtc": "2017-06-05T19:22:03.210Z",
+        "stopUtc": "2017-06-06T19:04:59.016Z"
+      },
+      {
+        "sol": 1781,
+        "productId": "RME_555553691RMD17810000000_______P2",
+        "productUrl": "https://atmos.nmsu.edu/PDS/data/mslrem_1001/DATA/SOL_01773_01869/SOL01781/RME_555553691RMD17810000000_______P2.TAB",
+        "sourceSha256": "c895e797bceaa5c9ef48cb0d010a7ac942c3c8de9fe63274da8a6851df15d4f6",
+        "labelSha256": "4f12e9ad51fe0d73f35e87e5c657f0edf6f9ee9c861d6f847889c51d595b0ccd",
+        "retrievedAt": "2026-11-16T21:19:18.676Z",
+        "startUtc": "2017-08-09T12:55:06.994Z",
+        "stopUtc": "2017-08-10T13:34:40.832Z"
+      },
+      {
+        "sol": 1847,
+        "productId": "RME_561412802RMD18470000000_______P2",
+        "productUrl": "https://atmos.nmsu.edu/PDS/data/mslrem_1001/DATA/SOL_01773_01869/SOL01847/RME_561412802RMD18470000000_______P2.TAB",
+        "sourceSha256": "c8f4bf276efdd9c28494e1c25b30cc38b505568bc0d906b1226c8ec5df5bd2fd",
+        "labelSha256": "7b1425c94901f4cb3857cccde50a19f40d3e9d89fc1c3e705e43c32de09b5ba6",
+        "retrievedAt": "2026-11-16T21:18:35.709Z",
+        "startUtc": "2017-10-16T08:29:03.293Z",
+        "stopUtc": "2017-10-17T08:12:02.099Z"
+      },
+      {
+        "sol": 1913,
+        "productId": "RME_567271913RMD19130000000_______P2",
+        "productUrl": "https://atmos.nmsu.edu/PDS/data/mslrem_1001/DATA/SOL_01870_02003/SOL01913/RME_567271913RMD19130000000_______P2.TAB",
+        "sourceSha256": "248cd5fc4281528956daf03b2f7af60c67a11f621e10fd935c75a2317658c930",
+        "labelSha256": "dda55f6ed407d5fa127c8dd22fa400f0611e72d15603f1b1ad79b995f049c12a",
+        "retrievedAt": "2026-11-16T21:18:53.442Z",
+        "startUtc": "2017-12-23T04:01:50.591Z",
+        "stopUtc": "2017-12-24T04:40:13.429Z"
+      },
+      {
+        "sol": 1975,
+        "productId": "RME_572775926RMD19750000000_______P3",
+        "productUrl": "https://atmos.nmsu.edu/PDS/data/mslrem_1001/DATA/SOL_01870_02003/SOL01975/RME_572775926RMD19750000000_______P3.TAB",
+        "sourceSha256": "0fe217adbf88872327f6ade85f88b2b457e9db2e73a9b907e269f84bc59c65f6",
+        "labelSha256": "f309dac14daeff85b3e33d4bb03fc1456e78c26e4dec18a39796040f2374973c",
+        "retrievedAt": "2026-11-16T21:18:59.976Z",
+        "startUtc": "2018-02-24T20:55:04.538Z",
+        "stopUtc": "2018-02-25T20:39:10.344Z"
+      },
+      {
+        "sol": 2032,
+        "productId": "RME_577836067RMD20320000000_______P2",
+        "productUrl": "https://atmos.nmsu.edu/PDS/data/mslrem_1001/DATA/SOL_02004_02127/SOL02032/RME_577836067RMD20320000000_______P2.TAB",
+        "sourceSha256": "1e9930d920c06afae0b0287cc901090e79282fdc8fb3c0b003875e226afc22a0",
+        "labelSha256": "b8082319aa6c5dddb1e59e66fe160a46ec554f59a5570f92ff030b261459c1a7",
+        "retrievedAt": "2026-11-16T21:06:45.639Z",
+        "startUtc": "2018-04-24T10:32:35.296Z",
+        "stopUtc": "2018-04-25T10:15:35.102Z"
+      },
+      {
+        "sol": 2084,
+        "productId": "RME_582452336RMD20840000000_______P2",
+        "productUrl": "https://atmos.nmsu.edu/PDS/data/mslrem_1001/DATA/SOL_02004_02127/SOL02084/RME_582452336RMD20840000000_______P2.TAB",
+        "sourceSha256": "a06c8a79728184e78ded4278870357579fc3ac705e17cdc69af8a59bd59e3d3e",
+        "labelSha256": "19b2d5db3a85409c52bbf7d3d7d7f203748c44fedcb0573ea740255708f41b99",
+        "retrievedAt": "2026-11-16T21:07:57.279Z",
+        "startUtc": "2018-06-16T20:50:53.864Z",
+        "stopUtc": "2018-06-17T20:34:04.670Z"
+      },
+      {
+        "sol": 2132,
+        "productId": "RME_586713508RMD21320000000_______P3",
+        "productUrl": "https://atmos.nmsu.edu/PDS/data/mslrem_1001/DATA/SOL_02128_02224/SOL02132/RME_586713508RMD21320000000_______P3.TAB",
+        "sourceSha256": "0e134ba9146a10305b3c39cf546dbef0c61a7538dcee2680b468c553e025d8c7",
+        "labelSha256": "5b33617c83fba9a9c551f5e748b3603745fba49c65670a741fdf59e464eacc27",
+        "retrievedAt": "2026-11-16T21:19:48.320Z",
+        "startUtc": "2018-08-05T04:31:10.081Z",
+        "stopUtc": "2018-08-06T04:14:08.887Z"
+      },
+      {
+        "sol": 2226,
+        "productId": "RME_595058302RMD22260000000_______P2",
+        "productUrl": "https://atmos.nmsu.edu/PDS/data/mslrem_1001/DATA/SOL_02225_02358/SOL02226/RME_595058302RMD22260000000_______P2.TAB",
+        "sourceSha256": "fc3022b4de9b538ac915c3cb744a23cc0df7a10cefa03645d97548963251e371",
+        "labelSha256": "7981108b3cc140823b336aec11a5aee9ac4be4bf7428cf639ae4ce01e307159c",
+        "retrievedAt": "2026-11-16T21:06:47.426Z",
+        "startUtc": "2018-11-09T18:32:16.839Z",
+        "stopUtc": "2018-11-10T19:11:04.677Z"
+      },
+      {
+        "sol": 2275,
+        "productId": "RME_599408248RMD22750000000_______P2",
+        "productUrl": "https://atmos.nmsu.edu/PDS/data/mslrem_1001/DATA/SOL_02225_02358/SOL02275/RME_599408248RMD22750000000_______P2.TAB",
+        "sourceSha256": "6233f2abebe87508be6d14e6705f17087ae6c4c5c53d940b2bfb7e2f1b215e1c",
+        "labelSha256": "554b83edb57ebb9760ff533f2522faa786f7ad664fa49a60abf631347a4705da",
+        "retrievedAt": "2026-11-16T21:07:16.122Z",
+        "startUtc": "2018-12-30T02:51:17.894Z",
+        "stopUtc": "2018-12-31T02:35:15.700Z"
+      }
+    ],
+    "retrievalRecords": [
+      {
+        "sol": 1847,
+        "productId": "RME_561412802RMD18470000000_______P2",
+        "productUrl": "https://atmos.nmsu.edu/PDS/data/mslrem_1001/DATA/SOL_01773_01869/SOL01847/RME_561412802RMD18470000000_______P2.TAB",
+        "retrievedAt": "2026-11-16T21:18:35.709Z",
+        "sourceSha256": "c8f4bf276efdd9c28494e1c25b30cc38b505568bc0d906b1226c8ec5df5bd2fd",
+        "labelSha256": "7b1425c94901f4cb3857cccde50a19f40d3e9d89fc1c3e705e43c32de09b5ba6"
+      },
+      {
+        "sol": 1718,
+        "productId": "RME_549960903RMD17180000000_______P2",
+        "productUrl": "https://atmos.nmsu.edu/PDS/data/mslrem_1001/DATA/SOL_01649_01772/SOL01718/RME_549960903RMD17180000000_______P2.TAB",
+        "retrievedAt": "2026-11-16T21:19:16.810Z",
+        "sourceSha256": "1b0616d20528dbeaa4901d8f01622269e69a08b67d0ab91c7a77d6bdcbbbccec",
+        "labelSha256": "6fb7af255bba75451d6565d68081e186d4cdc77ae236db122029aff297882fc9"
+      },
+      {
+        "sol": 1913,
+        "productId": "RME_567271913RMD19130000000_______P2",
+        "productUrl": "https://atmos.nmsu.edu/PDS/data/mslrem_1001/DATA/SOL_01870_02003/SOL01913/RME_567271913RMD19130000000_______P2.TAB",
+        "retrievedAt": "2026-11-16T21:18:53.442Z",
+        "sourceSha256": "248cd5fc4281528956daf03b2f7af60c67a11f621e10fd935c75a2317658c930",
+        "labelSha256": "dda55f6ed407d5fa127c8dd22fa400f0611e72d15603f1b1ad79b995f049c12a"
+      },
+      {
+        "sol": 1781,
+        "productId": "RME_555553691RMD17810000000_______P2",
+        "productUrl": "https://atmos.nmsu.edu/PDS/data/mslrem_1001/DATA/SOL_01773_01869/SOL01781/RME_555553691RMD17810000000_______P2.TAB",
+        "retrievedAt": "2026-11-16T21:19:18.676Z",
+        "sourceSha256": "c895e797bceaa5c9ef48cb0d010a7ac942c3c8de9fe63274da8a6851df15d4f6",
+        "labelSha256": "4f12e9ad51fe0d73f35e87e5c657f0edf6f9ee9c861d6f847889c51d595b0ccd"
+      },
+      {
+        "sol": 1975,
+        "productId": "RME_572775926RMD19750000000_______P3",
+        "productUrl": "https://atmos.nmsu.edu/PDS/data/mslrem_1001/DATA/SOL_01870_02003/SOL01975/RME_572775926RMD19750000000_______P3.TAB",
+        "retrievedAt": "2026-11-16T21:18:59.976Z",
+        "sourceSha256": "0fe217adbf88872327f6ade85f88b2b457e9db2e73a9b907e269f84bc59c65f6",
+        "labelSha256": "f309dac14daeff85b3e33d4bb03fc1456e78c26e4dec18a39796040f2374973c"
+      },
+      {
+        "sol": 2032,
+        "productId": "RME_577836067RMD20320000000_______P2",
+        "productUrl": "https://atmos.nmsu.edu/PDS/data/mslrem_1001/DATA/SOL_02004_02127/SOL02032/RME_577836067RMD20320000000_______P2.TAB",
+        "retrievedAt": "2026-11-16T21:06:45.639Z",
+        "sourceSha256": "1e9930d920c06afae0b0287cc901090e79282fdc8fb3c0b003875e226afc22a0",
+        "labelSha256": "b8082319aa6c5dddb1e59e66fe160a46ec554f59a5570f92ff030b261459c1a7"
+      },
+      {
+        "sol": 2084,
+        "productId": "RME_582452336RMD20840000000_______P2",
+        "productUrl": "https://atmos.nmsu.edu/PDS/data/mslrem_1001/DATA/SOL_02004_02127/SOL02084/RME_582452336RMD20840000000_______P2.TAB",
+        "retrievedAt": "2026-11-16T21:07:57.279Z",
+        "sourceSha256": "a06c8a79728184e78ded4278870357579fc3ac705e17cdc69af8a59bd59e3d3e",
+        "labelSha256": "19b2d5db3a85409c52bbf7d3d7d7f203748c44fedcb0573ea740255708f41b99"
+      },
+      {
+        "sol": 2132,
+        "productId": "RME_586713508RMD21320000000_______P3",
+        "productUrl": "https://atmos.nmsu.edu/PDS/data/mslrem_1001/DATA/SOL_02128_02224/SOL02132/RME_586713508RMD21320000000_______P3.TAB",
+        "retrievedAt": "2026-11-16T21:19:48.320Z",
+        "sourceSha256": "0e134ba9146a10305b3c39cf546dbef0c61a7538dcee2680b468c553e025d8c7",
+        "labelSha256": "5b33617c83fba9a9c551f5e748b3603745fba49c65670a741fdf59e464eacc27"
+      },
+      {
+        "sol": 2226,
+        "productId": "RME_595058302RMD22260000000_______P2",
+        "productUrl": "https://atmos.nmsu.edu/PDS/data/mslrem_1001/DATA/SOL_02225_02358/SOL02226/RME_595058302RMD22260000000_______P2.TAB",
+        "retrievedAt": "2026-11-16T21:06:47.426Z",
+        "sourceSha256": "fc3022b4de9b538ac915c3cb744a23cc0df7a10cefa03645d97548963251e371",
+        "labelSha256": "7981108b3cc140823b336aec11a5aee9ac4be4bf7428cf639ae4ce01e307159c"
+      },
+      {
+        "sol": 2275,
+        "productId": "RME_599408248RMD22750000000_______P2",
+        "productUrl": "https://atmos.nmsu.edu/PDS/data/mslrem_1001/DATA/SOL_02225_02358/SOL02275/RME_599408248RMD22750000000_______P2.TAB",
+        "retrievedAt": "2026-11-16T21:07:16.122Z",
+        "sourceSha256": "6233f2abebe87508be6d14e6705f17087ae6c4c5c53d940b2bfb7e2f1b215e1c",
+        "labelSha256": "554b83edb57ebb9760ff533f2522faa786f7ad664fa49a60abf631347a4705da"
+      }
+    ]
+  },
+  "scientificLimitations": [
+    "REMS MODRDR ambient air temperature is a processed/model-corrected rover-mast estimate, not ground temperature.",
+    "PDS says REMS sampling is nominally 1 Hz during sessions, typically five minutes per hour plus additional one-hour sessions; temporal coverage is irregular within a sol.",
+    "Observed sample minimum/maximum/range reflect only accepted samples actually present, not necessarily full-sol extrema.",
+    "Ls is derived from UTC timestamps with NASA GISS Mars24 equations; it is not supplied as a field in the selected MODRDR table.",
+    "NASA POWER T2M is gridded/model-derived at 2 m; Mars REMS and Earth values are not synchronized or measurement-height harmonized.",
+    "No humidity comparison is made; measurement definitions are not evaluated in this integration. Pressure is not part of this temperature product and has no matching Earth counterpart here.",
+    "No overall score, confidence percentage, ranking, or mission-suitability conclusion is produced."
+  ]
+}

@@ -264,6 +264,10 @@ export async function handleApiRequest(req, res) {
     const url = new URL(req.url ?? "/", `http://${req.headers.host ?? "localhost"}`);
     if (applyApiCors(req, res, url.pathname)) return;
     if (req.method === "GET" && url.pathname === "/api/health") return send(res,200,{status:"ok",app:"TerraMatch",planetaryScope:"Mars",apiVersion:"1.0.0"});
+    if (req.method === "GET" && url.pathname === "/api/mars-evidence/rems") {
+      const artifact = await optional("data/processed/mars/rems-air-temperature-v1.json");
+      return artifact ? send(res, 200, artifact) : send(res, 404, { error: "Curiosity REMS air-temperature evidence has not been acquired." });
+    }
     if (url.pathname === "/api/diagnostics/database-identity") {
       if (req.method !== "GET") return send(res, 404, { error: "Not found." });
       const verification = await verifyPreviewDatabaseIdentity();

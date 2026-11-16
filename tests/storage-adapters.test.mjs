@@ -105,6 +105,9 @@ test("Vercel store uses private content-addressed blobs, verifies integrity, and
             const row = rows.get(values[0]);
             return { rows: row ? [{ sha256: row.sha256, immutable: row.immutable }] : [] };
           }
+          if (sql.includes("SELECT artifact_key FROM terramatch_artifacts")) {
+            return { rows: rows.has(values[0]) ? [{ artifact_key: values[0] }] : [] };
+          }
           if (sql.includes("INSERT INTO terramatch_artifacts")) {
             rows.set(values[0], { artifact_key: values[0], blob_path: values[1], sha256: values[2], byte_size: values[3], immutable: Boolean(values[4]) || Boolean(rows.get(values[0])?.immutable) });
             return { rows: [] };
@@ -124,6 +127,11 @@ test("Vercel store uses private content-addressed blobs, verifies integrity, and
   assert.deepEqual(await store.readJson("processed/discovery-runs/run-1.json"), { runId: "run-1", missing: null });
   assert.deepEqual(await store.listNames("processed/discovery-runs", /^run-.*\.json$/), ["run-1.json"]);
   await assert.rejects(store.writeJsonImmutable("processed/discovery-runs/run-1.json", { runId: "changed" }), /Immutable artifact/);
+  await store.writeBytesAtomic("processed/comparison-runs/latest.json", Buffer.from("runtime-head"));
+  assert.equal(await store.writeBytesIfAbsent("processed/comparison-runs/latest.json", Buffer.from("seed-head")), false);
+  assert.equal((await store.readBytes("processed/comparison-runs/latest.json")).toString("utf8"), "runtime-head");
+  assert.equal(await store.writeBytesIfAbsent("processed/discovery-runs/validation-report.json", Buffer.from("seed-report")), true);
+  assert.equal((await store.readBytes("processed/discovery-runs/validation-report.json")).toString("utf8"), "seed-report");
   assert.deepEqual(await store.setLatest("processed/discovery-runs/latest", "processed/discovery-runs/run-1.json"), {
     pointer_key: "processed/discovery-runs/latest", artifact_key: "processed/discovery-runs/run-1.json", revision: 1,
   });

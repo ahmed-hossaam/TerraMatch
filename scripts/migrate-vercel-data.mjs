@@ -52,16 +52,21 @@ for (const repositoryPath of tracked) {
   const key = rel.split(sep).join("/");
   const size = (await stat(absolutePath)).size;
   totalBytes += size;
-  checksums.set(key, { sha256: createHash("sha256").update(bytes).digest("hex"), size });
   const mutable = /(^|\/)(latest\.json|validation-report\.json)$/.test(key);
   try {
-    if (mutable) await store.writeBytesAtomic(key, bytes);
+    if (mutable) await store.writeBytesIfAbsent(key, bytes);
     else await store.writeBytesImmutable(key, bytes);
     stored += 1;
   } catch (error) {
     if (/Immutable artifact already exists with different content/.test(String(error?.message))) throw error;
     throw new Error(`Failed to migrate ${key}: ${error?.message ?? error}`);
   }
+  const persisted = await store.pool.query(
+    "SELECT sha256, byte_size FROM terramatch_artifacts WHERE artifact_key = $1",
+    [key],
+  );
+  if (!persisted.rows[0]) throw new Error(`Seed verification found no durable artifact metadata for ${key}.`);
+  checksums.set(key, { sha256: persisted.rows[0].sha256, size: Number(persisted.rows[0].byte_size) });
   if (/^app-runtime\/jobs\/[a-f0-9-]+\.json$/i.test(key)) {
     const job = JSON.parse(bytes.toString("utf8"));
     if (await store.importLegacyJob(job)) importedJobs += 1;

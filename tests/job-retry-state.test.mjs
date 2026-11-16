@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { createRetryPayload } from "../server/workflows/job-retry-state.mjs";
+import { createCompletedPayload, createRetryPayload } from "../server/workflows/job-retry-state.mjs";
 
 test("retry state clears the previous attempt error and failure stage", () => {
   const retried = createRetryPayload({
@@ -17,5 +17,13 @@ test("retry state clears the previous attempt error and failure stage", () => {
     failureStage: null,
     error: null,
     updatedAt: "2026-11-16T00:00:00.000Z",
+  });
+});
+
+test("completed state clears any previous attempt error details", () => {
+  const completed = createCompletedPayload({ status:"failed", failureStage:"discovery", error:"old failure" }, "discovery-run", "comparison-run", "2026-11-16T00:00:00.000Z");
+  assert.deepEqual(completed, {
+    status:"completed", discoveryRunId:"discovery-run", comparisonRunId:"comparison-run",
+    failureStage:null, error:null, updatedAt:"2026-11-16T00:00:00.000Z",
   });
 });

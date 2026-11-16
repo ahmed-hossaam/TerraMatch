@@ -110,6 +110,43 @@ export class VercelJsonArtifactStore {
   async writeBytesAtomic(key, bytes) { return this.#write(key, Buffer.from(bytes), false); }
   async writeBytesImmutable(key, bytes) { return this.#write(key, Buffer.from(bytes), true); }
 
+  async writeBytesIfAbsent(key, bytes) {
+    await this.ensureSchema();
+    const normalized = this.normalizeKey(key);
+    const body = Buffer.from(bytes);
+    const sha256 = createHash("sha256").update(body).digest("hex");
+    const blobPath = `${this.namespace}/objects/${sha256.slice(0, 2)}/${sha256}.json`;
+    const client = await this.pool.connect();
+    try {
+      await client.query("BEGIN");
+      await client.query("SELECT pg_advisory_xact_lock(hashtextextended($1, 0))", [normalized]);
+      const existing = await client.query("SELECT artifact_key FROM terramatch_artifacts WHERE artifact_key = $1 FOR UPDATE", [normalized]);
+      if (existing.rows[0]) {
+        await client.query("COMMIT");
+        return false;
+      }
+      try {
+        await this.blob.put(blobPath, body, {
+          access: "private", addRandomSuffix: false, allowOverwrite: false,
+          contentType: normalized.endsWith(".json") ? "application/json; charset=utf-8" : "application/octet-stream",
+          storeId: this.storeId,
+        });
+      } catch (error) {
+        if (!/already exists|already been taken|conflict/i.test(String(error?.message))) throw error;
+      }
+      await client.query(`
+        INSERT INTO terramatch_artifacts (artifact_key, blob_path, sha256, byte_size, immutable)
+        VALUES ($1, $2, $3, $4, false)
+        ON CONFLICT (artifact_key) DO NOTHING
+      `, [normalized, blobPath, sha256, body.byteLength]);
+      await client.query("COMMIT");
+      return true;
+    } catch (error) {
+      await client.query("ROLLBACK").catch(() => {});
+      throw error;
+    } finally { client.release(); }
+  }
+
   async #write(key, bytes, immutable) {
     await this.ensureSchema();
     const normalized = this.normalizeKey(key);
@@ -301,6 +338,7 @@ export class VercelJsonArtifactStore {
       await client.query("BEGIN");
       await client.query("SELECT pg_advisory_xact_lock(hashtextextended('terramatch:latest-run-set', 0))");
       for (const [targetKey, sourceKey, pointerKey] of pairs) {
+        await client.query("SELECT pg_advisory_xact_lock(hashtextextended($1, 0))", [targetKey]);
         const { rows } = await client.query(
           "SELECT blob_path, sha256, byte_size FROM terramatch_artifacts WHERE artifact_key = $1",
           [sourceKey],

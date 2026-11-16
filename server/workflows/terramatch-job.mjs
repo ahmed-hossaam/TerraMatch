@@ -5,6 +5,7 @@ import { dirname, join, resolve } from "node:path";
 import { createVercelArtifactStoreFromEnvironment } from "../../scripts/storage/vercel-json-artifact-store.mjs";
 import { useStorage } from "nitro/storage";
 import { hydrateJobRunnerAssets } from "./job-runner-assets.mjs";
+import { createCompletedPayload } from "./job-retry-state.mjs";
 
 const FIXED_INPUTS = [
   "processed/reference-sites.json",
@@ -274,13 +275,7 @@ async function publishJob(jobId, discoveryRunId, comparisonRunId) {
   return withStore(async (store) => {
     const row = await store.getJob(jobId);
     if (!row) throw new Error(`Durable job ${jobId} disappeared before publication.`);
-    const payload = {
-      ...row.payload,
-      status: "completed",
-      discoveryRunId,
-      comparisonRunId,
-      updatedAt: new Date().toISOString(),
-    };
+    const payload = createCompletedPayload(row.payload, discoveryRunId, comparisonRunId);
     await store.publishValidatedJob({ jobId, discoveryRunId, comparisonRunId, jobPayload: payload });
     return { jobId, status: "completed", discoveryRunId, comparisonRunId };
   });

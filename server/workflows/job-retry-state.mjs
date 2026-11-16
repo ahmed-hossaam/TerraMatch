@@ -8,3 +8,15 @@ export function createRetryPayload(payload, updatedAt = new Date().toISOString()
     updatedAt,
   };
 }
+
+export function createCompletedPayload(payload, discoveryRunId, comparisonRunId, updatedAt = new Date().toISOString()) {
+  return {
+    ...payload,
+    status: "completed",
+    discoveryRunId,
+    comparisonRunId,
+    failureStage: null,
+    error: null,
+    updatedAt,
+  };
+}

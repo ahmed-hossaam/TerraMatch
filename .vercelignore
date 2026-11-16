@@ -1,6 +1,6 @@
-# Scientific source and processed JSON artifacts are seeded into private Blob.
-# Vercel runtime reads mutable/immutable application data through the storage adapter.
-data/
+# Retain tracked data during the build so the guarded Preview seeder can read it.
+# Runtime access still goes through private Blob; bundling is controlled by the
+# function output trace rather than excluding data before the build can seed it.
 
 # Build outputs are recreated by the configured Vercel build command.
 dist/

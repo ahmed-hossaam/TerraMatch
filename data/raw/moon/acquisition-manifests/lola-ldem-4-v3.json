@@ -1,0 +1,122 @@
+{
+  "schemaVersion": "1.0.0",
+  "datasetId": "moon-lola-global-topography",
+  "productId": "LDEM_4",
+  "productVersion": "V3.0",
+  "release": null,
+  "provider": "NASA Planetary Data System Geosciences Node / LRO LOLA team",
+  "instrument": "Lunar Orbiter Laser Altimeter (LOLA)",
+  "sourceUrl": "https://pds-geosciences.wustl.edu/lro/lro-l-lola-3-rdr-v1/lrolol_1xxx/DATA/LOLA_GDR/cylindrical/jp2/ldem_4.jp2",
+  "retrievedAt": null,
+  "verifiedAt": "2026-11-17",
+  "originalFilename": "ldem_4.jp2",
+  "artifactId": "lro-lola-4-gdr-v1-ldem-4-v3-jp2",
+  "storage": "external_local_cache",
+  "format": "JPEG 2000 (JP2)",
+  "byteSize": 1436447,
+  "checksum": {
+    "algorithm": "SHA-256",
+    "value": "9193828f6fc311e858a9f30ca8a29f91948805993a1475c6d2165e290f167fe3",
+    "officialValue": null,
+    "status": "verified"
+  },
+  "coordinateReference": {
+    "targetBody": "moon",
+    "referenceFrame": "BODY-FIXED ROTATING; MEAN EARTH/POLAR AXIS OF DE421",
+    "latitudeType": "unknown",
+    "longitudeDirection": "positive_east",
+    "longitudeDomain": "-180_180",
+    "referenceRadiusM": 1737400,
+    "semiMajorAxisM": null,
+    "semiMinorAxisM": null,
+    "coordinateEpoch": null,
+    "projection": "simple_cylindrical",
+    "coordinateUnits": "degrees"
+  },
+  "variables": [
+    {
+      "name": "LDEM_4 shape-map image sample",
+      "units": "m",
+      "semantics": "Detached label names the IMAGE object HEIGHT and states samples represent height relative to the 1,737,400 m reference-radius offset; the product description calls it a shape map (radius). Packed signed 16-bit little-endian sample values use scale 0.5 and offset 1,737,400. This transform has not been applied to decoded pixels."
+    }
+  ],
+  "nodata": null,
+  "qualityMetadata": [
+    "The detached label declares MINIMUM -17758 and MAXIMUM 21008 for the uncompressed IMAGE object; these are label metadata, not independently recalculated pixel statistics.",
+    "The label does not declare MISSING_CONSTANT or MISSING_VALUE; fill and valid-sample rules remain unknown.",
+    "The label warns about possible artifacts at 45-degree latitude-band edges and says surface interpolation was used at higher resolutions to compensate for incomplete coverage."
+  ],
+  "license": {
+    "status": "unverified",
+    "terms": null,
+    "redistribution": null
+  },
+  "attribution": {
+    "citation": "LRO LOLA GDR product LDEM_4, dataset LRO-L-LOLA-4-GDR-V1.0, product version V3.0; producer institution listed as NASA Goddard Space Flight Center.",
+    "url": "https://pds.nasa.gov/ds-view/pds/viewDataset.jsp?dsid=LRO-L-LOLA-4-GDR-V1.0"
+  },
+  "acquisitionResult": "verified_existing",
+  "companionArtifacts": [
+    {
+      "sourceUrl": "https://pds-geosciences.wustl.edu/lro/lro-l-lola-3-rdr-v1/lrolol_1xxx/DATA/LOLA_GDR/cylindrical/jp2/ldem_4_jp2.lbl",
+      "originalFilename": "ldem_4_jp2.lbl",
+      "artifactId": "lro-lola-4-gdr-v1-ldem-4-v3-label",
+      "format": "PDS3 detached label",
+      "byteSize": 6602,
+      "checksum": {
+        "algorithm": "SHA-256",
+        "value": "102122e68a0cca9106fe0067d2e5027714d244ffdec87f04fa292a211f0ef4c8",
+        "officialValue": null,
+        "status": "verified"
+      }
+    }
+  ],
+  "inspection": {
+    "labelObject": {
+      "datasetId": "LRO-L-LOLA-4-GDR-V1.0",
+      "productId": "LDEM_4",
+      "productVersion": "V3.0",
+      "lines": 720,
+      "lineSamples": 1440,
+      "sampleType": "LSB_INTEGER",
+      "sampleBits": 16,
+      "scaleFactor": 0.5,
+      "offsetM": 1737400,
+      "projection": "SIMPLE CYLINDRICAL",
+      "mapResolutionPixelsPerDegree": 4,
+      "referenceRadiusKm": 1737.4,
+      "pixelRegistration": "pixel registered",
+      "longitudeDirection": "EAST",
+      "longitudeDomainDegrees": [-180, 180],
+      "latitudeDomainDegrees": [-90, 90],
+      "latitudeType": null,
+      "lineProjectionOffsetPixels": 359.5,
+      "sampleProjectionOffsetPixels": 719.5,
+      "frame": "BODY-FIXED ROTATING; MEAN EARTH/POLAR AXIS OF DE421",
+      "declaredImageMinimum": -17758,
+      "declaredImageMaximum": 21008,
+      "nodataEncoding": null
+    },
+    "jp2Header": {
+      "signatureValid": true,
+      "width": 1440,
+      "height": 720,
+      "componentCount": 1,
+      "precisionBits": 16,
+      "signed": true,
+      "horizontalSubsampling": 1,
+      "verticalSubsampling": 1,
+      "tileWidth": 1440,
+      "tileHeight": 720,
+      "pixelDecodingPerformed": false
+    }
+  },
+  "limitations": [
+    "retrievedAt is unknown; source presence in the supplied external cache is verified, but the original download timestamp was not available.",
+    "The stated expected digests supplied for this audit match the local files; no independent official checksum was found in the label.",
+    "JP2 container and codestream header were inspected only. No compressed image samples have been decoded.",
+    "No pixel statistics, valid or invalid sample counts, fill-value identification, geographic orientation verification, or observed/valid coverage computation is available.",
+    "No output raster, tiles, or map-delivery artifact has been generated.",
+    "The detached PDS label does not identify the latitude type; do not infer planetocentric or planetographic coordinates from the projection name."
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "schemaVersion": "1.0.0",
+  "artifactId": "moon-lola-ldem-4-north-polar-display-preview-v1",
+  "kind": "unvalidated_research_display_preview",
+  "input": {
+    "productId": "LDEM_4",
+    "version": "V3.0",
+    "path": "data/processed/moon/lola/ldem_4_height_m.npy",
+    "sha256": "6D750B3134F9F8272913E70793F3140DC6CE2FD857865BD9F28DD7885123D417",
+    "shapeLinesSamples": [
+      720,
+      1440
+    ],
+    "dtype": "float32",
+    "units": "m relative surface height"
+  },
+  "output": {
+    "path": "data/processed/moon/lola/ldem_4_north-polar-preview.png",
+    "format": "PNG RGBA 8-bit",
+    "width": 700,
+    "height": 700,
+    "pixelSizeM": 5000.0,
+    "byteSize": 267297,
+    "sha256": "AC9DE3AB1D5DFB0C03C7481595C6B6C8E4B1DFAFD3025219BDEBC302088C665A"
+  },
+  "projection": {
+    "name": "spherical polar stereographic display",
+    "hemisphere": "north",
+    "targetBody": "Moon",
+    "referenceFrame": "MEAN EARTH/POLAR AXIS OF DE421",
+    "latitudeType": "planetocentric",
+    "longitudeDirection": "positive east",
+    "longitudeOriginDegrees": 0,
+    "referenceSphereRadiusM": 1737400.0,
+    "trueScaleAtPole": true,
+    "angularDomain": "longitude [-180, 180), latitude >= 50 degrees north",
+    "cutoffLatitudeDegrees": 50.0,
+    "projectedCutoffRadiusM": 1264723.7700282,
+    "forwardEquations": {
+      "rho": "2R*tan((90-|latitude|)/2)",
+      "x": "rho*sin(longitude)",
+      "yNorth": "-rho*cos(longitude)",
+      "ySouth": "rho*cos(longitude)"
+    },
+    "inverseEquations": {
+      "angularDistance": "2*atan(hypot(x,y)/(2R))",
+      "latitudeNorth": "90-angularDistance",
+      "latitudeSouth": "-90+angularDistance",
+      "longitudeNorth": "atan2(x,-y)",
+      "longitudeSouth": "atan2(x,y)"
+    },
+    "rasterPixelRegistration": "pixel centers are sampled at ((column+0.5-width/2)*pixelSize, (height/2-row-0.5)*pixelSize)",
+    "coordinateToSourceGrid": "inverse project then nearest containing source cell using Phase 10 LDEM_4 pixel-center mapping; no bilinear interpolation"
+  },
+  "display": {
+    "variable": "relative surface height",
+    "units": "m",
+    "rangeM": [
+      -5320.5,
+      5681.0
+    ],
+    "rangeMethod": "LDEM_4 1st\u201399th percentile display range; color clipping only",
+    "sampling": "nearest source cell; display reprojection only",
+    "transparentOutsideProjectionDomainPixels": 288988,
+    "finiteSourceSamplePixels": 201012,
+    "nonFiniteSourceSamplePixels": 0,
+    "sourceValuesModified": false
+  },
+  "scientificStatus": {
+    "independentPointValidation": false,
+    "scientificallyValidated": false,
+    "validatedLayer": false,
+    "previewOnly": true,
+    "mapReady": false
+  },
+  "provenance": {
+    "sourceDataset": "LRO-L-LOLA-4-GDR-V1.0",
+    "sourceProduct": "LDEM_4 V3.0",
+    "sourceUrl": "https://pds-geosciences.wustl.edu/lro/lro-l-lola-3-rdr-v1/lrolol_1xxx/DATA/LOLA_GDR/cylindrical/jp2/ldem_4.jp2",
+    "renderingScript": "scripts/moon/render-lola-polar-previews.py",
+    "processing": "Reproject each target pixel center to a Moon latitude/longitude and sample the checksum-verified relative-height array by nearest containing source cell; no alteration of source values."
+  },
+  "limitations": [
+    "This projected PNG is a visual derivative, not a GeoTIFF or independently validated science product.",
+    "The underlying GDR is binned/interpolated and the valid observation footprint has not been computed.",
+    "Only the latitude cap >= 50\u00b0 north or <= 50\u00b0 south is represented; outside-cap pixels are transparent.",
+    "The 5 km output pixel spacing is a display sampling choice and does not increase source resolution.",
+    "NoData source values remain transparent; transparent pixels outside the polar cap are projection-domain exclusions, not NoData."
+  ]
+}

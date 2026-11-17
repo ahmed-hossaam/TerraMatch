@@ -1,0 +1,121 @@
+{
+  "schemaVersion": "1.0.0",
+  "artifactId": "moon-lola-ldem-4-relative-height-display-preview-v1",
+  "kind": "display_preview_not_scientific_validation",
+  "input": {
+    "productId": "LDEM_4",
+    "version": "V3.0",
+    "path": "data/processed/moon/lola/ldem_4_height_m.npy",
+    "sha256": "6D750B3134F9F8272913E70793F3140DC6CE2FD857865BD9F28DD7885123D417",
+    "dimensionsLinesSamples": [
+      720,
+      1440
+    ],
+    "dtype": "float32",
+    "units": "m relative surface height"
+  },
+  "output": {
+    "path": "data/processed/moon/lola/ldem_4_relative-height-preview.png",
+    "format": "PNG RGBA 8-bit",
+    "width": 1440,
+    "height": 720,
+    "byteSize": 1411024,
+    "sha256": "058BF946ECF7F53D962661F2D7D076648C3FA0E565C50F9355E5FE7C56D3BFE0"
+  },
+  "coordinateReference": {
+    "body": "Moon",
+    "frame": "MEAN EARTH/POLAR AXIS OF DE421",
+    "projection": "simple cylindrical / equirectangular display",
+    "latitudeType": "planetocentric per LOLA RDR SIS; inherited from product family, not declared in detached image label",
+    "longitudeDirection": "positive east",
+    "longitudeBoundsDegrees": [
+      -180,
+      180
+    ],
+    "latitudeBoundsDegrees": [
+      -90,
+      90
+    ],
+    "pixelRegistration": "area pixel; integral line/sample denotes center",
+    "pixelSizeDegrees": [
+      0.25,
+      0.25
+    ],
+    "zeroBasedPixelCenterEquations": {
+      "longitude": "(column - 719.5) / 4",
+      "latitude": "(359.5 - row) / 4"
+    },
+    "rowOrientation": "row 0 north; rows increase southward",
+    "columnOrientation": "column 0 westernmost; columns increase eastward",
+    "referenceRadiusM": 1737400,
+    "geotiffCrsAssigned": false
+  },
+  "display": {
+    "variable": "relative surface height",
+    "units": "m",
+    "rangeM": [
+      -5320.5,
+      5681.0
+    ],
+    "rangeMethod": "Existing processed artifact 1st and 99th percentiles; values outside are clipped for display only.",
+    "paletteAnchors": [
+      {
+        "fraction": 0.0,
+        "rgb": [
+          24,
+          65,
+          92
+        ]
+      },
+      {
+        "fraction": 0.5,
+        "rgb": [
+          190,
+          190,
+          177
+        ]
+      },
+      {
+        "fraction": 1.0,
+        "rgb": [
+          178,
+          78,
+          46
+        ]
+      }
+    ],
+    "noDataPolicy": "Non-finite Float32 values are transparent; finite samples are rendered.",
+    "finiteSampleCount": 1036800,
+    "transparentSampleCount": 0,
+    "sourceArrayValuesModified": false
+  },
+  "scientificStatus": {
+    "processedInput": true,
+    "spatialMappingDocumented": true,
+    "independentPointCrossCheck": false,
+    "scientificallyValidated": false,
+    "deliveryReady": false,
+    "renderableAsValidatedLayer": false,
+    "mapReady": false,
+    "previewLabel": "UNVALIDATED RESEARCH PREVIEW",
+    "coverage": "The product is a gridded/interpolated GDR; this image does not imply complete observed coverage."
+  },
+  "provenance": {
+    "sourceDataset": "LRO-L-LOLA-4-GDR-V1.0",
+    "sourceProduct": "LDEM_4 V3.0",
+    "sourceUrl": "https://pds-geosciences.wustl.edu/lro/lro-l-lola-3-rdr-v1/lrolol_1xxx/DATA/LOLA_GDR/cylindrical/jp2/ldem_4.jp2",
+    "pdsLabelUrl": "https://pds-geosciences.wustl.edu/lro/lro-l-lola-3-rdr-v1/lrolol_1xxx/DATA/LOLA_GDR/cylindrical/jp2/ldem_4_jp2.lbl",
+    "processingScript": "scripts/moon/render-lola-preview.py",
+    "processingVersion": "1.0.0",
+    "numpyVersion": "2.5.5",
+    "noDataRule": "Non-finite Float32 values are transparent; finite samples are rendered.",
+    "processing": "Colorize existing relative-height Float32 samples row-for-row; no resampling, flip, transpose, radius addition, or physical-value modification."
+  },
+  "limitations": [
+    "PNG colors encode relative elevation for visual display only and are not scientific measurements.",
+    "The 1st\u201399th percentile display range clips image colors, not source values.",
+    "No independent RDR point comparison has been completed.",
+    "The grid is binned/interpolated and its rendered pixels do not establish observation coverage or artifact-free terrain.",
+    "No Earth EPSG code or GeoTIFF CRS is assigned; this is a coordinate-addressed PNG display derivative."
+  ]
+}

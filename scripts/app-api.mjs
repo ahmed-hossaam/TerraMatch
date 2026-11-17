@@ -8,6 +8,7 @@ import { LocalJsonArtifactStore } from "./storage/local-json-artifact-store.mjs"
 import { createVercelArtifactStoreFromEnvironment } from "./storage/vercel-json-artifact-store.mjs";
 import { verifyPreviewDatabaseIdentity } from "./preview-database-identity.mjs";
 import { createRetryPayload } from "../server/workflows/job-retry-state.mjs";
+import { moonApiResponse } from "../dist/src/moon/api.js";
 
 const root = resolve(process.env.TERRAMATCH_DATA_DIR ?? process.cwd());
 const onVercel = process.env.VERCEL === "1" || process.env.VERCEL === "true";
@@ -263,6 +264,10 @@ export async function handleApiRequest(req, res) {
   try {
     const url = new URL(req.url ?? "/", `http://${req.headers.host ?? "localhost"}`);
     if (applyApiCors(req, res, url.pathname)) return;
+    if (url.pathname === "/api/moon" || url.pathname.startsWith("/api/moon/")) {
+      const response = moonApiResponse(url.pathname, url.searchParams, req.method);
+      if (response) return send(res, response.status, response.body);
+    }
     if (req.method === "GET" && url.pathname === "/api/health") return send(res,200,{status:"ok",app:"TerraMatch",planetaryScope:"Mars",apiVersion:"1.0.0"});
     if (req.method === "GET" && url.pathname === "/api/mars-evidence/rems") {
       const artifact = await optional("data/processed/mars/rems-air-temperature-v1.json");

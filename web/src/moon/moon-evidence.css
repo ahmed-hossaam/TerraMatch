@@ -1,0 +1,35 @@
+.moon-evidence-page{max-width:1550px;display:grid;gap:15px;min-width:0}
+.moon-evidence-heading{display:grid;gap:7px;padding:19px;border:1px solid var(--line);background:var(--surface-glass);border-radius:4px 15px 15px}
+.moon-evidence-heading h1{margin:0;font-size:clamp(28px,4vw,42px)}
+.moon-evidence-heading>p{max-width:850px;margin:0;color:var(--muted);font-size:12px;line-height:1.65}
+.moon-evidence-summary{display:grid;gap:4px;padding:12px 14px;border-left:2px solid #e7bd67;background:#e7bd670d}
+.moon-evidence-summary>b{font-size:13px;color:#f2cd7c;text-transform:uppercase;letter-spacing:.06em}
+.moon-evidence-summary>span,.moon-evidence-summary>small{font-size:10px;color:var(--muted);line-height:1.5}
+.moon-coverage-key{padding:14px;border:1px solid var(--line);background:var(--surface-glass)}
+.moon-coverage-key h2,.moon-claim-boundaries h2{margin:0 0 9px;font-size:16px}
+.moon-coverage-key>div{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px}
+.moon-coverage-key span{font-size:10px;color:var(--muted);line-height:1.55}
+.moon-coverage-key b{display:block;color:var(--cyan);text-transform:capitalize}
+.moon-evidence-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;align-items:start}
+.moon-evidence-card{min-width:0;padding:14px;border:1px solid var(--line);background:var(--surface-glass);border-radius:4px 13px 13px}
+.moon-evidence-card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:9px}
+.moon-evidence-card h2{margin:6px 0 10px;font-size:16px;line-height:1.35}
+.moon-evidence-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+.moon-evidence-fields>div{min-width:0;display:grid;align-content:start;gap:4px;padding:8px;border:1px solid var(--line);background:var(--panel)}
+.moon-evidence-fields span{color:var(--muted-2);font-size:8px;text-transform:uppercase;letter-spacing:.07em}
+.moon-evidence-fields b{color:var(--text);font-size:9px;font-weight:500;line-height:1.5;overflow-wrap:anywhere}
+.moon-variable-list{margin-top:10px;padding:9px;border-left:2px solid #55c7e866;background:#55c7e80a}
+.moon-variable-list>b{font-size:9px;color:var(--cyan);text-transform:uppercase;letter-spacing:.08em}
+.moon-variable-list p{margin:5px 0 0;color:var(--muted);font-size:9px;line-height:1.55}
+.moon-variable-list strong{color:var(--text)}
+.moon-source-link{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin:9px 0}
+.moon-source-link a{font-size:9px;color:var(--cyan)}
+.moon-source-link span{font-size:8px;color:var(--muted-2)}
+.moon-limitations{padding-top:7px;border-top:1px solid var(--line)}
+.moon-limitations summary{cursor:pointer;color:var(--muted);font-size:9px}
+.moon-limitations ul{padding-left:17px;color:var(--muted);font-size:9px;line-height:1.6}
+.moon-limitations p{margin:5px 0;color:var(--muted-2);font-size:8px;line-height:1.5;overflow-wrap:anywhere}
+.moon-claim-boundaries{padding:15px;border:1px solid var(--line);background:var(--surface-glass)}
+.moon-claim-boundaries ul{display:grid;gap:7px;padding-left:18px;margin:0;color:var(--muted);font-size:10px;line-height:1.6}
+@media(max-width:850px){.moon-evidence-cards{grid-template-columns:1fr}}
+@media(max-width:520px){.moon-evidence-card{padding:10px}.moon-evidence-card-top{display:grid}.moon-evidence-fields{grid-template-columns:1fr}.moon-source-link{display:grid}}

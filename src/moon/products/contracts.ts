@@ -32,6 +32,10 @@ export interface MoonDatasetEntry {
   instrument: string | null;
   sourceArchiveId: string | null;
   sourceUrl: string | null;
+  /** Official product-file endpoint, separate from a landing page or documentation URL. */
+  downloadUrl: string | null;
+  /** Provider-advertised archive size, not proof that local bytes were acquired. */
+  advertisedPackageSizeBytes: number | null;
   productId: string | null;
   productVersion: string | null;
   release: string | null;

@@ -21,8 +21,8 @@ if (!datasetId || !url || !outputValue || !Number.isSafeInteger(maxBytes) || max
     const dataset = MOON_DATASETS.find((item) => item.datasetId === datasetId);
     if (!dataset) throw new Error(`Unknown registered dataset ID: ${datasetId}`);
     const requested = new URL(url);
-    const registered = dataset.sourceUrl ? new URL(dataset.sourceUrl) : null;
-    if (!registered || requested.protocol !== "https:" || requested.hostname !== registered.hostname) throw new Error("Download URL must use HTTPS and the registered official host.");
+    const registered = dataset.downloadUrl ? new URL(dataset.downloadUrl) : null;
+    if (!registered || requested.protocol !== "https:" || requested.href !== registered.href) throw new Error("Download URL must exactly match the registered official product endpoint.");
     const output = resolve(outputValue);
     const rel = relative(root, output);
     if (rel === "" || (rel !== ".." && !rel.startsWith(`..${sep}`) && !isAbsolute(rel))) throw new Error("Output must be outside the repository.");

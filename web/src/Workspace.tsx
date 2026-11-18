@@ -3,6 +3,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { api, comparisonRun, type ApiSummary, type ReferenceSite } from "./api.js";
 import { MapView, type MapRecord } from "./MapView.js";
+import { workspaceRecordHref } from "./dashboard-v2-model.js";
 
 type LoadResult<T> = { data:T; error:string; loading:boolean };
 function useLoad<T>(path:string,initial:T,loader?:(path:string)=>Promise<T>):LoadResult<T>{
@@ -15,14 +16,14 @@ function Kicker({children}:{children:React.ReactNode}){return <div className="ey
 function formatValue(value:unknown,unit:string|null=null){return typeof value==="number"&&Number.isFinite(value)?value.toFixed(2)+(unit?" "+unit:""):value==null?"Not recorded":String(value);}
 function factorLabel(id:string){const labels:Record<string,string>={T2M:"Daily mean temperature",T2M_MAX:"Daily maximum temperature",T2M_MIN:"Daily minimum temperature",RH2M:"Relative humidity",PRECTOTCORR:"Corrected precipitation",WS10M:"10 m wind speed",ALLSKY_SFC_SW_DWN:"All-sky surface shortwave radiation",daily_temperature_range:"Daily temperature range",elevation_point:"Elevation point sample",glim_xx:"GLiM level XX",glim_yy:"GLiM level YY",glim_zz:"GLiM level ZZ",mineral_evidence:"Mineral evidence",slope_roughness_relief:"Slope, roughness and relief",surface_material_class:"Surface material class",sediment_regolith_properties:"Sediment and regolith properties",uv_radiation:"UV radiation",subsurface_properties:"Subsurface properties"};return labels[id]??id.replaceAll("_"," ").replaceAll(/\b\w/g,(x)=>x.toUpperCase());}
 
-export function ExploreWorkspace(){
+export function ExploreWorkspace({dashboardV2=false}:{dashboardV2?:boolean}={}){
   const {data:summary,error:summaryError}=useLoad<ApiSummary|null>("/summary",null);
   const {data:inventory,error:inventoryError,loading}=useLoad<{records:ReferenceSite[]}>("/references",{records:[]});
   const [query,setQuery]=useState(""),[kind,setKind]=useState("all"),[selected,setSelected]=useState<MapRecord|null>(null);
   const candidates=summary?.latestDiscovery?.candidates??[];
   const allRecords:MapRecord[]=useMemo(()=>[
     ...inventory.records.filter(r=>Number.isFinite(r.latitude)&&Number.isFinite(r.longitude)).map(r=>({id:r.id,name:r.regionName??r.id,kind:"known_analog" as const,latitude:r.latitude!,longitude:r.longitude!,approximate:r.coordinatesApproximate,detail:r.country??undefined})),
-    ...candidates.filter((r:any)=>r.recordType==="candidate_region"&&Number.isFinite(r.latitude)&&Number.isFinite(r.longitude)).map((r:any)=>({id:r.id,name:summary?.latestDiscovery?.studyArea?.label??"Bounded candidate cell",kind:"candidate_region" as const,latitude:r.latitude,longitude:r.longitude,approximate:true,detail:r.status,status:r.status,cellBounds:r.cellBounds??null}))
+    ...candidates.filter((r:any)=>r.recordType==="candidate_region"&&(!dashboardV2||r.status!=="rejected_reference_overlap")&&Number.isFinite(r.latitude)&&Number.isFinite(r.longitude)).map((r:any)=>({id:r.id,name:summary?.latestDiscovery?.studyArea?.label??"Bounded candidate cell",kind:"candidate_region" as const,latitude:r.latitude,longitude:r.longitude,approximate:true,detail:r.status,status:r.status,cellBounds:r.cellBounds??null}))
   ],[inventory.records,candidates,summary?.latestDiscovery?.studyArea?.label]);
   const visibleRecords=allRecords.filter(r=>(kind==="all"||r.kind===kind)&&[r.id,r.name,r.detail??""].join(" ").toLowerCase().includes(query.trim().toLowerCase()));
   const selectedReference=selected?.kind==="known_analog"?inventory.records.find(r=>r.id===selected.id):null;
@@ -33,9 +34,9 @@ export function ExploreWorkspace(){
   const totalFactors=Object.values(factorCounts).reduce((sum:number,count:any)=>sum+Number(count),0);
   const onSelect=useCallback((record:MapRecord)=>setSelected(record),[]);
   useEffect(()=>{if(selected&&!allRecords.some(r=>r.id===selected.id))setSelected(null);if(!selected&&allRecords.length)setSelected(allRecords.find(r=>r.kind==="candidate_region")??allRecords[0]);},[allRecords,selected]);
-  const detailHref=selected?.kind==="candidate_region"?"/candidate/"+encodeURIComponent(selected.id):"/references/"+encodeURIComponent(selected?.id??"");
+  const detailHref=dashboardV2?workspaceRecordHref(selected?.kind,selected?.id??"",summary?.latestDiscoveryRunId):selected?.kind==="candidate_region"?"/candidate/"+encodeURIComponent(selected.id):"/references/"+encodeURIComponent(selected?.id??"");
   return <div className="page workspace-page">
-    <div className="workspace-heading"><div><Kicker>TERRESTRIAL REFERENCE ATLAS <span>·</span> MARS SURFACE</Kicker><h1>Explore Earth evidence.</h1><p>Move between known sites and the current bounded candidate record.</p></div><Link to="/discover" className="primary-button">Configure discovery <span>↗</span></Link></div>
+    <div className="workspace-heading"><div><Kicker>TERRESTRIAL REFERENCE ATLAS <span>·</span> {dashboardV2?"EARTH CANDIDATES":"MARS SURFACE"}</Kicker><h1>Explore Earth evidence.</h1><p>Move between known sites and the current bounded candidate record.</p><nav className="workspace-body-switch" aria-label="Explore destination"><span>Explore body</span><Link to="/explore" aria-current="page">Earth</Link><Link to="/moon">Moon · LOLA elevation</Link></nav></div><Link to={dashboardV2?"/dashboard/discover":"/discover"} className="primary-button">Configure discovery <span>↗</span></Link></div>
     {summaryError&&<div className="notice notice-error">Artifact API unavailable: {summaryError}</div>}
     <div className="spatial-grid workspace-grid">
       <aside className="map-filter-panel">

@@ -11,3 +11,4 @@
 - [Phase 7–9 — LOLA Processing](phase-7-9-lola-processing.md) — NoData-masked Float32 relative-height grid with source metadata; geospatial validation and map delivery remain incomplete.
 - [Phase 10 — LOLA Geospatial Validation](phase-10-lola-geospatial-validation.md) — official coordinate conventions and array quality screened; independent point-level cross-check remains outstanding, so no georeferenced artifact was created.
 - [Moon Finalization — Phases 11–16](moon-finalization-report.md) — independent RDR validation remains blocked; the processed LOLA grid has global and true polar stereographic display previews, all explicitly unvalidated and not map-ready.
+- [Moon Source Reassessment — 2026-11-18](moon-source-reassessment-2026-11-18.md) — the current active catalog retains only acquired, checksum-verified LOLA; metadata-only candidates were removed.

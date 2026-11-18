@@ -21,6 +21,8 @@ export function validateMoonDatasetRegistry(value: unknown): string[] {
     if (!nonEmpty(dataset.datasetId) || ids.has(dataset.datasetId)) errors.push(`${path}.datasetId is missing or duplicated.`); else ids.add(dataset.datasetId);
     for (const field of ["name", "category", "provider"] as const) if (!nonEmpty(dataset[field])) errors.push(`${path}.${field} is required.`);
     if (dataset.sourceUrl !== null && (!nonEmpty(dataset.sourceUrl) || !/^https:\/\//i.test(dataset.sourceUrl))) errors.push(`${path}.sourceUrl must be an HTTPS URL or null.`);
+    if (dataset.downloadUrl !== null && (!nonEmpty(dataset.downloadUrl) || !/^https:\/\//i.test(dataset.downloadUrl))) errors.push(`${path}.downloadUrl must be an HTTPS URL or null.`);
+    if (dataset.advertisedPackageSizeBytes !== null && (!Number.isSafeInteger(dataset.advertisedPackageSizeBytes) || dataset.advertisedPackageSizeBytes <= 0)) errors.push(`${path}.advertisedPackageSizeBytes must be a positive integer or null.`);
     if (!metadataStates.has(dataset.metadataStatus)) errors.push(`${path}.metadataStatus is invalid.`);
     if (!validCoordinateReference(dataset.coordinateReference)) errors.push(`${path}.coordinateReference is invalid or not Moon-specific.`);
     if (!dataset.spatialSupport || !["global", "near_global", "polar", "regional", "targeted", "unknown"].includes(dataset.spatialSupport.coverageClass) || !nonEmpty(dataset.spatialSupport.description)) errors.push(`${path}.spatialSupport is incomplete.`);
@@ -41,7 +43,12 @@ export function validateMoonDatasetRegistry(value: unknown): string[] {
     if (!Array.isArray(dataset.limitations) || dataset.limitations.length === 0 || dataset.limitations.some((limitation) => !nonEmpty(limitation))) errors.push(`${path}.limitations must be explicit non-empty strings.`);
     if (!nonEmpty(dataset.acquisitionAdapterId) || !nonEmpty(dataset.validationAdapterId)) errors.push(`${path} requires adapter identifiers.`);
   }
-  if (ids.size !== 13) errors.push(`Moon registry must contain exactly 13 dataset families; received ${ids.size}.`);
+  if (ids.size === 0) errors.push("Moon active catalog must contain at least one acquired dataset.");
+  for (const [index, item] of value.entries()) {
+    const dataset = item as MoonDatasetEntry;
+    if (dataset.lifecycle?.acquisition !== "acquired") errors.push(`datasets[${index}] is not acquired and must not appear in the active catalog.`);
+    if (dataset.checksum?.status !== "verified" || !/^[a-f0-9]{64}$/i.test(dataset.checksum?.value ?? "")) errors.push(`datasets[${index}] lacks a verified source checksum and must not appear in the active catalog.`);
+  }
   return errors;
 }
 
@@ -67,6 +74,6 @@ export function validateDerivedProductLineage(value: DerivedProductLineage): str
 
 
 export function validateCurrentMoonRegistry(): string[] {
-  if (MOON_REGISTRY_VERSION !== "1.0.0") return ["Unexpected Moon registry version."];
+  if (MOON_REGISTRY_VERSION !== "2.0.0") return ["Unexpected Moon registry version."];
   return validateMoonDatasetRegistry(MOON_DATASETS);
 }

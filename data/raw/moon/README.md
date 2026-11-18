@@ -1,3 +1,3 @@
 # Moon raw-source cache
 
-This directory is reserved for acquisition metadata only. Large raw lunar products must be stored in an external cache outside the Git repository, with an acquisition manifest and checksum. Do not add raw archives here.
+The active Moon catalog currently retains one acquired product: LOLA LDEM_4. Its original JP2 and detached label are stored in the external cache `F:\terra-moon-cache\lola` and are described by `acquisition-manifests/lola-ldem-4-v3.json`; checksums were verified against the bytes. Keep raw archives outside Git and do not add unacquired product placeholders here.

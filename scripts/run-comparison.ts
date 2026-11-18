@@ -3,12 +3,16 @@ import { createComparisonRun, validateComparisonRun } from "../src/comparison/co
 import { selectPointEligibleReferences } from "../src/evidence/unified.js";
 import type { LocationRecord } from "../src/types/location.js";
 const readJson=async(path:string)=>JSON.parse(await readFile(path,"utf8"));
-const optionalJson=async(path:string)=>{try{await access(path);return await readJson(path);}catch{return null;}};
+const optionalJson=async(path:string)=>{try{return await readJson(path);}catch(error){if((error as {code?:string}|null)?.code==="ENOENT")return null;throw error;}};
 const discovery=await readJson(process.env.DISCOVERY_OUTPUT??"data/processed/discovery-runs/latest.json");
 const allReferences=await readJson("data/processed/reference-sites.json") as LocationRecord[];
 const curation=await readJson("data/curation/reference-curation-v1.json");
 const references=selectPointEligibleReferences(allReferences,curation.records);
-const knownHistory=await readJson("data/processed/climate/known-sites-daily.json");
+// Some deployments and isolated data roots do not have the optional Earth
+// reference climate archive. Its absence should be represented as unavailable
+// comparison evidence, not fail the entire comparison job before factor-level
+// statuses can be produced.
+const knownHistory=await optionalJson("data/processed/climate/known-sites-daily.json")??[];
 const histories:Record<string,any>={};
 for(const history of Array.isArray(knownHistory)?knownHistory:[knownHistory])if(history?.locationId){history.sourceFilePath="data/processed/climate/known-sites-daily.json";histories[history.locationId]=history;}
 for(const id of ["DALL","DAL","AHS-GH"]){histories[id]=await optionalJson(`data/processed/supplementary-evidence/${id}-climate.json`);if(histories[id])histories[id].sourceFilePath=`data/processed/supplementary-evidence/${id}-climate.json`;}

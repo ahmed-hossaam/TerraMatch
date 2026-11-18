@@ -28,11 +28,12 @@ test("Moon map positions use Phase 2 longitude wrapping and coordinate validity"
 
 test("registered families map to honest non-renderable states, separating processed-but-unvalidated LOLA from absent sources", () => {
   const layers = getDefaultMoonMapLayers();
-  assert.equal(layers.length, 13);
-  assert.equal(new Set(layers.map((layer) => layer.datasetId)).size, 13);
+  assert.equal(layers.length, 1);
+  assert.deepEqual(layers.map((layer) => layer.datasetId), ["moon-lola-global-topography"]);
   assert.equal(getRenderableMoonLayers(layers).length, 0);
-  assert.equal(layers.filter((layer) => layer.availability === "not_acquired").length, 12);
+  assert.equal(layers.filter((layer) => layer.availability === "not_acquired").length, 0);
   assert.equal(layers.find((layer) => layer.datasetId === "moon-lola-global-topography")?.availability, "not_validated");
+  assert.equal(layers.find((layer) => layer.datasetId === "moon-lola-global-topography")?.researchDisplayAvailable, true);
   assert.equal(layers.find((layer) => layer.datasetId === "moon-lola-global-topography")?.decodingState, "completed");
   assert.equal(layers.find((layer) => layer.datasetId === "moon-lola-global-topography")?.processingState, "completed");
   assert.ok(layers.every((layer) => layer.coordinateReference.targetBody === "moon"));
@@ -65,7 +66,10 @@ test("inspection, processing, validation, and delivery are separate map readines
 test("Moon prototype does not import Earth imagery or fabricate surface features", async () => {
   const source = await readFile("web/src/moon/MoonMapView.tsx", "utf8");
   assert.match(source, /config\.prototypeNotice/);
-  assert.match(source, /no acquired lunar feature data/);
+  assert.match(source, /LOLA research display is off/);
+  assert.match(source, /renderLolaRgba/);
+  assert.match(source, /ldem_4_height_m\.npy\?url/);
+  assert.ok(!/ldem_4_(?:relative-height|north-polar|south-polar)-preview\.png/.test(source));
   assert.ok(!/services\.arcgisonline|world-atlas|candidate_region|known_analog/.test(source));
 });
 
@@ -78,4 +82,14 @@ test("Moon route is wired to API-driven page and preserves the separate Mars rou
   assert.match(app, /<NavLink to="\/moon">Moon<\/NavLink>/);
   assert.match(page, /getMoonSummary\(\).*getMoonDatasets\(\).*getMoonLayers\(\).*getMoonCoverage\(\).*getMoonMapConfig\(\)/s);
   assert.match(client, /import \{ api \} from "\.\.\/api\.js"/);
+});
+
+test("Moon catalog layout fills its workspace and stacks map and catalog responsively", async () => {
+  const pageCss = await readFile("web/src/moon/moon-page.css", "utf8");
+  const mapCss = await readFile("web/src/moon/moon-map.css", "utf8");
+  assert.match(pageCss, /\.moon-page\{max-width:none;width:100%/);
+  assert.match(mapCss, /grid-template-columns:minmax\(0,1\.45fr\) minmax\(320px,\.95fr\)/);
+  assert.match(mapCss, /@media\(max-width:1050px\)\{\.moon-map-layout\{grid-template-columns:minmax\(0,1fr\)\}/);
+  assert.match(mapCss, /@media\(max-width:520px\)/);
+  assert.match(mapCss, /\.moon-map-controls button\{width:100%;min-height:40px\}/);
 });

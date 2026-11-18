@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
+import { createHash } from "node:crypto";
 import { DESTINATIONS } from "../src/destinations/registry.js";
 import { validateDestinationRegistry } from "../src/destinations/validate.js";
 import { projectLunarCoordinate, unprojectLunarCoordinate, toPositiveEast, fromPositiveEast, CoordinateTransformError } from "../src/moon/coordinates.js";
@@ -8,7 +9,7 @@ import { MOON_DATASETS } from "../src/moon/registry/dataset-registry.js";
 import { validateCurrentMoonRegistry, validateMoonDatasetRegistry, validateCoverageSummary, validateDerivedProductLineage } from "../src/moon/validation/registry.js";
 import { validateRemsAirTemperatureArtifact } from "../src/mars/rems.js";
 
-const usgs = MOON_DATASETS.find((dataset) => dataset.datasetId === "moon-usgs-unified-geology")!;
+const lola = MOON_DATASETS.find((dataset) => dataset.datasetId === "moon-lola-global-topography")!;
 function throwsCode(run: () => unknown, code: string) {
   let caught: unknown;
   try { run(); } catch (error) { caught = error; }
@@ -23,24 +24,32 @@ test("destination registry includes Earth, Mars, and Moon without widening Mars 
   assert.equal(DESTINATIONS.find((item) => item.id === "moon")?.apiNamespace, "/api/moon");
 });
 
-test("Moon registry contains all 13 globally scoped product families with honest lifecycle states", () => {
-  assert.equal(MOON_DATASETS.length, 13);
+test("Moon active catalog contains only acquired checksum-verified products", () => {
+  assert.deepEqual(MOON_DATASETS.map((dataset) => dataset.datasetId), ["moon-lola-global-topography"]);
   assert.deepEqual(validateCurrentMoonRegistry(), []);
   assert.ok(MOON_DATASETS.every((dataset) => dataset.lifecycle.registration === "completed"));
-  assert.equal(MOON_DATASETS.filter((dataset) => dataset.lifecycle.acquisition === "acquired").length, 1);
-  assert.equal(MOON_DATASETS.find((dataset) => dataset.datasetId === "moon-lola-global-topography")?.lifecycle.decoding, "completed");
-  assert.equal(MOON_DATASETS.filter((dataset) => dataset.lifecycle.acquisition === "not_acquired").length, 12);
+  assert.ok(MOON_DATASETS.every((dataset) => dataset.lifecycle.acquisition === "acquired" && dataset.checksum.status === "verified" && /^[a-f0-9]{64}$/i.test(dataset.checksum.value ?? "")));
+  assert.equal(lola.lifecycle.decoding, "completed");
   assert.equal(MOON_DATASETS.filter((dataset) => dataset.lifecycle.processing === "completed").length, 1);
-  assert.equal(MOON_DATASETS.find((dataset) => dataset.datasetId === "moon-lola-global-topography")?.lifecycle.validation, "blocked");
-  assert.equal(usgs.spatialSupport.coverageClass, "global");
-  assert.equal(usgs.coordinateReference.referenceRadiusM, 1_737_400);
-  assert.equal(usgs.coordinateReference.latitudeType, "planetocentric");
-  assert.equal(usgs.coordinateReference.longitudeDirection, "positive_east");
-  assert.equal(usgs.coordinateReference.projection, "lunar_spherical_mercator");
-  assert.equal(MOON_DATASETS.find((item) => item.datasetId === "moon-permanently-shadowed-regions")?.spatialSupport.coverageClass, "polar");
-  assert.equal(MOON_DATASETS.find((item) => item.datasetId === "moon-lroc-nac-imaging")?.spatialSupport.coverageClass, "targeted");
-  assert.ok(MOON_DATASETS.find((item) => item.datasetId === "moon-lro-diviner-thermal")?.limitations.some((item) => item.includes("different periods")));
-  assert.ok(MOON_DATASETS.find((item) => item.datasetId === "moon-lro-lend-hydrogen")?.limitations.some((item) => item.includes("not a water-ice detection")));
+  assert.equal(lola.lifecycle.validation, "blocked");
+  assert.equal(lola.coordinateReference.latitudeType, "planetocentric");
+  assert.match(lola.downloadUrl ?? "", /ldem_4\.jp2$/);
+  assert.equal(lola.lifecycle.mapDelivery, "not_started");
+  assert.equal(lola.coordinateReference.referenceRadiusM, 1_737_400);
+  assert.equal(lola.spatialSupport.coverageClass, "global");
+  const unacquired = structuredClone(lola);
+  unacquired.lifecycle.acquisition = "not_acquired";
+  assert.ok(validateMoonDatasetRegistry([unacquired]).some((error) => error.includes("must not appear in the active catalog")));
+});
+
+test("retained LOLA processed artifact exists and matches its sidecar size and SHA-256", async () => {
+  const sidecar = JSON.parse(await readFile("data/processed/moon/lola/ldem_4_height_m.json", "utf8"));
+  const bytes = await readFile("data/processed/moon/lola/ldem_4_height_m.npy");
+  assert.equal(bytes.byteLength, sidecar.output.byteSize);
+  assert.equal(createHash("sha256").update(bytes).digest("hex"), sidecar.output.sha256.toLowerCase());
+  assert.equal(sidecar.sources.jp2.sha256.toLowerCase(), lola.checksum.value?.toLowerCase());
+  assert.equal(sidecar.sources.jp2.expectedIntegrityMatched, true);
+  assert.equal(sidecar.sources.pdsLabel.expectedIntegrityMatched, true);
 });
 
 test("registry validator rejects duplicate IDs and incomplete scientific metadata", () => {
@@ -52,6 +61,12 @@ test("registry validator rejects duplicate IDs and incomplete scientific metadat
   incomplete.license.status = "invented";
   assert.ok(validateMoonDatasetRegistry([incomplete]).some((error) => error.includes("coordinateReference")));
   assert.ok(validateMoonDatasetRegistry([incomplete]).some((error) => error.includes("semantics")));
+  const unsafeDownload = structuredClone(MOON_DATASETS[0]) as any;
+  unsafeDownload.downloadUrl = "file:///outside/moon.img";
+  assert.ok(validateMoonDatasetRegistry([unsafeDownload]).some((error) => error.includes("downloadUrl")));
+  const invalidSize = structuredClone(MOON_DATASETS[0]) as any;
+  invalidSize.advertisedPackageSizeBytes = -1;
+  assert.ok(validateMoonDatasetRegistry([invalidSize]).some((error) => error.includes("advertisedPackageSizeBytes")));
 });
 
 test("lunar longitude direction conversion and wrapping respect declared domain", () => {
@@ -63,7 +78,7 @@ test("lunar longitude direction conversion and wrapping respect declared domain"
 });
 
 test("spherical lunar Mercator round-trips and rejects poles, invalid inputs, and unsupported projections", () => {
-  const reference = usgs.coordinateReference;
+  const reference = lola.coordinateReference;
   const input = { longitude: 179.75, latitude: 48.25 };
   const projected = projectLunarCoordinate(input, reference, "lunar_spherical_mercator");
   assert.ok("x" in projected);
@@ -82,7 +97,7 @@ test("coverage, product lineage, and missing-data semantics remain explicit", ()
   const goodCoverage = { nominalFootprint: 1, observedDataCoverage: null, validDataCoverage: null, interpolatedCoverage: null, unobservedCoverage: null, units: "fraction" as const, method: "not computed from files", status: "unknown" as const };
   assert.deepEqual(validateCoverageSummary(goodCoverage), []);
   assert.ok(validateCoverageSummary({ ...goodCoverage, validDataCoverage: 1 }).length > 0);
-  const lineage = { derivedProductId: "test", schemaVersion: "1.0.0" as const, inputDatasetId: "d", inputProductId: "p", inputProductVersion: "1", inputSha256: "a".repeat(64), processingCodeVersion: "1", transformations: ["unit conversion"], outputUnits: { height: "m" }, coordinateReference: usgs.coordinateReference, nodataPolicy: "preserve nulls", generatedAt: new Date().toISOString(), outputSha256: "b".repeat(64) };
+  const lineage = { derivedProductId: "test", schemaVersion: "1.0.0" as const, inputDatasetId: "d", inputProductId: "p", inputProductVersion: "1", inputSha256: "a".repeat(64), processingCodeVersion: "1", transformations: ["unit conversion"], outputUnits: { height: "m" }, coordinateReference: lola.coordinateReference, nodataPolicy: "preserve nulls", generatedAt: new Date().toISOString(), outputSha256: "b".repeat(64) };
   assert.deepEqual(validateDerivedProductLineage(lineage), []);
   assert.ok(validateDerivedProductLineage({ ...lineage, inputSha256: "bad" }).length > 0);
 });

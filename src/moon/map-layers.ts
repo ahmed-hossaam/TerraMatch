@@ -14,6 +14,8 @@ export interface MoonMapLayer {
   inspectionState: string; decodingState: string; processingState: string; mapDeliveryState: string; attribution: MoonDatasetEntry["attribution"]; limitations: string[];
   renderingType: MoonLayerRenderingType;
   availability: "renderable" | "not_acquired" | "not_inspected" | "decode_blocked" | "not_decoded" | "not_processed" | "not_validated" | "not_delivery_ready" | "unsupported";
+  /** Technically displayable from a processed local artifact, but not a validated scientific layer. */
+  researchDisplayAvailable: boolean;
   reason: string;
 }
 const supportedRenderingTypes = new Set<MoonLayerRenderingType>(["raster", "vector", "image_footprint", "point_track", "derived_coverage"]);
@@ -46,7 +48,9 @@ export function toMoonLayer(dataset: MoonDatasetEntry, renderingType: MoonLayerR
     evidenceClass: [...new Set(dataset.variables.map((variable) => variable.evidenceClass))].join(", ") || "unknown",
     units: [...new Set(dataset.variables.flatMap((variable) => variable.unit ? [variable.unit] : []))],
     coordinateReference: dataset.coordinateReference, coverage: dataset.spatialSupport, inspectionState: dataset.lifecycle.inspection, decodingState: dataset.lifecycle.decoding, processingState: dataset.lifecycle.processing, mapDeliveryState: dataset.lifecycle.mapDelivery,
-    attribution: dataset.attribution, limitations: dataset.limitations, renderingType, availability: complete ? "renderable" : availability, reason,
+    attribution: dataset.attribution, limitations: dataset.limitations, renderingType, availability: complete ? "renderable" : availability,
+    researchDisplayAvailable: dataset.datasetId === "moon-lola-global-topography" && dataset.checksum.status === "verified" && dataset.lifecycle.acquisition === "acquired" && dataset.lifecycle.decoding === "completed" && dataset.lifecycle.processing === "completed",
+    reason,
   };
 }
 export function buildMoonMapLayers(datasets: readonly MoonDatasetEntry[]): MoonMapLayer[] {

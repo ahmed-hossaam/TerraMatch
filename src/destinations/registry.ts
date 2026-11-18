@@ -21,7 +21,7 @@ export const DESTINATIONS: readonly DestinationDefinition[] = [
     bodyGeometry: { referenceRadiusM: 1737400, description: "USGS Unified Geologic Map declared spherical radius; product-specific coordinate references remain authoritative." },
     canonicalCoordinateReference: { targetBody: "moon", referenceFrame: "Mean Earth / Polar Axis (ME), provisional application reference", latitudeType: "planetocentric", longitudeDirection: "positive_east", longitudeDomain: "-180_180", referenceRadiusM: 1737400, semiMajorAxisM: null, semiMinorAxisM: null, coordinateEpoch: null, projection: "geographic", coordinateUnits: "degrees" }, coordinateReferenceStatus: "provisional",
     supportedCoordinateFrames: ["Mean Earth / Polar Axis (ME)"], supportedProjections: ["geographic", "lunar_spherical_mercator"], datasetIds: [], missionProfiles: [],
-    apiNamespace: "/api/moon", mapConfiguration: { projection: "geographic", basemapId: null, center: { longitude: 0, latitude: 0 }, zoom: 0, layerIds: ["moon-lola-global-topography", "moon-kaguya-lalt-global-topography", "moon-lro-diviner-thermal", "moon-lroc-wac-imaging", "moon-lroc-nac-imaging", "moon-chandrayaan1-m3-reflectance", "moon-clementine-uvvis", "moon-lro-illumination", "moon-permanently-shadowed-regions", "moon-lro-lend-hydrogen", "moon-grail-gravity-models", "moon-lro-minirf-radar", "moon-usgs-unified-geology"] },
+    apiNamespace: "/api/moon", mapConfiguration: { projection: "geographic", basemapId: null, center: { longitude: 0, latitude: 0 }, zoom: 0, layerIds: ["moon-lola-global-topography"] },
   },
 ] as const;
 

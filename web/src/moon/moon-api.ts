@@ -33,8 +33,8 @@ export interface MoonLolaPolarPreview {
 export interface MoonLolaPolarPreviews { schemaVersion: string; previewStatus: "unvalidated_research_preview"; projections: MoonLolaPolarPreview[]; dataPathExposed: false }
 
 export function getMoonSummary(): Promise<MoonSummary> { return api("/moon/summary"); }
-export function getMoonDatasets(): Promise<MoonDatasetCollection> { return api("/moon/datasets?offset=0&limit=13"); }
-export function getMoonLayers(): Promise<MoonLayers> { return api("/moon/layers?offset=0&limit=13"); }
+export function getMoonDatasets(): Promise<MoonDatasetCollection> { return api("/moon/datasets?offset=0&limit=100"); }
+export function getMoonLayers(): Promise<MoonLayers> { return api("/moon/layers?offset=0&limit=100"); }
 export function getMoonCoverage(): Promise<MoonCoverage> { return api("/moon/coverage"); }
 export function getMoonMapConfig(): Promise<MoonMapConfig> { return api("/moon/map-config"); }
 export function getMoonLolaPreview(): Promise<MoonLolaPreview> { return api("/moon/lola/preview"); }

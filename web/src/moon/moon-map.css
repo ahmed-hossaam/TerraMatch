@@ -6,15 +6,15 @@
 .moon-map-controls button,.moon-map-zoom input{accent-color:var(--cyan)}
 .moon-map-controls button{border:1px solid var(--line);background:var(--panel-2);color:var(--text);padding:8px 11px;border-radius:3px 9px 9px;cursor:pointer;font-size:10px}
 .moon-map-controls button[aria-pressed=true]{border-color:#55c7e888;color:var(--cyan);background:#55c7e811}
-.moon-map-layout{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(285px,.8fr);gap:14px;align-items:start}
+.moon-map-layout{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(320px,.95fr);gap:14px;align-items:start}
 .moon-map-main,.moon-layer-panel{min-width:0;border:1px solid var(--line);border-radius:4px 15px 15px;background:var(--surface-glass);padding:14px}
 .moon-map-main{display:grid;gap:11px}
 .moon-map-coordinate-banner{display:grid;gap:4px;color:var(--muted);font-size:10px;line-height:1.5}
 .moon-map-coordinate-banner b{color:var(--text);font-size:13px}
-.moon-map-viewport{position:relative;overflow:hidden;border:1px solid #a6bac54a;border-radius:6px;background:#252d37;aspect-ratio:2 / 1;min-height:230px}
+.moon-map-viewport{position:relative;overflow:hidden;border:1px solid #a6bac54a;border-radius:6px;background:#252d37;aspect-ratio:2 / 1;min-height:0}
 .moon-polar-viewport{width:min(100%,700px);aspect-ratio:1 / 1;justify-self:center;min-height:0}
 .moon-polar-map{aspect-ratio:1 / 1}
-.moon-map-fallback{display:grid;place-items:center;min-height:240px;padding:20px;color:var(--muted);text-align:center}
+.moon-map-fallback{position:absolute;inset:0;display:grid;place-items:center;min-height:0;padding:20px;color:var(--muted);text-align:center;background:#182532cc}
 .moon-coordinate-map{display:block;width:100%;height:100%}
 .moon-coordinate-map line{vector-effect:non-scaling-stroke}
 .moon-coordinate-map text{font:8px var(--font-mono);fill:#e3edf4a8;pointer-events:none}
@@ -37,7 +37,7 @@
 .moon-pixel-readout>b,.moon-pixel-readout>strong{color:var(--text)}
 .moon-pixel-readout>span{color:var(--muted);font:9px var(--font-mono)}
 .moon-pixel-readout>strong{font:500 18px var(--font-mono);color:var(--cyan)}
-.moon-layer-panel{display:grid;gap:10px;max-height:920px;overflow:auto}
+.moon-layer-panel{display:grid;gap:10px;max-height:min(920px,calc(100vh - 180px));overflow:auto}
 .moon-layer-panel h3{margin:5px 0;font-size:16px}
 .moon-layer-panel>div>p{font-size:10px;color:var(--muted);line-height:1.6;margin:4px 0}
 .moon-layer-list{display:grid;gap:7px}
@@ -56,5 +56,5 @@
 .moon-layer-selected{padding:9px;border:1px solid #55c7e866;color:var(--cyan);font-size:10px}
 html[data-theme=light] .moon-map-viewport{border-color:#63798b66}
 html[data-theme=light] .moon-map-notice{background:#9a701514}
-@media(max-width:900px){.moon-map-layout{grid-template-columns:minmax(0,1fr)}.moon-layer-panel{max-height:none}.moon-map-toolbar{align-items:flex-start;flex-direction:column}.moon-map-controls{justify-content:flex-start}}
-@media(max-width:520px){.moon-map-main,.moon-layer-panel{padding:10px}.moon-map-controls{display:grid;width:100%;grid-template-columns:repeat(2,minmax(0,1fr))}.moon-map-controls button{width:100%}.moon-map-viewport{min-height:180px}.moon-map-coordinate-banner span{overflow-wrap:anywhere}.moon-map-config-summary{display:grid;gap:5px}}
+@media(max-width:1050px){.moon-map-layout{grid-template-columns:minmax(0,1fr)}.moon-layer-panel{max-height:none}.moon-map-toolbar{align-items:flex-start;flex-direction:column}.moon-map-controls{justify-content:flex-start}}
+@media(max-width:520px){.moon-map-main,.moon-layer-panel{padding:10px}.moon-map-controls{display:grid;width:100%;grid-template-columns:repeat(2,minmax(0,1fr))}.moon-map-controls button{width:100%;min-height:40px}.moon-map-viewport{min-height:0}.moon-map-coordinate-banner span{overflow-wrap:anywhere}.moon-map-config-summary{display:grid;gap:5px}.moon-map-zoom{flex-wrap:wrap}.moon-map-zoom label{width:100%}.moon-layer-select{flex-wrap:wrap}}

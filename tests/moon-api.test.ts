@@ -8,7 +8,7 @@ test("Moon API summary distinguishes processed LOLA samples from validated or ma
   assert.equal(response.status, 200);
   const body = response.body as any;
   assert.equal(body.destination.id, "moon");
-  assert.equal(body.counts.registered, 13);
+  assert.equal(body.counts.registered, 1);
   assert.equal(body.counts.acquired, 1);
   assert.equal(body.counts.inspected, 1);
   assert.equal(body.counts.decoded, 1);
@@ -18,7 +18,8 @@ test("Moon API summary distinguishes processed LOLA samples from validated or ma
   assert.equal(body.counts.researchPreviews, 3);
   assert.equal(body.readiness, "unvalidated_research_preview_available");
   assert.ok(body.knownGaps.some((gap: string) => gap.includes("NoData-masked Float32 relative-height array")));
-  assert.ok(body.knownGaps.some((gap: string) => gap.includes("not been scientifically validated or georeferenced")));
+  assert.ok(body.knownGaps.some((gap: string) => gap.includes("not an independently validated scientific layer")));
+  assert.ok(body.knownGaps.some((gap: string) => gap.includes("standard lunar geospatial delivery remain incomplete")));
 });
 
 test("LOLA research preview API exposes verified display metadata without a local path", () => {
@@ -51,10 +52,12 @@ test("LOLA polar preview API exposes both real derived projections without asser
 });
 
 test("Moon dataset catalog is paginated and excludes local paths", () => {
-  const page = moonApiResponse("/api/moon/datasets", new URLSearchParams("offset=2&limit=3"))!;
+  const page = moonApiResponse("/api/moon/datasets", new URLSearchParams("offset=0&limit=100"))!;
   assert.equal(page.status, 200);
-  assert.equal((page.body.items as unknown[]).length, 3);
-  assert.equal((page.body.pagination as any).total, 13);
+  assert.equal((page.body.items as unknown[]).length, 1);
+  assert.equal((page.body.pagination as any).total, 1);
+  assert.deepEqual((page.body.items as any[]).map((item) => item.datasetId), ["moon-lola-global-topography"]);
+  assert.ok(!(page.body.items as any[]).some((item) => item.datasetId !== "moon-lola-global-topography"));
   const serialized = JSON.stringify(moonApiResponse("/api/moon/datasets")!.body);
   assert.ok(!/F:\\\\|\/home\/|\.env|BLOB_READ_WRITE_TOKEN|DATABASE_URL/.test(serialized));
 });
@@ -71,7 +74,7 @@ test("Moon coverage keeps measured/valid/derived fractions unknown until files a
   const response = moonApiResponse("/api/moon/coverage")!;
   assert.equal(response.status, 200);
   const datasets = (response.body.datasets as any[]);
-  assert.equal(datasets.length, 13);
+  assert.equal(datasets.length, 1);
   assert.ok(datasets.every((entry) => entry.observedDataCoverage === null && entry.validDataCoverage === null && entry.interpolatedOrDerivedCoverage === null && entry.nodataOrUnobservedCoverage === null));
 });
 
@@ -79,7 +82,7 @@ test("Moon layers separate unavailable registered families from renderable layer
   const response = moonApiResponse("/api/moon/layers")!;
   assert.equal(response.status, 200);
   assert.equal((response.body.renderableLayers as unknown[]).length, 0);
-  assert.equal((response.body.registeredButUnavailableLayers as unknown[]).length, 13);
+  assert.equal((response.body.registeredButUnavailableLayers as unknown[]).length, 1);
   const unavailable = response.body.registeredButUnavailableLayers as any[];
   assert.equal(unavailable.find((layer) => layer.datasetId === "moon-lola-global-topography")?.availability, "not_validated");
   const config = moonApiResponse("/api/moon/map-config")!;

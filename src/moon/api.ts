@@ -30,7 +30,7 @@ function paginated<T>(items: T[], query: URLSearchParams): { status: number; bod
   const rawOffset = query.get("offset") ?? "0", rawLimit = query.get("limit") ?? String(items.length || 1);
   if (!/^\d+$/.test(rawOffset) || !/^\d+$/.test(rawLimit)) return error(400, "INVALID_QUERY", "offset and limit must be non-negative integers.");
   const offset = Number(rawOffset), limit = Number(rawLimit);
-  if (!Number.isSafeInteger(offset) || !Number.isSafeInteger(limit) || limit < 1 || limit > 13) return error(400, "INVALID_QUERY", "offset must be safe and limit must be between 1 and 13.");
+  if (!Number.isSafeInteger(offset) || !Number.isSafeInteger(limit) || limit < 1 || limit > 100) return error(400, "INVALID_QUERY", "offset must be a safe non-negative integer and limit must be between 1 and 100.");
   return { status: 200, body: { schemaVersion: "1.0.0", items: items.slice(offset, offset + limit), pagination: { offset, limit, total: items.length, nextOffset: offset + limit < items.length ? offset + limit : null } } };
 }
 function error(status: number, code: string, message: string): MoonApiResult { return { status, body: { error: message, code } }; }
@@ -47,12 +47,12 @@ export function moonApiResponse(pathname: string, query = new URLSearchParams(),
     const renderable = renderableLayers.length;
     return { status: 200, body: {
       schemaVersion: "1.0.0", registryVersion: MOON_REGISTRY_VERSION, destination,
-      globalScope: "The registry covers whole-Moon, near-global, regional, polar, and targeted product families; nominal scope does not imply uniform resolution or valid observations.",
+      globalScope: "The active catalog contains one acquired LOLA LDEM_4 gridded product whose declared grid bounds span the Moon. Grid bounds do not establish observed or valid-data coverage.",
       counts: { registered: bodies.length, productSelected: bodies.filter((item) => item.lifecycle.productSelection === "completed").length, metadataPartiallyVerified: bodies.filter((item) => item.metadataStatus === "partial").length, acquired, inspected: lifecycleCount("completed", "inspection"), decoded: lifecycleCount("completed", "decoding"), processed: lifecycleCount("completed", "processing"), validated: lifecycleCount("completed", "validation"), renderable, researchPreviews: 3 },
       readiness: renderable ? "map_layers_available" : "unvalidated_research_preview_available",
       knownGaps: [
-        acquired ? "The LOLA LDEM_4 source is checksum-verified and processed to a NoData-masked Float32 relative-height array; spatial georeferencing and product validation remain incomplete." : "No lunar product artifacts have been acquired.",
-        "LOLA LDEM_4 has a NoData-masked Float32 relative-height array; it has not been scientifically validated or georeferenced.", "No lunar raster/vector tile delivery is configured.", "Observed, geographic valid, interpolated, and unobserved coverage fractions are not computed.",
+        acquired ? "LOLA LDEM_4 is checksum-verified and processed to a NoData-masked Float32 relative-height array. Its PDS-documented pixel-to-coordinate mapping is recorded, but independent RDR point validation and standard lunar geospatial delivery remain incomplete." : "No lunar product artifacts have been acquired.",
+        "The LDEM_4 preview is not an independently validated scientific layer; its grid bounds do not establish observed coverage.", "No lunar raster/vector tile delivery is configured.", "Observed, geographically valid, interpolated, and unobserved coverage fractions are not computed.",
       ],
     } };
   }
@@ -98,7 +98,7 @@ export function moonApiResponse(pathname: string, query = new URLSearchParams(),
     if (!/^[a-z0-9-]{1,100}$/.test(datasetId)) return error(400, "INVALID_DATASET_ID", "Dataset ID is invalid.");
     const dataset = MOON_DATASETS.find((item) => item.datasetId === datasetId);
     if (!dataset) return error(404, "UNKNOWN_DATASET", "No Moon dataset is registered with that ID.");
-    return { status: 200, body: { schemaVersion: "1.0.0", dataset, mapLayer: layers.find((layer) => layer.datasetId === datasetId) ?? null, statusExplanation: "This record describes a registered source family. It does not assert that product files were acquired or contain valid coverage." } };
+    return { status: 200, body: { schemaVersion: "1.0.0", dataset, mapLayer: layers.find((layer) => layer.datasetId === datasetId) ?? null, statusExplanation: "This active catalog record corresponds to acquired, checksum-verified product data; it does not assert independent scientific validation or complete valid coverage." } };
   }
   return error(404, "UNKNOWN_MOON_ENDPOINT", "Moon API endpoint was not found.");
 }

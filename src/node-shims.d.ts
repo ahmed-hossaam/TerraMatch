@@ -1,5 +1,7 @@
 declare module "node:fs/promises" {
   export function readFile(path: string, encoding: string): Promise<string>;
+  export function readFile(path: string): Promise<Uint8Array>;
+  export function stat(path: string): Promise<{ size: number }>;
   export function mkdir(path: string, options?: { recursive?: boolean }): Promise<void>;
   export function writeFile(path: string, data: string, encoding: string | { encoding?: string; flag?: string }): Promise<void>;
   export function rename(oldPath: string, newPath: string): Promise<void>;
@@ -27,7 +29,7 @@ declare module "node:assert/strict" {
   export default assert;
 }
 declare module "node:crypto" {
-  export function createHash(algorithm: string): { update(value: string): { digest(encoding: string): string } };
+  export function createHash(algorithm: string): { update(value: string | Uint8Array): { digest(encoding: string): string } };
   export function randomUUID(): string;
 }
 declare module "node:os" { export function tmpdir(): string; }

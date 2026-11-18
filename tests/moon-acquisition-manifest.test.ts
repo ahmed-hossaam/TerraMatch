@@ -4,13 +4,13 @@ import { readFile } from "node:fs/promises";
 import { validateMoonAcquisitionManifest } from "../src/moon/validation/acquisition-manifest.js";
 import { MOON_DATASETS } from "../src/moon/registry/dataset-registry.js";
 
-const label = MOON_DATASETS.find((item) => item.datasetId === "moon-usgs-unified-geology")!;
+const lola = MOON_DATASETS.find((item) => item.datasetId === "moon-lola-global-topography")!;
 const valid = {
-  schemaVersion: "1.0.0", datasetId: label.datasetId, productId: "SYNTHETIC-TEST-FIXTURE", productVersion: "fixture-v1", release: null,
+  schemaVersion: "1.0.0", datasetId: lola.datasetId, productId: "SYNTHETIC-TEST-FIXTURE", productVersion: "fixture-v1", release: null,
   provider: "TEST FIXTURE — NOT SCIENTIFIC DATA", instrument: null, sourceUrl: "https://example.test/fixture.zip", retrievedAt: "2026-01-01T00:00:00Z", verifiedAt: "2026-01-01T00:01:00Z",
   originalFilename: "fixture.bin", artifactId: "test-fixture-001", storage: "external_local_cache", format: "binary fixture", byteSize: 42,
   checksum: { algorithm: "SHA-256", value: "a".repeat(64), officialValue: null, status: "verified" },
-  coordinateReference: label.coordinateReference, variables: [{ name: "fixture value", units: null, semantics: "Synthetic fixture only; not an observation." }],
+  coordinateReference: lola.coordinateReference, variables: [{ name: "fixture value", units: null, semantics: "Synthetic fixture only; not an observation." }],
   nodata: null, qualityMetadata: [], license: { status: "unverified", terms: null, redistribution: null },
   attribution: { citation: null, url: null }, limitations: ["Test fixture is not a source product."], acquisitionResult: "acquired",
 } as const;

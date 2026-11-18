@@ -74,10 +74,20 @@
     ],
     "resolutionPixelsPerDegree": 4.0,
     "referenceRadiusM": 1737400,
-    "latitudeConvention": "unresolved; label does not identify planetocentric versus planetographic",
-    "pixelCenterAndOrientation": "unresolved; no verified row/column-to-coordinate transform",
+    "latitudeConvention": "planetocentric per LOLA RDR SIS coordinate-system definition; not stated in this detached image label",
+    "pixelRegistration": "pixel centers represent cell centers per PDS LOLA GDRDEM documentation",
+    "pixelCenterAndOrientation": "zero-based column increases east; row 0 is north and rows increase south, from LDEM_4 projection offsets",
+    "pixelCenterEquations": {
+      "longitude": "(column - 719.5) / 4",
+      "latitude": "(359.5 - row) / 4"
+    },
+    "pixelSizeDegrees": [0.25, 0.25],
     "geotransform": null,
-    "georeferenced": false
+    "georeferenced": false,
+    "spatialMetadataSources": [
+      { "title": "LOLA RDR SIS, section 2.4.3 Coordinate Systems", "url": "https://pds-geosciences.wustl.edu/lro/lro-l-lola-3-rdr-v1/lrolol_1xxx/document/rdrsis.htm" },
+      { "title": "LOLA GDRDEM product description", "url": "https://ode.rsl.wustl.edu/MArs/pagehelp/Content/Missions_Instruments/Lunar%20Reconnaissance%20Orbiter%20%28LRO%29/LOLA/GDR/GDRDEM.htm" }
+    ]
   },
   "coverageAndStatistics": {
     "sampleCount": 1036800,
@@ -127,8 +137,9 @@
   "unresolvedScientificDetails": [
     "NoData is taken from the supplied companion AUX XML; no additional quality mask was available.",
     "The PDS label calls the product a shape map (radius) and its image object HEIGHT relative to a reference-radius offset; output follows the requested relative-height formula only.",
-    "Latitude convention and pixel-center/row orientation remain unresolved; output is an array and is not georeferenced.",
-    "The PDS label notes potential artifacts at 45-degree latitude-band edges and interpolation at higher resolutions; this task did not assess those effects or geographic coverage."
+    "No independent LOLA RDR point comparison has validated this processed grid; scientific validation remains incomplete.",
+    "The product is binned and interpolated; valid observed versus interpolated geographic coverage is not computed, and potential latitude-band edge artifacts have not been independently assessed.",
+    "The coordinate mapping is documented, but the NPY remains an array with no encoded standard lunar CRS or GeoTIFF geotransform."
   ],
   "lifecycle": {
     "sourceAcquired": true,

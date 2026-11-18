@@ -13,7 +13,7 @@
     "api": "node scripts/app-api.mjs",
     "start": "node scripts/app-api.mjs",
     "build:app": "npm run build && npm run check:web && npm run build:web",
-    "test": "npm run build && node --test dist/tests/*.test.js tests/app-api.test.mjs tests/persistent-data.test.mjs tests/preview-database-identity.test.mjs tests/preview-migration-gate.test.mjs tests/reference-curation.test.mjs tests/storage-adapters.test.mjs tests/vercel-api-route.test.mjs tests/job-runner-assets.test.mjs tests/job-retry-state.test.mjs tests/moon-acquisition.test.mjs tests/moon-lola-preview.test.mjs",
+    "test": "npm run build && node --test dist/tests/*.test.js tests/app-api.test.mjs tests/comparison-runner-missing-history.test.mjs tests/discovery-history-persistence.test.mjs tests/persistent-data.test.mjs tests/preview-database-identity.test.mjs tests/preview-migration-gate.test.mjs tests/reference-curation.test.mjs tests/storage-adapters.test.mjs tests/vercel-api-route.test.mjs tests/job-runner-assets.test.mjs tests/job-retry-state.test.mjs tests/moon-acquisition.test.mjs tests/moon-lola-preview.test.mjs",
     "audit:atlas": "npm run build && node dist/scripts/audit-atlas.js",
     "retrieve:nasa-power": "npm run build && node dist/scripts/retrieve-nasa-power.js",
     "rebuild:nasa-power": "npm run build && node dist/scripts/rebuild-nasa-power.js",

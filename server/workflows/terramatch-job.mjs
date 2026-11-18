@@ -6,6 +6,7 @@ import { createVercelArtifactStoreFromEnvironment } from "../../scripts/storage/
 import { useStorage } from "nitro/storage";
 import { hydrateJobRunnerAssets } from "./job-runner-assets.mjs";
 import { createCompletedPayload } from "./job-retry-state.mjs";
+import { summarizeDiscoveryOutcome } from "../../dist/src/discovery/outcome.js";
 
 const FIXED_INPUTS = [
   "processed/reference-sites.json",
@@ -174,6 +175,7 @@ async function runDiscovery(jobId, input) {
       }
       await jobState(store, jobId, "running", "discovery", {
         discoveryRunId: run.runId,
+        outcome: summarizeDiscoveryOutcome(run),
         logs: [...(payload.logs ?? []), { stage: "discovery", text: `${stdout}${stderr}`.slice(-5000) }],
       }, "completed");
       return run.runId;

@@ -1,8 +1,22 @@
-import { writeFile } from "node:fs/promises";
+import { readFile, stat, writeFile } from "node:fs/promises";
+import { createHash } from "node:crypto";
 import { MOON_DATASETS, MOON_REGISTRY_VERSION } from "../src/moon/registry/dataset-registry.js";
 import { validateCurrentMoonRegistry } from "../src/moon/validation/registry.js";
 
 const errors = validateCurrentMoonRegistry();
+if (MOON_DATASETS.some((item) => item.datasetId === "moon-lola-global-topography")) {
+  try {
+    const metadata = JSON.parse(await readFile("data/processed/moon/lola/ldem_4_height_m.json", "utf8"));
+    const artifact = await readFile("data/processed/moon/lola/ldem_4_height_m.npy");
+    const digest = createHash("sha256").update(artifact).digest("hex");
+    const artifactStat = await stat("data/processed/moon/lola/ldem_4_height_m.npy");
+    if (artifactStat.size !== metadata.output.byteSize) errors.push("LOLA processed artifact byte size does not match its metadata sidecar.");
+    if (digest !== metadata.output.sha256.toLowerCase()) errors.push("LOLA processed artifact SHA-256 does not match its metadata sidecar.");
+    if (metadata.sources.jp2.sha256.toLowerCase() !== MOON_DATASETS.find((item) => item.datasetId === "moon-lola-global-topography")?.checksum.value?.toLowerCase()) errors.push("LOLA registry source checksum does not match the processed artifact provenance.");
+  } catch (error) {
+    errors.push(`LOLA acquired/processed artifact integrity check failed: ${error instanceof Error ? error.message : "unknown error"}`);
+  }
+}
 const report = {
   schemaVersion: "1.0.0", registryVersion: MOON_REGISTRY_VERSION, generatedAt: new Date().toISOString(),
   datasetCount: MOON_DATASETS.length,

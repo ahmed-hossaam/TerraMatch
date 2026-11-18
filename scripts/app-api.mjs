@@ -1,6 +1,6 @@
 import { createServer } from "node:http";
 import { spawn } from "node:child_process";
-import { access, readFile } from "node:fs/promises";
+import { access, mkdir, readFile } from "node:fs/promises";
 import { extname, join, normalize, resolve, sep } from "node:path";
 import { randomUUID } from "node:crypto";
 import { preparePersistentData } from "./prepare-persistent-data.mjs";
@@ -9,6 +9,10 @@ import { createVercelArtifactStoreFromEnvironment } from "./storage/vercel-json-
 import { verifyPreviewDatabaseIdentity } from "./preview-database-identity.mjs";
 import { createRetryPayload } from "../server/workflows/job-retry-state.mjs";
 import { moonApiResponse } from "../dist/src/moon/api.js";
+import { summarizeDiscoveryOutcome } from "../dist/src/discovery/outcome.js";
+import { createMarsTemperatureContext } from "../dist/src/comparison/mars-target-temperature.js";
+import { unsupportedRequiredFactors } from "../dist/src/discovery/supported-factors.js";
+import { compareCandidateClimate } from "../dist/src/comparison/candidate-climate.js";
 
 const root = resolve(process.env.TERRAMATCH_DATA_DIR ?? process.cwd());
 const onVercel = process.env.VERCEL === "1" || process.env.VERCEL === "true";
@@ -36,7 +40,7 @@ function applyApiCors(req, res, pathname) {
   if (origin && allowedOrigins.has(origin)) {
     res.setHeader("Access-Control-Allow-Origin", origin);
     res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type, Idempotency-Key");
     res.setHeader("Access-Control-Max-Age", "600");
   }
   if (req.method !== "OPTIONS") return false;
@@ -117,10 +121,11 @@ function candidateCellBounds(candidate, studyArea) {
 }
 async function listRuns(kind) {
   const dir = kind === "discovery" ? "data/processed/discovery-runs" : "data/processed/comparison-runs";
+  const profile = kind === "discovery" ? await optional("data/mission-profiles/mars-surface-v1.json") : null;
   const pattern = /^[a-f0-9-]{16,64}\.json$/i;
   const names = await files(dir, pattern);
   const rows=await Promise.all(names.map(async (name) => {
-    try { const x = await json(`${dir}/${name}`); return kind === "discovery" ? { runId:x.runId, createdAt:x.createdAt, status:x.status, missionId:x.missionId, candidateCount:x.candidates?.length ?? 0, configurationId:x.configurationId, studyArea:x.studyArea?.label } : { runId:x.runId, createdAt:x.createdAt, status:x.status, candidateCount:x.candidateCount, referenceCount:x.referenceDataset?.count, comparisonPairCount:x.comparisonPairCount, discoveryRunId:x.discoveryRun?.runId }; } catch { return null; }
+    try { const x = await json(`${dir}/${name}`); const outcome=kind==="discovery"?summarizeDiscoveryOutcome(x):null; return kind === "discovery" ? { runId:x.runId, createdAt:x.createdAt, status:x.status, outcome, missionId:x.missionId, missionName:x.missionName ?? profile?.missions?.find((mission) => mission.id === x.missionId)?.name ?? null, candidateCount:x.candidates?.length ?? 0, earthCandidateCount:outcome?.reviewableCandidateCount??0, evaluatedCellCount:outcome?.eligibleCandidateCount??0, excludedCandidateCount:outcome?.excludedCandidateCount??0, configurationId:x.configurationId, studyArea:x.studyArea?.label ?? null, studyAreaId:x.studyArea?.id ?? null, targetBody:x.targetBody ?? x.planet ?? "Mars", comparisonRunId:x.comparisonRunId ?? null, searchScope:x.studyArea?.boundingBox ? { kind:"bounded_grid", bounds:x.studyArea.boundingBox, spacingDegrees:x.studyArea.spacingDegrees ?? null, configuredCellLimit:x.studyArea.maxCandidates ?? null } : null } : { runId:x.runId, createdAt:x.createdAt, status:x.status, candidateCount:x.candidateCount, referenceCount:x.referenceDataset?.count, comparisonPairCount:x.comparisonPairCount, discoveryRunId:x.discoveryRun?.runId }; } catch { return null; }
   }));
   return rows.filter(Boolean).sort((a,b)=>String(b.createdAt??"").localeCompare(String(a.createdAt??"")));
 }
@@ -213,6 +218,8 @@ async function launchJob(input, request) {
   const profile = await json("data/mission-profiles/mars-surface-v1.json");
   const mission = profile.missions.find((item) => item.id === input.missionId);
   if (!mission) throw Object.assign(new Error("Select a mission in the configured Mars profile."), { status: 400 });
+  const unsupportedFactors = unsupportedRequiredFactors(mission.requiredFactorIds ?? []);
+  if (unsupportedFactors.length) throw Object.assign(new Error(`This mission profile requires evidence that the current discovery pipeline cannot retrieve: ${unsupportedFactors.join(", ")}. Select a profile whose required factors are supported.`), { status: 422, code: "UNSUPPORTED_MISSION_PROFILE", unsupportedFactors });
   const areaFiles = await files("data/discovery/study-areas", /^[-A-Za-z0-9_]+\.json$/);
   let selected = null;
   for (const file of areaFiles) { const item = await json(`data/discovery/study-areas/${file}`); if (item.studyArea?.id === input.studyAreaId) selected = { file, item }; }
@@ -225,7 +232,7 @@ async function launchJob(input, request) {
   activeJob = true;
   const jobId = randomUUID(); const createdAt = new Date().toISOString();
   const discoveryOutput = `data/app-runtime/discovery-runs/${jobId}.json`;
-  const job = { schemaVersion:"1.0.0", jobId, createdAt, updatedAt:createdAt, status:"queued", missionId:mission.id, missionName:mission.name, studyAreaId:area.id, studyAreaLabel:area.label, configurationStatus:selected.item.configurationStatus ?? "user_configured", stages:[{id:"configuration_validation",status:"completed",message:"Request, mission profile and allowlisted study area validated."},{id:"discovery",status:"queued",message:"Bounded provider retrieval and evidence screening."},{id:"discovery_validation",status:"queued",message:"Validate this exact discovery run and its archived output."},{id:"comparison",status:"queued",message:"Factor-level comparisons against current reference inventory."},{id:"comparison_validation",status:"queued",message:"Validate comparison relationships and factor states."}], logs:[], discoveryRunId:null, discoveryValidation:null, comparisonRunId:null, comparisonValidation:null, failureStage:null, error:null };
+  const job = { schemaVersion:"1.0.0", jobId, createdAt, updatedAt:createdAt, status:"queued", outcome:null, missionId:mission.id, missionName:mission.name, studyAreaId:area.id, studyAreaLabel:area.label, configurationStatus:selected.item.configurationStatus ?? "user_configured", stages:[{id:"configuration_validation",status:"completed",message:"Request, mission profile and allowlisted study area validated."},{id:"discovery",status:"queued",message:"Bounded provider retrieval and evidence screening."},{id:"discovery_validation",status:"queued",message:"Validate this exact discovery run and its archived output."},{id:"comparison",status:"queued",message:"Factor-level comparisons against current reference inventory."},{id:"comparison_validation",status:"queued",message:"Validate comparison relationships and factor states."}], logs:[], discoveryRunId:null, discoveryValidation:null, comparisonRunId:null, comparisonValidation:null, failureStage:null, error:null };
   await mkdir(jobsDir,{recursive:true}); await mkdir(outputDir,{recursive:true}); await mkdir(join(root,"data/app-runtime/discovery-runs"),{recursive:true});
   await atomic(`data/app-runtime/jobs/${jobId}.json`,job);
   void (async () => {
@@ -234,7 +241,8 @@ async function launchJob(input, request) {
       const result = await childRun(["dist/scripts/run-discovery.js"], { DISCOVERY_STUDY_AREA:`data/discovery/study-areas/${selected.file}`, DISCOVERY_MISSION_ID:mission.id, DISCOVERY_OUTPUT:discoveryOutput });
       const generated = JSON.parse(result.stdout); const discoveryRun=await json(discoveryOutput); job.discoveryRunId=generated.runId;
       if (discoveryRun.runId !== generated.runId) throw Object.assign(new Error("Discovery output identity did not match the runner result."),{stage:"discovery_validation"});
-      job.logs.push({stage:"discovery",text:result.stdout.slice(-5000)}); job.stages[1]={id:"discovery",status:"completed",message:`Discovery run ${generated.runId} completed with ${generated.candidates?.length ?? 0} candidate record(s).`};
+      job.outcome=summarizeDiscoveryOutcome(discoveryRun);
+      job.logs.push({stage:"discovery",text:result.stdout.slice(-5000)}); job.stages[1]={id:"discovery",status:"completed",message:`Discovery execution finished: ${job.outcome.reviewableCandidateCount} candidate(s) have required evidence available for review; ${job.outcome.insufficientCandidateCount} have insufficient evidence; ${job.outcome.excludedCandidateCount} were excluded.`};
       job.stages[2].status="running"; job.updatedAt=new Date().toISOString(); await atomic(`data/app-runtime/jobs/${jobId}.json`,job);
       const runReportPath=`data/processed/discovery-runs/validation-reports/${generated.runId}.json`;
       const validation = await childRun(["dist/scripts/validate-discovery.js"], { DISCOVERY_OUTPUT:discoveryOutput, DISCOVERY_VALIDATION_OUTPUT:runReportPath });
@@ -345,11 +353,56 @@ export async function handleApiRequest(req, res) {
         const metadata={...full};delete metadata.daily;
         return send(res,200,{history:{...metadata,daily},offset,limit,nextOffset:offset+Object.keys(daily).length<entries.length?offset+Object.keys(daily).length:null});
       }
+      if(req.method==="GET"&&url.pathname==="/api/target-comparisons/mars-temperature"){
+        const candidateId=url.searchParams.get("candidateId"),runId=url.searchParams.get("runId"),referenceId=url.searchParams.get("referenceId");
+        const isCandidate=Boolean(candidateId||runId);
+        if((isCandidate&&(!candidateId||!idPattern.test(candidateId)||!runId||!runPattern.test(runId)||referenceId))||(!isCandidate&&(!referenceId||!idPattern.test(referenceId))))return send(res,400,{code:"INVALID_QUERY",error:"Provide either a valid candidateId with stored runId, or an eligible referenceId."});
+        let history,earthRecord;
+        if(isCandidate){
+          const run=await optional(`data/processed/discovery-runs/${runId}.json`);
+          const candidate=run?.candidates?.find((item)=>item.id===candidateId&&item.recordType==="candidate_region");
+          if(!candidate)return send(res,404,{code:"CANDIDATE_NOT_FOUND",error:"Candidate is not present in that stored discovery run."});
+          const historyPath=candidate.sources?.climate?.normalizedDailyPath;
+          if(!historyPath)return send(res,409,{code:"CANDIDATE_CLIMATE_UNAVAILABLE",error:"This candidate has no stored NASA POWER daily history for temperature context."});
+          history=await optional(historyPath);
+          if(!history)return send(res,409,{code:"CANDIDATE_CLIMATE_UNAVAILABLE",error:"The candidate's referenced NASA POWER climate artifact is not present in this data store."});
+          earthRecord={recordType:"candidate_region",id:candidate.id};
+        }else{
+          const reference=artifacts.references.find((item)=>item.id===referenceId);
+          if(!reference)return send(res,404,{code:"REFERENCE_NOT_FOUND",error:"Earth reference was not found."});
+          const curation=artifacts.curation.find((item)=>item.stableId===referenceId);
+          if(!["keep_verified","keep_with_limitations"].includes(curation?.preliminaryDecision))return send(res,409,{code:"REFERENCE_NOT_POINT_ELIGIBLE",error:"This Earth reference is not eligible for point-based context under the current curation policy."});
+          const histories=await optional("data/processed/climate/known-sites-daily.json");
+          history=Array.isArray(histories)?histories.find((item)=>item.locationId===referenceId):null;
+          if(!history||history.provider!=="NASA POWER"||!Array.isArray(history.daily))return send(res,409,{code:"REFERENCE_CLIMATE_UNAVAILABLE",error:"No compatible stored NASA POWER daily history is available for this reference."});
+          earthRecord={recordType:"known_analog",id:referenceId,label:reference.regionName??referenceId};
+        }
+        const rems=await optional("data/processed/mars/rems-air-temperature-v1.json");
+        if(!rems||rems.status!=="available")return send(res,503,{code:"MARS_TEMPERATURE_UNAVAILABLE",error:"Curiosity REMS temperature evidence is not available."});
+        try { const comparison=createMarsTemperatureContext(history,rems);return comparison?send(res,200,{...comparison,earthRecord}):send(res,409,{code:"INSUFFICIENT_TEMPERATURE_SAMPLES",error:"The stored Earth or Mars record has no valid temperature samples for descriptive context."}); }
+        catch(error){return send(res,422,{code:"INCOMPATIBLE_TEMPERATURE_METADATA",error:error instanceof Error?error.message:"Temperature metadata is invalid."});}
+      }
+      if(req.method==="GET"&&url.pathname==="/api/candidate-comparisons/climate"){
+        const candidateA=url.searchParams.get("candidateA"),runAId=url.searchParams.get("runA"),candidateB=url.searchParams.get("candidateB"),runBId=url.searchParams.get("runB");
+        if(!candidateA||!idPattern.test(candidateA)||!runAId||!runPattern.test(runAId)||!candidateB||!idPattern.test(candidateB)||!runBId||!runPattern.test(runBId))return send(res,400,{code:"INVALID_QUERY",error:"Provide two valid candidate IDs and their stored discovery run IDs."});
+        if(candidateA===candidateB&&runAId===runBId)return send(res,400,{code:"DUPLICATE_CANDIDATE",error:"Select two different Earth candidate records."});
+        const [runA,runB]=await Promise.all([optional(`data/processed/discovery-runs/${runAId}.json`),optional(`data/processed/discovery-runs/${runBId}.json`)]);
+        if(!runA||!runB)return send(res,404,{code:"DISCOVERY_RUN_NOT_FOUND",error:"One or both stored discovery runs were not found."});
+        const rowA=runA.candidates?.find((item)=>item.id===candidateA&&item.recordType==="candidate_region"&&item.status==="evidence_supported_for_review");
+        const rowB=runB.candidates?.find((item)=>item.id===candidateB&&item.recordType==="candidate_region"&&item.status==="evidence_supported_for_review");
+        if(!rowA||!rowB)return send(res,404,{code:"REVIEWABLE_CANDIDATE_NOT_FOUND",error:"Both candidates must be stored reviewable candidate records in their specified runs."});
+        const pathA=rowA.sources?.climate?.normalizedDailyPath,pathB=rowB.sources?.climate?.normalizedDailyPath;
+        if(!pathA||!pathB)return send(res,409,{code:"CANDIDATE_CLIMATE_UNAVAILABLE",error:"One or both candidates do not have stored NASA POWER daily histories."});
+        const [historyA,historyB]=await Promise.all([optional(pathA),optional(pathB)]);
+        if(!historyA||!historyB)return send(res,409,{code:"CANDIDATE_CLIMATE_UNAVAILABLE",error:"One or both candidate climate artifacts are missing from this data store."});
+        try { const comparison=compareCandidateClimate(historyA,historyB); if(comparison.status!=="descriptive")return send(res,409,{code:"NO_SHARED_VALID_FACTORS",error:"The selected candidates have no shared valid NASA POWER factors for comparison."}); return send(res,200,{...comparison,records:{candidateA:{...comparison.records.candidateA,candidateId:candidateA,discoveryRunId:runAId},candidateB:{...comparison.records.candidateB,candidateId:candidateB,discoveryRunId:runBId}}}); }
+        catch(error){return send(res,422,{code:"INCOMPATIBLE_CANDIDATE_EVIDENCE",error:error instanceof Error?error.message:"Candidate climate metadata is invalid."});}
+      }
       const candidateMatch=url.pathname.match(/^\/api\/candidates\/([^/]+)\/evidence$/);if(req.method==="GET"&&candidateMatch){const id=decodeURIComponent(candidateMatch[1]);if(!idPattern.test(id))return send(res,400,{error:"Invalid candidate ID."});const runId=url.searchParams.get("run");if(runId&&!runPattern.test(runId))return send(res,400,{error:"Invalid discovery run ID."});const run=runId?await optional(`data/processed/discovery-runs/${runId}.json`):artifacts.discovery;const candidate=run?.candidates?.find((x)=>x.id===id&&x.recordType==="candidate_region");if(!candidate)return send(res,404,{error:"Candidate not found in a stored discovery run."});const climateRef=candidate.sources?.climate?.normalizedDailyPath?artifactKey(candidate.sources.climate.normalizedDailyPath):null;let climateSummary=null;if(climateRef){const pageIndex=await optional(climateRef.replace(/-daily\.json$/,"-daily-pages")+"/index.json");if(pageIndex){climateSummary={...pageIndex};delete climateSummary.pages;}else{const full=await optional(climateRef);if(full){climateSummary={...full};delete climateSummary.daily;}}}return send(res,200,{candidate:{...candidate,cellBounds:candidateCellBounds(candidate,run.studyArea),missionId:run.missionId,missionProfileId:run.missionProfileId,studyArea:run.studyArea,discoveryRunId:run.runId,referenceMasking:run.referenceMasking??null},sources:{climate:climateSummary,terrain:candidate.sources?.terrain??null,geology:candidate.sources?.geology??null}});}
       return send(res,404,{error:"API route not found."});
     }
     const webRoot=resolve(root,"web-dist");const requested=decodeURIComponent(url.pathname==="/"?"/index.html":url.pathname);const resolved=resolve(webRoot,`.${normalize(requested)}`);if(!resolved.startsWith(webRoot+sep)&&resolved!==webRoot)return send(res,400,{error:"Invalid path."});let target=resolved;try{await access(target);}catch{target=join(webRoot,"index.html");}try{const data=await readFile(target);const ext=extname(target);const mime={".html":"text/html; charset=utf-8",".js":"text/javascript; charset=utf-8",".css":"text/css; charset=utf-8",".svg":"image/svg+xml",".json":"application/json"}[ext]??"application/octet-stream";res.writeHead(200,{"content-type":mime});res.end(data);}catch{return send(res,404,{error:"Frontend build not found. Run npm run build:web."});}
-  } catch(error) { if (process.env.NODE_ENV !== "production") console.error(error); send(res,error?.status??500,{error:error?.status?error.message:"Request could not be completed."}); }
+  } catch(error) { if (process.env.NODE_ENV !== "production") console.error(error); const body={error:error?.status?error.message:"Request could not be completed.",...(error?.code?{code:error.code}:{}),...(Array.isArray(error?.unsupportedFactors)?{unsupportedFactors:error.unsupportedFactors}:{})}; send(res,error?.status??500,body); }
 }
 
 // The Vercel Function imports this handler and must not start a server. Local

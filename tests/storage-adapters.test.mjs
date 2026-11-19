@@ -6,6 +6,7 @@ import { test } from "node:test";
 import { createHash } from "node:crypto";
 import { getIncidentManifestPaths, runReadOnlyArtifactDiagnostic, sanitizeDiagnosticOutput } from "../scripts/diagnose-vercel-artifact-store.mjs";
 import { DIAGNOSTIC_RUNTIME_INPUTS, VERCEL_FUNCTION_ALIASES, packageArtifactDiagnosticInputs } from "../scripts/package-vercel-artifact-diagnostic.mjs";
+import { verifyExistingImmutableArtifact } from "../scripts/migration/verify-existing-immutable-artifact.mjs";
 import { LocalJsonArtifactStore } from "../scripts/storage/local-json-artifact-store.mjs";
 import { createVercelArtifactStoreFromEnvironment, VercelJsonArtifactStore } from "../scripts/storage/vercel-json-artifact-store.mjs";
 import { Readable } from "node:stream";
@@ -254,6 +255,61 @@ test("concurrent immutable writes serialize by key and upload only the winning b
   assert.ok(events.indexOf("lock-acquired") < events.indexOf("select-for-update"));
   assert.ok(events.indexOf("select-for-update") < events.indexOf("blob-put"));
   assert.equal(objects.size, 1);
+});
+
+test("existing content-addressed Blob conflicts are verified before metadata can be inserted", async () => {
+  const bytes = Buffer.from("expected content");
+  let existingObject = Buffer.from("different content");
+  let inserted = 0;
+  const pool = {
+    async query(sql) {
+      if (sql.includes("CREATE TABLE IF NOT EXISTS")) return { rows: [] };
+      throw new Error(`Unexpected query: ${sql.slice(0, 80)}`);
+    },
+    async connect() {
+      return { async query(sql) {
+        if (["BEGIN", "COMMIT", "ROLLBACK"].includes(sql) || sql.includes("pg_advisory_xact_lock")) return { rows: [] };
+        if (sql.includes("SELECT sha256, immutable")) return { rows: [] };
+        if (sql.includes("INSERT INTO terramatch_artifacts")) { inserted += 1; return { rows: [] }; }
+        throw new Error(`Unexpected client query: ${sql.slice(0, 80)}`);
+      }, release() {} };
+    },
+  };
+  const store = new VercelJsonArtifactStore({
+    pool,
+    storeId: "test-store",
+    blob: {
+      async put() { throw new Error("Blob already exists"); },
+      async get() { return { statusCode: 200, stream: Readable.toWeb(Readable.from(existingObject)) }; },
+    },
+  });
+  await assert.rejects(store.writeBytesImmutable("evidence/conflict.csv", bytes), /failed integrity verification/);
+  assert.equal(inserted, 0);
+  existingObject = bytes;
+  await store.writeBytesImmutable("evidence/conflict.csv", bytes);
+  assert.equal(inserted, 1);
+});
+
+test("migration preserves only the known immutable key after verified database and Blob readback", async () => {
+  const preserved = Buffer.from("existing Production bytes");
+  const repository = Buffer.from("new repository bytes");
+  const hash = createHash("sha256").update(preserved).digest("hex");
+  let readCount = 0;
+  const store = {
+    pool: { async query(sql, values) {
+      assert.match(sql, /SELECT sha256, byte_size, immutable/);
+      assert.deepEqual(values, ["evidence/m2/raw/georoc/ETN-SDV-1-FEOT.csv"]);
+      return { rows: [{ sha256: hash, byte_size: preserved.byteLength, immutable: true }] };
+    } },
+    async readBytes(key) { readCount += 1; assert.equal(key, "evidence/m2/raw/georoc/ETN-SDV-1-FEOT.csv"); return preserved; },
+  };
+  const result = await verifyExistingImmutableArtifact({ store, key: "evidence/m2/raw/georoc/ETN-SDV-1-FEOT.csv", repositoryBytes: repository });
+  assert.equal(result.existingBlobVerified, true);
+  assert.equal(result.preservedSha256, hash);
+  assert.equal(result.repositoryByteSize, repository.byteLength);
+  assert.notEqual(result.repositorySha256, result.preservedSha256);
+  assert.equal(readCount, 1);
+  assert.equal(await verifyExistingImmutableArtifact({ store, key: "evidence/other.csv", repositoryBytes: repository }), null);
 });
 
 test("Production artifact diagnostic selects exactly the 46 manifest entries before the incident key", async () => {

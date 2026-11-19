@@ -188,8 +188,19 @@ export class VercelJsonArtifactStore {
         });
       } catch (error) {
         // A duplicate content-addressed path is safe only after the same hash is
-        // already present in metadata; otherwise preserve the provider failure.
+        // verified from its actual private Blob bytes; otherwise preserve the
+        // provider failure and never register unverified object contents.
         if (!/already exists|already been taken|conflict/i.test(String(error?.message))) throw error;
+        const existingBlob = await this.blob.get(blobPath, { access: "private", storeId: this.storeId, useCache: false });
+        if (!existingBlob || existingBlob.statusCode !== 200 || !existingBlob.stream) {
+          throw new Error(`Existing content-addressed Blob could not be verified: ${normalized}`);
+        }
+        const chunks = [];
+        for await (const chunk of Readable.fromWeb(existingBlob.stream)) chunks.push(Buffer.from(chunk));
+        const existingBytes = Buffer.concat(chunks);
+        if (existingBytes.byteLength !== bytes.byteLength || createHash("sha256").update(existingBytes).digest("hex") !== sha256) {
+          throw new Error(`Existing content-addressed Blob failed integrity verification: ${normalized}`);
+        }
       }
 
       await client.query(`

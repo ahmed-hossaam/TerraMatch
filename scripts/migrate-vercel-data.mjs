@@ -3,6 +3,7 @@ import { createHash } from "node:crypto";
 import { readFile, stat } from "node:fs/promises";
 import { resolve, relative, sep, isAbsolute, extname } from "node:path";
 import { createVercelArtifactStoreFromEnvironment } from "./storage/vercel-json-artifact-store.mjs";
+import { verifyExistingImmutableArtifact } from "./migration/verify-existing-immutable-artifact.mjs";
 
 const root = process.cwd();
 const dataRoot = resolve(root, "data");
@@ -43,6 +44,7 @@ let importedJobs = 0;
 let climatePageCount = 0;
 const manifest = [];
 const checksums = new Map();
+const preservedImmutableArtifacts = [];
 
 for (const repositoryPath of tracked) {
   const absolutePath = resolve(root, repositoryPath);
@@ -53,13 +55,19 @@ for (const repositoryPath of tracked) {
   const size = (await stat(absolutePath)).size;
   totalBytes += size;
   const mutable = /(^|\/)(latest\.json|validation-report\.json)$/.test(key);
+  let preservedExisting = null;
   try {
     if (mutable) await store.writeBytesIfAbsent(key, bytes);
     else await store.writeBytesImmutable(key, bytes);
     stored += 1;
   } catch (error) {
-    if (/Immutable artifact already exists with different content/.test(String(error?.message))) throw error;
-    throw new Error(`Failed to migrate ${key}: ${error?.message ?? error}`);
+    if (/Immutable artifact already exists with different content/.test(String(error?.message))) {
+      preservedExisting = await verifyExistingImmutableArtifact({ store, key, repositoryBytes: bytes });
+      if (preservedExisting) preservedImmutableArtifacts.push(preservedExisting);
+      else throw error;
+    } else {
+      throw new Error(`Failed to migrate ${key}: ${error?.message ?? error}`);
+    }
   }
   const persisted = await store.pool.query(
     "SELECT sha256, byte_size FROM terramatch_artifacts WHERE artifact_key = $1",
@@ -87,11 +95,13 @@ for (const repositoryPath of tracked) {
     const { daily: _daily, ...metadata } = history;
     await store.writeJsonImmutable(`${pageRoot}/index.json`, { ...metadata, recordCount: dailyEntries.length, pageSize, pages });
   }
-  manifest.push({ key, size });
+  manifest.push({ key, sourceByteSize: size, storedByteSize: Number(persisted.rows[0].byte_size), preservedExistingCanonical: Boolean(preservedExisting) });
 }
 
-// Verify every key's durable metadata against the exact checked-in bytes, then
-// read representative small and large artifacts back through private Blob.
+// Verify every persisted key against its recorded bytes. The one preserved
+// immutable incident key is intentionally verified against Production's
+// existing checksum after a private Blob readback, not relabeled as repository
+// content. Then read representative artifacts back through private Blob.
 const expectedKeys = [...checksums.keys()];
 const persisted = await store.pool.query(
   "SELECT artifact_key, sha256, byte_size FROM terramatch_artifacts WHERE artifact_key = ANY($1::text[])",
@@ -131,6 +141,7 @@ console.log(JSON.stringify({
   totalBytes,
   importedLegacyJobCount: importedJobs,
   climateHistoryPageCount: climatePageCount,
+  preservedImmutableArtifacts,
   metadataChecksumVerification: "passed",
   blobReadbackKeys: readbackKeys,
   databaseSchema: "terramatch_artifacts, terramatch_jobs, terramatch_latest_pointers",

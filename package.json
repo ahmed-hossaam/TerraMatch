@@ -8,6 +8,7 @@
     "build:web": "vite build",
     "build:vercel": "npm run build && npm run check:web && vite build --config vite.jobs.config.ts && vite build --config vite.vercel.config.ts",
     "migrate:vercel-data": "node scripts/migrate-vercel-data.mjs",
+    "diagnose:production-artifacts": "node scripts/diagnose-vercel-artifact-store.mjs",
     "check:web": "tsc --noEmit -p tsconfig.web.json",
     "dev": "npm run build && npm run check:web && node scripts/app-dev.mjs",
     "api": "node scripts/app-api.mjs",

@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
+import { isProtectedProductionDiagnosticRequest, PRODUCTION_ARTIFACT_DIAGNOSTIC_PATH } from "../scripts/production-artifact-diagnostic-access.mjs";
 
 const previousVercel = process.env.VERCEL;
 const previousCorsOrigins = process.env.CORS_ALLOWED_ORIGINS;
@@ -93,6 +94,36 @@ test("database identity diagnostic is hidden in Production", async () => {
   process.env.VERCEL_ENV = "production";
   try {
     const req = new Request("https://terramatch.example/api/diagnostics/database-identity");
+    const response = await apiHandler({ req, url: new URL(req.url) });
+    assert.equal(response.status, 404);
+    assert.deepEqual(await response.json(), { error: "Not found." });
+  } finally {
+    if (previousEnvironment === undefined) delete process.env.VERCEL_ENV;
+    else process.env.VERCEL_ENV = previousEnvironment;
+  }
+});
+
+test("Production artifact diagnostic requires the exact SSO-protected deployment host", async () => {
+  const environment = {
+    VERCEL: "1",
+    VERCEL_ENV: "production",
+    VERCEL_PROJECT_NAME: "terramatch",
+    VERCEL_DEPLOYMENT_ID: "deployment-id",
+    VERCEL_URL: "terramatch-diagnostic-example.vercel.app",
+  };
+  const allowedUrl = new URL(`https://${environment.VERCEL_URL}${PRODUCTION_ARTIFACT_DIAGNOSTIC_PATH}`);
+  assert.equal(isProtectedProductionDiagnosticRequest({ method: "GET", url: allowedUrl, headers: { host: environment.VERCEL_URL }, environment }), true);
+  assert.equal(isProtectedProductionDiagnosticRequest({ method: "POST", url: allowedUrl, headers: { host: environment.VERCEL_URL }, environment }), false);
+  assert.equal(isProtectedProductionDiagnosticRequest({ method: "GET", url: new URL(`https://terramatch-blue.vercel.app${PRODUCTION_ARTIFACT_DIAGNOSTIC_PATH}`), headers: { host: "terramatch-blue.vercel.app" }, environment }), false);
+  assert.equal(isProtectedProductionDiagnosticRequest({ method: "GET", url: allowedUrl, headers: { host: "attacker.example" }, environment }), false);
+  assert.equal(isProtectedProductionDiagnosticRequest({ method: "GET", url: allowedUrl, headers: { host: environment.VERCEL_URL }, environment: { ...environment, VERCEL_ENV: "preview" } }), false);
+});
+
+test("Production diagnostic route is hidden from the local/untrusted application host", async () => {
+  const previousEnvironment = process.env.VERCEL_ENV;
+  process.env.VERCEL_ENV = "production";
+  try {
+    const req = new Request(`https://terramatch-blue.vercel.app${PRODUCTION_ARTIFACT_DIAGNOSTIC_PATH}`);
     const response = await apiHandler({ req, url: new URL(req.url) });
     assert.equal(response.status, 404);
     assert.deepEqual(await response.json(), { error: "Not found." });

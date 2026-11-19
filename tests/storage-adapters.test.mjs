@@ -3,6 +3,8 @@ import { mkdtemp, readFile, rm, writeFile, mkdir } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { test } from "node:test";
+import { createHash } from "node:crypto";
+import { getIncidentManifestPaths, runReadOnlyArtifactDiagnostic, sanitizeDiagnosticOutput } from "../scripts/diagnose-vercel-artifact-store.mjs";
 import { LocalJsonArtifactStore } from "../scripts/storage/local-json-artifact-store.mjs";
 import { createVercelArtifactStoreFromEnvironment, VercelJsonArtifactStore } from "../scripts/storage/vercel-json-artifact-store.mjs";
 import { Readable } from "node:stream";
@@ -138,6 +140,183 @@ test("Vercel store uses private content-addressed blobs, verifies integrity, and
   objects.values().next().value[0] ^= 0xff;
   await assert.rejects(store.readJson("processed/discovery-runs/run-1.json"), /integrity check failed/);
   assert.throws(() => store.normalizeKey("../secrets.json"), /invalid path segment/);
+});
+
+test("Vercel immutable conflicts are rejected under the key lock before Blob upload", async () => {
+  const events = [];
+  const incoming = Buffer.from("new immutable bytes");
+  const rows = new Map([["evidence/immutable.csv", { sha256: "a".repeat(64), immutable: true }]]);
+  const pool = {
+    async query(sql) {
+      if (sql.includes("CREATE TABLE IF NOT EXISTS")) return { rows: [] };
+      throw new Error(`Unexpected pool query: ${sql.slice(0, 80)}`);
+    },
+    async connect() {
+      return {
+        async query(sql, values = []) {
+          if (sql === "BEGIN") { events.push("begin"); return { rows: [] }; }
+          if (sql.includes("pg_advisory_xact_lock")) { events.push("advisory-lock"); return { rows: [] }; }
+          if (sql.includes("SELECT sha256, immutable")) {
+            events.push("select-for-update");
+            const row = rows.get(values[0]);
+            return { rows: row ? [{ ...row }] : [] };
+          }
+          if (sql === "ROLLBACK") { events.push("rollback"); return { rows: [] }; }
+          if (sql === "COMMIT") { events.push("commit"); return { rows: [] }; }
+          throw new Error(`Unexpected client query: ${sql.slice(0, 80)}`);
+        },
+        release() {},
+      };
+    },
+  };
+  let uploads = 0;
+  const blob = { async put() { uploads += 1; events.push("blob-put"); } };
+  const store = new VercelJsonArtifactStore({ pool, blob, storeId: "test-store" });
+
+  await assert.rejects(store.writeBytesImmutable("evidence/immutable.csv", incoming), /Immutable artifact already exists/);
+  assert.equal(uploads, 0);
+  assert.deepEqual(events, ["begin", "advisory-lock", "select-for-update", "rollback"]);
+});
+
+test("concurrent immutable writes serialize by key and upload only the winning bytes", async () => {
+  const events = [];
+  const rows = new Map();
+  const objects = new Map();
+  let lockHeld = false;
+  const lockQueue = [];
+  const acquireKeyLock = async () => {
+    if (!lockHeld) { lockHeld = true; return; }
+    await new Promise((resolve) => lockQueue.push(resolve));
+  };
+  const releaseKeyLock = () => {
+    const next = lockQueue.shift();
+    if (next) next();
+    else lockHeld = false;
+  };
+  const pool = {
+    async query(sql) {
+      if (sql.includes("CREATE TABLE IF NOT EXISTS")) return { rows: [] };
+      throw new Error(`Unexpected pool query: ${sql.slice(0, 80)}`);
+    },
+    async connect() {
+      let holdsLock = false;
+      return {
+        async query(sql, values = []) {
+          if (sql === "BEGIN") { events.push("begin"); return { rows: [] }; }
+          if (sql.includes("pg_advisory_xact_lock")) {
+            events.push("lock-request");
+            await acquireKeyLock();
+            holdsLock = true;
+            events.push("lock-acquired");
+            return { rows: [] };
+          }
+          if (sql.includes("SELECT sha256, immutable")) {
+            events.push("select-for-update");
+            const row = rows.get(values[0]);
+            return { rows: row ? [{ ...row }] : [] };
+          }
+          if (sql.includes("INSERT INTO terramatch_artifacts")) {
+            events.push("metadata-insert");
+            rows.set(values[0], { sha256: values[2], immutable: Boolean(values[4]) });
+            objects.set(values[1], Buffer.from(values[2]));
+            return { rows: [] };
+          }
+          if (sql === "COMMIT" || sql === "ROLLBACK") {
+            events.push(sql.toLowerCase());
+            if (holdsLock) { holdsLock = false; releaseKeyLock(); }
+            return { rows: [] };
+          }
+          throw new Error(`Unexpected client query: ${sql.slice(0, 80)}`);
+        },
+        release() { if (holdsLock) { holdsLock = false; releaseKeyLock(); } },
+      };
+    },
+  };
+  const uploaded = [];
+  const blob = {
+    async put(path, bytes) {
+      events.push("blob-put");
+      uploaded.push({ path, bytes: Buffer.from(bytes) });
+      await new Promise((resolve) => setTimeout(resolve, 5));
+      return { pathname: path };
+    },
+  };
+  const store = new VercelJsonArtifactStore({ pool, blob, storeId: "test-store" });
+  const candidates = [Buffer.from("first concurrent version"), Buffer.from("second concurrent version")];
+  const results = await Promise.allSettled(candidates.map((bytes) => store.writeBytesImmutable("evidence/concurrent.csv", bytes)));
+
+  assert.equal(results.filter((result) => result.status === "fulfilled").length, 1);
+  assert.equal(results.filter((result) => result.status === "rejected" && /Immutable artifact already exists/.test(result.reason.message)).length, 1);
+  assert.equal(uploaded.length, 1);
+  const storedHash = rows.get("evidence/concurrent.csv").sha256;
+  assert.equal(storedHash, createHash("sha256").update(uploaded[0].bytes).digest("hex"));
+  assert.ok(events.indexOf("lock-acquired") < events.indexOf("select-for-update"));
+  assert.ok(events.indexOf("select-for-update") < events.indexOf("blob-put"));
+  assert.equal(objects.size, 1);
+});
+
+test("Production artifact diagnostic selects exactly the 46 manifest entries before the incident key", async () => {
+  const manifest = JSON.parse(await readFile(new URL("../scripts/migration/vercel-seed-manifest.json", import.meta.url), "utf8"));
+  const incident = getIncidentManifestPaths(manifest);
+  assert.equal(incident.conflictIndex, 46);
+  assert.equal(incident.preceding.length, 46);
+  assert.equal(incident.sorted[46], "data/evidence/m2/raw/georoc/ETN-SDV-1-FEOT.csv");
+  assert.equal(new Set(incident.preceding).size, 46);
+});
+
+test("Production artifact diagnostic runs in a read-only transaction and uses only Blob reads/listing", async () => {
+  const tx = [];
+  const pool = { async connect() { return {
+    async query(sql) {
+      tx.push(sql);
+      if (sql === "BEGIN READ ONLY") return { rows: [] };
+      if (sql.includes("transaction_read_only")) return { rows: [{ read_only: "on", database_name: "test-db" }] };
+      if (sql.includes("information_schema.columns")) {
+        const rows = Object.entries({
+          terramatch_artifacts: ["artifact_key", "blob_path", "sha256", "byte_size", "immutable", "created_at", "updated_at"],
+          terramatch_latest_pointers: ["pointer_key", "artifact_key", "revision", "updated_at"],
+          terramatch_jobs: ["job_id", "status", "artifact_key", "payload", "created_at", "updated_at"],
+        }).flatMap(([table_name, columns]) => columns.map((column_name) => ({ table_schema: "public", table_name, column_name, data_type: "text", is_nullable: "YES" })));
+        return { rows };
+      }
+      if (sql.includes("count(*)")) return { rows: [{ artifact_count: "0", total_bytes: "0" }] };
+      if (sql.includes("FROM terramatch_artifacts WHERE artifact_key")) return { rows: [] };
+      if (sql.includes("SELECT artifact_key, blob_path FROM terramatch_artifacts")) return { rows: [] };
+      if (sql.includes("FROM terramatch_latest_pointers")) return { rows: [] };
+      if (sql.includes("FROM terramatch_jobs")) return { rows: [] };
+      if (sql === "ROLLBACK") return { rows: [] };
+      throw new Error(`Unexpected diagnostic SQL: ${sql.slice(0, 80)}`);
+    },
+    release() { tx.push("RELEASE"); },
+  }; } };
+  const blobCalls = [];
+  const blob = { async get(path, options) { blobCalls.push(["get", path, options]); return null; } };
+  const listBlobs = async (options) => { blobCalls.push(["list", options]); return { blobs: [], hasMore: false }; };
+  const report = await runReadOnlyArtifactDiagnostic({ pool, blob, listBlobs, storeId: "test-store", root: process.cwd() });
+
+  assert.equal(report.mode, "read-only");
+  assert.equal(report.database.transactionReadOnly, true);
+  assert.equal(report.manifest.precedingEntryCount, 46);
+  assert.equal(report.database.affectedArtifacts.length, 0);
+  assert.equal(report.blob.listing.available, true);
+  assert.equal(tx[0], "BEGIN READ ONLY");
+  assert.equal(tx.at(-2), "ROLLBACK");
+  assert.ok(tx.includes("RELEASE"));
+  assert.ok(tx.every((sql) => sql === "BEGIN READ ONLY" || sql === "ROLLBACK" || sql === "RELEASE" || /^(SELECT|\s*SELECT)/i.test(sql)));
+  assert.ok(blobCalls.every(([method]) => method === "get" || method === "list"));
+});
+
+test("Production diagnostic output sanitization drops credential fields and redacts credential-shaped strings", () => {
+  const sanitized = sanitizeDiagnosticOutput({
+    status: "complete",
+    artifact: { key: "evidence/a.csv", blobReadWriteToken: "should-not-appear", connectionString: "postgres://hidden" },
+    detail: "provider returned Bearer abc.def and postgres://user:password@host/db?token=secret-value",
+    values: ["safe", "eyJabcdefghijk.abcdefghijk.abcdefghijk"],
+  });
+  const serialized = JSON.stringify(sanitized);
+  assert.deepEqual(sanitized.artifact, { key: "evidence/a.csv" });
+  assert.doesNotMatch(serialized, /should-not-appear|postgres:\/\/user:password|Bearer abc\.def|eyJabcdefghijk|token=secret-value/);
+  assert.match(serialized, /\[redacted\]/);
 });
 
 

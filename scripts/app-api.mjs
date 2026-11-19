@@ -13,6 +13,8 @@ import { summarizeDiscoveryOutcome } from "../dist/src/discovery/outcome.js";
 import { createMarsTemperatureContext } from "../dist/src/comparison/mars-target-temperature.js";
 import { unsupportedRequiredFactors } from "../dist/src/discovery/supported-factors.js";
 import { compareCandidateClimate } from "../dist/src/comparison/candidate-climate.js";
+import { runConfiguredReadOnlyArtifactDiagnostic } from "./diagnose-vercel-artifact-store.mjs";
+import { isProtectedProductionDiagnosticRequest, PRODUCTION_ARTIFACT_DIAGNOSTIC_PATH } from "./production-artifact-diagnostic-access.mjs";
 
 const root = resolve(process.env.TERRAMATCH_DATA_DIR ?? process.cwd());
 const onVercel = process.env.VERCEL === "1" || process.env.VERCEL === "true";
@@ -292,6 +294,27 @@ export async function handleApiRequest(req, res) {
       if (req.method !== "GET") return send(res, 404, { error: "Not found." });
       const verification = await verifyPreviewDatabaseIdentity();
       return send(res, verification.statusCode, verification.body);
+    }
+    if (url.pathname === PRODUCTION_ARTIFACT_DIAGNOSTIC_PATH) {
+      // Vercel SSO protects the unique deployment hostname (project setting:
+      // all_except_custom_domains). Never serve this diagnostic on the public
+      // custom domain, Preview, local API, or an unrecognized Vercel context.
+      if (!onVercel || !isProtectedProductionDiagnosticRequest({ method: req.method, url, headers: req.headers })) {
+        return send(res, 404, { error: "Not found." });
+      }
+      try {
+        const report = await runConfiguredReadOnlyArtifactDiagnostic({
+          root: process.cwd(),
+          migrationStartedAt: url.searchParams.get("attemptStart"),
+        });
+        return send(res, 200, report);
+      } catch (error) {
+        return send(res, 503, {
+          status: "diagnostic_failed",
+          errorCode: error?.code ?? error?.name ?? "UnknownError",
+          detail: "The read-only diagnostic could not complete. Sensitive provider error text is suppressed.",
+        });
+      }
     }
     if (url.pathname.startsWith("/api/")) {
       if(req.method==="GET"&&url.pathname==="/api/jobs"){

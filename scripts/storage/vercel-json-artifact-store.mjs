@@ -152,43 +152,46 @@ export class VercelJsonArtifactStore {
     const normalized = this.normalizeKey(key);
     const sha256 = createHash("sha256").update(bytes).digest("hex");
     const blobPath = `${this.namespace}/objects/${sha256.slice(0, 2)}/${sha256}.json`;
-
-    // Make repeatable data seeding cheap: if metadata already points at these
-    // exact bytes, the immutable Blob object does not need to be uploaded again.
-    const known = await this.pool.query("SELECT sha256, immutable FROM terramatch_artifacts WHERE artifact_key = $1", [normalized]);
-    if (known.rows[0]?.sha256 === sha256) {
-      if (!known.rows[0].immutable && immutable) {
-        await this.pool.query("UPDATE terramatch_artifacts SET immutable = true, updated_at = now() WHERE artifact_key = $1 AND sha256 = $2", [normalized, sha256]);
-      }
-      return normalized;
-    }
-
-    // Content-addressed object names make concurrent identical uploads harmless.
-    // Existing objects are never overwritten.
-    try {
-      await this.blob.put(blobPath, bytes, {
-        access: "private", addRandomSuffix: false, allowOverwrite: false,
-        contentType: normalized.endsWith(".json") ? "application/json; charset=utf-8" : "application/octet-stream", storeId: this.storeId,
-      });
-    } catch (error) {
-      // A duplicate content-addressed path is safe only after the same hash is
-      // already present in metadata; otherwise preserve the provider failure.
-      if (!/already exists|already been taken|conflict/i.test(String(error?.message))) throw error;
-    }
-
     const client = await this.pool.connect();
     try {
       await client.query("BEGIN");
-      // Serialize even the first insert for a name; SELECT FOR UPDATE cannot
-      // lock a row that does not exist yet.
+      // Lock the logical key before examining metadata or uploading. SELECT FOR
+      // UPDATE cannot lock a row that does not exist yet, so the advisory lock
+      // also serializes concurrent first writes for this key.
       await client.query("SELECT pg_advisory_xact_lock(hashtextextended($1, 0))", [normalized]);
       const existing = await client.query("SELECT sha256, immutable FROM terramatch_artifacts WHERE artifact_key = $1 FOR UPDATE", [normalized]);
-      if (existing.rows[0]?.immutable && existing.rows[0].sha256 !== sha256) {
+      const current = existing.rows[0];
+
+      // An immutable request must never change an existing key, even when the
+      // stored row itself was previously marked mutable. Detect this before
+      // touching Blob so rejected writes cannot leave orphaned content objects.
+      if (current?.sha256 !== sha256 && current && (current.immutable || immutable)) {
         throw new Error(`Immutable artifact already exists with different content: ${normalized}`);
       }
-      if (immutable && existing.rows[0] && existing.rows[0].sha256 !== sha256) {
-        throw new Error(`Immutable artifact already exists with different content: ${normalized}`);
+
+      // Make repeatable data seeding cheap: matching bytes need no Blob upload.
+      if (current?.sha256 === sha256) {
+        if (!current.immutable && immutable) {
+          await client.query("UPDATE terramatch_artifacts SET immutable = true, updated_at = now() WHERE artifact_key = $1 AND sha256 = $2", [normalized, sha256]);
+        }
+        await client.query("COMMIT");
+        return normalized;
       }
+
+      // Upload while holding the per-key transaction lock. Blob paths are
+      // content-addressed and never overwritten; SQL metadata is committed only
+      // after the upload succeeds.
+      try {
+        await this.blob.put(blobPath, bytes, {
+          access: "private", addRandomSuffix: false, allowOverwrite: false,
+          contentType: normalized.endsWith(".json") ? "application/json; charset=utf-8" : "application/octet-stream", storeId: this.storeId,
+        });
+      } catch (error) {
+        // A duplicate content-addressed path is safe only after the same hash is
+        // already present in metadata; otherwise preserve the provider failure.
+        if (!/already exists|already been taken|conflict/i.test(String(error?.message))) throw error;
+      }
+
       await client.query(`
         INSERT INTO terramatch_artifacts (artifact_key, blob_path, sha256, byte_size, immutable)
         VALUES ($1, $2, $3, $4, $5)

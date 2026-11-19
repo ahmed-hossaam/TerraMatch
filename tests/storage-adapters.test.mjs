@@ -1,10 +1,11 @@
 import assert from "node:assert/strict";
 import { mkdtemp, readFile, rm, writeFile, mkdir } from "node:fs/promises";
 import { tmpdir } from "node:os";
-import { join } from "node:path";
+import { dirname, join } from "node:path";
 import { test } from "node:test";
 import { createHash } from "node:crypto";
 import { getIncidentManifestPaths, runReadOnlyArtifactDiagnostic, sanitizeDiagnosticOutput } from "../scripts/diagnose-vercel-artifact-store.mjs";
+import { DIAGNOSTIC_RUNTIME_INPUTS, packageArtifactDiagnosticInputs } from "../scripts/package-vercel-artifact-diagnostic.mjs";
 import { LocalJsonArtifactStore } from "../scripts/storage/local-json-artifact-store.mjs";
 import { createVercelArtifactStoreFromEnvironment, VercelJsonArtifactStore } from "../scripts/storage/vercel-json-artifact-store.mjs";
 import { Readable } from "node:stream";
@@ -262,6 +263,30 @@ test("Production artifact diagnostic selects exactly the 46 manifest entries bef
   assert.equal(incident.preceding.length, 46);
   assert.equal(incident.sorted[46], "data/evidence/m2/raw/georoc/ETN-SDV-1-FEOT.csv");
   assert.equal(new Set(incident.preceding).size, 46);
+});
+
+test("Vercel diagnostic packaging includes only the three required runtime provenance inputs", async () => {
+  const root = await mkdtemp(join(tmpdir(), "terramatch-diagnostic-package-"));
+  try {
+    const output = join(root, ".vercel", "output", "functions");
+    const server = join(output, "__server.func");
+    const api = join(output, "api", "[...].func");
+    await mkdir(server, { recursive: true });
+    await mkdir(api, { recursive: true });
+    await writeFile(join(server, "index.mjs"), "export default true;\n");
+    for (const [index, relativePath] of DIAGNOSTIC_RUNTIME_INPUTS.entries()) {
+      const source = join(root, relativePath);
+      await mkdir(dirname(source), { recursive: true });
+      await writeFile(source, `verified-${index}`);
+    }
+
+    const packaged = await packageArtifactDiagnosticInputs({ projectRoot: root, outputRoot: output });
+    assert.equal(packaged.length, 3);
+    for (const [index, path] of packaged.entries()) assert.equal(await readFile(path, "utf8"), `verified-${index}`);
+    assert.deepEqual(packaged.map((path) => path.slice(api.length + 1).replaceAll("\\", "/")), DIAGNOSTIC_RUNTIME_INPUTS);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
 });
 
 test("Production artifact diagnostic runs in a read-only transaction and uses only Blob reads/listing", async () => {

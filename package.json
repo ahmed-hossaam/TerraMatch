@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "build:web": "vite build",
-    "build:vercel": "npm run build && npm run check:web && vite build --config vite.jobs.config.ts && vite build --config vite.vercel.config.ts",
+    "build:vercel": "npm run build && npm run check:web && vite build --config vite.jobs.config.ts && vite build --config vite.vercel.config.ts && node scripts/package-vercel-artifact-diagnostic.mjs",
     "migrate:vercel-data": "node scripts/migrate-vercel-data.mjs",
     "diagnose:production-artifacts": "node scripts/diagnose-vercel-artifact-store.mjs",
     "check:web": "tsc --noEmit -p tsconfig.web.json",

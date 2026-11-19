@@ -346,11 +346,13 @@ test("Production diagnostic output sanitization drops credential fields and reda
     artifact: { key: "evidence/a.csv", blobReadWriteToken: "should-not-appear", connectionString: "postgres://hidden" },
     detail: "provider returned Bearer abc.def and postgres://user:password@host/db?token=secret-value",
     values: ["safe", "eyJabcdefghijk.abcdefghijk.abcdefghijk"],
+    createdAt: new Date("2026-11-19T12:00:00.000Z"),
   });
   const serialized = JSON.stringify(sanitized);
   assert.deepEqual(sanitized.artifact, { key: "evidence/a.csv" });
   assert.doesNotMatch(serialized, /should-not-appear|postgres:\/\/user:password|Bearer abc\.def|eyJabcdefghijk|token=secret-value/);
   assert.match(serialized, /\[redacted\]/);
+  assert.equal(sanitized.createdAt, "2026-11-19T12:00:00.000Z");
 });
 
 

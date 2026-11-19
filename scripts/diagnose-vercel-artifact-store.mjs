@@ -19,6 +19,7 @@ const BEARER_VALUE = /\bBearer\s+[^\s,;]+/gi;
 const QUERY_SECRET_VALUE = /([?&](?:access[_-]?token|token|api[_-]?key|secret|password)=)[^&#\s]+/gi;
 
 export function sanitizeDiagnosticOutput(value) {
+  if (value instanceof Date) return Number.isNaN(value.valueOf()) ? null : value.toISOString();
   if (typeof value === "string") return value.replace(SECRET_VALUE, "$1[redacted]@").replace(JWT_VALUE, "[redacted-token]").replace(BEARER_VALUE, "Bearer [redacted]").replace(QUERY_SECRET_VALUE, "$1[redacted]");
   if (Array.isArray(value)) return value.map(sanitizeDiagnosticOutput);
   if (value && typeof value === "object") {
@@ -178,6 +179,10 @@ export async function runReadOnlyArtifactDiagnostic({ pool, blob, listBlobs, sto
   const metadataPaths = new Set(databaseSnapshot.allArtifactBlobPaths.map((row) => row.blob_path));
   const listedPaths = new Set((listing.blobs ?? []).map((item) => item.pathname));
   const orphanCandidates = listing.available ? (listing.blobs ?? []).filter((item) => !metadataPaths.has(item.pathname)) : [];
+  const incidentKey = CONFLICTING_REPOSITORY_PATH.slice("data/".length);
+  const incidentRecord = databaseSnapshot.affectedArtifacts.find((row) => row.artifact_key === incidentKey) ?? null;
+  const incidentBlob = artifactBlobResults.find((item) => item.artifactKey === incidentKey) ?? null;
+  const repositoryAddressIsOrphan = attemptedBlob?.exists === true && !metadataPaths.has(attemptedPath);
   const attemptStart = migrationStartedAt ? new Date(migrationStartedAt) : null;
   const postAttemptArtifacts = attemptStart && !Number.isNaN(attemptStart.valueOf())
     ? databaseSnapshot.affectedArtifacts.filter((row) => new Date(row.created_at) >= attemptStart || new Date(row.updated_at) >= attemptStart)
@@ -202,6 +207,15 @@ export async function runReadOnlyArtifactDiagnostic({ pool, blob, listBlobs, sto
       attemptedRepositoryContentAddress: { path: attemptedPath, ...attemptedBlob, appearsReferencedInDatabase: metadataPaths.has(attemptedPath), appearsInBlobListing: listedPaths.has(attemptedPath) },
       orphanCandidates,
       orphanCandidatesAtOrAfterAttemptStart: postAttemptBlobs,
+    },
+    incidentAssessment: {
+      artifactKey: incidentKey,
+      repositoryMatchesProductionMetadata: Boolean(incidentRecord && incidentRecord.sha256 === repositoryArtifact.sha256 && Number(incidentRecord.byte_size) === repositoryArtifact.byteSize),
+      recordedProductionBlobMatchesMetadata: Boolean(incidentRecord && incidentBlob?.exists === true && incidentBlob.actualSha256 === incidentRecord.sha256 && incidentBlob.actualByteSize === Number(incidentRecord.byte_size)),
+      repositoryContentAddressExistsWithoutMetadata: repositoryAddressIsOrphan,
+      interpretation: incidentRecord && incidentRecord.sha256 !== repositoryArtifact.sha256 && incidentBlob?.actualSha256 === incidentRecord.sha256 && repositoryAddressIsOrphan
+        ? "Production metadata and its referenced Blob verify as one immutable version; the repository bytes are a distinct unreferenced content-addressed object."
+        : "The available hashes do not establish a single canonical relationship; retain all data and review manually.",
     },
     metadataRowsTouchedAtOrAfterAttemptStart: postAttemptArtifacts,
     proposedNonDestructiveRepair: [

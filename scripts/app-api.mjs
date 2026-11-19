@@ -99,13 +99,20 @@ async function readBody(req) {
 async function files(dir, pattern) {
   return artifactStore.listNames(artifactKey(dir), pattern);
 }
-async function currentArtifacts() {
-  const [references, fixtures, profile, discovery, comparison, missionReport, discoveryValidation, comparisonValidation, curation, evidence] = await Promise.all([
+let currentArtifactsInFlight = null;
+function currentArtifacts() {
+  if (currentArtifactsInFlight) return currentArtifactsInFlight;
+  const load = Promise.all([
     json("data/processed/reference-sites.json"), json("data/processed/candidate-points.json"), json("data/mission-profiles/mars-surface-v1.json"),
     optional("data/processed/discovery-runs/latest.json"), optional("data/processed/comparison-runs/latest.json"), optional("data/processed/mission-profiles/validation-report.json"),
     optional("data/processed/discovery-runs/validation-report.json"), optional("data/processed/comparison-runs/validation-report.json"), optional("data/curation/reference-curation-v1.json"), optional("data/evidence/evidence-registry-v1.json"),
-  ]);
-  return { references: Array.isArray(references) ? references : references.records ?? [], fixtures: Array.isArray(fixtures) ? fixtures : fixtures.records ?? [], profile, discovery, comparison, missionReport, discoveryValidation, comparisonValidation, curation: curation?.records ?? [], evidence: evidence?.records ?? [] };
+  ]).then(([references, fixtures, profile, discovery, comparison, missionReport, discoveryValidation, comparisonValidation, curation, evidence]) => ({
+    references: Array.isArray(references) ? references : references.records ?? [], fixtures: Array.isArray(fixtures) ? fixtures : fixtures.records ?? [], profile, discovery, comparison, missionReport, discoveryValidation, comparisonValidation, curation: curation?.records ?? [], evidence: evidence?.records ?? [],
+  }));
+  currentArtifactsInFlight = load;
+  const clear = () => { if (currentArtifactsInFlight === load) currentArtifactsInFlight = null; };
+  void load.then(clear, clear);
+  return load;
 }
 function evidenceSummaryFor(siteId, records) { const rows=records.filter((record)=>record.siteId===siteId);const countBy=(key)=>Object.fromEntries([...new Set(rows.map((row)=>row[key]))].map((value)=>[value,rows.filter((row)=>row[key]===value).length]));return{factorCount:rows.length,stateCounts:countBy("state"),basisCounts:countBy("basis"),pointComparisonEligible:rows.length>0&&rows.every((row)=>row.pointComparisonEligible===true)}; }
 function validationState(report, run) {
@@ -306,6 +313,9 @@ export async function handleApiRequest(req, res) {
       const jobMatch=url.pathname.match(/^\/api\/jobs\/([^/]+)$/);if(req.method==="GET"&&jobMatch){const job=await getJob(jobMatch[1]);return job?send(res,200,job):send(res,404,{error:"Job not found."});}
       if(req.method==="GET"&&url.pathname==="/api/discovery-runs")return send(res,200,{runs:await listRuns("discovery")});
       if(req.method==="GET"&&url.pathname==="/api/comparison-runs")return send(res,200,{runs:await listRuns("comparison")});
+      // Discover configuration is independent of the larger research archives.
+      if(req.method==="GET"&&url.pathname==="/api/profile")return send(res,200,englishDisplayValue(await json("data/mission-profiles/mars-surface-v1.json")));
+      if(req.method==="GET"&&url.pathname==="/api/study-areas"){const names=await files("data/discovery/study-areas",/^[-A-Za-z0-9_]+\.json$/);const records=await Promise.all(names.map((name)=>json(`data/discovery/study-areas/${name}`)));return send(res,200,englishDisplayValue({studyAreas:records.map((r)=>({schemaVersion:r.schemaVersion,configurationStatus:r.configurationStatus,demonstrationRationale:r.demonstrationRationale??null,providerRequestLimit:r.providerRequestLimit??null,scientificLimitations:r.scientificLimitations,studyArea:r.studyArea}))}));}
       const artifacts = await currentArtifacts();
       if (req.method === "GET" && url.pathname === "/api/summary") {
         const discovery=artifacts.discovery, comparison=artifacts.comparison;
@@ -322,8 +332,6 @@ export async function handleApiRequest(req, res) {
       if(req.method==="GET"&&url.pathname==="/api/evidence/coverage"){const coverage=await optional("data/evidence/evidence-coverage-v1.json");return coverage?send(res,200,coverage):send(res,404,{error:"Evidence coverage report is not available."});}
       const evidenceMatch=url.pathname.match(/^\/api\/references\/([^/]+)\/evidence$/);if(req.method==="GET"&&evidenceMatch){const id=decodeURIComponent(evidenceMatch[1]);if(!idPattern.test(id))return send(res,400,{error:"Invalid reference ID."});const evidence=await optional("data/evidence/evidence-registry-v1.json");if(!evidence)return send(res,404,{error:"Unified evidence registry is not available."});const records=(evidence.records??[]).filter((item)=>item.siteId===id);const supplementalRecords=(evidence.supplementalRecords??[]).filter((item)=>item.siteId===id);return send(res,200,{schemaVersion:evidence.schemaVersion,evidenceModelVersion:evidence.evidenceModelVersion,siteId:id,curationDecision:evidence.records.find((item)=>item.siteId===id)?.curationDecision??null,pointComparisonEligible:evidence.records.find((item)=>item.siteId===id)?.pointComparisonEligible===true,records,supplementalRecords});}
       if (req.method === "GET" && url.pathname.startsWith("/api/references/")) { const id=decodeURIComponent(url.pathname.slice("/api/references/".length)); if(!idPattern.test(id)) return send(res,400,{error:"Invalid reference ID."}); const record=artifacts.references.find((r)=>r.id===id); return record?send(res,200,{...displayReference(record),curation:displayCuration(artifacts.curation.find((item)=>item.stableId===id)),evidenceSummary:evidenceSummaryFor(id,artifacts.evidence)}):send(res,404,{error:"Reference not found."}); }
-      if (req.method === "GET" && url.pathname === "/api/profile") return send(res,200,englishDisplayValue(artifacts.profile));
-      if (req.method === "GET" && url.pathname === "/api/study-areas") { const names=await files("data/discovery/study-areas",/^[-A-Za-z0-9_]+\.json$/); const records=await Promise.all(names.map((name)=>json(`data/discovery/study-areas/${name}`))); return send(res,200,englishDisplayValue({studyAreas:records.map((r)=>({schemaVersion:r.schemaVersion,configurationStatus:r.configurationStatus,demonstrationRationale:r.demonstrationRationale??null,providerRequestLimit:r.providerRequestLimit??null,scientificLimitations:r.scientificLimitations,studyArea:r.studyArea}))})); }
       if (req.method === "GET" && url.pathname === "/api/discovery-runs") return send(res,200,{runs:await listRuns("discovery")});
       if (req.method === "GET" && url.pathname === "/api/comparison-runs") return send(res,200,{runs:await listRuns("comparison")});
       if (req.method === "GET" && url.pathname === "/api/discovery-runs/latest") return artifacts.discovery?send(res,200,englishDisplayValue(artifacts.discovery)):send(res,404,{error:"No discovery run is stored."});

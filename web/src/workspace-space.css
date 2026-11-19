@@ -34,3 +34,79 @@ html[data-theme="light"] .workspace-planet--ice{opacity:.32;background:radial-gr
 @keyframes workspace-nebula-drift{from{transform:translate3d(-4px,3px,0) scale(1)}to{transform:translate3d(7px,-5px,0) scale(1.025)}}
 @media(max-width:760px){.workspace-atmosphere{transform:none}.workspace-planet--blue{width:270px;left:-172px;top:-190px;opacity:.42}.workspace-planet--rust{width:164px;right:-112px;bottom:12vh;opacity:.4}.workspace-planet--ice{width:100px;left:-73px;bottom:5vh;opacity:.26}}
 @media(prefers-reduced-motion:reduce){.workspace-atmosphere{transform:none!important;will-change:auto}.workspace-nebula,.workspace-starfield,.workspace-starfield:before,.workspace-starfield:after,.workspace-planet{animation:none!important;will-change:auto}.workspace-starfield,.workspace-starfield:before,.workspace-starfield:after{transform:none!important;opacity:.84}.workspace-planet{transform:none!important}}
+.research-dropdown{position:relative}.research-dropdown>summary{list-style:none;cursor:pointer}.research-dropdown>summary::-webkit-details-marker{display:none}.research-dropdown>summary:after{content:"⌄";margin-left:5px;color:var(--cyan)}.research-dropdown>div{position:absolute;z-index:30;top:calc(100% + 12px);left:0;display:grid;min-width:190px;padding:7px;border:1px solid var(--line);border-radius:4px 12px 12px 12px;background:var(--panel);box-shadow:0 14px 38px #020b1740}.research-dropdown>div a{padding:10px;color:var(--text);white-space:nowrap}.research-dropdown>div a:hover,.research-dropdown>div a:focus-visible{background:var(--panel-2);color:var(--cyan)}.landing-research-hub{max-width:1460px;margin:0 auto;padding:50px 44px 70px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.landing-research-hub>article{display:flex;flex-direction:column;align-items:flex-start;gap:10px;padding:20px;border:1px solid var(--line);border-radius:4px 15px 15px 15px;background:var(--surface-glass)}.landing-research-hub h2{margin:0;font-size:20px}.landing-research-hub p{margin:0;color:var(--muted);font-size:12px;line-height:1.7}.research-subjects{display:flex;flex-wrap:wrap;gap:6px;margin:auto 0 4px}.research-subjects span{padding:5px 7px;border:1px solid var(--line);border-radius:3px 8px 8px 8px;color:var(--muted);font-size:9px}.planetary-evidence-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}.planetary-evidence-page .page{max-width:1600px}.landing-nav nav{display:flex;align-items:center;gap:clamp(10px,1.6vw,24px)}.landing-nav nav>a,.research-dropdown>summary{color:inherit}.landing-nav nav>a:hover,.research-dropdown>summary:hover{color:var(--cyan)}
+@media(max-width:800px){.landing-research-hub{grid-template-columns:1fr;padding:35px 18px}.landing-nav{padding-inline:16px}.landing-nav nav{gap:10px;font-size:10px;flex-wrap:wrap;justify-content:flex-end}.landing-nav nav>a:not(.nav-enter){display:block}.research-dropdown{display:block}.research-dropdown[open]{display:block}.research-dropdown>div{left:auto;right:0}.planetary-evidence-tabs{overflow-x:auto;flex-wrap:nowrap}.planetary-evidence-tabs button{flex:0 0 auto}}
+.primary-nav .research-dropdown{height:100%;display:flex;align-items:center}.primary-nav .research-dropdown>summary{display:flex;align-items:center;height:100%;padding:0 14px;color:var(--muted);font-size:12px;cursor:pointer}.primary-nav .research-dropdown>div a{height:auto;font-size:11px}.primary-nav .research-dropdown>div a.active{color:var(--cyan)}.dashboard-v2-sidebar a:focus-visible,.dashboard-v2-sidebar button:focus-visible,.dashboard-v2-mobile-nav-toggle:focus-visible,.dashboard-v2-activity-tabs button:focus-visible,.planetary-evidence-tabs button:focus-visible,.research-dropdown summary:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+@media(max-width:800px){.landing-nav{display:flex;flex-wrap:wrap;gap:10px}.landing-nav nav{width:100%;justify-content:flex-start;gap:8px 16px;font-size:11px;flex-wrap:nowrap;overflow-x:auto;padding:2px 0 6px}.landing-nav nav>a{flex:0 0 auto}.landing-nav .research-dropdown>summary{white-space:nowrap}.landing-nav .theme-button{flex:0 0 auto}.research-dropdown{display:block}.site-header{height:auto;min-height:64px;grid-template-columns:minmax(120px,1fr) auto;gap:6px;padding:10px 14px}.site-header .brand{grid-column:1;grid-row:1}.site-header .header-actions{grid-column:2;grid-row:1}.site-header .primary-nav{grid-column:1/-1;grid-row:2;justify-content:flex-start;overflow-x:auto;height:38px}.site-header .primary-nav>a,.site-header .primary-nav .research-dropdown>summary{padding-inline:8px;font-size:10px}}
+
+/* Shared navigation and workspace alignment refinements. */
+.primary-nav>a:not(.workspace-entry-link):hover,.primary-nav .research-dropdown>summary:hover,.primary-nav .research-dropdown>summary:focus-visible{color:var(--cyan)}
+.primary-nav a:hover:after{display:none}
+.primary-nav .research-dropdown>summary{gap:6px;padding-inline:14px;font:500 12px/1 var(--font-display);transition:color .18s}
+.primary-nav .research-dropdown>summary:after{display:inline-block;margin:0;color:currentColor;font:600 15px/1 var(--font-display);transform:translateY(-1px);transition:transform .18s}
+.primary-nav .research-dropdown[open]>summary:after{transform:rotate(180deg)}
+.primary-nav .research-dropdown>div{top:calc(100% - 1px);left:50%;min-width:220px;padding:6px;transform:translateX(-50%)}
+.primary-nav .research-dropdown>div a{min-height:40px;padding:10px 12px;border-radius:3px 8px 8px 8px;transition:color .16s,background .16s}
+.primary-nav .research-dropdown>div a:hover,.primary-nav .research-dropdown>div a:focus-visible{background:transparent;color:var(--cyan)}
+.primary-nav .workspace-entry-link{color:var(--text);font-weight:600}
+.research-page-header{grid-template-columns:minmax(0,1fr) auto}
+.research-page-header .workspace-entry-link{justify-self:end;display:inline-flex;align-items:center;gap:7px;padding:9px 13px;border:1px solid var(--line);border-radius:4px 11px 11px 11px;color:var(--text);font-size:12px;transition:color .18s,border-color .18s}
+.research-page-header .workspace-entry-link:hover{border-color:var(--cyan);color:var(--cyan)}
+.research-page-header .header-actions{display:none}
+.dashboard-global-header{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.dashboard-global-header .dashboard-header-spacer{display:none}
+.dashboard-global-header .header-actions{grid-column:2;justify-self:end;min-width:max-content}
+.dashboard-global-header .scope-pill,.dashboard-global-header .theme-button{flex:0 0 auto}
+@media(max-width:800px){.site-header.dashboard-global-header{grid-template-columns:minmax(0,1fr) auto}.dashboard-global-header .header-actions{grid-column:2;grid-row:1}.research-page-header{grid-template-columns:minmax(0,1fr) auto}.research-page-header .brand{grid-column:1;grid-row:1}.research-page-header .workspace-entry-link{grid-column:2;grid-row:1}}
+
+@media(max-width:520px){.landing-nav{height:auto;min-height:76px;padding-block:12px}.landing-nav nav{gap:8px 13px;font-size:10px}.landing-nav .theme-button{padding:7px 8px}.research-page-header .brand{font-size:12px}.research-page-header .brand small{font-size:7px}.research-page-header .workspace-entry-link{padding:8px 10px;font-size:11px}}
+
+/* Restored workspace atmosphere: subtle sun, existing animated planets, and non-interactive depth. */
+.workspace-sun{position:absolute;top:15%;right:clamp(120px,19vw,290px);width:clamp(74px,8vw,116px);aspect-ratio:1;border-radius:50%;pointer-events:none;background:radial-gradient(circle at 38% 34%,#fff6dd 0%,#ffdba0 14%,#f5a45a 38%,#d7673c 63%,#8b3f3850 76%,transparent 100%);box-shadow:0 0 28px 6px #f6a95b55,0 0 90px 20px #ec784022;opacity:.55;animation:workspace-sun-glow 18s ease-in-out infinite alternate;will-change:opacity,transform}
+@keyframes workspace-sun-glow{from{transform:scale(.985);opacity:.48}to{transform:scale(1.025);opacity:.62}}
+@media(max-width:760px){.workspace-sun{top:18%;right:18%;width:72px;opacity:.42}}
+@media(prefers-reduced-motion:reduce){.workspace-sun{animation:none!important;will-change:auto}}
+
+/* A single outer boundary keeps public research pages aligned with one another. */
+.public-research-container{box-sizing:border-box;width:100%;max-width:1540px;min-width:0;margin-inline:auto;padding:clamp(24px,3vw,36px) clamp(20px,4vw,60px) 52px}
+.public-research-container>:is(.dashboard-v2-page,.planetary-evidence-page){display:grid;gap:16px}
+.public-research-container .page{display:grid;gap:16px;width:100%;max-width:none;margin:0;padding:0;flex:none}
+.public-research-container .dashboard-v2-page{gap:16px}
+.public-research-container :is(.dashboard-v2-heading,.page-head){margin:0 0 12px}
+@media(max-width:760px){.public-research-container{padding:22px 16px 34px}}
+
+/* The MapLibre records are native buttons; reset browser button chrome so the existing
+   15px markers remain true circles at every browser/device scale. */
+.map-pin{display:block;box-sizing:border-box;appearance:none;-webkit-appearance:none;width:15px;height:15px;min-width:15px;min-height:15px;padding:0;border:2px solid #d6f5ff;border-radius:50%;background:#55c7e8;line-height:0;cursor:pointer}
+.map-pin.pin-candidate{border-color:#ffe0d7;background:#fc3d21}
+.map-pin:focus-visible{outline:2px solid #fff;outline-offset:3px}
+
+/* Compact product description stays after Compare; collapsed and drawer modes remain legible. */
+.dashboard-v2-sidebar-about{display:grid;gap:5px;margin-top:auto;padding:13px 9px 4px;border-top:1px solid var(--line);color:var(--muted)}
+.dashboard-v2-sidebar-about>b{color:var(--text);font-size:11px;font-weight:600}
+.dashboard-v2-sidebar-about>span{color:var(--cyan);font-size:10px}
+.dashboard-v2-sidebar-about>p{margin:0;font-size:9px;line-height:1.55}
+.sidebar-collapsed .dashboard-v2-sidebar-about{display:block;overflow:hidden;margin-top:auto;padding:12px 0 2px;text-align:center;white-space:nowrap}
+.sidebar-collapsed .dashboard-v2-sidebar-about>b{display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:50%;font:600 9px var(--font-mono);color:var(--cyan)}
+.sidebar-collapsed .dashboard-v2-sidebar-about>span,.sidebar-collapsed .dashboard-v2-sidebar-about>p{display:none}
+@media(max-width:760px){.dashboard-v2-sidebar-about{margin-top:8px;padding:12px 10px}.dashboard-v2-sidebar-about>p{max-width:55ch}}
+
+.dashboard-v2-discovery-grid.is-lunar{grid-template-columns:minmax(0,1fr)}
+.dashboard-v2-lunar-state{display:grid;gap:12px;margin-top:18px;padding:clamp(18px,3vw,28px);border:1px solid var(--line);border-inline-start:3px solid var(--cyan);border-radius:4px 14px 14px;background:var(--panel-2)}
+.dashboard-v2-lunar-state h2{margin:0;font-size:clamp(19px,2.2vw,25px);line-height:1.3}
+.dashboard-v2-lunar-state>p{max-width:78ch;margin:0;color:var(--muted);font-size:12px;line-height:1.75}
+.dashboard-v2-lunar-state h3{margin:6px 0 0;font-size:12px}
+.dashboard-v2-lunar-state dl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:0}
+.dashboard-v2-lunar-state dl>div{min-width:0;padding:11px;border:1px solid var(--line);background:var(--panel)}
+.dashboard-v2-lunar-state dt{color:var(--muted-2);font:9px var(--font-mono);text-transform:uppercase;letter-spacing:.06em}
+.dashboard-v2-lunar-state dd{margin:5px 0 0;color:var(--text);font-size:11px;font-weight:600}
+.dashboard-v2-lunar-state .dashboard-v2-lunar-footnote{font-size:10px;color:var(--muted-2)}
+@media(max-width:600px){.dashboard-v2-lunar-state dl{grid-template-columns:1fr}}
+
+/* Keep Research's chevron fixed downward; opening only changes the menu visibility. */
+.primary-nav .research-dropdown>summary:after{transform:translateY(1px)!important;transition:none!important}
+.primary-nav .research-dropdown[open]>summary:after{transform:translateY(1px)!important}
+.map-pin{box-shadow:0 0 0 4px #55c7e833,0 0 14px #55c7e888}
+.map-pin.pin-candidate{box-shadow:0 0 0 4px #fc3d2138,0 0 14px #fc3d2188}
+.map-pin.is-selected{box-shadow:0 0 0 5px #ffffff42,0 0 18px #d9f7ffb8}
+.primary-nav a,.primary-nav .research-dropdown>summary{text-decoration:none;transition:color .16s ease}

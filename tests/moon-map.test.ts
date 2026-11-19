@@ -79,7 +79,11 @@ test("Moon route is wired to API-driven page and preserves the separate Mars rou
   const client = await readFile("web/src/moon/moon-api.ts", "utf8");
   assert.match(app, /path="\/moon"/);
   assert.match(app, /path="\/mars-evidence"/);
-  assert.match(app, /<NavLink to="\/moon">Moon<\/NavLink>/);
+  assert.match(app, /path="\/planetary-evidence"/);
+  assert.match(app, /function PlanetaryEvidence\(\)/);
+  assert.match(app, /Earth References/);
+  assert.match(app, /Mars Evidence/);
+  assert.match(app, /Moon Data/);
   assert.match(page, /getMoonSummary\(\).*getMoonDatasets\(\).*getMoonLayers\(\).*getMoonCoverage\(\).*getMoonMapConfig\(\)/s);
   assert.match(client, /import \{ api \} from "\.\.\/api\.js"/);
 });

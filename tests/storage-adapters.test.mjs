@@ -1,11 +1,11 @@
 import assert from "node:assert/strict";
-import { mkdtemp, readFile, rm, writeFile, mkdir } from "node:fs/promises";
+import { mkdtemp, readFile, rm, writeFile, mkdir, symlink, lstat } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { test } from "node:test";
 import { createHash } from "node:crypto";
 import { getIncidentManifestPaths, runReadOnlyArtifactDiagnostic, sanitizeDiagnosticOutput } from "../scripts/diagnose-vercel-artifact-store.mjs";
-import { DIAGNOSTIC_RUNTIME_INPUTS, packageArtifactDiagnosticInputs } from "../scripts/package-vercel-artifact-diagnostic.mjs";
+import { DIAGNOSTIC_RUNTIME_INPUTS, VERCEL_FUNCTION_ALIASES, packageArtifactDiagnosticInputs } from "../scripts/package-vercel-artifact-diagnostic.mjs";
 import { LocalJsonArtifactStore } from "../scripts/storage/local-json-artifact-store.mjs";
 import { createVercelArtifactStoreFromEnvironment, VercelJsonArtifactStore } from "../scripts/storage/vercel-json-artifact-store.mjs";
 import { Readable } from "node:stream";
@@ -271,9 +271,13 @@ test("Vercel diagnostic packaging includes only the three required runtime prove
     const output = join(root, ".vercel", "output", "functions");
     const server = join(output, "__server.func");
     const api = join(output, "api", "[...].func");
+    const webhook = join(output, ".well-known", "workflow", "v1", "webhook", "[token].func");
     await mkdir(server, { recursive: true });
-    await mkdir(api, { recursive: true });
     await writeFile(join(server, "index.mjs"), "export default true;\n");
+    await mkdir(dirname(api), { recursive: true });
+    await mkdir(dirname(webhook), { recursive: true });
+    await symlink(server, api, "junction");
+    await symlink(server, webhook, "junction");
     for (const [index, relativePath] of DIAGNOSTIC_RUNTIME_INPUTS.entries()) {
       const source = join(root, relativePath);
       await mkdir(dirname(source), { recursive: true });
@@ -284,6 +288,11 @@ test("Vercel diagnostic packaging includes only the three required runtime prove
     assert.equal(packaged.length, 3);
     for (const [index, path] of packaged.entries()) assert.equal(await readFile(path, "utf8"), `verified-${index}`);
     assert.deepEqual(packaged.map((path) => path.slice(api.length + 1).replaceAll("\\", "/")), DIAGNOSTIC_RUNTIME_INPUTS);
+    for (const alias of VERCEL_FUNCTION_ALIASES) {
+      const functionPath = join(output, alias);
+      assert.equal((await lstat(functionPath)).isSymbolicLink(), false);
+      assert.equal(await readFile(join(functionPath, "index.mjs"), "utf8"), "export default true;\n");
+    }
   } finally {
     await rm(root, { recursive: true, force: true });
   }

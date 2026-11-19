@@ -1,4 +1,4 @@
-import { copyFile, cp, lstat, mkdir, realpath, rm, unlink } from "node:fs/promises";
+import { copyFile, cp, lstat, mkdir, realpath, unlink } from "node:fs/promises";
 import { dirname, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -7,28 +7,35 @@ export const DIAGNOSTIC_RUNTIME_INPUTS = [
   "data/evidence/m2/retrieval-manifest-v1.json",
   "scripts/migration/vercel-seed-manifest.json",
 ];
+export const VERCEL_FUNCTION_ALIASES = [
+  "api/[...].func",
+  ".well-known/workflow/v1/webhook/[token].func",
+];
 
 export async function packageArtifactDiagnosticInputs({ projectRoot = process.cwd(), outputRoot = resolve(projectRoot, ".vercel/output/functions") } = {}) {
   const serverFunction = resolve(outputRoot, "__server.func");
-  const apiFunction = resolve(outputRoot, "api/[...].func");
   const serverRealPath = await realpath(serverFunction);
 
-  try {
-    const apiStat = await lstat(apiFunction);
-    if (apiStat.isSymbolicLink()) {
-      const linkedPath = await realpath(apiFunction);
-      if (linkedPath !== serverRealPath) throw new Error("Unexpected Vercel API function link target.");
-      await unlink(apiFunction);
-      await mkdir(dirname(apiFunction), { recursive: true });
-      await cp(serverRealPath, apiFunction, { recursive: true });
-    } else if (!apiStat.isDirectory()) {
-      throw new Error("Vercel API function output is not a directory.");
+  for (const alias of VERCEL_FUNCTION_ALIASES) {
+    const functionPath = resolve(outputRoot, alias);
+    try {
+      const functionStat = await lstat(functionPath);
+      if (functionStat.isSymbolicLink()) {
+        const linkedPath = await realpath(functionPath);
+        if (linkedPath !== serverRealPath) throw new Error(`Unexpected Vercel function link target: ${alias}`);
+        await unlink(functionPath);
+        await mkdir(dirname(functionPath), { recursive: true });
+        await cp(serverRealPath, functionPath, { recursive: true });
+      } else if (!functionStat.isDirectory()) {
+        throw new Error(`Vercel function output is not a directory: ${alias}`);
+      }
+    } catch (error) {
+      if (error?.code !== "ENOENT") throw error;
+      throw new Error(`Vercel function output is missing: ${alias}`);
     }
-  } catch (error) {
-    if (error?.code !== "ENOENT") throw error;
-    throw new Error("Vercel API function output is missing.");
   }
 
+  const apiFunction = resolve(outputRoot, VERCEL_FUNCTION_ALIASES[0]);
   for (const relativePath of DIAGNOSTIC_RUNTIME_INPUTS) {
     const source = resolve(projectRoot, relativePath);
     const target = resolve(apiFunction, relativePath);
